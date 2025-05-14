@@ -14,11 +14,13 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 100%;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
             cursor: pointer;
             display: none;
             transition: opacity 0.3s ease;
+            display: none;
         }
 
         #scrollToTopBtn:hover {

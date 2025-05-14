@@ -27,20 +27,17 @@
 .navbar {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  background-color: rgba(255, 255, 255, 0.8); /* semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.85);
   box-shadow: var(--shadow);
-  padding: 0.75rem 0;
+  padding: 0.75rem 1rem;
   transition: all 0.3s ease;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: 1000;
 }
 
 .navbar-brand {
   font-weight: 700;
   font-size: 1.5rem;
+  white-space: nowrap;
 }
 
 .logo-icon {
@@ -48,11 +45,17 @@
   color: var(--primary);
 }
 
+/* Center nav and make mobile friendly */
+.navbar-nav {
+  gap: 0.5rem;
+}
+
 .navbar-nav .nav-link {
   font-weight: 500;
   padding: 0.5rem 1rem;
   position: relative;
   transition: color 0.3s ease;
+  text-align: center;
 }
 
 .navbar-nav .nav-link::after {
@@ -71,6 +74,18 @@
 .navbar-nav .nav-link.active::after {
   width: 80%;
 }
+
+.auth-buttons {
+  flex-direction: column;
+}
+
+@media (min-width: 992px) {
+  .auth-buttons {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
 
 /* Hero Section */
 .hero-section {
@@ -513,10 +528,23 @@ html {
   scroll-behavior: smooth;
 }
 
+.section-padding {
+  padding: 60px 0;
+}
+
+.hero-section {
+  padding: 130px 0;
+  padding-bottom: 100px;
+}
+
 @media (max-width: 992px) {
   .hero-image {
     margin-top: 20px;
     border-radius: 8px;
     box-shadow: var(--shadow-md); /* Reduce shadow size on small screens */
   }
+
+  .hero-section {
+  padding: 100px 0;
+}
 }

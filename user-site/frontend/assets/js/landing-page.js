@@ -43,4 +43,34 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("scroll", updateActiveLink);
   window.addEventListener("resize", updateActiveLink);
   updateActiveLink(); // Initial call
+
+  // Nav Bar Collapse on Mobile
+  const navbarCollapse = document.getElementById('navbarNav');
+  document.querySelectorAll('.nav-link[data-scroll-to]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 992) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        bsCollapse.hide();
+      }
+    });
+  });
+
+  // Nav Bar Collapse on Outside Click
+  const navbar = document.querySelector('.navbar');
+  const toggler = document.querySelector('.navbar-toggler');
+
+  document.addEventListener('click', function (event) {
+    const isClickInside = navbar.contains(event.target);
+    const isExpanded = toggler.getAttribute('aria-expanded') === 'true';
+
+    if (!isClickInside && isExpanded) {
+      const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+        toggle: false
+      });
+      bsCollapse.hide();
+    }
+  });
+
 });
