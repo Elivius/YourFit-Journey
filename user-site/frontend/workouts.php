@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 text-md-end">
-                        <div class="workout-filters">
+                        <div class="workout-filters card-actions">
                             <select class="form-select">
                                 <option selected>Experience Level</option>
                                 <option>Beginner</option>

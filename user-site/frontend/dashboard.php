@@ -167,7 +167,7 @@
                             <div class="card-header">
                                 <h5 class="card-title">Workout Activity</h5>
                                 <div class="card-actions">
-                                    <select class="form-select form-select-sm">
+                                    <select class="form-select">
                                         <option>This Month</option>
                                         <option>This Week</option>
                                         <option>This Year</option>
