@@ -2,7 +2,7 @@
 $server = 'localhost';
 $username = 'root';
 $password = '';
-$database = 'yourfitjourney';
+$database = 'yourfit_journey';
 
 $conn = mysqli_connect($server, $username, $password, $database) or die("Connection failed: " . mysqli_connect_error());
 
