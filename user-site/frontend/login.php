@@ -70,12 +70,7 @@ var_dump($_SESSION);
                         <label class="form-check-label" for="remember-me">Remember me</label>
                     </div>
                     
-                    <?php if (isset($_SESSION['error'])): ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?= htmlspecialchars($_SESSION['error']) ?>
-                        </div>
-                        <?php unset($_SESSION['error']); ?>
-                    <?php endif; ?>
+                    <?php require_once '../../utils/message.php'; ?>
                     
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg">Login</button>

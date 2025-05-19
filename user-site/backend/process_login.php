@@ -7,7 +7,7 @@ require_once '../../utils/sanitize.php';
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     $_SESSION['error'] = "Invalid CSRF token";
-    header("Location: ../frontend/index.php");
+    header("Location: ../frontend/login.php");
     exit;
 }
 
@@ -46,7 +46,6 @@ if ($stmt = mysqli_prepare($connection, $sql)) {
             } else {
                 header('Location: ../frontend/dashboard.php');
             }
-
             exit;
         }
     }
