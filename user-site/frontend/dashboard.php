@@ -1,3 +1,5 @@
+<?php require_once '../../utils/auth.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

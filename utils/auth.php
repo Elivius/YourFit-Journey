@@ -3,7 +3,7 @@ session_start();
 
 // Basic login check
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header("Location: ../user-site/frontend/index.php");
+    header("Location: index.php");
     exit;
 }
 
@@ -18,13 +18,13 @@ function isUser() {
 
 function authorization() {
     if (isAdmin()) {
-        header("Location: ../admin-site/frontend/dashboard.php");
+        header("Location: dashboard.php");
         exit;
     } else if (isUser()) {
-        header("Location: ../user-site/frontend/dashboard.php");
+        header("Location: dashboard.php");
         exit;
     } else {
-        header("Location: ../user-site/frontend/index.php");
+        header("Location: index.php");
         exit;
     }
 }

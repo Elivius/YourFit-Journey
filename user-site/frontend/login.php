@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+session_start();
+$csrfToken = generateCSRFToken();
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +40,14 @@
                 <p>Log in to continue your fitness journey</p>
             </div>
             <div class="auth-body">
-                <form id="login-form">
+                <form id="login-form" action="../backend/process_login.php" method="POST">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
+
                     <div class="mb-4">
                         <label for="email" class="form-label">Email address</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
                         </div>
                     </div>
                     <div class="mb-4">
@@ -51,7 +57,7 @@
                         </div>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required>
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
