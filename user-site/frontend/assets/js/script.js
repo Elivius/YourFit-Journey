@@ -43,14 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         parent.appendChild(errorMessage);
                     }
                 });
-            } else {
-                // For demo purposes, prevent actual form submission
-                event.preventDefault();
-                
+            } else {                
                 // Show success message
                 const successMessage = document.createElement('div');
                 successMessage.className = 'alert alert-success mt-3';
-                successMessage.textContent = 'Form submitted successfully!';
+                successMessage.textContent = 'Loading...';
                 form.appendChild(successMessage);
                 
                 // Remove success message after 3 seconds

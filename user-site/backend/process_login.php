@@ -1,12 +1,14 @@
 <?php
 session_start();
-require_once '../../utils/db.php';
+require_once '../../utils/connection.php';
 require_once '../../utils/csrf.php';
 require_once '../../utils/sanitize.php';
 
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
-    die("Invalid CSRF token");
+    $_SESSION['error'] = "Invalid CSRF token";
+    header("Location: ../frontend/index.php");
+    exit;
 }
 
 // Sanitize and validate input
@@ -14,36 +16,49 @@ $email = sanitizeEmail($_POST['email'] ?? '');
 $password = cleanInput($_POST['password'] ?? '');
 
 if (!$email || empty($password)) {
-    die("Email and password are required");
+    $_SESSION['error'] = "Email and password are required";
+    header("Location: ../frontend/login.php");
+    exit;
 }
 
 // Fetch user from database
-$stmt = $pdo->prepare("SELECT id, email, password, role FROM users WHERE email = ?");
-$stmt->execute([$email]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$sql = "SELECT user_id, email, password, role FROM users WHERE email = ?";
 
-if (!$user) {
-    die('Incorrect email or password.');
-}
+if ($stmt = mysqli_prepare($connection, $sql)) {
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    mysqli_stmt_execute($stmt);
 
-//Verify password hash
-if (!password_verify($password, $user['password'])) {
-    die('Incorrect email or password.');
-}
+    $result = mysqli_stmt_get_result($stmt);
 
-//Secure session management
-session_regenerate_id(true);
+    if ($result && $user = mysqli_fetch_assoc($result)) {
+        if (password_verify($password, $user['password'])) {
+            // Secure session handling
+            session_regenerate_id(true);
 
-$_SESSION['logged_in'] = true;
-$_SESSION['user_id']   = $user['id'];
-$_SESSION['email']     = $user['email'];
-$_SESSION['role']      = $user['role'];
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_id']   = $user['user_id'];
 
-// Redirect based on role
-if ($user['role'] === 'admin') {
-    header('Location: ../admin-site/frontend/dashboard.php');
+            mysqli_stmt_close($stmt);
+
+            // Redirect based on role
+            if ($user['role'] === 'admin') {
+                header('Location: ../admin-site/frontend/dashboard.php');
+            } else {
+                header('Location: ../frontend/dashboard.php');
+            }
+
+            exit;
+        }
+    }
+
+    // If no user or password mismatch
+    $_SESSION['error'] = "Incorrect email or password";
+    mysqli_stmt_close($stmt);
+    header("Location: ../frontend/login.php");
+    exit;
 } else {
-    header('Location: ../user-site/frontend/dashboard.php');
+    error_log('Statement preparation failed: ' . mysqli_error($connection));
+    $_SESSION['error'] = "Server error. Please try again later.";
+    header("Location: ../frontend/login.php");
+    exit;
 }
-
-exit;

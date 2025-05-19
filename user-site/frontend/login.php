@@ -1,6 +1,7 @@
 <?php
 session_start();
-$csrfToken = generateCSRFToken();
+require_once '../../utils/csrf.php';
+var_dump($_SESSION);
 ?>
 
 
@@ -41,7 +42,7 @@ $csrfToken = generateCSRFToken();
             </div>
             <div class="auth-body">
                 <form id="login-form" action="../backend/process_login.php" method="POST">
-                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCSRFToken()); ?>">
 
                     <div class="mb-4">
                         <label for="email" class="form-label">Email address</label>
@@ -63,10 +64,19 @@ $csrfToken = generateCSRFToken();
                             </button>
                         </div>
                     </div>
+                    
                     <div class="mb-4 form-check">
                         <input type="checkbox" class="form-check-input" id="remember-me">
                         <label class="form-check-label" for="remember-me">Remember me</label>
                     </div>
+                    
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= htmlspecialchars($_SESSION['error']) ?>
+                        </div>
+                        <?php unset($_SESSION['error']); ?>
+                    <?php endif; ?>
+                    
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg">Login</button>
                     </div>

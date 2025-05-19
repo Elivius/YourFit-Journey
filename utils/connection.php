@@ -4,9 +4,9 @@ $username = 'root';
 $password = '';
 $database = 'yourfit_journey';
 
-$conn = mysqli_connect($server, $username, $password, $database) or die("Connection failed: " . mysqli_connect_error());
+$connection = mysqli_connect($server, $username, $password, $database) or die("Connection failed: " . mysqli_connect_error());
 
-if ($conn) {
+if ($connection) {
     $databaseStatus = 'Connected';
 } else {
     $databaseStatus = 'Not Connected';
