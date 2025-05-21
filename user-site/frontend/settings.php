@@ -20,7 +20,7 @@
 <body class="dark-theme dashboard-body">
     <div class="dashboard-container">
 
-        <?php include 'side-bar.php'; ?>
+        <?php include 'side_bar.php'; ?>
 
         <!-- Main Content -->
         <main class="main-content">

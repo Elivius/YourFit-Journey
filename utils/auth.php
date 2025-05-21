@@ -9,24 +9,24 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
 }
 
 // Role check example
-function isAdmin() {
-    return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
-}
+// function isAdmin() {
+//     return isset($_SESSION['role']) && $_SESSION['role'] === 'admin';
+// }
 
-function isUser() {
-    return isset($_SESSION['role']) && $_SESSION['role'] === 'user';
-}
+// function isUser() {
+//     return isset($_SESSION['role']) && $_SESSION['role'] === 'user';
+// }
 
-function authorization() {
-    if (isAdmin()) {
-        header("Location: dashboard.php");
-        exit;
-    } else if (isUser()) {
-        header("Location: dashboard.php");
-        exit;
-    } else {
-        header("Location: index.php");
-        exit;
-    }
-}
+// function authorization() {
+//     if (isAdmin()) {
+//         header("Location: dashboard.php");
+//         exit;
+//     } else if (isUser()) {
+//         header("Location: dashboard.php");
+//         exit;
+//     } else {
+//         header("Location: index.php");
+//         exit;
+//     }
+// }
 ?>

@@ -34,7 +34,8 @@ if ($stmt = mysqli_prepare($connection, $sql)) {
         if (password_verify($password, $user['password'])) {
             // Secure session handling
             session_regenerate_id(true);
-            
+
+            $_SESSION['logged_in'] = true;
             $_SESSION['user_id']   = $user['user_id'];
 
             mysqli_stmt_close($stmt);
@@ -42,8 +43,11 @@ if ($stmt = mysqli_prepare($connection, $sql)) {
             // Redirect based on role
             if ($user['role'] === 'admin') {
                 header('Location: ../admin-site/frontend/dashboard.php');
-            } else {
+            } else if ($user['role'] === 'user') {                
                 header('Location: ../frontend/dashboard.php');
+            } else {
+                $_SESSION['error'] = "Unauthorized access";
+                header("Location: ../frontend/login.php");
             }
             exit;
         }

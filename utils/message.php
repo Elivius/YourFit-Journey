@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Document</title>
 </head>
 <body>
@@ -16,18 +16,18 @@
     <script>
         // Form Validation
         const forms = document.querySelectorAll('form');
-        
+
         forms.forEach(form => {
             form.addEventListener('submit', function(event) {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
-                    
+
                     // Add custom validation UI
                     const invalidInputs = form.querySelectorAll(':invalid');
                     invalidInputs.forEach(input => {
                         input.classList.add('is-invalid');
-                        
+
                         // Add error message if not already present
                         const parent = input.parentElement;
                         if (!parent.querySelector('.invalid-feedback')) {
@@ -37,22 +37,11 @@
                             parent.appendChild(errorMessage);
                         }
                     });
-                } else {                
-                    // Show success message
-                    const successMessage = document.createElement('div');
-                    successMessage.className = 'alert alert-success mt-3';
-                    successMessage.textContent = 'Loading...';
-                    form.appendChild(successMessage);
-                    
-                    // Remove success message after 3 seconds
-                    setTimeout(() => {
-                        successMessage.remove();
-                    }, 3000);
                 }
-                
+                // Removed the "Loading..." success message block here
                 form.classList.add('was-validated');
             });
-            
+
             // Clear validation on input
             form.querySelectorAll('input, select, textarea').forEach(input => {
                 input.addEventListener('input', function() {
@@ -63,6 +52,18 @@
                     }
                 });
             });
+        });
+
+        // Clear password field if error alert is present
+        window.addEventListener('DOMContentLoaded', () => {
+            const errorAlert = document.querySelector('.alert-danger');
+            if (errorAlert) {
+                const passwordInput = document.querySelector('input[type="password"]');
+                if (passwordInput) {
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
         });
     </script>
 </body>

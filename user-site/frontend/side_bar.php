@@ -43,7 +43,7 @@
         </ul>
     </nav>
     <div class="sidebar-footer">
-        <a href="index.php" class="sidebar-link logout-link">
+        <a href="../../utils/logout.php" class="sidebar-link logout-link">
             <i class="fas fa-sign-out-alt"></i>
             <span>Logout</span>
         </a>
