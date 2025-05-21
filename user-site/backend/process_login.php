@@ -34,8 +34,7 @@ if ($stmt = mysqli_prepare($connection, $sql)) {
         if (password_verify($password, $user['password'])) {
             // Secure session handling
             session_regenerate_id(true);
-
-            $_SESSION['logged_in'] = true;
+            
             $_SESSION['user_id']   = $user['user_id'];
 
             mysqli_stmt_close($stmt);
