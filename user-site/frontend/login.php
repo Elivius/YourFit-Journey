@@ -3,7 +3,6 @@ session_start();
 require_once '../../utils/csrf.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

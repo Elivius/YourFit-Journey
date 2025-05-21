@@ -13,7 +13,7 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
 
 // Sanitize and validate input
 $email = sanitizeEmail($_POST['email'] ?? '');
-$password = cleanInput($_POST['password'] ?? '');
+$password = sanitizePassword($_POST['password'] ?? '');
 
 if (!$email || empty($password)) {
     $_SESSION['error'] = "Email and password are required";
