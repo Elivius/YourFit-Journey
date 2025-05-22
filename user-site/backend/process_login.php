@@ -22,9 +22,9 @@ if (!$email || empty($password)) {
 }
 
 // Fetch user from database
-$sql = "SELECT user_id, email, password, role FROM users WHERE email = ?";
+$sql_check = "SELECT user_id, password, role FROM users WHERE email = ?";
 
-if ($stmt = mysqli_prepare($connection, $sql)) {
+if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, 's', $email);
     mysqli_stmt_execute($stmt);
 
@@ -60,7 +60,8 @@ if ($stmt = mysqli_prepare($connection, $sql)) {
     exit;
 } else {
     error_log('Statement preparation failed: ' . mysqli_error($connection));
-    $_SESSION['error'] = "Server error. Please try again later.";
+    $_SESSION['error'] = "Server error. Please try again later";
     header("Location: ../frontend/login.php");
     exit;
 }
+?>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once '../../utils/csrf.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,20 +39,22 @@
                 <p>Start your fitness journey today</p>
             </div>
             <div class="auth-body">
-                <form id="signup-form">
+                <form id="signup-form" action="../backend/process_signup.php" method="POST">
+                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCSRFToken()); ?>">
+
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label for="first-name" class="form-label">First Name</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" id="first-name" placeholder="John" required>
+                                <input type="text" name="first-name" class="form-control" id="first-name" placeholder="John" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="last-name" class="form-label">Last Name</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" id="last-name" placeholder="Doe" required>
+                                <input type="text" name="last-name" class="form-control" id="last-name" placeholder="Doe" required>
                             </div>
                         </div>
                     </div>
@@ -55,14 +62,14 @@
                         <label for="email" class="form-label">Email address</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required>
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -72,7 +79,7 @@
                         <label for="confirm-password" class="form-label">Confirm Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" class="form-control" id="confirm-password" placeholder="••••••••" required>
+                            <input type="password" name="confirm-password" class="form-control" id="confirm-password" placeholder="••••••••" required>
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -99,6 +106,9 @@
                         <input type="checkbox" class="form-check-input" id="terms" required>
                         <label class="form-check-label" for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
                     </div>
+
+                    <?php require_once '../../utils/message.php'; ?>
+
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
                     </div>
