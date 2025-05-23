@@ -39,7 +39,12 @@ if (
     !preg_match('/[0-9]/', $password) ||        // at least one digit
     !preg_match('/[\W_]/', $password)           // at least one symbol
 ) {
-    $_SESSION['error'] = "Password must be at least 8 characters, include uppercase, lowercase, number, and symbol";
+    $_SESSION['error'] = "Password must be:<br>
+                        - at least 8 characters<br>
+                        - include uppercase letter<br>
+                        - include lowercase letter<br>
+                        - include a number<br>
+                        - include a symbol";
     header("Location: ../frontend/signup.php");
     exit;
 }

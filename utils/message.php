@@ -8,7 +8,7 @@
 <body>
     <?php if (isset($_SESSION['error'])): ?>
         <div class="alert alert-danger" role="alert">
-            <?= htmlspecialchars($_SESSION['error']) ?>
+            <?= $_SESSION['error'] ?>
         </div>
         <?php unset($_SESSION['error']); ?>
     <?php endif; ?>
