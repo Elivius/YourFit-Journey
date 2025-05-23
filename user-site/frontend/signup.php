@@ -39,8 +39,8 @@ require_once '../../utils/csrf.php';
                 <p>Start your fitness journey today</p>
             </div>
             <div class="auth-body">
-                <form id="signup-form" action="../backend/process_signup.php" method="POST">
-                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCSRFToken()); ?>">
+                <form id="signup-form" action="../backend/process_signup.php" method="POST" novalidate>
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
 
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3 mb-md-0">
@@ -69,7 +69,7 @@ require_once '../../utils/csrf.php';
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required minlength="8">
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -79,7 +79,7 @@ require_once '../../utils/csrf.php';
                         <label for="confirm-password" class="form-label">Confirm Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" name="confirm-password" class="form-control" id="confirm-password" placeholder="••••••••" required>
+                            <input type="password" name="confirm-password" class="form-control" id="confirm-password" placeholder="••••••••" required minlength="8">
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -89,7 +89,7 @@ require_once '../../utils/csrf.php';
                         <label class="form-label">Gender</label>
                         <div class="gender-options">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?>>
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?> required>
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">

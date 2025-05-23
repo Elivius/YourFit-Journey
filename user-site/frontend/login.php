@@ -39,7 +39,7 @@ require_once '../../utils/csrf.php';
                 <p>Log in to continue your fitness journey</p>
             </div>
             <div class="auth-body">
-                <form id="login-form" action="../backend/process_login.php" method="POST">
+                <form id="login-form" action="../backend/process_login.php" method="POST" novalidate>
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
 
                     <div class="mb-4">
@@ -56,7 +56,7 @@ require_once '../../utils/csrf.php';
                         </div>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required minlength="8">
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
