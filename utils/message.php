@@ -58,10 +58,17 @@
         window.addEventListener('DOMContentLoaded', () => {
             const errorAlert = document.querySelector('.alert-danger');
             if (errorAlert) {
-                const passwordInput = document.querySelector('input[type="password"]');
+                const passwordInput = document.getElementById('password');
                 if (passwordInput) {
                     passwordInput.value = '';
+                    passwordInput.classList.remove('is-invalid');
                     passwordInput.focus();
+                }
+
+                const confirmInput = document.getElementById('confirm_password');
+                if (confirmInput) {
+                    confirmInput.value = '';
+                    confirmInput.classList.remove('is-invalid');
                 }
             }
         });

@@ -40,13 +40,13 @@ require_once '../../utils/csrf.php';
             </div>
             <div class="auth-body">
                 <form id="login-form" action="../backend/process_login.php" method="POST">
-                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars(generateCSRFToken()); ?>">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
 
                     <div class="mb-4">
                         <label for="email" class="form-label">Email address</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value="<?= htmlspecialchars($_SESSION['email'] ?? '') ?>" required>
                         </div>
                     </div>
                     <div class="mb-4">

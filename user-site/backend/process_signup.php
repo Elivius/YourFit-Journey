@@ -26,6 +26,11 @@ if (!$first_name || !$last_name || !$email || !$password || !$confirm_password |
     exit;
 }
 
+$_SESSION['first-name'] = $first_name;
+$_SESSION['last-name'] = $last_name;
+$_SESSION['email'] = $email;
+$_SESSION['gender'] = $gender;
+
 if ($password !== $confirm_password) {
     $_SESSION['error'] = "Password confirmation does not match";
     header("Location: ../frontend/signup.php");
@@ -82,7 +87,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);
 
-        $sql_check = "SELECT user_id, password, role FROM users WHERE email = ?";
+        $sql_check = "SELECT user_id, first_name, password, role FROM users WHERE email = ?";
         if ($stmt = mysqli_prepare($connection, $sql_check)) {
             mysqli_stmt_bind_param($stmt, 's', $email);
             mysqli_stmt_execute($stmt);
@@ -96,6 +101,9 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
 
                     $_SESSION['logged_in'] = true;
                     $_SESSION['user_id'] = $user['user_id'];
+                    $_SESSION['name'] = $user['first_name'];
+
+                    unset($_SESSION['first-name'], $_SESSION['last-name'], $_SESSION['gender']);
 
                     mysqli_stmt_close($stmt);
 

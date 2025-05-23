@@ -51,6 +51,14 @@
   margin-bottom: 2rem;
 }
 
+.gender-options {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    margin-top: 0.5rem;
+    max-width: 300px; /* Optional: control width so it doesn’t stretch too far */
+}
+
 .close-btn {
     position: absolute;
     top: 15px;

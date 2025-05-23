@@ -47,14 +47,14 @@ require_once '../../utils/csrf.php';
                             <label for="first-name" class="form-label">First Name</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" name="first-name" class="form-control" id="first-name" placeholder="John" required>
+                                <input type="text" name="first-name" class="form-control" id="first-name" placeholder="John" value="<?= htmlspecialchars($_SESSION['first-name'] ?? '') ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="last-name" class="form-label">Last Name</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" name="last-name" class="form-control" id="last-name" placeholder="Doe" required>
+                                <input type="text" name="last-name" class="form-control" id="last-name" placeholder="Doe" value="<?= htmlspecialchars($_SESSION['last-name'] ?? '') ?>" required>
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@ require_once '../../utils/csrf.php';
                         <label for="email" class="form-label">Email address</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value="<?= htmlspecialchars($_SESSION['email'] ?? '') ?>" required>
                         </div>
                     </div>
                     <div class="mb-4">
@@ -89,16 +89,12 @@ require_once '../../utils/csrf.php';
                         <label class="form-label">Gender</label>
                         <div class="gender-options">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?>>
                                 <label class="form-check-label" for="male">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" <?= ($_SESSION['gender'] ?? '') === 'female' ? 'checked' : '' ?>>
                                 <label class="form-check-label" for="female">Female</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="other" value="other">
-                                <label class="form-check-label" for="other">Other</label>
                             </div>
                         </div>
                     </div>
