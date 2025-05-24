@@ -164,6 +164,7 @@
                                                 <span class="exercise-target">Target: Quadriceps, Glutes, Hamstrings</span>
                                             </div>
                                         </div>
+                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
                                     </button>
                                 </h2>
                                 <div id="exercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="exercise1Heading">
@@ -230,6 +231,7 @@
                                                 <span class="exercise-target">Target: Chest, Shoulders, Triceps</span>
                                             </div>
                                         </div>
+                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
                                     </button>
                                 </h2>
                                 <div id="exercise2Collapse" class="accordion-collapse collapse" aria-labelledby="exercise2Heading">
@@ -296,6 +298,7 @@
                                                 <span class="exercise-target">Target: Back, Biceps</span>
                                             </div>
                                         </div>
+                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
                                     </button>
                                 </h2>
                                 <div id="exercise3Collapse" class="accordion-collapse collapse" aria-labelledby="exercise3Heading">
@@ -362,6 +365,7 @@
                                                 <span class="exercise-target">Target: Shoulders, Triceps</span>
                                             </div>
                                         </div>
+                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
                                     </button>
                                 </h2>
                                 <div id="exercise4Collapse" class="accordion-collapse collapse" aria-labelledby="exercise4Heading">
@@ -428,6 +432,7 @@
                                                 <span class="exercise-target">Target: Core, Shoulders</span>
                                             </div>
                                         </div>
+                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
                                     </button>
                                 </h2>
                                 <div id="exercise5Collapse" class="accordion-collapse collapse" aria-labelledby="exercise5Heading">

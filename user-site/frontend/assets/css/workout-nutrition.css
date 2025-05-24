@@ -94,11 +94,27 @@
 }
 
 .workout-exercises .accordion-button:not(.collapsed) {
+    color: var(--body-color);
     background-color: rgba(var(--primary-rgb), 0.1);
 }
 
 .workout-exercises .accordion-button:focus {
     box-shadow: none;
+}
+
+.accordion-button::after {
+  display: none;
+}
+
+/* Style your FontAwesome icon */
+.accordion-icon {
+  transition: transform 0.3s ease;
+  color: var(--body-color, #333); /* your desired color */
+}
+
+/* Rotate icon when expanded */
+.accordion-button[aria-expanded="true"] .accordion-icon {
+  transform: rotate(180deg);
 }
 
 .exercise-header {
@@ -113,7 +129,7 @@
     height: 30px;
     border-radius: 50%;
     background-color: var(--primary);
-    color: white;
+    color: white !important;
     display: flex;
     align-items: center;
     justify-content: center;

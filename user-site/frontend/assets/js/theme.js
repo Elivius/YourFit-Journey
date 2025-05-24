@@ -1,42 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Theme Toggle
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    
-    // Check for saved theme preference or use preferred color scheme
-    const savedTheme = localStorage.getItem('theme');
-    
-    if (savedTheme) {
-        body.classList.toggle('dark-theme', savedTheme === 'dark');
-        updateThemeIcon(savedTheme === 'dark');
-    } else {
-        // Check if user prefers dark mode
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        body.classList.toggle('dark-theme', prefersDarkMode);
-        updateThemeIcon(prefersDarkMode);
+
+    // Function to update theme icon
+    function updateThemeIcon(isDarkTheme) {
+        if (!themeToggle) return;
+        const icon = themeToggle.querySelector('i');
+        if (icon) {
+            icon.classList.toggle('fa-moon', !isDarkTheme);
+            icon.classList.toggle('fa-sun', isDarkTheme);
+        }
     }
-    
-    // Theme toggle click handler
+
+    // Determine initial theme (from localStorage or system preference)
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const useDarkTheme = savedTheme === 'dark' || (!savedTheme && prefersDarkMode);
+
+    body.classList.toggle('dark-theme', useDarkTheme);
+    updateThemeIcon(useDarkTheme);
+
+    // Handle toggle click
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
             const isDarkTheme = body.classList.toggle('dark-theme');
             localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
             updateThemeIcon(isDarkTheme);
         });
-    }
-    
-    function updateThemeIcon(isDarkTheme) {
-        if (!themeToggle) return;
-        
-        const icon = themeToggle.querySelector('i');
-        if (icon) {
-            if (isDarkTheme) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        }
     }
 });

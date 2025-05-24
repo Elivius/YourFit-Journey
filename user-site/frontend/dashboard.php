@@ -93,7 +93,7 @@
                 <!-- Welcome Card -->
                 <div class="welcome-card">
                     <div class="welcome-content">
-                        <h2>Welcome back, John!</h2>
+                        <h2>Welcome back, <?= $_SESSION['name'] ?>!</h2>
                         <p>You're making great progress. Keep up the good work!</p>
                         <button class="btn btn-primary">Today's Workout</button>
                     </div>
