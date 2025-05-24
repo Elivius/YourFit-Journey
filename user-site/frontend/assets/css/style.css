@@ -185,3 +185,58 @@ p, h2, h3, h4, h5, h6, span, img, label {
   top: 1rem;
   right: 1rem;
 }
+
+/* Form Styles */
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  background-color: var(--input-bg);
+  border: 1px solid var(--primary);
+  color: var(--body-color);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+}
+
+.form-control::placeholder {
+  color: rgba(0, 0, 0, 0.4); /* adjust the rgba for lighter or darker tones */
+  opacity: 1; /* ensure it's not overridden by browser default */
+}
+
+.form-control:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 0.25rem rgba(var(--primary-rgb), 0.25);
+}
+
+.input-group-text {
+  background-color: var(--input-bg);
+  border: 1px solid var(--primary);
+  color: var(--secondary);
+}
+
+.form-check-input {
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.toggle-password {
+  border-color: var(--primary);
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.toggle-password:hover {
+  background-color: var(--primary);
+  color: #fff; /* white icon */
+  border-color: var(--primary);
+}

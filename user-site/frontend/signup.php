@@ -40,21 +40,24 @@ require_once '../../utils/csrf.php';
             </div>
             <div class="auth-body">
                 <form id="signup-form" action="../backend/process_signup.php" method="POST" novalidate>
-                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                    <input type="hidden" name="csrf_token" 
+                        value="<?= htmlspecialchars(generateCSRFToken()); ?>">
 
                     <div class="row mb-4">
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label for="first-name" class="form-label">First Name</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" name="first-name" class="form-control" id="first-name" placeholder="John" value="<?= htmlspecialchars($_SESSION['first-name'] ?? '') ?>" required>
+                                <input type="text" name="first-name" class="form-control" id="first-name" placeholder="John" 
+                                    value="<?= htmlspecialchars($_SESSION['first-name'] ?? '') ?>" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <label for="last-name" class="form-label">Last Name</label>
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                <input type="text" name="last-name" class="form-control" id="last-name" placeholder="Doe" value="<?= htmlspecialchars($_SESSION['last-name'] ?? '') ?>" required>
+                                <input type="text" name="last-name" class="form-control" id="last-name" placeholder="Doe" 
+                                    value="<?= htmlspecialchars($_SESSION['last-name'] ?? '') ?>" required>
                             </div>
                         </div>
                     </div>
@@ -62,14 +65,16 @@ require_once '../../utils/csrf.php';
                         <label for="email" class="form-label">Email address</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value="<?= htmlspecialchars($_SESSION['email'] ?? '') ?>" required>
+                            <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" 
+                                value="<?= htmlspecialchars($_SESSION['email'] ?? '') ?>" required>
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="••••••••" required minlength="8">
+                            <input type="password" name="password" class="form-control" id="password" 
+                                placeholder="••••••••" required minlength="8">
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
@@ -79,25 +84,26 @@ require_once '../../utils/csrf.php';
                         <label for="confirm-password" class="form-label">Confirm Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" name="confirm-password" class="form-control" id="confirm-password" placeholder="••••••••" required minlength="8">
+                            <input type="password" name="confirm-password" class="form-control" id="confirm-password" 
+                                placeholder="••••••••" required minlength="8">
                             <button class="btn btn-outline-secondary toggle-password" type="button">
                                 <i class="fas fa-eye"></i>
                             </button>
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label class="form-label">Gender</label>
-                        <div class="gender-options">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?> required>
-                                <label class="form-check-label" for="male">Male</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" <?= ($_SESSION['gender'] ?? '') === 'female' ? 'checked' : '' ?>>
-                                <label class="form-check-label" for="female">Female</label>
-                            </div>
+                        <label class="form-label d-block mb-2">Gender</label>
+                        <div class="btn-group" role="group" aria-label="Gender">
+                            <input type="radio" class="btn-check" name="gender" id="male" value="male" autocomplete="off"
+                                <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?> required>
+                            <label class="btn btn-outline-primary" for="male">Male</label>
+
+                            <input type="radio" class="btn-check" name="gender" id="female" value="female" autocomplete="off"
+                                <?= ($_SESSION['gender'] ?? '') === 'female' ? 'checked' : '' ?>>
+                            <label class="btn btn-outline-primary" for="female">Female</label>
                         </div>
                     </div>
+
                     <div class="mb-4 form-check">
                         <input type="checkbox" class="form-check-input" id="terms" required>
                         <label class="form-check-label" for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
