@@ -93,7 +93,7 @@ require_once '../../utils/csrf.php';
                     </div>
                     <div class="mb-4">
                         <label class="form-label d-block mb-2">Gender</label>
-                        <div class="btn-group" role="group" aria-label="Gender">
+                        <div class="btn-group w-100" role="group" aria-label="Gender">
                             <input type="radio" class="btn-check" name="gender" id="male" value="male" autocomplete="off"
                                 <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?> required>
                             <label class="btn btn-outline-primary" for="male">Male</label>

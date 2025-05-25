@@ -145,37 +145,18 @@
                                                 <input type="email" class="form-control" id="email" value="john.doe@example.com">
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="phone" class="form-label">Phone</label>
-                                                <input type="tel" class="form-control" id="phone" value="+1 (555) 123-4567">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="birthdate" class="form-label">Date of Birth</label>
-                                                <input type="date" class="form-control" id="birthdate" value="1990-05-15">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Gender</label>
-                                                <div class="gender-options">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender" id="genderMale" checked>
-                                                        <label class="form-check-label" for="genderMale">
-                                                            Male
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender" id="genderFemale">
-                                                        <label class="form-check-label" for="genderFemale">
-                                                            Female
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="gender" id="genderOther">
-                                                        <label class="form-check-label" for="genderOther">
-                                                            Other
-                                                        </label>
-                                                    </div>
+                                                <label class="form-label d-block mb-2">Gender</label>
+                                                <div class="btn-group w-100" role="group" aria-label="Gender">
+                                                    <input type="radio" class="btn-check" name="gender" id="male" value="male" autocomplete="off"
+                                                        <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?> required>
+                                                    <label class="btn btn-outline-primary gender-label" for="male">Male</label>
+
+                                                    <input type="radio" class="btn-check" name="gender" id="female" value="female" autocomplete="off"
+                                                        <?= ($_SESSION['gender'] ?? '') === 'female' ? 'checked' : '' ?>>
+                                                    <label class="btn btn-outline-primary gender-label" for="female">Female</label>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
                                         </div>
@@ -232,7 +213,7 @@
                                                     <span class="input-group-text">cm</span>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
                                         </div>
@@ -488,7 +469,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
                                         </div>

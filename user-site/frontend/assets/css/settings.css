@@ -108,10 +108,18 @@
     color: var(--primary);
 }
 
-/* Gender Options */
-.gender-options {
-    display: flex;
-    gap: 2rem;
+.btn-outline-primary.gender-label {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.settings-btn-margin {
+    margin-top: 25px;
+}
+
+/* When active (checked), style the button */
+input:checked + .btn-outline-primary {
+    color: white !important;
 }
 
 /* Password Strength */
