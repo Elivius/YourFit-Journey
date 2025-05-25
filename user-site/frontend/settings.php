@@ -289,28 +289,28 @@
                                                 <input type="radio" class="btn-check" name="primaryGoal" id="loseWeight" autocomplete="off" checked>
                                                 <label class="btn btn-outline-primary w-100" for="loseWeight">
                                                     <i class="fas fa-weight"></i>
-                                                    <span>Lose Weight</span>
+                                                    <div class="fitness-goal-text">Lose Weight</div>
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
                                                 <input type="radio" class="btn-check" name="primaryGoal" id="buildMuscle" autocomplete="off">
                                                 <label class="btn btn-outline-primary w-100" for="buildMuscle">
                                                     <i class="fas fa-dumbbell"></i>
-                                                    <span>Build Muscle</span>
+                                                    <div class="fitness-goal-text">Build Muscle</div>
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
                                                 <input type="radio" class="btn-check" name="primaryGoal" id="improveEndurance" autocomplete="off">
                                                 <label class="btn btn-outline-primary w-100" for="improveEndurance">
                                                     <i class="fas fa-running"></i>
-                                                    <span>Improve Endurance</span>
+                                                    <div class="fitness-goal-text">Improve Endurance</div>
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
                                                 <input type="radio" class="btn-check" name="primaryGoal" id="maintainHealth" autocomplete="off">
                                                 <label class="btn btn-outline-primary w-100" for="maintainHealth">
                                                     <i class="fas fa-heartbeat"></i>
-                                                    <span>Maintain Health</span>
+                                                    <div class="fitness-goal-text">Maintain Health</div>
                                                 </label>
                                             </div>
                                         </div>

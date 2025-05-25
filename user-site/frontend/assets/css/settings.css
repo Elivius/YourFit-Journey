@@ -32,6 +32,10 @@
     color: white;
 }
 
+.settings-nav-item.active span {
+    color: white !important;
+}
+
 .settings-nav-item i {
     font-size: 1.2rem;
 }
@@ -147,6 +151,10 @@ input:checked + .btn-outline-primary {
     padding: 1.5rem;
     border-radius: 0.5rem;
     cursor: pointer;
+}
+
+.fitness-goal-option .fitness-goal-text:active {
+  color: white; /* Or any color you want */
 }
 
 .fitness-goal-option i {
