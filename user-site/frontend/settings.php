@@ -1,4 +1,5 @@
 <?php require_once '../../utils/auth.php'; ?>
+<?php require_once '../backend/preload_settings.php'; ?>
 
 
 <!DOCTYPE html>
@@ -84,15 +85,10 @@
                                 <div class="card-body">
                                     <div class="profile-picture-container">
                                         <div class="profile-picture">
-                                            <img src="https://source.unsplash.com/random/300x300/?portrait" alt="Profile Picture" class="img-fluid rounded">
-                                            <div class="profile-picture-overlay">
-                                                <button class="btn btn-sm btn-light">
-                                                    <i class="fas fa-camera"></i> Change
-                                                </button>
-                                            </div>
+                                            <img src="assets/images/avatar.jpg" alt="Profile Picture" class="img-fluid rounded">
                                         </div>
                                         <div class="profile-picture-actions mt-3">
-                                            <button class="btn btn-sm btn-outline-danger">Remove</button>
+                                            <button class="btn btn-sm btn-outline-danger">Change</button>
                                         </div>
                                     </div>
                                 </div>
@@ -134,25 +130,25 @@
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <label for="firstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="firstName" value="John">
+                                                <input type="text" class="form-control" id="firstName" value="<?= htmlspecialchars($user['first_name']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="lastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" value="Doe">
+                                                <input type="text" class="form-control" id="lastName" value="<?= htmlspecialchars($user['last_name']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" value="john.doe@example.com">
+                                                <input type="email" class="form-control" id="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label d-block mb-2">Gender</label>
                                                 <div class="btn-group w-100" role="group" aria-label="Gender">
                                                     <input type="radio" class="btn-check" name="gender" id="male" value="male" autocomplete="off"
-                                                        <?= ($_SESSION['gender'] ?? '') === 'male' ? 'checked' : '' ?> required>
+                                                        <?= $user['gender'] === 'male' ? 'checked' : '' ?> required>
                                                     <label class="btn btn-outline-primary gender-label" for="male">Male</label>
 
                                                     <input type="radio" class="btn-check" name="gender" id="female" value="female" autocomplete="off"
-                                                        <?= ($_SESSION['gender'] ?? '') === 'female' ? 'checked' : '' ?>>
+                                                        <?= $user['gender'] === 'female' ? 'checked' : '' ?>>
                                                     <label class="btn btn-outline-primary gender-label" for="female">Female</label>
                                                 </div>
                                             </div>
@@ -166,26 +162,33 @@
                             
                             <div class="card mt-4">
                                 <div class="card-header">
-                                    <h5 class="card-title">Body Measurements</h5>
+                                    <h5 class="card-title">Physical Stats</h5>
                                 </div>
                                 <div class="card-body">
                                     <form id="measurementsForm">
                                         <div class="row g-3">
                                             <div class="col-md-4">
+                                                <label for="height" class="form-label">Age</label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" id="age" value="<?= htmlspecialchars($user['age']) ?>">
+                                                    <span class="input-group-text">years</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
                                                 <label for="height" class="form-label">Height</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="height" value="180">
+                                                    <input type="number" class="form-control" id="height" value="<?= htmlspecialchars($user['height']) ?>">
                                                     <span class="input-group-text">cm</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="weight" class="form-label">Weight</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="weight" value="75">
+                                                    <input type="number" class="form-control" id="weight" value="<?= htmlspecialchars($user['weight']) ?>">
                                                     <span class="input-group-text">kg</span>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <!-- <div class="col-md-4">
                                                 <label for="bodyFat" class="form-label">Body Fat</label>
                                                 <div class="input-group">
                                                     <input type="number" class="form-control" id="bodyFat" value="15">
@@ -212,7 +215,7 @@
                                                     <input type="number" class="form-control" id="hips" value="90">
                                                     <span class="input-group-text">cm</span>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
@@ -229,7 +232,7 @@
                                     <form id="passwordForm">
                                         <div class="row g-3">
                                             <div class="col-md-12">
-                                                <label for="currentPassword" class="form-label">Current Password</label>
+                                                <label for="currentPassword" class="form-label">Enter Current Password</label>
                                                 <div class="input-group">
                                                     <input type="password" class="form-control" id="currentPassword">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -238,7 +241,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="newPassword" class="form-label">New Password</label>
+                                                <label for="newPassword" class="form-label">Enter New Password</label>
                                                 <div class="input-group">
                                                     <input type="password" class="form-control" id="newPassword">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -247,7 +250,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="confirmPassword" class="form-label">Confirm New Password</label>
+                                                <label for="confirmPassword" class="form-label">Enter Password Confirmation</label>
                                                 <div class="input-group">
                                                     <input type="password" class="form-control" id="confirmPassword">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button">
@@ -255,15 +258,7 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="password-strength">
-                                                    <div class="progress">
-                                                        <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <small class="text-muted">Password strength: Strong</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-12">
+                                            <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Update Password</button>
                                             </div>
                                         </div>
@@ -286,37 +281,41 @@
                                     <form id="primaryGoalForm">
                                         <div class="fitness-goals-options">
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="loseWeight" autocomplete="off" checked>
-                                                <label class="btn btn-outline-primary w-100" for="loseWeight">
+                                                <input type="radio" class="btn-check" name="primaryGoal" id="cutting" autocomplete="off"
+                                                    <?= $user['goal'] === 'cutting' ? 'checked' : '' ?>>
+                                                <label class="btn btn-outline-primary w-100" for="cutting">
                                                     <i class="fas fa-weight"></i>
-                                                    <div class="fitness-goal-text">Lose Weight</div>
+                                                    <div class="fitness-goal-text">Cutting</div>
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="buildMuscle" autocomplete="off">
-                                                <label class="btn btn-outline-primary w-100" for="buildMuscle">
+                                                <input type="radio" class="btn-check" name="primaryGoal" id="bulking" autocomplete="off"
+                                                    <?= $user['goal'] === 'bulking' ? 'checked' : '' ?>>
+                                                <label class="btn btn-outline-primary w-100" for="bulking">
                                                     <i class="fas fa-dumbbell"></i>
-                                                    <div class="fitness-goal-text">Build Muscle</div>
+                                                    <div class="fitness-goal-text">Bulking</div>
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="improveEndurance" autocomplete="off">
-                                                <label class="btn btn-outline-primary w-100" for="improveEndurance">
-                                                    <i class="fas fa-running"></i>
-                                                    <div class="fitness-goal-text">Improve Endurance</div>
-                                                </label>
-                                            </div>
-                                            <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="maintainHealth" autocomplete="off">
+                                                <input type="radio" class="btn-check" name="primaryGoal" id="maintainHealth" autocomplete="off"
+                                                    <?= $user['goal'] === 'maintain' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="maintainHealth">
                                                     <i class="fas fa-heartbeat"></i>
                                                     <div class="fitness-goal-text">Maintain Health</div>
                                                 </label>
                                             </div>
+                                            <div class="fitness-goal-option">
+                                                <input type="radio" class="btn-check" name="primaryGoal" id="improveEndurance" autocomplete="off"
+                                                    <?= $user['goal'] === 'improve_endurance' ? 'checked' : '' ?>>
+                                                <label class="btn btn-outline-primary w-100" for="improveEndurance">
+                                                    <i class="fas fa-running"></i>
+                                                    <div class="fitness-goal-text">Improve Endurance</div>
+                                                </label>
+                                            </div>
                                         </div>
                                         
-                                        <div class="goal-details mt-4">
-                                            <div class="row g-3">
+                                        <!-- <div class="goal-details mt-4"> -->
+                                            <!-- <div class="row g-3">
                                                 <div class="col-md-6">
                                                     <label for="targetWeight" class="form-label">Target Weight</label>
                                                     <div class="input-group">
@@ -340,12 +339,12 @@
                                                         <p>Weight to lose: <strong>5 kg</strong></p>
                                                         <p>Estimated time: <strong>10 weeks</strong></p>
                                                     </div>
-                                                </div>
-                                                <div class="col-12">
+                                                </div> -->
+                                                <div class="mt-3 settings-btn-margin">
                                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            <!-- </div> -->
+                                        <!-- </div> -->
                                     </form>
                                 </div>
                             </div>
@@ -360,7 +359,8 @@
                                     <form id="activityLevelForm">
                                         <div class="activity-level-options">
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="sedentary">
+                                                <input class="form-check-input" type="radio" name="activityLevel" id="sedentary"
+                                                    <?= $user['activity_level'] === 'sedentary' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="sedentary">
                                                     <div class="activity-level-header">
                                                         <h6>Sedentary</h6>
@@ -370,7 +370,8 @@
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="lightlyActive" checked>
+                                                <input class="form-check-input" type="radio" name="activityLevel" id="lightlyActive"
+                                                    <?= $user['activity_level'] === 'light' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="lightlyActive">
                                                     <div class="activity-level-header">
                                                         <h6>Lightly Active</h6>
@@ -380,7 +381,8 @@
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="moderatelyActive">
+                                                <input class="form-check-input" type="radio" name="activityLevel" id="moderatelyActive"
+                                                    <?= $user['activity_level'] === 'moderate' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="moderatelyActive">
                                                     <div class="activity-level-header">
                                                         <h6>Moderately Active</h6>
@@ -390,34 +392,36 @@
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="veryActive">
+                                                <input class="form-check-input" type="radio" name="activityLevel" id="veryActive"
+                                                    <?= $user['activity_level'] === 'active' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="veryActive">
                                                     <div class="activity-level-header">
-                                                        <h6>Very Active</h6>
+                                                        <h6>Active</h6>
                                                         <span class="activity-level-tag">Hard exercise 6-7 days/week</span>
                                                     </div>
                                                     <p>Intense exercise or sports training almost daily.</p>
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="extremelyActive">
+                                                <input class="form-check-input" type="radio" name="activityLevel" id="extremelyActive"
+                                                    <?= $user['activity_level'] === 'very_active' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="extremelyActive">
                                                     <div class="activity-level-header">
-                                                        <h6>Extremely Active</h6>
+                                                        <h6>Very Active</h6>
                                                         <span class="activity-level-tag">Very hard exercise & physical job</span>
                                                     </div>
                                                     <p>Very intense exercise multiple times per day or physically demanding job.</p>
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="mt-3">
+                                        <div class="mt-3 settings-btn-margin">
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             
-                            <div class="card mt-4">
+                            <!-- <div class="card mt-4">
                                 <div class="card-header">
                                     <h5 class="card-title">Workout Preferences</h5>
                                 </div>
@@ -475,7 +479,7 @@
                                         </div>
                                     </form>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

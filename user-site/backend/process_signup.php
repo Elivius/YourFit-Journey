@@ -91,7 +91,6 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
         if ($stmt = mysqli_prepare($connection, $sql_check)) {
             mysqli_stmt_bind_param($stmt, 's', $email);
             mysqli_stmt_execute($stmt);
-
             $result = mysqli_stmt_get_result($stmt);
 
             if ($result && $user = mysqli_fetch_assoc($result)) {
