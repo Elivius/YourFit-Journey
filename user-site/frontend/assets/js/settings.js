@@ -38,27 +38,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Toggle Password Visibility
-    const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+    // const togglePasswordButtons = document.querySelectorAll('.toggle-password');
 
-    togglePasswordButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const inputGroup = this.closest('.input-group');
-            const passwordInput = inputGroup ? inputGroup.querySelector('input[type="password"], input[type="text"]') : null;
-            const icon = this.querySelector('i');
+    // togglePasswordButtons.forEach(button => {
+    //     button.addEventListener('click', function() {
+    //         const inputGroup = this.closest('.input-group');
+    //         const passwordInput = inputGroup ? inputGroup.querySelector('input[type="password"], input[type="text"]') : null;
+    //         const icon = this.querySelector('i');
 
-            if (!passwordInput) return;  // Safety check
+    //         if (!passwordInput) return;  // Safety check
 
-            if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
-            } else {
-            passwordInput.type = 'password';
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
-            }
-        });
-    });
+    //         if (passwordInput.type === 'password') {
+    //         passwordInput.type = 'text';
+    //         icon.classList.remove('fa-eye');
+    //         icon.classList.add('fa-eye-slash');
+    //         } else {
+    //         passwordInput.type = 'password';
+    //         icon.classList.remove('fa-eye-slash');
+    //         icon.classList.add('fa-eye');
+    //         }
+    //     });
+    // });
 
 
     const urlParams = new URLSearchParams(window.location.search);

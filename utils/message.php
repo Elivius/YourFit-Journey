@@ -13,19 +13,25 @@
         <?php unset($_SESSION['error']); ?>
     <?php endif; ?>
 
+    <?php if (isset($_SESSION['success'])): ?>
+        <div class="alert alert-success" role="alert">
+            <?= $_SESSION['success'] ?>
+        </div>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
+
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            const errorAlert = document.querySelector('.alert-danger');
-            if (errorAlert) {
-                // Auto-hide the alert after 5 seconds with fade out
+            const alerts = document.querySelectorAll('.alert-danger, .alert-success');
+            alerts.forEach(alert => {
                 setTimeout(() => {
-                    errorAlert.style.transition = 'opacity 0.5s ease';
-                    errorAlert.style.opacity = '0';
+                    alert.style.transition = 'opacity 0.5s ease';
+                    alert.style.opacity = '0';
                     setTimeout(() => {
-                        errorAlert.remove();
+                        alert.remove();
                     }, 500);
                 }, 5000);
-            }
+            });
         });
     </script>
 </body>

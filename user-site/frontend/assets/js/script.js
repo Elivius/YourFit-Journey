@@ -1,12 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Password Toggle Visibility
+    // Unified Password Toggle Visibility
     const togglePasswordButtons = document.querySelectorAll('.toggle-password');
 
     togglePasswordButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const passwordInput = this.previousElementSibling;
-            const icon = this.querySelector('i');
+            let passwordInput = null;
             
+            // First, check for an input in the same .input-group
+            const inputGroup = this.closest('.input-group');
+            if (inputGroup) {
+                passwordInput = inputGroup.querySelector('input[type="password"], input[type="text"]');
+            }
+
+            // Fallback: check the previous element sibling
+            if (!passwordInput) {
+                const prevInput = this.previousElementSibling;
+                if (prevInput && (prevInput.type === 'password' || prevInput.type === 'text')) {
+                    passwordInput = prevInput;
+                }
+            }
+
+            // If no password input found, do nothing
+            if (!passwordInput) return;
+
+            const icon = this.querySelector('i');
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
                 icon.classList.remove('fa-eye');
@@ -18,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
 
     // Responsive Navigation
     const handleResponsiveLayout = () => {
