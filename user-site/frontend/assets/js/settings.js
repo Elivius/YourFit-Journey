@@ -1,29 +1,42 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Settings Navigation
-    // const settingsNavItems = document.querySelectorAll('.settings-nav-item');
-    // const settingsSections = document.querySelectorAll('.settings-section');
-    
-    // settingsNavItems.forEach(item => {
-    //     item.addEventListener('click', function() {
-    //         const targetSection = this.getAttribute('data-target');
-            
-    //         // Remove active class from all nav items
-    //         settingsNavItems.forEach(navItem => {
-    //             navItem.classList.remove('active');
-    //         });
-            
-    //         // Add active class to clicked nav item
-    //         this.classList.add('active');
-            
-    //         // Hide all sections
-    //         settingsSections.forEach(section => {
-    //             section.classList.remove('active');
-    //         });
-            
-    //         // Show target section
-    //         document.getElementById(targetSection).classList.add('active');
-    //     });
-    // });
+document.addEventListener('DOMContentLoaded', function() {    
+    // Settings page tab navigation
+    const settingsNavItems = document.querySelectorAll('.settings-nav-item');
+    const settingsSections = document.querySelectorAll('.settings-section');
+
+    function activateSection(target) {
+    // Update active nav item
+    settingsNavItems.forEach(navItem => {
+        navItem.classList.toggle('active', navItem.getAttribute('data-target') === target);
+    });
+
+    // Show target section
+    settingsSections.forEach(section => {
+        section.classList.toggle('active', section.id === target);
+    });
+    }
+
+    function updateURL(section) {
+    const url = new URL(window.location);
+    url.searchParams.set('section', section);
+    window.history.pushState({}, '', url);
+    }
+
+    // On page load, activate based on URL or default to 'profile'
+    window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get('section') || 'profile';
+    activateSection(section);
+    });
+
+    // On nav item click, activate section and update URL
+    settingsNavItems.forEach(item => {
+    item.addEventListener('click', function() {
+        const target = this.getAttribute('data-target');
+        activateSection(target);
+        updateURL(target);
+    });
+    });
+
     
     // Toggle Password Visibility
     const togglePasswordButtons = document.querySelectorAll('.toggle-password');
@@ -44,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     const urlParams = new URLSearchParams(window.location.search);
     const section = urlParams.get('section');
 

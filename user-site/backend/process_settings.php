@@ -188,7 +188,7 @@ switch ($form_type) {
 }
 
 $redirect_section = match($form_type) {
-    'personalInfoForm' => 'personal-info',
+    'personalInfoForm' => 'profile',
     'physicalStatsForm' => 'physical-stats',
     'passwordForm' => 'change-password',
     'primaryGoalForm' => 'fitness-goals',

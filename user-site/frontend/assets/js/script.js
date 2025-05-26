@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
     // Responsive Navigation
     const handleResponsiveLayout = () => {
         if (window.innerWidth < 992 && sidebar) {
@@ -22,30 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
             new bootstrap.Popover(popover);
         });
     }
-    
-    // Settings page tab navigation
-    const settingsNavItems = document.querySelectorAll('.settings-nav-item');
-    const settingsSections = document.querySelectorAll('.settings-section');
-    
-    settingsNavItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const target = this.getAttribute('data-target');
-            
-            // Update active nav item
-            settingsNavItems.forEach(navItem => {
-                navItem.classList.remove('active');
-            });
-            this.classList.add('active');
-            
-            // Show target section
-            settingsSections.forEach(section => {
-                section.classList.remove('active');
-                if (section.id === target) {
-                    section.classList.add('active');
-                }
-            });
-        });
-    });
     
     // Handle dropdowns manually if needed
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
