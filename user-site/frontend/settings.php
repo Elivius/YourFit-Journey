@@ -4,7 +4,6 @@ require_once '../../utils/csrf.php';
 require_once '../backend/preload_settings.php';
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

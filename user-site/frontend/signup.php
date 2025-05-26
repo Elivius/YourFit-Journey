@@ -105,7 +105,7 @@ require_once '../../utils/csrf.php';
                     </div>
 
                     <div class="mb-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="terms" required>
+                        <input type="checkbox" class="form-check-input" name="terms" id="terms" required>
                         <label class="form-check-label" for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
                     </div>
 
@@ -141,5 +141,7 @@ require_once '../../utils/csrf.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/landing-page.js"></script>
+
 </body>
 </html>

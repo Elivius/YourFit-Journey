@@ -19,17 +19,22 @@ $email            = sanitizeEmail($_POST['email'] ?? '');
 $password         = sanitizePassword($_POST['password'] ?? '');
 $confirm_password = sanitizePassword($_POST['confirm-password'] ?? '');
 $gender           = cleanInput($_POST['gender'] ?? '');
-
-if (!$first_name || !$last_name || !$email || !$password || !$confirm_password || !$gender) {
-    $_SESSION['error'] = "Please fill in all fields";
-    header("Location: ../frontend/signup.php");
-    exit;
-}
+$terms           = cleanInput($_POST['terms'] ?? '');
 
 $_SESSION['first-name'] = $first_name;
 $_SESSION['last-name'] = $last_name;
 $_SESSION['email'] = $email;
 $_SESSION['gender'] = $gender;
+
+if (!$first_name || !$last_name || !$email || !$password || !$confirm_password || !$gender) {
+    $_SESSION['error'] = "Please fill in all fields";
+    header("Location: ../frontend/signup.php");
+    exit;
+} elseif (!$terms) {
+    $_SESSION['error'] = "You must accept the terms and conditions";
+    header("Location: ../frontend/signup.php");
+    exit;
+}
 
 if ($password !== $confirm_password) {
     $_SESSION['error'] = "Password confirmation does not match";
