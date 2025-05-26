@@ -45,6 +45,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    const urlParams = new URLSearchParams(window.location.search);
+    const section = urlParams.get('section');
+
+    if (section) {
+        // Scroll to the section (e.g., an element with id="activity-level")
+        const target = document.getElementById(section);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // OPTIONAL: If you have tabs or accordions, activate the correct tab
+        // Example: $('#myTab a[href="#' + section + '"]').tab('show');
+    };
+    
     // // Rating Stars
     // const ratingStars = document.querySelectorAll('.rating-stars');
     

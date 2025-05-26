@@ -187,6 +187,15 @@ switch ($form_type) {
         exit;
 }
 
-header("Location: ../frontend/settings.php");
+$redirect_section = match($form_type) {
+    'personalInfoForm' => 'personal-info',
+    'physicalStatsForm' => 'physical-stats',
+    'passwordForm' => 'change-password',
+    'primaryGoalForm' => 'fitness-goals',
+    'activityLevelForm' => 'activity-level',
+    default => 'fitness-goals'
+};
+
+header("Location: ../frontend/settings.php?section=$redirect_section");
 exit;
 ?>
