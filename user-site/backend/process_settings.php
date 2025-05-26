@@ -53,7 +53,7 @@ switch ($form_type) {
 
         $sql_update_physical_stats = "UPDATE users SET age=?, weight=?, height=? WHERE user_id=?";
         if ($stmt = mysqli_prepare($connection, $sql_update_physical_stats)) {
-            mysqli_stmt_bind_param($stmt, "iddi", $age, $weight, $height, $user_id);
+            mysqli_stmt_bind_param($stmt, "idii", $age, $weight, $height, $user_id);
             mysqli_stmt_execute($stmt);
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $_SESSION['success'] = "Physical stats updated";
@@ -188,12 +188,9 @@ switch ($form_type) {
 }
 
 $redirect_section = match($form_type) {
-    'personalInfoForm' => 'profile',
-    'physicalStatsForm' => 'physical-stats',
-    'passwordForm' => 'change-password',
-    'primaryGoalForm' => 'fitness-goals',
-    'activityLevelForm' => 'activity-level',
-    default => 'fitness-goals'
+    'personalInfoForm', 'physicalStatsForm', 'passwordForm' => 'profile',
+    'primaryGoalForm', 'activityLevelForm' => 'fitness-goals',
+    default => 'profile'
 };
 
 header("Location: ../frontend/settings.php?section=$redirect_section");

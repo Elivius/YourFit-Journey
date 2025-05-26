@@ -187,7 +187,7 @@ require_once '../backend/preload_settings.php';
                                             <div class="col-md-4">
                                                 <label for="height" class="form-label">Height</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="height" name="height" value="<?= htmlspecialchars($user['height']) ?>" min="0" step="0.01">
+                                                    <input type="number" class="form-control" id="height" name="height" value="<?= htmlspecialchars($user['height']) ?>" min="0" step="1">
                                                     <span class="input-group-text">cm</span>
                                                 </div>
                                             </div>
