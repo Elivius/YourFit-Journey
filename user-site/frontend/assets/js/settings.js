@@ -1,29 +1,29 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Settings Navigation
-    const settingsNavItems = document.querySelectorAll('.settings-nav-item');
-    const settingsSections = document.querySelectorAll('.settings-section');
+    // const settingsNavItems = document.querySelectorAll('.settings-nav-item');
+    // const settingsSections = document.querySelectorAll('.settings-section');
     
-    settingsNavItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const targetSection = this.getAttribute('data-target');
+    // settingsNavItems.forEach(item => {
+    //     item.addEventListener('click', function() {
+    //         const targetSection = this.getAttribute('data-target');
             
-            // Remove active class from all nav items
-            settingsNavItems.forEach(navItem => {
-                navItem.classList.remove('active');
-            });
+    //         // Remove active class from all nav items
+    //         settingsNavItems.forEach(navItem => {
+    //             navItem.classList.remove('active');
+    //         });
             
-            // Add active class to clicked nav item
-            this.classList.add('active');
+    //         // Add active class to clicked nav item
+    //         this.classList.add('active');
             
-            // Hide all sections
-            settingsSections.forEach(section => {
-                section.classList.remove('active');
-            });
+    //         // Hide all sections
+    //         settingsSections.forEach(section => {
+    //             section.classList.remove('active');
+    //         });
             
-            // Show target section
-            document.getElementById(targetSection).classList.add('active');
-        });
-    });
+    //         // Show target section
+    //         document.getElementById(targetSection).classList.add('active');
+    //     });
+    // });
     
     // Toggle Password Visibility
     const togglePasswordButtons = document.querySelectorAll('.toggle-password');
@@ -45,102 +45,74 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Rating Stars
-    const ratingStars = document.querySelectorAll('.rating-stars');
+    // // Rating Stars
+    // const ratingStars = document.querySelectorAll('.rating-stars');
     
-    ratingStars.forEach(container => {
-        const stars = container.querySelectorAll('i');
+    // ratingStars.forEach(container => {
+    //     const stars = container.querySelectorAll('i');
         
-        stars.forEach((star, index) => {
-            star.addEventListener('click', function() {
-                // Reset all stars
-                stars.forEach((s, i) => {
-                    if (i <= index) {
-                        s.className = 'fas fa-star';
-                    } else {
-                        s.className = 'far fa-star';
-                    }
-                });
-            });
+    //     stars.forEach((star, index) => {
+    //         star.addEventListener('click', function() {
+    //             // Reset all stars
+    //             stars.forEach((s, i) => {
+    //                 if (i <= index) {
+    //                     s.className = 'fas fa-star';
+    //                 } else {
+    //                     s.className = 'far fa-star';
+    //                 }
+    //             });
+    //         });
             
-            star.addEventListener('mouseover', function() {
-                // Reset all stars
-                stars.forEach((s, i) => {
-                    if (i <= index) {
-                        s.className = 'fas fa-star';
-                    } else {
-                        s.className = 'far fa-star';
-                    }
-                });
-            });
-        });
+    //         star.addEventListener('mouseover', function() {
+    //             // Reset all stars
+    //             stars.forEach((s, i) => {
+    //                 if (i <= index) {
+    //                     s.className = 'fas fa-star';
+    //                 } else {
+    //                     s.className = 'far fa-star';
+    //                 }
+    //             });
+    //         });
+    //     });
         
-        container.addEventListener('mouseout', function() {
-            // Find the last selected star
-            const selectedIndex = Array.from(stars).findIndex(star => star.classList.contains('selected'));
+    //     container.addEventListener('mouseout', function() {
+    //         // Find the last selected star
+    //         const selectedIndex = Array.from(stars).findIndex(star => star.classList.contains('selected'));
             
-            stars.forEach((s, i) => {
-                if (selectedIndex >= 0 && i <= selectedIndex) {
-                    s.className = 'fas fa-star';
-                } else if (s.classList.contains('fas')) {
-                    s.className = 'fas fa-star';
-                } else {
-                    s.className = 'far fa-star';
-                }
-            });
-        });
-    });
+    //         stars.forEach((s, i) => {
+    //             if (selectedIndex >= 0 && i <= selectedIndex) {
+    //                 s.className = 'fas fa-star';
+    //             } else if (s.classList.contains('fas')) {
+    //                 s.className = 'fas fa-star';
+    //             } else {
+    //                 s.className = 'far fa-star';
+    //             }
+    //         });
+    //     });
+    // });
     
-    // Form Submissions
-    const forms = document.querySelectorAll('form');
+   
+    // // Primary Goal Selection
+    // const primaryGoalRadios = document.querySelectorAll('input[name="primaryGoal"]');
+    // const goalDetails = document.querySelector('.goal-details');
     
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show success message
-            const formId = this.id;
-            const successMessage = document.createElement('div');
-            successMessage.className = 'alert alert-success mt-3';
-            successMessage.textContent = 'Changes saved successfully!';
-            
-            // Remove any existing success messages
-            const existingMessage = this.querySelector('.alert');
-            if (existingMessage) {
-                existingMessage.remove();
-            }
-            
-            // Add the success message
-            this.appendChild(successMessage);
-            
-            // Remove the message after 3 seconds
-            setTimeout(() => {
-                successMessage.remove();
-            }, 3000);
-        });
-    });
-    
-    // Primary Goal Selection
-    const primaryGoalRadios = document.querySelectorAll('input[name="primaryGoal"]');
-    const goalDetails = document.querySelector('.goal-details');
-    
-    primaryGoalRadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.id === 'loseWeight') {
-                document.getElementById('targetWeight').parentElement.style.display = 'block';
-                document.getElementById('weeklyGoal').parentElement.style.display = 'block';
-                document.querySelector('.goal-summary').style.display = 'block';
-            } else if (this.id === 'buildMuscle') {
-                document.getElementById('targetWeight').parentElement.style.display = 'block';
-                document.getElementById('weeklyGoal').parentElement.style.display = 'none';
-                document.querySelector('.goal-summary').style.display = 'block';
-            } else {
-                document.getElementById('targetWeight').parentElement.style.display = 'none';
-                document.getElementById('weeklyGoal').parentElement.style.display = 'none';
-                document.querySelector('.goal-summary').style.display = 'none';
-            }
-        });
-    });
+    // primaryGoalRadios.forEach(radio => {
+    //     radio.addEventListener('change', function() {
+    //         if (this.id === 'loseWeight') {
+    //             document.getElementById('targetWeight').parentElement.style.display = 'block';
+    //             document.getElementById('weeklyGoal').parentElement.style.display = 'block';
+    //             document.querySelector('.goal-summary').style.display = 'block';
+    //         } else if (this.id === 'buildMuscle') {
+    //             document.getElementById('targetWeight').parentElement.style.display = 'block';
+    //             document.getElementById('weeklyGoal').parentElement.style.display = 'none';
+    //             document.querySelector('.goal-summary').style.display = 'block';
+    //         } else {
+    //             document.getElementById('targetWeight').parentElement.style.display = 'none';
+    //             document.getElementById('weeklyGoal').parentElement.style.display = 'none';
+    //             document.querySelector('.goal-summary').style.display = 'none';
+    //         }
+    //     });
+    // });
     
     // Notification Category Toggles
     const categoryToggles = document.querySelectorAll('.notification-category-header .form-check-input');

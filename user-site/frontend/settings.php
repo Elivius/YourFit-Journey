@@ -1,5 +1,8 @@
-<?php require_once '../../utils/auth.php'; ?>
-<?php require_once '../backend/preload_settings.php'; ?>
+<?php
+require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
+require_once '../backend/preload_settings.php';
+?>
 
 
 <!DOCTYPE html>
@@ -126,19 +129,22 @@
                                     <h5 class="card-title">Personal Information</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form id="personalInfoForm">
+                                    <form id="personalInfoForm" action="../backend/process_settings.php" method="POST">
+                                        <input type="hidden" name="form_type" value="personalInfoForm">
+                                        <input type="hidden" name="csrf_token" 
+                                            value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <label for="firstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="firstName" value="<?= htmlspecialchars($user['first_name']) ?>">
+                                                <input type="text" class="form-control" id="firstName" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="lastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" value="<?= htmlspecialchars($user['last_name']) ?>">
+                                                <input type="text" class="form-control" id="lastName" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
+                                                <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label d-block mb-2">Gender</label>
@@ -155,6 +161,7 @@
                                             <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
+                                            <?php include '../../utils/message.php'; ?>
                                         </div>
                                     </form>
                                 </div>
@@ -165,26 +172,29 @@
                                     <h5 class="card-title">Physical Stats</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form id="measurementsForm">
+                                    <form id="physicalStatsForm" action="../backend/process_settings.php" method="POST">
+                                        <input type="hidden" name="form_type" value="physicalStatsForm">
+                                        <input type="hidden" name="csrf_token" 
+                                            value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                                         <div class="row g-3">
                                             <div class="col-md-4">
-                                                <label for="height" class="form-label">Age</label>
+                                                <label for="age" class="form-label">Age</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="age" value="<?= htmlspecialchars($user['age']) ?>">
+                                                    <input type="number" class="form-control" id="age" name="age" value="<?= htmlspecialchars($user['age']) ?>" min="0" max="120", step="1">
                                                     <span class="input-group-text">years</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="height" class="form-label">Height</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="height" value="<?= htmlspecialchars($user['height']) ?>">
+                                                    <input type="number" class="form-control" id="height" name="height" value="<?= htmlspecialchars($user['height']) ?>" min="0" step="0.01">
                                                     <span class="input-group-text">cm</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="weight" class="form-label">Weight</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="weight" value="<?= htmlspecialchars($user['weight']) ?>">
+                                                    <input type="number" class="form-control" id="weight" name="weight" value="<?= htmlspecialchars($user['weight']) ?>" min="0" step="0.01">
                                                     <span class="input-group-text">kg</span>
                                                 </div>
                                             </div>
@@ -229,12 +239,15 @@
                                     <h5 class="card-title">Change Password</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form id="passwordForm">
+                                    <form id="passwordForm" action="../backend/process_settings.php" method="POST">
+                                        <input type="hidden" name="form_type" value="passwordForm">
+                                        <input type="hidden" name="csrf_token" 
+                                            value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                                         <div class="row g-3">
                                             <div class="col-md-12">
                                                 <label for="currentPassword" class="form-label">Enter Current Password</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="currentPassword">
+                                                    <input type="password" class="form-control" id="currentPassword" name="current_password">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button">
                                                         <i class="fas fa-eye"></i>
                                                     </button>
@@ -243,7 +256,7 @@
                                             <div class="col-md-6">
                                                 <label for="newPassword" class="form-label">Enter New Password</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="newPassword">
+                                                    <input type="password" class="form-control" id="newPassword" name="new_password">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button">
                                                         <i class="fas fa-eye"></i>
                                                     </button>
@@ -252,7 +265,7 @@
                                             <div class="col-md-6">
                                                 <label for="confirmPassword" class="form-label">Enter Password Confirmation</label>
                                                 <div class="input-group">
-                                                    <input type="password" class="form-control" id="confirmPassword">
+                                                    <input type="password" class="form-control" id="confirmPassword" name="confirm_password">
                                                     <button class="btn btn-outline-secondary toggle-password" type="button">
                                                         <i class="fas fa-eye"></i>
                                                     </button>
@@ -278,10 +291,13 @@
                                     <h5 class="card-title">Primary Fitness Goal</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form id="primaryGoalForm">
+                                    <form id="primaryGoalForm" action="../backend/process_settings.php" method="POST">
+                                        <input type="hidden" name="form_type" value="primaryGoalForm">
+                                        <input type="hidden" name="csrf_token" 
+                                            value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                                         <div class="fitness-goals-options">
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="cutting" autocomplete="off"
+                                                <input type="radio" class="btn-check" name="primary_goal" value="cutting" id="cutting" autocomplete="off"
                                                     <?= $user['goal'] === 'cutting' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="cutting">
                                                     <i class="fas fa-weight"></i>
@@ -289,7 +305,7 @@
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="bulking" autocomplete="off"
+                                                <input type="radio" class="btn-check" name="primary_goal" value="bulking" id="bulking" autocomplete="off"
                                                     <?= $user['goal'] === 'bulking' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="bulking">
                                                     <i class="fas fa-dumbbell"></i>
@@ -297,7 +313,7 @@
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="maintainHealth" autocomplete="off"
+                                                <input type="radio" class="btn-check" name="primary_goal" value="maintain" id="maintainHealth" autocomplete="off"
                                                     <?= $user['goal'] === 'maintain' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="maintainHealth">
                                                     <i class="fas fa-heartbeat"></i>
@@ -305,7 +321,7 @@
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primaryGoal" id="improveEndurance" autocomplete="off"
+                                                <input type="radio" class="btn-check" name="primary_goal" id="improveEndurance" autocomplete="off"
                                                     <?= $user['goal'] === 'improve_endurance' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="improveEndurance">
                                                     <i class="fas fa-running"></i>
@@ -356,10 +372,13 @@
                                     <h5 class="card-title">Activity Level</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form id="activityLevelForm">
+                                    <form id="activityLevelForm" action="../backend/process_settings.php" method="POST">
+                                        <input type="hidden" name="form_type" value="activityLevelForm">
+                                        <input type="hidden" name="csrf_token" 
+                                            value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                                         <div class="activity-level-options">
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="sedentary"
+                                                <input class="form-check-input" type="radio" name="activity_level" value="sedentary" id="sedentary"
                                                     <?= $user['activity_level'] === 'sedentary' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="sedentary">
                                                     <div class="activity-level-header">
@@ -370,9 +389,9 @@
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="lightlyActive"
+                                                <input class="form-check-input" type="radio" name="activity_level" value="light" id="light"
                                                     <?= $user['activity_level'] === 'light' ? 'checked' : '' ?>>
-                                                <label class="form-check-label" for="lightlyActive">
+                                                <label class="form-check-label" for="light">
                                                     <div class="activity-level-header">
                                                         <h6>Lightly Active</h6>
                                                         <span class="activity-level-tag">Light exercise 1-3 days/week</span>
@@ -381,9 +400,9 @@
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="moderatelyActive"
+                                                <input class="form-check-input" type="radio" name="activity_level" value="moderate" id="moderate"
                                                     <?= $user['activity_level'] === 'moderate' ? 'checked' : '' ?>>
-                                                <label class="form-check-label" for="moderatelyActive">
+                                                <label class="form-check-label" for="moderate">
                                                     <div class="activity-level-header">
                                                         <h6>Moderately Active</h6>
                                                         <span class="activity-level-tag">Moderate exercise 3-5 days/week</span>
@@ -392,9 +411,9 @@
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="veryActive"
+                                                <input class="form-check-input" type="radio" name="activity_level" value="active" id="active"
                                                     <?= $user['activity_level'] === 'active' ? 'checked' : '' ?>>
-                                                <label class="form-check-label" for="veryActive">
+                                                <label class="form-check-label" for="active">
                                                     <div class="activity-level-header">
                                                         <h6>Active</h6>
                                                         <span class="activity-level-tag">Hard exercise 6-7 days/week</span>
@@ -403,9 +422,9 @@
                                                 </label>
                                             </div>
                                             <div class="form-check activity-level-option">
-                                                <input class="form-check-input" type="radio" name="activityLevel" id="extremelyActive"
+                                                <input class="form-check-input" type="radio" name="activity_level" value="very_active" id="veryActive"
                                                     <?= $user['activity_level'] === 'very_active' ? 'checked' : '' ?>>
-                                                <label class="form-check-label" for="extremelyActive">
+                                                <label class="form-check-label" for="veryActive">
                                                     <div class="activity-level-header">
                                                         <h6>Very Active</h6>
                                                         <span class="activity-level-tag">Very hard exercise & physical job</span>
