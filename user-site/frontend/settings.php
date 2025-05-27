@@ -158,10 +158,10 @@ require_once '../backend/preload_settings.php';
                                                     <label class="btn btn-outline-primary gender-label" for="female">Female</label>
                                                 </div>
                                             </div>
+                                            <div class="form-message" id="personalInfoFormMessage"></div>
                                             <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
-                                            <div class="form-message" id="personalInfoFormMessage"></div>
                                         </div>
                                     </form>
                                 </div>
@@ -226,10 +226,10 @@ require_once '../backend/preload_settings.php';
                                                     <span class="input-group-text">cm</span>
                                                 </div>
                                             </div> -->
+                                            <div class="form-message" id="physicalStatsFormMessage"></div>
                                             <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                             </div>
-                                            <div class="form-message" id="physicalStatsFormMessage"></div>
                                         </div>
                                     </form>
                                 </div>
@@ -272,10 +272,10 @@ require_once '../backend/preload_settings.php';
                                                     </button>
                                                 </div>
                                             </div>
+                                            <div class="form-message" id="passwordFormMessage"></div>
                                             <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-primary">Update Password</button>
                                             </div>
-                                            <div class="form-message" id="passwordFormMessage"></div>
                                         </div>
                                     </form>
                                 </div>
@@ -358,10 +358,10 @@ require_once '../backend/preload_settings.php';
                                                         <p>Estimated time: <strong>10 weeks</strong></p>
                                                     </div>
                                                 </div> -->
+                                                <div class="form-message" id="primaryGoalFormMessage"></div>
                                                 <div class="mt-3 settings-btn-margin">
                                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                                 </div>
-                                                <div class="form-message" id="primaryGoalFormMessage"></div>
                                             <!-- </div> -->
                                         <!-- </div> -->
                                     </form>
@@ -436,10 +436,10 @@ require_once '../backend/preload_settings.php';
                                                 </label>
                                             </div>
                                         </div>
+                                        <div class="form-message" id="activityLevelFormMessage"></div>
                                         <div class="mt-3 settings-btn-margin">
                                             <button type="submit" class="btn btn-primary">Save Changes</button>
                                         </div>
-                                        <div class="form-message" id="activityLevelFormMessage"></div>
                                     </form>
                                 </div>
                             </div>

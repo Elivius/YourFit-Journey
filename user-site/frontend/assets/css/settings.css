@@ -67,8 +67,8 @@
 }
 
 .settings-btn-margin {
-    margin-top: 25px;
-    margin-bottom: 7px;
+    margin-top: 2px !important;
+    margin-bottom: 5px;
 }
 
 /* When active (checked), style the button */
@@ -86,7 +86,7 @@ input:checked + .btn-outline-primary {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .fitness-goal-option {
@@ -146,6 +146,7 @@ input:checked + .btn-outline-primary {
     border-radius: 0.5rem;
     padding: 1rem;
     margin: 0;
+    margin-bottom: 1rem;
     transition: all 0.3s ease;
 }
 
