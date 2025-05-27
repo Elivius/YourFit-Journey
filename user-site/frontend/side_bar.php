@@ -1,4 +1,4 @@
-<aside class="sidebar" id="sidebar">
+<aside class="sidebar collapsed" id="sidebar">
     <div class="sidebar-header">
         <a href="dashboard.php" class="sidebar-logo">
             <div class="logo-container">

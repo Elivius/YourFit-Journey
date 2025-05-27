@@ -63,10 +63,16 @@ document.addEventListener("DOMContentLoaded", () => {
   // Resize behavior
   window.addEventListener("resize", () => {
     if (window.innerWidth >= 992) {
+      // Reset to default for desktop
       overlay.classList.remove("active");
+      sidebar.classList.remove("active");
+      sidebar.classList.add("collapsed");
       document.body.style.overflow = "";
-    } else if (!sidebar.classList.contains("collapsed")) {
-      document.body.style.overflow = "hidden";
+    } else {
+      // For mobile: if sidebar is open, keep body overflow hidden
+      if (!sidebar.classList.contains("collapsed")) {
+        document.body.style.overflow = "hidden";
+      }
     }
   });
 
