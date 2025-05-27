@@ -47,23 +47,6 @@
 
             <!-- Nutrition Content -->
             <div class="dashboard-content">
-                <!-- Nutrition Options -->
-                <div class="row mb-4">
-                    <div class="col-md-8">
-                        <div class="workout-options">
-                            <button class="btn btn-primary active">Daily Tracking</button>
-                            <button class="btn btn-outline-primary">Meal Plans</button>
-                            <button class="btn btn-outline-primary">Recipes</button>
-                            <button class="btn btn-outline-primary">Food Database</button>
-                        </div>
-                    </div>
-                    <div class="col-md-4 text-md-end">
-                        <button class="btn btn-success">
-                            <i class="fas fa-plus"></i> Log Food
-                        </button>
-                    </div>
-                </div>
-
                 <!-- Nutrition Summary -->
                 <div class="row g-4 mb-4">
                     <div class="col-lg-8">

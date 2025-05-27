@@ -52,24 +52,24 @@ require_once '../backend/preload_settings.php';
                 <!-- Settings Navigation -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="settings-nav">
-                            <button class="settings-nav-item active" data-target="profile">
+                        <div class="top-nav">
+                            <button class="top-nav-item active" data-target="profile">
                                 <i class="fas fa-user"></i>
                                 <span>Profile</span>
                             </button>
-                            <button class="settings-nav-item" data-target="fitness-goals">
+                            <button class="top-nav-item" data-target="fitness-goals">
                                 <i class="fas fa-bullseye"></i>
                                 <span>Fitness Goals</span>
                             </button>
-                            <button class="settings-nav-item" data-target="feedback">
+                            <button class="top-nav-item" data-target="feedback">
                                 <i class="fas fa-comment-alt"></i>
                                 <span>Feedback</span>
                             </button>
-                            <button class="settings-nav-item" data-target="notifications">
+                            <button class="top-nav-item" data-target="notifications">
                                 <i class="fas fa-bell"></i>
                                 <span>Notifications</span>
                             </button>
-                            <button class="settings-nav-item" data-target="account">
+                            <button class="top-nav-item" data-target="account">
                                 <i class="fas fa-shield-alt"></i>
                                 <span>Account</span>
                             </button>
@@ -78,7 +78,7 @@ require_once '../backend/preload_settings.php';
                 </div>
 
                 <!-- Profile Settings -->
-                <div class="settings-section active" id="profile">
+                <div class="tab-section active" id="profile">
                     <div class="row g-4">
                         <div class="col-lg-4">
                             <div class="card">
@@ -285,7 +285,7 @@ require_once '../backend/preload_settings.php';
                 </div>
 
                 <!-- Fitness Goals Settings -->
-                <div class="settings-section" id="fitness-goals">
+                <div class="tab-section" id="fitness-goals">
                     <div class="row g-4">
                         <div class="col-lg-6">
                             <div class="card">
@@ -508,7 +508,7 @@ require_once '../backend/preload_settings.php';
                 </div>
 
                 <!-- Feedback Section -->
-                <div class="settings-section" id="feedback">
+                <div class="tab-section" id="feedback">
                     <div class="row g-4">
                         <div class="col-lg-6">
                             <div class="card">
@@ -686,7 +686,7 @@ require_once '../backend/preload_settings.php';
                 </div>
 
                 <!-- Notifications Settings -->
-                <div class="settings-section" id="notifications">
+                <div class="tab-section" id="notifications">
                     <div class="card">
                         <div class="card-header">
                             <h5 class="card-title">Notification Preferences</h5>
@@ -854,7 +854,7 @@ require_once '../backend/preload_settings.php';
                 </div>
 
                 <!-- Account Settings -->
-                <div class="settings-section" id="account">
+                <div class="tab-section" id="account">
                     <div class="row g-4">
                         <div class="col-lg-6">
                             <div class="card">

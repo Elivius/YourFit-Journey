@@ -36,7 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-
     // Responsive Navigation
     const handleResponsiveLayout = () => {
         if (window.innerWidth < 992 && sidebar) {
@@ -102,6 +101,51 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 }
             }
+        });
+    });
+
+    // Tab Navigation
+    const topNavItems = document.querySelectorAll('.top-nav-item');
+    const tabSections = document.querySelectorAll('.tab-section');
+
+    function activateSection(target) {
+        // Update active nav item
+        topNavItems.forEach(navItem => {
+            navItem.classList.toggle('active', navItem.getAttribute('data-target') === target);
+        });
+
+        // Show target section
+        tabSections.forEach(section => {
+            section.classList.toggle('active', section.id === target);
+        });
+    }
+
+    function updateURL(section) {
+        const url = new URL(window.location);
+        url.searchParams.set('section', section);
+        window.history.pushState({}, '', url);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const section = params.get('section') || 'profile'; // fallback to 'profile'
+        
+        // Activate the correct section BEFORE showing any content
+        activateSection(section);
+
+        // Optional: scroll to the section
+        const target = document.getElementById(section);
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+
+    // On nav item click, activate section and update URL
+    topNavItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const target = this.getAttribute('data-target');
+            activateSection(target);
+            updateURL(target);
         });
     });
     
