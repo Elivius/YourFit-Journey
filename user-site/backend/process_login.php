@@ -4,6 +4,8 @@ require_once '../../utils/connection.php';
 require_once '../../utils/csrf.php';
 require_once '../../utils/sanitize.php';
 
+$_SESSION['target_form'] = 'loginForm';
+
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     $_SESSION['error'] = "Invalid CSRF token";

@@ -5,6 +5,8 @@ require_once '../../utils/csrf.php';
 require_once '../../utils/sanitize.php';
 require_once '../../utils/hashing.php';
 
+$_SESSION['target_form'] = 'signupForm';
+
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     $_SESSION['error'] = "Invalid CSRF token";
@@ -49,12 +51,7 @@ if (
     !preg_match('/[0-9]/', $password) ||        // at least one digit
     !preg_match('/[\W_]/', $password)           // at least one symbol
 ) {
-    $_SESSION['error'] = "Password must be:<br>
-                        - at least 8 characters<br>
-                        - include uppercase letter<br>
-                        - include lowercase letter<br>
-                        - include a number<br>
-                        - include a symbol";
+    $_SESSION['error'] = "Password must be at least 8 characters, include uppercase and lowercase letters, a number, and a symbol.";
     header("Location: ../frontend/signup.php");
     exit;
 }

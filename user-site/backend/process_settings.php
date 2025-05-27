@@ -21,6 +21,8 @@ switch ($form_type) {
         $last_name = cleanInput($_POST['last_name'] ?? '');
         $gender = cleanInput($_POST['gender'] ?? '');
 
+        $_SESSION['target_form'] = 'personalInfoForm';
+
         if (!$first_name || !$last_name || !$gender) {
             $_SESSION['error'] = "Please fill in all personal info fields";
             break;
@@ -45,6 +47,8 @@ switch ($form_type) {
         $age = sanitizeInt($_POST['age'] ?? null);
         $height = sanitizeFloat($_POST['height'] ?? null);
         $weight = sanitizeFloat($_POST['weight'] ?? null);
+
+        $_SESSION['target_form'] = 'physicalStatsForm';
 
         if (is_null($age) || is_null($height) || is_null($weight)) {
             $_SESSION['error'] = "Please fill in all physical stats fields";
@@ -71,6 +75,8 @@ switch ($form_type) {
         $new_password = sanitizePassword($_POST['new_password'] ?? '');
         $confirm_password = sanitizePassword($_POST['confirm_password'] ?? '');
 
+        $_SESSION['target_form'] = 'passwordForm';
+
         if (!$current_password || !$new_password || !$confirm_password) {
             $_SESSION['error'] = "Please fill in all password fields";
             break;
@@ -82,12 +88,7 @@ switch ($form_type) {
             !preg_match('/[0-9]/', $new_password) ||
             !preg_match('/[\W_]/', $new_password)
         ) {
-            $_SESSION['error'] = "New password must be:<br>
-                                  - at least 8 characters<br>
-                                  - include uppercase letter<br>
-                                  - include lowercase letter<br>
-                                  - include a number<br>
-                                  - include a symbol";
+            $_SESSION['error'] = "New password must be at least 8 characters, include uppercase and lowercase letters, a number, and a symbol.";
             break;
         }
 
@@ -137,6 +138,8 @@ switch ($form_type) {
     case 'primaryGoalForm':
         $primary_goal = cleanInput($_POST['primary_goal'] ?? '');
 
+        $_SESSION['target_form'] = 'primaryGoalForm';
+
         if (!$primary_goal) {
             $_SESSION['error'] = "Please select a primary fitness goal";
             break;
@@ -160,6 +163,8 @@ switch ($form_type) {
 
     case 'activityLevelForm':
         $activity_level = cleanInput($_POST['activity_level'] ?? '');
+
+        $_SESSION['target_form'] = 'activityLevelForm';
 
         if (!$activity_level) {
             $_SESSION['error'] = "Please select an activity level";

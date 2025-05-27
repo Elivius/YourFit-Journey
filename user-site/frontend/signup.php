@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../../utils/csrf.php';
+require_once '../../utils/message.php';
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +40,7 @@ require_once '../../utils/csrf.php';
                 <p>Start your fitness journey today</p>
             </div>
             <div class="auth-body">
-                <form id="signup-form" action="../backend/process_signup.php" method="POST" novalidate>
+                <form id="signupForm" action="../backend/process_signup.php" method="POST" novalidate>
                     <input type="hidden" name="csrf_token" 
                         value="<?= htmlspecialchars(generateCSRFToken()); ?>">
 
@@ -109,7 +110,7 @@ require_once '../../utils/csrf.php';
                         <label class="form-check-label" for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
                     </div>
 
-                    <?php require_once '../../utils/message.php'; ?>
+                    <div class="form-message" id="signupFormMessage"></div>
 
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg">Create Account</button>
