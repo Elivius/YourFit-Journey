@@ -289,3 +289,27 @@ p, h2, h3, h4, h5, h6, span, img, label {
 .tab-section.active {
     display: block;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .top-nav {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.75rem;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .top-nav-item {
+        padding: 0.5rem 1rem;
+    }
+    
+    .top-nav-item span {
+        display: none;
+    }
+    
+    .top-nav-item i {
+        font-size: 1.5rem;
+    }
+}
