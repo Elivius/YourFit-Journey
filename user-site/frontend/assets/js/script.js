@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
-        const section = params.get('section') || 'profile'; // fallback to 'profile'
+        const section = params.get('section') || getDefaultSection(); // fallback to 'profile'
         
         // Activate the correct section BEFORE showing any content
         activateSection(section);
@@ -148,6 +148,16 @@ document.addEventListener('DOMContentLoaded', function() {
             updateURL(target);
         });
     });
+
+    // Function to determine default section based on page
+    function getDefaultSection() {
+        // Example using body class or specific container
+        if (document.body.classList.contains('workouts-page')) {
+            return 'pre-built-workouts';
+        } else {
+            return 'profile';
+        }
+    }
     
     // Add accessibility attributes
     const addAccessibilityAttributes = () => {

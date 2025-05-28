@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
-<body class="dark-theme dashboard-body">
+<body class="dark-theme dashboard-body workouts-page">
     <div class="dashboard-container">
 
         <?php include 'side_bar.php'; ?>
@@ -47,14 +47,19 @@
             <div class="dashboard-content">
                 <!-- Workout Options -->
                 <div class="row mb-4">
-                    <div class="col-md-8">
-                        <div class="workout-options">
-                            <button class="btn btn-primary active">Pre-built Plans</button>
-                            <button class="btn btn-outline-primary">My Workouts</button>
-                            <button class="btn btn-outline-primary">Create Custom</button>
+                    <div class="col-12">
+                        <div class="top-nav">
+                            <button class="top-nav-item active" data-target="pre-built-workouts">
+                                <i class="fas fa-layer-group"></i>
+                                <span>Pre-built Workouts</span>
+                            </button>
+                            <button class="top-nav-item" data-target="my-workouts">
+                                <i class="fas fa-folder-open"></i>
+                                <span>My Workouts</span>
+                            </button>
                         </div>
                     </div>
-                    <div class="col-md-4 text-md-end">
+                    <!-- <div class="col-md-4 text-md-end">
                         <div class="workout-filters card-actions">
                             <select class="form-select">
                                 <option selected>Experience Level</option>
@@ -63,7 +68,7 @@
                                 <option>Advanced</option>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Workout Categories -->

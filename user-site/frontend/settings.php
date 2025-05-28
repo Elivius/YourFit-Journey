@@ -21,7 +21,7 @@ require_once '../backend/preload_settings.php';
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
 </head>
-<body class="dark-theme dashboard-body">
+<body class="dark-theme dashboard-body settings-page">
     <div class="dashboard-container">
 
         <?php include 'side_bar.php'; ?>
