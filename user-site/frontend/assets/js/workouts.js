@@ -16,12 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // based on the selected category
             const categoryName = this.querySelector('h4').textContent;
             console.log(`Selected category: ${categoryName}`);
-            
-            // For demo purposes, we'll just update the title
-            const planTitle = document.querySelector('.card-title');
-            if (planTitle && planTitle.textContent.includes('Workout Plan')) {
-                planTitle.textContent = `Beginner ${categoryName} Workout Plan`;
-            }
         });
     });
     
