@@ -1,4 +1,12 @@
 /* Workout Page Styles */
+.workout-category-section {
+    display: none;
+}
+
+.workout-category-section.active {
+    display: block;
+}
+
 .workout-options {
     display: flex;
     gap: 1rem;
@@ -240,6 +248,14 @@
 .tip-content p {
     margin-bottom: 0;
     color: var(--secondary);
+}
+
+#my-workouts .fa-folder-open {
+    color: var(--body-color); /* Change icon color */
+}
+
+#my-workouts .card-body p {
+    color: var(--secondary) !important; /* Make text slightly gray */
 }
 
 /* Nutrition Page Styles */

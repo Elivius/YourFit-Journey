@@ -104,55 +104,103 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Tab Navigation
+    // ==============================
+    // Tab Navigation (Section Logic)
+    // ==============================
     const topNavItems = document.querySelectorAll('.top-nav-item');
     const tabSections = document.querySelectorAll('.tab-section');
 
     function activateSection(target) {
-        // Update active nav item
         topNavItems.forEach(navItem => {
             navItem.classList.toggle('active', navItem.getAttribute('data-target') === target);
         });
 
-        // Show target section
         tabSections.forEach(section => {
             section.classList.toggle('active', section.id === target);
         });
     }
 
-    function updateURL(section) {
+    function updateURL(section, category = null) {
         const url = new URL(window.location);
         url.searchParams.set('section', section);
+        if (category) {
+            url.searchParams.set('category', category);
+        } else {
+            url.searchParams.delete('category');
+        }
         window.history.pushState({}, '', url);
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-        const params = new URLSearchParams(window.location.search);
-        const section = params.get('section') || getDefaultSection(); // fallback to 'profile'
-        
-        // Activate the correct section BEFORE showing any content
-        activateSection(section);
-    });
+    // ==============================
+    // Workout Category Handling
+    // ==============================
+    const workoutCategories = document.querySelectorAll('.workout-category-card');
+    const workoutCategorySections = document.querySelectorAll('.workout-category-section');
 
-    // On nav item click, activate section and update URL
-    topNavItems.forEach(item => {
-        item.addEventListener('click', function() {
-            const target = this.getAttribute('data-target');
-            activateSection(target);
-            updateURL(target);
+    function activateWorkoutCategory(category) {
+        workoutCategories.forEach(card => {
+            card.classList.toggle('active', card.dataset.category === category);
+        });
+
+        workoutCategorySections.forEach(section => {
+            const isMatch = section.id === `pre-built-${category}-workouts`;
+            section.classList.toggle('active', isMatch);
+            section.style.display = isMatch ? 'block' : 'none';
+            section.style.visibility = isMatch ? 'visible' : 'hidden';
+            section.style.height = isMatch ? 'auto' : '0';
+        });
+    }
+
+    // ==============================
+    // Event Listeners
+    // ==============================
+    topNavItems.forEach(navItem => {
+        navItem.addEventListener('click', e => {
+            e.preventDefault();
+            const targetSection = navItem.dataset.target;
+            activateSection(targetSection);
+
+            if (targetSection === 'pre-built-workouts') {
+                activateWorkoutCategory('chest'); // Default category
+                updateURL(targetSection, 'chest');
+            } else {
+                updateURL(targetSection);
+            }
         });
     });
 
-    // Function to determine default section based on page
-    function getDefaultSection() {
-        // Example using body class or specific container
-        if (document.body.classList.contains('workouts-page')) {
-            return 'pre-built-workouts';
-        } else {
-            return 'profile';
+    workoutCategories.forEach(categoryCard => {
+        categoryCard.addEventListener('click', e => {
+            e.preventDefault();
+            const category = categoryCard.dataset.category;
+            activateWorkoutCategory(category);
+            updateURL('pre-built-workouts', category);
+        });
+    });
+
+    // ==============================
+    // Initialization on Page Load
+    // ==============================
+    window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const section = params.get('section') || getDefaultSection(); // fallback to 'profile'
+        const category = params.get('category') || 'chest';
+
+        activateSection(section);
+
+        if (section === 'pre-built-workouts') {
+            activateWorkoutCategory(category);
         }
+    });
+
+    // ==============================
+    // Utility: Fallback Section
+    // ==============================
+    function getDefaultSection() {
+        return document.body.classList.contains('workouts-page') ? 'pre-built-workouts' : 'profile';
     }
-    
+
+
     // Add accessibility attributes
     const addAccessibilityAttributes = () => {
         // Add aria-label to buttons without text
