@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div class="tab-section active" id="pre-built-workouts">
                     <!-- Selected Workout Plan -->
                     <div class="card mb-4">
@@ -136,7 +136,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Workout Exercises -->
                     <div class="card mb-4">
                         <div class="card-header">

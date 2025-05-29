@@ -19,46 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Workout Options Selection
-    const workoutOptions = document.querySelectorAll('.workout-options .btn');
-    
-    workoutOptions.forEach(option => {
-        option.addEventListener('click', function() {
-            // Remove active class from all options
-            workoutOptions.forEach(opt => {
-                opt.classList.remove('active');
-                opt.classList.remove('btn-primary');
-                opt.classList.add('btn-outline-primary');
-            });
-            
-            // Add active class to clicked option
-            this.classList.add('active');
-            this.classList.remove('btn-outline-primary');
-            this.classList.add('btn-primary');
-            
-            // Here you would typically load the appropriate content
-            // based on the selected option
-            console.log(`Selected option: ${this.textContent}`);
-        });
-    });
-    
-    // Exercise Accordion Animation
-    const accordionButtons = document.querySelectorAll('.accordion-button');
-    
-    accordionButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            
-            if (!isExpanded) {
-                // Scroll to the expanded item after a short delay
-                setTimeout(() => {
-                    const accordionItem = this.closest('.accordion-item');
-                    accordionItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 300);
-            }
-        });
-    });
-    
     // Add to My Workouts Button
     const addToMyWorkoutsBtn = document.querySelector('.card-actions .btn-primary');
     

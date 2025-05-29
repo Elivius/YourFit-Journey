@@ -132,12 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Activate the correct section BEFORE showing any content
         activateSection(section);
-
-        // Optional: scroll to the section
-        const target = document.getElementById(section);
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
     });
 
     // On nav item click, activate section and update URL
