@@ -168,13 +168,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    
     workoutCategories.forEach(categoryCard => {
         categoryCard.addEventListener('click', e => {
             e.preventDefault();
             const category = categoryCard.dataset.category;
             activateWorkoutCategory(category);
             updateURL('pre-built-workouts', category);
+        });
+    });
+    
+    // ==============================
+    // Save Scroll Position Before Submit
+    // ==============================
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', () => {
+            sessionStorage.setItem('scrollY', window.scrollY);
         });
     });
 
@@ -190,6 +199,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (section === 'pre-built-workouts') {
             activateWorkoutCategory(category);
+        }
+
+         // Restore scroll position if available
+        const savedScrollY = sessionStorage.getItem('scrollY');
+        if (savedScrollY !== null) {
+            window.scrollTo(0, parseInt(savedScrollY));
+            sessionStorage.removeItem('scrollY');
         }
     });
 
