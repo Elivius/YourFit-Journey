@@ -216,7 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return document.body.classList.contains('workouts-page') ? 'pre-built-workouts' : 'profile';
     }
 
-
     // Add accessibility attributes
     const addAccessibilityAttributes = () => {
         // Add aria-label to buttons without text

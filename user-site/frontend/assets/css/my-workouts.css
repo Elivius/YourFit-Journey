@@ -1,0 +1,25 @@
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0; /* default for large screens */
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 911px) {
+  .btn-back {
+    margin-left: 5px !important;
+  }
+}
+
+@media (min-width: 912px) {
+  .btn-back {
+    margin-left: 0 !important;
+  }
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1; /* ensures full opacity */
+}

@@ -719,9 +719,9 @@
                             <i class="fas fa-folder-open fa-3x mb-3"></i>
                             <h5>No Custom Workouts Yet</h5>
                             <p>Create your first custom workout or add pre-built workouts to get started.</p>
-                            <button class="btn btn-primary">
+                            <a href="my-workouts.php" class="btn btn-primary">
                                 <i class="fas fa-plus"></i> Create New Workout
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
