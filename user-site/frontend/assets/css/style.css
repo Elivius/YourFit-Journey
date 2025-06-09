@@ -314,3 +314,7 @@ p, h2, h3, h4, h5, h6, span, img, label {
         font-size: 1.5rem;
     }
 }
+
+.muted-p {
+    color: var(--secondary) !important;
+}

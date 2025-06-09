@@ -1,4 +1,8 @@
-<?php require_once '../../utils/auth.php'; ?>
+<?php
+require_once '../../utils/auth.php';
+require_once '../backend/preload_exercises.php';
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -96,49 +100,42 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Exercise Results -->
                                 <div id="exercise-results">
-                                    <!-- Sample Exercise Card -->
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-start">
-                                                <div>
-                                                    <h6 class="mb-1">Barbell Bench Press</h6>
-                                                    <p class="mb-1 text-muted">Chest, Shoulders, Triceps</p>
-                                                    <div class="d-flex gap-2">
-                                                        <span class="alternative-badge">chest</span>
-                                                        <span class="alternative-badge">intermediate</span>
+                                    <?php foreach ($exercises as $exercise): ?>
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-start">
+                                                    <div>
+                                                        <!-- Added spacing below the exercise name -->
+                                                        <h6 class="mb-3"><?php echo htmlspecialchars($exercise['exercise_name']); ?></h6>
+                                                        
+                                                        <!-- More spacing below the label -->
+                                                        <p class="mb-2 muted-p">Target muscles:</p>
+                                                        
+                                                        <!-- More spacing between badges and button -->
+                                                        <div class="d-flex flex-wrap gap-2 mb-3">
+                                                            <?php 
+                                                                $muscles = explode(',', $exercise['targeted_muscle']); 
+                                                                foreach ($muscles as $muscle): 
+                                                            ?>
+                                                                <span class="alternative-badge"><?php echo htmlspecialchars(trim($muscle)); ?></span>
+                                                            <?php endforeach; ?>
+                                                        </div>
+                                                        
+                                                        <!-- Optional: add other content here if needed -->
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <button class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-plus"></i> Add
-                                                    </button>
+                                                    
+                                                    <div>
+                                                        <button class="btn btn-sm btn-primary">
+                                                            <i class="fas fa-plus"></i> Add
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <div class="card mb-3">
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-start">
-                                                <div>
-                                                    <h6 class="mb-1">Push-ups</h6>
-                                                    <p class="mb-1 text-muted">Chest, Shoulders, Triceps</p>
-                                                    <div class="d-flex gap-2">
-                                                        <span class="alternative-badge">chest</span>
-                                                        <span class="alternative-badge">beginner</span>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <button class="btn btn-sm btn-primary">
-                                                        <i class="fas fa-plus"></i> Add
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php endforeach; ?>
                                 </div>
+
                             </div>
                         </div>
 
