@@ -27,5 +27,12 @@ textarea::placeholder {
 #exercise-results {
     max-height: 600px; /* Adjust height as needed */
     overflow-y: auto;   /* Enable vertical scroll if content overflows */
-    padding-right: 10px; /* Optional: space for scrollbar */
+}
+
+.sticky-category-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--card-bg);
+    padding: 0.5rem 0;
 }

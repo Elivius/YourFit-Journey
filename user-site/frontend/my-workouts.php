@@ -3,6 +3,15 @@ require_once '../../utils/auth.php';
 require_once '../backend/preload_exercises.php';
 ?>
 
+<?php
+// Group the exercises by category
+$groupedExercises = [];
+foreach ($exercises as $exercise) {
+    $category = $exercise['category'];
+    $groupedExercises[$category][] = $exercise;
+}
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +58,7 @@ require_once '../backend/preload_exercises.php';
                     <i class="fas fa-arrow-left me-2"></i> Back
                 </a>
                 <div class="row">
-                    <div class="col-lg-8">
+                    <div>
                         <!-- Workout Basic Info -->
                         <div class="card mb-4">
                             <div class="card-header">
@@ -101,38 +110,51 @@ require_once '../backend/preload_exercises.php';
                                 </div>
                                 
                                 <div id="exercise-results">
-                                    <?php foreach ($exercises as $exercise): ?>
-                                        <div class="card mb-3">
-                                            <div class="card-body">
-                                                <div class="d-flex justify-content-between align-items-start">
-                                                    <div>
-                                                        <!-- Added spacing below the exercise name -->
-                                                        <h6 class="mb-3"><?php echo htmlspecialchars($exercise['exercise_name']); ?></h6>
-                                                        
-                                                        <!-- More spacing below the label -->
-                                                        <p class="mb-2 muted-p">Target muscles:</p>
-                                                        
-                                                        <!-- More spacing between badges and button -->
-                                                        <div class="d-flex flex-wrap gap-2 mb-3">
-                                                            <?php 
-                                                                $muscles = explode(',', $exercise['targeted_muscle']); 
-                                                                foreach ($muscles as $muscle): 
-                                                            ?>
-                                                                <span class="alternative-badge"><?php echo htmlspecialchars(trim($muscle)); ?></span>
-                                                            <?php endforeach; ?>
+                                    <!-- Display exercises grouped by category -->
+                                    <?php foreach ($groupedExercises as $category => $exercises): ?>
+                                        <div class="sticky-category-header">
+                                            <h5 class="mb-3"><?= htmlspecialchars(ucfirst($category)); ?>  <hr></h5>
+                                        </div>
+
+                                        <?php if (empty($exercises)): ?>
+                                            <p class="text-muted">No exercises found in this category.</p>
+                                        <?php endif; ?>
+
+                                        <?php foreach ($exercises as $exercise): ?>
+                                            <div class="card mb-3">
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between align-items-start">
+                                                        <div>
+                                                            <!-- Added spacing below the exercise name -->
+                                                            <h6 class="mb-3"><?= htmlspecialchars($exercise['exercise_name']); ?></h6>
+                                                            
+                                                            <!-- More spacing below the label -->
+                                                            <p class="mb-2 muted-p small">Target muscles:</p>
+                                                            
+                                                            <!-- More spacing between badges and button -->
+                                                            <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                <?php 
+                                                                    $muscles = explode(',', $exercise['targeted_muscle']); 
+                                                                    foreach ($muscles as $muscle): 
+                                                                ?>
+                                                                    <span class="alternative-badge"><?= htmlspecialchars(trim($muscle)); ?></span>
+                                                                <?php endforeach; ?>
+                                                            </div>
                                                         </div>
                                                         
-                                                        <!-- Optional: add other content here if needed -->
-                                                    </div>
-                                                    
-                                                    <div>
-                                                        <button class="btn btn-sm btn-primary">
-                                                            <i class="fas fa-plus"></i> Add
-                                                        </button>
+                                                        <div>
+                                                            <button class="btn btn-sm btn-primary"
+                                                            data-id="<?= htmlspecialchars($exercise['exercise_id']); ?>"
+                                                            data-name="<?= htmlspecialchars($exercise['exercise_name']); ?>"
+                                                            data-target-muscle="<?= htmlspecialchars($exercise['targeted_muscle']); ?>"
+                                                            >
+                                                                <i class="fas fa-plus"></i> Add
+                                                            </button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        <?php endforeach; ?>
                                     <?php endforeach; ?>
                                 </div>
 
@@ -147,118 +169,62 @@ require_once '../backend/preload_exercises.php';
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="selected-exercises">
-                                    <!-- Sample Selected Exercise -->
-                                    <div class="accordion workout-exercises" id="selectedExercises">
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="exercise1Heading">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#exercise1Collapse" aria-expanded="true" aria-controls="exercise1Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">1</span>
-                                                        <div class="exercise-title">
-                                                            <h6>Barbell Bench Press</h6>
-                                                            <span class="exercise-target">Target: Chest, Shoulders, Triceps</span>
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="exercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="exercise1Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="exercise-parameters">
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Sets:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="number" class="form-control form-control-sm" value="3" min="1">
-                                                                    </span>
-                                                                </div>
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Reps:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="text" class="form-control form-control-sm" value="10-12">
-                                                                    </span>
-                                                                </div>
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Rest:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="number" class="form-control form-control-sm" value="60" min="0"> sec
-                                                                    </span>
-                                                                </div>
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Weight:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="text" class="form-control form-control-sm" placeholder="Optional">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-3">
-                                                                <label class="form-label">Notes:</label>
-                                                                <textarea class="form-control" rows="2" placeholder="Add notes for this exercise..."></textarea>
-                                                            </div>
-                                                            <div class="mt-3 text-end">
-                                                                <button class="btn btn-danger btn-sm">
-                                                                    <i class="fas fa-trash"></i> Remove
-                                                                </button>
+                                <form action="">
+                                    <div id="selected-exercises">
+                                        <!-- Sample Selected Exercise -->
+                                        <div class="accordion workout-exercises" id="selectedExercises">
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header" id="exercise1Heading">
+                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#exercise1Collapse" aria-expanded="true" aria-controls="exercise1Collapse">
+                                                        <div class="exercise-header">
+                                                            <span class="exercise-number">1</span>
+                                                            <div class="exercise-title">
+                                                                <h6>Barbell Bench Press</h6>
+                                                                <span class="exercise-target">Target: Chest, Shoulders, Triceps</span>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="exercise2Heading">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#exercise2Collapse" aria-expanded="false" aria-controls="exercise2Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">2</span>
-                                                        <div class="exercise-title">
-                                                            <h6>Push-ups</h6>
-                                                            <span class="exercise-target">Target: Chest, Shoulders, Triceps</span>
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="exercise2Collapse" class="accordion-collapse collapse" aria-labelledby="exercise2Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <div class="exercise-parameters">
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Sets:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="number" class="form-control form-control-sm" value="3" min="1">
-                                                                    </span>
+                                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                                                    </button>
+                                                </h2>
+                                                <div id="exercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="exercise1Heading">
+                                                    <div class="accordion-body">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="exercise-parameters">
+                                                                    <div class="parameter">
+                                                                        <span class="parameter-label">Sets:</span>
+                                                                        <span class="parameter-value">
+                                                                            <input type="number" class="form-control form-control-sm" value="3" min="1">
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="parameter">
+                                                                        <span class="parameter-label">Reps:</span>
+                                                                        <span class="parameter-value">
+                                                                            <input type="text" class="form-control form-control-sm" value="10-12">
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="parameter">
+                                                                        <span class="parameter-label">Rest:</span>
+                                                                        <span class="parameter-value">
+                                                                            <input type="number" class="form-control form-control-sm" value="60" min="0"> sec
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="parameter">
+                                                                        <span class="parameter-label">Weight:</span>
+                                                                        <span class="parameter-value">
+                                                                            <input type="text" class="form-control form-control-sm" placeholder="Optional">
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Reps:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="text" class="form-control form-control-sm" value="15">
-                                                                    </span>
+                                                                <div class="mt-3">
+                                                                    <label class="form-label">Notes:</label>
+                                                                    <textarea class="form-control" rows="2" placeholder="Add notes for this exercise..."></textarea>
                                                                 </div>
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Rest:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="number" class="form-control form-control-sm" value="45" min="0"> sec
-                                                                    </span>
+                                                                <div class="mt-3 text-end">
+                                                                    <button class="btn btn-danger btn-sm">
+                                                                        <i class="fas fa-trash"></i> Remove
+                                                                    </button>
                                                                 </div>
-                                                                <div class="parameter">
-                                                                    <span class="parameter-label">Weight:</span>
-                                                                    <span class="parameter-value">
-                                                                        <input type="text" class="form-control form-control-sm" placeholder="Optional">
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                            <div class="mt-3">
-                                                                <label class="form-label">Notes:</label>
-                                                                <textarea class="form-control" rows="2" placeholder="Add notes for this exercise..."></textarea>
-                                                            </div>
-                                                            <div class="mt-3 text-end">
-                                                                <button class="btn btn-danger btn-sm">
-                                                                    <i class="fas fa-trash"></i> Remove
-                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -266,81 +232,16 @@ require_once '../backend/preload_exercises.php';
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save"></i> Save Workout
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-lg-4">
-                        <!-- Workout Preview -->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5 class="card-title">Workout Preview</h5>
-                            </div>
-                            <div class="card-body">
-                                <h6 id="preview-name">Upper Body Strength</h6>
-                                <div class="workout-plan-info">
-                                    <div class="workout-plan-detail">
-                                        <i class="fas fa-tag"></i>
-                                        <span id="preview-category">Chest</span>
-                                    </div>
-                                    <div class="workout-plan-detail">
-                                        <i class="fas fa-signal"></i>
-                                        <span id="preview-difficulty">Intermediate</span>
-                                    </div>
-                                    <div class="workout-plan-detail">
-                                        <i class="fas fa-clock"></i>
-                                        <span id="preview-duration">45 minutes</span>
-                                    </div>
-                                    <div class="workout-plan-detail">
-                                        <i class="fas fa-dumbbell"></i>
-                                        <span id="preview-exercise-count">2 exercises</span>
-                                    </div>
-                                </div>
-                                <div class="workout-plan-description">
-                                    <p id="preview-description">A comprehensive upper body workout focusing on chest, shoulders, and triceps.</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-save"></i> Save Workout
-                                    </button>
-                                    <a href="workouts.php" class="btn btn-outline-secondary">
-                                        <i class="fas fa-times"></i> Cancel
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Quick Add Exercises -->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5 class="card-title">Quick Add</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-grid gap-2">
-                                    <button type="button" class="btn btn-outline-primary text-start">
-                                        <i class="fas fa-plus"></i> Push-ups
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary text-start">
-                                        <i class="fas fa-plus"></i> Squats
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary text-start">
-                                        <i class="fas fa-plus"></i> Plank
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary text-start">
-                                        <i class="fas fa-plus"></i> Lunges
-                                    </button>
-                                    <button type="button" class="btn btn-outline-primary text-start">
-                                        <i class="fas fa-plus"></i> Burpees
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Workout Tips -->
-                        <div class="card">
+                        <div class="card mb-4">
                             <div class="card-header">
                                 <h5 class="card-title">Tips</h5>
                             </div>
@@ -371,48 +272,6 @@ require_once '../backend/preload_exercises.php';
                 </div>
             </div>
         </main>
-    </div>
-
-    <!-- Exercise Details Modal -->
-    <div class="modal fade" id="exerciseModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Exercise Details</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="exercise-image">
-                                <img src="https://source.unsplash.com/random/400x300/?bench-press" alt="Exercise" class="img-fluid rounded">
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <h6>Barbell Bench Press</h6>
-                            <p><strong>Category:</strong> Chest</p>
-                            <p><strong>Muscle Groups:</strong> Chest, Shoulders, Triceps</p>
-                            <p><strong>Equipment:</strong> Barbell, Bench</p>
-                            <p><strong>Difficulty:</strong> Intermediate</p>
-                            
-                            <div class="mt-3">
-                                <h6>Instructions:</h6>
-                                <ol>
-                                    <li>Lie on a flat bench with feet firmly on the ground.</li>
-                                    <li>Grip the barbell slightly wider than shoulder-width.</li>
-                                    <li>Lower the bar to your chest with control.</li>
-                                    <li>Press the bar back up to starting position.</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add to Workout</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <?php include 'scroll_to_top.php'; ?>

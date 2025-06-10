@@ -2,7 +2,7 @@
 require_once '../../utils/connection.php';
 
 // Prepare SQL to fetch all exercises
-$sql_extract = "SELECT exercise_name, category, targeted_muscle, sets, reps, rest, weight FROM exercises";
+$sql_extract = "SELECT * FROM exercises";
 
 if ($stmt = mysqli_prepare($connection, $sql_extract)) {
     mysqli_stmt_execute($stmt);
