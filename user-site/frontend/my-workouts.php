@@ -117,7 +117,7 @@ foreach ($exercises as $exercise) {
                                         </div>
 
                                         <?php if (empty($exercises)): ?>
-                                            <p class="text-muted">No exercises found in this category.</p>
+                                            <p class="muted-p">No exercises found in this category.</p>
                                         <?php endif; ?>
 
                                         <?php foreach ($exercises as $exercise): ?>
@@ -143,11 +143,10 @@ foreach ($exercises as $exercise) {
                                                         </div>
                                                         
                                                         <div>
-                                                            <button class="btn btn-sm btn-primary"
+                                                            <button class="btn btn-sm btn-primary add-exercise-btn"
                                                             data-id="<?= htmlspecialchars($exercise['exercise_id']); ?>"
                                                             data-name="<?= htmlspecialchars($exercise['exercise_name']); ?>"
-                                                            data-target-muscle="<?= htmlspecialchars($exercise['targeted_muscle']); ?>"
-                                                            >
+                                                            data-target-muscles="<?= htmlspecialchars($exercise['targeted_muscle']); ?>">
                                                                 <i class="fas fa-plus"></i> Add
                                                             </button>
                                                         </div>
@@ -171,68 +170,16 @@ foreach ($exercises as $exercise) {
                             <div class="card-body">
                                 <form action="">
                                     <div id="selected-exercises">
-                                        <!-- Sample Selected Exercise -->
+                                        <!-- Place for JS to temporary display user selected exercises -->
                                         <div class="accordion workout-exercises" id="selectedExercises">
-                                            <div class="accordion-item">
-                                                <h2 class="accordion-header" id="exercise1Heading">
-                                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#exercise1Collapse" aria-expanded="true" aria-controls="exercise1Collapse">
-                                                        <div class="exercise-header">
-                                                            <span class="exercise-number">1</span>
-                                                            <div class="exercise-title">
-                                                                <h6>Barbell Bench Press</h6>
-                                                                <span class="exercise-target">Target: Chest, Shoulders, Triceps</span>
-                                                            </div>
-                                                        </div>
-                                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                    </button>
-                                                </h2>
-                                                <div id="exercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="exercise1Heading">
-                                                    <div class="accordion-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="exercise-parameters">
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Sets:</span>
-                                                                        <span class="parameter-value">
-                                                                            <input type="number" class="form-control form-control-sm" value="3" min="1">
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Reps:</span>
-                                                                        <span class="parameter-value">
-                                                                            <input type="text" class="form-control form-control-sm" value="10-12">
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Rest:</span>
-                                                                        <span class="parameter-value">
-                                                                            <input type="number" class="form-control form-control-sm" value="60" min="0"> sec
-                                                                        </span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Weight:</span>
-                                                                        <span class="parameter-value">
-                                                                            <input type="text" class="form-control form-control-sm" placeholder="Optional">
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mt-3">
-                                                                    <label class="form-label">Notes:</label>
-                                                                    <textarea class="form-control" rows="2" placeholder="Add notes for this exercise..."></textarea>
-                                                                </div>
-                                                                <div class="mt-3 text-end">
-                                                                    <button class="btn btn-danger btn-sm">
-                                                                        <i class="fas fa-trash"></i> Remove
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <p id="no-exercises-msg" class="text-muted">No exercises added yet.</p>
+                                            <div class="accordion workout-exercises" id="selectedExercises"></div>
                                         </div>
                                     </div>
-                                    <div class="d-grid">
+                                    <div class="d-grid gap-3">
+                                        <button type="button" class="btn btn-danger" id="remove-all-btn">
+                                            <i class="fas fa-trash-alt"></i> Remove All
+                                        </button>
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fas fa-save"></i> Save Workout
                                         </button>
@@ -273,7 +220,7 @@ foreach ($exercises as $exercise) {
             </div>
         </main>
     </div>
-
+    
     <?php include 'scroll_to_top.php'; ?>
 
     <!-- Bootstrap JS -->
@@ -282,5 +229,7 @@ foreach ($exercises as $exercise) {
     <script src="assets/js/script.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/confirmation-modal.js"></script>
+    <script src="assets/js/add-exercise-temp.js"></script>
 </body>
 </html>
