@@ -57,7 +57,7 @@ if (
 }
 
 // Check for existing email
-$sql_check = "SELECT user_id FROM users WHERE email = ?";
+$sql_check = "SELECT user_id FROM users_t WHERE email = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, "s", $email);
@@ -81,7 +81,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 // Hash password and insert user
 $hashed_password = hashPassword($password);
 
-$sql_insert = "INSERT INTO users (first_name, last_name, email, password, gender, role) VALUES (?, ?, ?, ?, ?, 'user')";
+$sql_insert = "INSERT INTO users_t (first_name, last_name, email, password, gender, role) VALUES (?, ?, ?, ?, ?, 'user')";
 
 if ($stmt = mysqli_prepare($connection, $sql_insert)) {
     mysqli_stmt_bind_param($stmt, "sssss", $first_name, $last_name, $email, $hashed_password, $gender);
@@ -89,7 +89,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);
 
-        $sql_check = "SELECT user_id, first_name, password, role FROM users WHERE email = ?";
+        $sql_check = "SELECT user_id, first_name, password, role FROM users_t WHERE email = ?";
         if ($stmt = mysqli_prepare($connection, $sql_check)) {
             mysqli_stmt_bind_param($stmt, 's', $email);
             mysqli_stmt_execute($stmt);

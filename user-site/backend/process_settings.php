@@ -8,7 +8,7 @@ require_once '../../utils/hashing.php';
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     $_SESSION['error'] = "Invalid CSRF token";
-    header("Location: ../frontend/settings.php");
+    header("Location: ../frontend/login.php");
     exit;
 }
 
@@ -28,7 +28,7 @@ switch ($form_type) {
             break;
         }
         
-        $sql_update_personal_info = "UPDATE users SET first_name=?, last_name=?, gender=? WHERE user_id=?";
+        $sql_update_personal_info = "UPDATE users_t SET first_name=?, last_name=?, gender=? WHERE user_id=?";
         if ($stmt = mysqli_prepare($connection, $sql_update_personal_info)) {
             mysqli_stmt_bind_param($stmt, "sssi", $first_name, $last_name, $gender, $user_id);
             mysqli_stmt_execute($stmt);
@@ -55,7 +55,7 @@ switch ($form_type) {
             break;
         }
 
-        $sql_update_physical_stats = "UPDATE users SET age=?, weight=?, height=? WHERE user_id=?";
+        $sql_update_physical_stats = "UPDATE users_t SET age=?, weight=?, height=? WHERE user_id=?";
         if ($stmt = mysqli_prepare($connection, $sql_update_physical_stats)) {
             mysqli_stmt_bind_param($stmt, "idii", $age, $weight, $height, $user_id);
             mysqli_stmt_execute($stmt);
@@ -98,7 +98,7 @@ switch ($form_type) {
         }
 
         // Fetch current hashed password from database
-        $sql_fetch_current_password = "SELECT password FROM users WHERE user_id=?";
+        $sql_fetch_current_password = "SELECT password FROM users_t WHERE user_id=?";
         if ($stmt = mysqli_prepare($connection, $sql_fetch_current_password)) {
             mysqli_stmt_bind_param($stmt, "i", $user_id);
             mysqli_stmt_execute($stmt);
@@ -113,7 +113,7 @@ switch ($form_type) {
                 }
 
                 $new_hashed = hashPassword($new_password);
-                $sql_update_password = "UPDATE users SET password=? WHERE user_id=?";
+                $sql_update_password = "UPDATE users_t SET password=? WHERE user_id=?";
 
                 if ($update_stmt = mysqli_prepare($connection, $sql_update_password)) {
                     mysqli_stmt_bind_param($update_stmt, "si", $new_hashed, $user_id);
@@ -145,7 +145,7 @@ switch ($form_type) {
             break;
         }
 
-        $sql_update_goal = "UPDATE users SET goal=? WHERE user_id=?";
+        $sql_update_goal = "UPDATE users_t SET goal=? WHERE user_id=?";
          if ($stmt = mysqli_prepare($connection, $sql_update_goal)) {
             mysqli_stmt_bind_param($stmt, "si", $primary_goal, $user_id);
             mysqli_stmt_execute($stmt);
@@ -171,7 +171,7 @@ switch ($form_type) {
             break;
         }
 
-        $sql_update_activity_level = "UPDATE users SET activity_level=? WHERE user_id=?";
+        $sql_update_activity_level = "UPDATE users_t SET activity_level=? WHERE user_id=?";
         if ($stmt = mysqli_prepare($connection, $sql_update_activity_level)) {
             mysqli_stmt_bind_param($stmt, "si", $activity_level, $user_id);
             mysqli_stmt_execute($stmt);

@@ -1,5 +1,7 @@
 <?php
 require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
+require_once '../../utils/message.php';
 require_once '../backend/preload_exercises.php';
 ?>
 
@@ -59,116 +61,117 @@ foreach ($exercises as $exercise) {
                 </a>
                 <div class="row">
                     <div>
-                        <!-- Workout Basic Info -->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5 class="card-title">Workout Information</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="workout_name" class="form-label">Workout Name *</label>
-                                        <input type="text" class="form-control" id="workout_name" name="workout_name" placeholder="Chest day" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="estimated_duration" class="form-label">Estimated Duration (minutes) *</label>
-                                        <input type="number" class="form-control" id="estimated_duration" name="estimated_duration" min="10" max="180" value="60">
-                                    </div>
-                                    <div class="col-12 mb-3">
-                                        <label for="workout_description" class="form-label">Description</label>
-                                        <textarea class="form-control" id="workout_description" name="workout_description" rows="3" placeholder="Describe your workout..."></textarea>
+                        <form id="saveWorkoutForm" action="../backend/process_save_workouts.php" method="POST">
+                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                            <!-- Workout Basic Info -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h5 class="card-title">Workout Information</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="workout_name" class="form-label">Workout Name *</label>
+                                            <input type="text" class="form-control" id="workout_name" name="workout_name" placeholder="Chest day" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="estimated_duration" class="form-label">Estimated Duration (minutes)</label>
+                                            <input type="number" class="form-control" id="estimated_duration" name="estimated_duration" min="10" max="180" placeholder="Optional">
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label for="workout_description" class="form-label">Description</label>
+                                            <textarea class="form-control" id="workout_description" name="workout_description" rows="3" placeholder="Describe your workout... (Optional)"></textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Exercise Search -->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5 class="card-title">Find Exercises</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row mb-4">
-                                    <div class="col-md-8">
-                                        <div class="search-box">
-                                            <input type="text" class="form-control" id="exercise-search" placeholder="Search exercises...">
-                                            <i class="fas fa-search"></i>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <select class="form-control" id="category-filter">
-                                            <option value="">All Categories</option>
-                                            <option value="chest">Chest</option>
-                                            <option value="back">Back</option>
-                                            <option value="legs">Legs</option>
-                                            <option value="arms">Arms</option>
-                                            <option value="shoulders">Shoulders</option>
-                                            <option value="core">Core</option>
-                                            <option value="cardio">Cardio</option>
-                                        </select>
-                                    </div>
+                            <!-- Exercise Search -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <h5 class="card-title">Find Exercises</h5>
                                 </div>
-                                
-                                <div id="exercise-results">
-                                    <!-- Display exercises grouped by category -->
-                                    <?php foreach ($groupedExercises as $category => $exercises): ?>
-                                        <div class="sticky-category-header">
-                                            <h5 class="mb-3"><?= htmlspecialchars(ucfirst($category)); ?>  <hr></h5>
+                                <div class="card-body">
+                                    <div class="row mb-4">
+                                        <div class="col-md-8">
+                                            <div class="search-box">
+                                                <input type="text" class="form-control" id="exercise-search" placeholder="Search exercises...">
+                                                <i class="fas fa-search"></i>
+                                            </div>
                                         </div>
+                                        <div class="col-md-4">
+                                            <select class="form-control" id="category-filter">
+                                                <option value="">All Categories</option>
+                                                <option value="chest">Chest</option>
+                                                <option value="back">Back</option>
+                                                <option value="legs">Legs</option>
+                                                <option value="arms">Arms</option>
+                                                <option value="shoulders">Shoulders</option>
+                                                <option value="core">Core</option>
+                                                <option value="cardio">Cardio</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="exercise-results">
+                                        <!-- Display exercises grouped by category -->
+                                        <?php foreach ($groupedExercises as $category => $exercises): ?>
+                                            <div class="sticky-category-header">
+                                                <h5 class="mb-3"><?= htmlspecialchars(ucfirst($category)); ?>  <hr></h5>
+                                            </div>
 
-                                        <?php if (empty($exercises)): ?>
-                                            <p class="muted-p">No exercises found in this category.</p>
-                                        <?php endif; ?>
+                                            <?php if (empty($exercises)): ?>
+                                                <p class="muted-p">No exercises found in this category.</p>
+                                            <?php endif; ?>
 
-                                        <?php foreach ($exercises as $exercise): ?>
-                                            <div class="card mb-3">
-                                                <div class="card-body">
-                                                    <div class="d-flex justify-content-between align-items-start">
-                                                        <div>
-                                                            <!-- Added spacing below the exercise name -->
-                                                            <h6 class="mb-3"><?= htmlspecialchars($exercise['exercise_name']); ?></h6>
-                                                            
-                                                            <!-- More spacing below the label -->
-                                                            <p class="mb-2 muted-p small">Target muscles:</p>
-                                                            
-                                                            <!-- More spacing between badges and button -->
-                                                            <div class="d-flex flex-wrap gap-2 mb-0">
-                                                                <?php 
-                                                                    $muscles = explode(',', $exercise['targeted_muscle']); 
-                                                                    foreach ($muscles as $muscle): 
-                                                                ?>
-                                                                    <span class="alternative-badge"><?= htmlspecialchars(trim($muscle)); ?></span>
-                                                                <?php endforeach; ?>
+                                            <?php foreach ($exercises as $exercise): ?>
+                                                <div class="card mb-3">
+                                                    <div class="card-body">
+                                                        <div class="d-flex justify-content-between align-items-start">
+                                                            <div>
+                                                                <!-- Added spacing below the exercise name -->
+                                                                <h6 class="mb-3"><?= htmlspecialchars($exercise['exercise_name']); ?></h6>
+                                                                
+                                                                <!-- More spacing below the label -->
+                                                                <p class="mb-2 muted-p small">Target muscles:</p>
+                                                                
+                                                                <!-- More spacing between badges and button -->
+                                                                <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                    <?php 
+                                                                        $muscles = explode(',', $exercise['targeted_muscle']); 
+                                                                        foreach ($muscles as $muscle): 
+                                                                    ?>
+                                                                        <span class="alternative-badge"><?= htmlspecialchars(trim($muscle)); ?></span>
+                                                                    <?php endforeach; ?>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        
-                                                        <div>
-                                                            <button class="btn btn-sm btn-primary add-exercise-btn"
-                                                            data-id="<?= htmlspecialchars($exercise['exercise_id']); ?>"
-                                                            data-name="<?= htmlspecialchars($exercise['exercise_name']); ?>"
-                                                            data-target-muscles="<?= htmlspecialchars($exercise['targeted_muscle']); ?>">
-                                                                <i class="fas fa-plus"></i> Add
-                                                            </button>
+                                                            
+                                                            <div>
+                                                                <button type="button" class="btn btn-sm btn-primary add-exercise-btn"
+                                                                data-id="<?= htmlspecialchars($exercise['exercise_id']); ?>"
+                                                                data-name="<?= htmlspecialchars($exercise['exercise_name']); ?>"
+                                                                data-target-muscles="<?= htmlspecialchars($exercise['targeted_muscle']); ?>">
+                                                                    <i class="fas fa-plus"></i> Add
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php endforeach; ?>
                                         <?php endforeach; ?>
-                                    <?php endforeach; ?>
-                                </div>
+                                    </div>
 
-                            </div>
-                        </div>
-
-                        <!-- Selected Exercises -->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title">Selected Exercises</h5>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <form action="">
+
+                            <!-- Selected Exercises -->
+                            <div class="card mb-4">
+                                <div class="card-header">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title">Selected Exercises</h5>
+                                    </div>
+                                </div>
+                                <div class="card-body">
                                     <div id="selected-exercises">
                                         <!-- Place for JS to temporary display user selected exercises -->
                                         <div class="accordion workout-exercises" id="selectedExercises">
@@ -177,6 +180,7 @@ foreach ($exercises as $exercise) {
                                         </div>
                                     </div>
                                     <div class="d-grid gap-3">
+                                        <div class="form-message" id="myWorkoutsFormMessage"></div>
                                         <button type="button" class="btn btn-danger" id="remove-all-btn">
                                             <i class="fas fa-trash-alt"></i> Remove All
                                         </button>
@@ -184,9 +188,9 @@ foreach ($exercises as $exercise) {
                                             <i class="fas fa-save"></i> Save Workout
                                         </button>
                                     </div>
-                                </form>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                         <!-- Workout Tips -->
                         <div class="card mb-4">
                             <div class="card-header">

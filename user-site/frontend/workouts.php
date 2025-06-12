@@ -1,4 +1,7 @@
-<?php require_once '../../utils/auth.php'; ?>
+<?php
+require_once '../../utils/auth.php';
+require_once '../backend/preload_workouts.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +48,7 @@
             <!-- Workout Content -->
             <div class="dashboard-content">
                 <!-- Workout Navigation -->
-                <div class="row mb-4">
+                <div class="row">
                     <div class="col-12">
                         <div class="top-nav">
                             <button class="top-nav-item active" data-target="pre-built-workouts">
@@ -714,16 +717,63 @@
 
                 <!-- My Workouts Section -->
                 <div class="tab-section" id="my-workouts">
-                    <div class="card">
-                        <div class="card-body text-center py-5">
-                            <i class="fas fa-folder-open fa-3x mb-3"></i>
-                            <h5>No Custom Workouts Yet</h5>
-                            <p>Create your first custom workout or add pre-built workouts to get started.</p>
-                            <a href="my-workouts.php" class="btn btn-primary">
-                                <i class="fas fa-plus"></i> Create New Workout
+                    <?php if (empty($workouts)): ?>
+                        <div class="card">
+                            <div class="card-body text-center py-5">
+                                <i class="fas fa-folder-open fa-3x mb-3"></i>
+                                <h5>No Custom Workouts Yet</h5>
+                                <p>Create your first custom workout or add pre-built workouts to get started.</p>
+                                <a href="my-workouts.php" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i> Create New Workout
+                                </a>
+                            </div>
+                        </div>
+                    <?php else: ?>
+                        <div class="row">
+                            <?php foreach ($workouts as $workout): ?>
+                                <!-- <div class="col-md-6 col-lg-4 mb-4">
+                                    <div class="card workout-card h-100 border-0 rounded-4 shadow-sm bg-body-tertiary">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-semibold"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                            <p class="text-muted small mb-3">
+                                                <i class="fas fa-clock me-1"></i>
+                                                <?= $workout['estimated_duration'] ?? '—' ?> mins
+                                            </p>
+                                            <p class="card-text text-secondary">
+                                                <?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?>
+                                            </p>
+                                        </div>
+                                        <div class="card-footer bg-transparent border-0 text-end">
+                                            <a href="view-workout.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-eye me-1"></i> View
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                                <div class="col-md-6 col-lg-4 mb-4" style="padding-left: 8px; padding-right: 8px;">
+                                    <div class="card workout-card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                            <p class="text-muted small mb-2">Estimated: <?= $workout['estimated_duration'] ?? '—' ?> mins</p>
+                                            <p class="card-text"><?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?></p>
+                                        </div>
+                                        <div class="card-footer text-end">
+                                            <a href="view-workout.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-eye"></i> View
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="mb-4">
+                            <a href="my-workouts.php" class="btn btn-primary w-100 py-3 fs-6 rounded-3">
+                                <i class="fas fa-plus me-2"></i> Create New Workout
                             </a>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Workout Tips -->

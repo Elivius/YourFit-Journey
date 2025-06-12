@@ -27,7 +27,7 @@ if (!$email || empty($password)) {
 $_SESSION['email'] = $email;
 
 // Fetch user from database
-$sql_check = "SELECT user_id, first_name, password, role FROM users WHERE email = ?";
+$sql_check = "SELECT user_id, first_name, password, role FROM users_t WHERE email = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, 's', $email);

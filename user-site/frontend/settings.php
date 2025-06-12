@@ -50,7 +50,7 @@ require_once '../backend/preload_settings.php';
             <!-- Settings Content -->
             <div class="dashboard-content">
                 <!-- Settings Navigation -->
-                <div class="row mb-4">
+                <div class="row">
                     <div class="col-12">
                         <div class="top-nav">
                             <button class="top-nav-item active" data-target="profile">

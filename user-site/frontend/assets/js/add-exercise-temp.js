@@ -1,3 +1,5 @@
+localStorage.removeItem("selectedExercises");
+
 let selectedExercises = JSON.parse(localStorage.getItem("selectedExercises") || "[]");
 let hasRenderedOnce = false;
 
@@ -65,32 +67,38 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <div class="parameter">
                                         <span class="parameter-label">Sets:</span>
                                         <span class="parameter-value">
-                                            <input type="number" class="form-control form-control-sm" value="3" min="1">
+                                            <input name="exercises[${index}][sets]" type="number" class="form-control form-control-sm" value="3" min="1" required>
                                         </span>
                                     </div>
                                     <div class="parameter">
                                         <span class="parameter-label">Reps:</span>
                                         <span class="parameter-value">
-                                            <input type="text" class="form-control form-control-sm" value="10-12">
+                                            <input name="exercises[${index}][reps]" type="text" class="form-control form-control-sm" value="10-12" required>
                                         </span>
                                     </div>
                                     <div class="parameter">
-                                        <span class="parameter-label">Rest:</span>
+                                        <span class="parameter-label">Rest (seconds):</span>
                                         <span class="parameter-value">
-                                            <input type="number" class="form-control form-control-sm" value="60" min="0"> sec
+                                            <input name="exercises[${index}][rest]" type="number" class="form-control form-control-sm" value="60" min="0">
                                         </span>
                                     </div>
                                     <div class="parameter">
-                                        <span class="parameter-label">Weight:</span>
+                                        <span class="parameter-label">Weight (kg):</span>
                                         <span class="parameter-value">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Optional">
+                                            <input name="exercises[${index}][weight]" type="text" class="form-control form-control-sm" placeholder="Optional">
                                         </span>
                                     </div>
                                 </div>
                                 <div class="mt-3">
                                     <label class="form-label">Notes:</label>
-                                    <textarea class="form-control" rows="2" placeholder="Add notes for this exercise..."></textarea>
+                                    <textarea name="exercises[${index}][notes]" class="form-control" rows="2" placeholder="Add notes... (Optional)"></textarea>
                                 </div>
+
+                                <!-- Hidden inputs -->
+                                <input type="hidden" name="exercises[${index}][id]" value="${ex.id}">
+                                <input type="hidden" name="exercises[${index}][name]" value="${ex.name}">
+                                <input type="hidden" name="exercises[${index}][muscles]" value="${ex.muscles}">
+
                                 <div class="mt-3 text-end">
                                     <button class="btn btn-danger btn-sm remove-exercise-btn" data-id="${ex.id}">
                                         <i class="fas fa-trash-alt"></i> Remove
