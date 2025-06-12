@@ -39,16 +39,18 @@ require_once '../backend/preload_workouts.php';
                         <input type="text" placeholder="Search...">
                         <i class="fas fa-search"></i>
                     </div>
-                    <div class="theme-switch-container">
-                        <div class="theme-switch">
-                            <input type="checkbox" id="theme-toggle" class="theme-switch-input">
-                            <label for="theme-toggle" class="theme-switch-label">
-                                <span class="theme-switch-slider">
-                                    <i class="fas fa-sun sun-icon"></i>
-                                    <i class="fas fa-moon moon-icon"></i>
-                                    <span class="switch-handle"></span>
-                                </span>
-                            </label>
+                    <div class="header-right">
+                        <div class="theme-switch-container">
+                            <div class="theme-switch">
+                                <input type="checkbox" id="theme-toggle" class="theme-switch-input">
+                                <label for="theme-toggle" class="theme-switch-label">
+                                    <span class="theme-switch-slider">
+                                        <span class="switch-handle">
+                                            <i class="fas fa-sun theme-icon"></i>
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                     </div>
                    

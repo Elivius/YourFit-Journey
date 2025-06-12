@@ -388,30 +388,213 @@ p, h2, h3, h4, h5, h6, span, img, label {
     z-index: 2;
 }
 
+.theme-switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+}
+
+.theme-switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.theme-switch-label {
+    display: block;
+    cursor: pointer;
+}
+
+.theme-switch-slider {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.switch-handle {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 34px;
+    height: 34px;
+    background: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-icon {
+    font-size: 16px;
+    transition: all 0.3s ease;
+    color: #f59e0b;
+}
+
+.theme-switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+}
+
+.theme-switch-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.theme-switch-label {
+    display: block;
+    cursor: pointer;
+}
+
+.theme-switch-slider {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(135deg, #87CEEB 0%, #4169E1 100%);
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.switch-handle {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 34px;
+    height: 34px;
+    transition: all 0.3s ease;
+}
+
+/* Sun shape (default/light mode) */
+.sun-shape {
+    background: radial-gradient(circle, #FFD700 30%, #FFA500 70%);
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.sun-shape::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background: 
+        linear-gradient(0deg, transparent 46%, #FFD700 46%, #FFD700 54%, transparent 54%),
+        linear-gradient(45deg, transparent 46%, #FFD700 46%, #FFD700 54%, transparent 54%),
+        linear-gradient(90deg, transparent 46%, #FFD700 46%, #FFD700 54%, transparent 54%),
+        linear-gradient(135deg, transparent 46%, #FFD700 46%, #FFD700 54%, transparent 54%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Moon shape (dark mode) */
+.moon-shape {
+    background: #F5F5DC;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: -4px;
+    margin-left: -5px;
+}
+
+.moon-shape::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 28px;
+    height: 28px;
+    background: #2C3E50;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 0 #1a1a2e;
+}
+
+.moon-shape::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    width: 3px;
+    height: 3px;
+    background: #D3D3D3;
+    border-radius: 50%;
+    box-shadow: 
+        6px 2px 0 -1px #D3D3D3,
+        2px 8px 0 -1px #D3D3D3;
+}
+
 /* Dark theme styles */
 .theme-switch-input:checked + .theme-switch-label .theme-switch-slider {
     background: linear-gradient(135deg, #2C3E50 0%, #1a1a2e 100%);
 }
 
 .theme-switch-input:checked + .theme-switch-label .switch-handle {
-    transform: translateX(40px);
+    transform: translateX(43px);
 }
 
-.theme-switch-input:checked + .theme-switch-label .sun-icon {
-    opacity: 0.5;
+.theme-switch-input:checked + .theme-switch-label .sun-shape {
+    background: #F5F5DC;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
-.theme-switch-input:checked + .theme-switch-label .moon-icon {
-    opacity: 1;
+.theme-switch-input:checked + .theme-switch-label .sun-shape::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 28px;
+    height: 28px;
+    background: #2C3E50;
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 0 #1a1a2e;
+    background: 
+        none;
+}
+
+.theme-switch-input:checked + .theme-switch-label .sun-shape::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    width: 3px;
+    height: 3px;
+    background: #D3D3D3;
+    border-radius: 50%;
+    box-shadow: 
+        6px 2px 0 -1px #D3D3D3,
+        2px 8px 0 -1px #D3D3D3;
 }
 
 /* Hover effects */
 .theme-switch-label:hover .theme-switch-slider {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.theme-switch-label:hover .switch-handle {
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 /* Active state */
@@ -420,5 +603,5 @@ p, h2, h3, h4, h5, h6, span, img, label {
 }
 
 .theme-switch-input:checked:active + .theme-switch-label .switch-handle {
-    transform: translateX(40px) scale(0.95);
+    transform: translateX(43px) scale(0.95);
 }

@@ -2,6 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
+    // Function to update the shape of the switch handle
+    function updateThemeShape(isDarkTheme) {
+        const handle = document.querySelector('.switch-handle');
+        if (handle) {
+            if (isDarkTheme) {
+                handle.classList.remove('sun-shape');
+                handle.classList.add('moon-shape');
+            } else {
+                handle.classList.remove('moon-shape');
+                handle.classList.add('sun-shape');
+            }
+        }
+    }
+
     // Determine initial theme (from localStorage or system preference)
     const savedTheme = localStorage.getItem('theme');
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -11,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     body.classList.toggle('dark-theme', useDarkTheme);
     if (themeToggle) {
         themeToggle.checked = useDarkTheme;
+        updateThemeShape(useDarkTheme);
     }
 
     // Handle toggle change
@@ -19,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const isDarkTheme = this.checked;
             body.classList.toggle('dark-theme', isDarkTheme);
             localStorage.setItem('theme', isDarkTheme ? 'dark' : 'light');
+            updateThemeShape(isDarkTheme);
         });
     }
 
@@ -29,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
             body.classList.toggle('dark-theme', isDarkTheme);
             if (themeToggle) {
                 themeToggle.checked = isDarkTheme;
+                updateThemeShape(isDarkTheme);
             }
         }
     });

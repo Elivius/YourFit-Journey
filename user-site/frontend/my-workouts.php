@@ -48,9 +48,18 @@ foreach ($exercises as $exercise) {
                     <h1 class="page-title">Create New Workout</h1>
                 </div>
                 <div class="header-right">
-                    <button id="theme-toggle" class="btn btn-icon">
-                        <i class="fas fa-moon"></i>
-                    </button>                    
+                    <div class="header-right">
+                        <div class="theme-switch-container">
+                            <div class="theme-switch">
+                                <input type="checkbox" id="theme-toggle" class="theme-switch-input">
+                                <label for="theme-toggle" class="theme-switch-label">
+                                    <span class="theme-switch-slider">
+                                        <span class="switch-handle sun-shape"></span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>                
                 </div>
             </header>
             

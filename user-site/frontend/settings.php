@@ -46,9 +46,9 @@ require_once '../backend/preload_settings.php';
                             <input type="checkbox" id="theme-toggle" class="theme-switch-input">
                             <label for="theme-toggle" class="theme-switch-label">
                                 <span class="theme-switch-slider">
-                                    <i class="fas fa-sun sun-icon"></i>
-                                    <i class="fas fa-moon moon-icon"></i>
-                                    <span class="switch-handle"></span>
+                                    <span class="switch-handle">
+                                        <i class="fas fa-sun theme-icon"></i>
+                                    </span>
                                 </span>
                             </label>
                         </div>
