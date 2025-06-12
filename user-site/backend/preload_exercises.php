@@ -16,13 +16,13 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
 
         if (empty($exercises)) {
             $_SESSION['error'] = "No exercises found.";
-            header("Location: ../frontend/login.php");
+            header("Location: ../frontend/workouts.php");
             exit;
         }
 
     } else {
         $_SESSION['error'] = "An error occurred while fetching data.";
-        header("Location: ../frontend/login.php");
+        header("Location: ../frontend/workouts.php");
         exit;
     }
 

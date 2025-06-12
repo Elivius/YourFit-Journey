@@ -254,8 +254,35 @@
     color: var(--body-color); /* Change icon color */
 }
 
-#my-workouts .card-body p {
-    color: var(--secondary) !important; /* Make text slightly gray */
+.gradient-card {
+    background: linear-gradient(135deg, #8ED1F4, #FFBCDB);
+    color: #fff;
+    border-radius: 1rem;
+    transition: transform 0.2s ease-in;
+    box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.1);
+}
+
+.gradient-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.2);
+}
+
+.gradient-card p,
+.gradient-card .card-text,
+.gradient-card i,
+.gradient-card small {
+    color: #ffffffde !important;
+    font-size: medium;
+}
+
+.gradient-card .btn-light {
+    background-color: #fff;
+    color: #6E86DC;
+    border: none;
+}
+
+.gradient-card .btn-light:hover {
+    background-color: #e9ecef;
 }
 
 /* Nutrition Page Styles */

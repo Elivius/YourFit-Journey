@@ -136,7 +136,7 @@ foreach ($exercises as $exercise) {
                                                                 <p class="mb-2 muted-p small">Target muscles:</p>
                                                                 
                                                                 <!-- More spacing between badges and button -->
-                                                                <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                <div class="d-flex flex-wrap gap-2 mb-3">
                                                                     <?php 
                                                                         $muscles = explode(',', $exercise['targeted_muscle']); 
                                                                         foreach ($muscles as $muscle): 
@@ -144,6 +144,24 @@ foreach ($exercises as $exercise) {
                                                                         <span class="alternative-badge"><?= htmlspecialchars(trim($muscle)); ?></span>
                                                                     <?php endforeach; ?>
                                                                 </div>
+
+                                                                <!-- Exercise instructions -->
+                                                                <p class="mb-2 muted-p small">Instructions:</p>
+
+                                                                <?php
+                                                                $rawInstructions = $exercise['instructions'] ?? '';
+                                                                $steps = preg_split('/(?=\d+\.\s)/', $rawInstructions); // split while keeping numbers
+                                                                ?>
+
+                                                                <?php if (!empty($steps)): ?>
+                                                                    <?php foreach ($steps as $step): ?>
+                                                                        <?php if (trim($step)): ?>
+                                                                            <p class="small mb-1"><?= htmlspecialchars(trim($step)) ?></p>
+                                                                        <?php endif; ?>
+                                                                    <?php endforeach; ?>
+                                                                <?php else: ?>
+                                                                    <p class="text-muted small mb-0 fst-italic">No instructions provided.</p>
+                                                                <?php endif; ?>
                                                             </div>
                                                             
                                                             <div>
@@ -192,7 +210,7 @@ foreach ($exercises as $exercise) {
                             </div>
                         </form>
                         <!-- Workout Tips -->
-                        <div class="card mb-4">
+                        <div class="card mt-5">
                             <div class="card-header">
                                 <h5 class="card-title">Tips</h5>
                             </div>

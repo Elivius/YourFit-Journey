@@ -41,9 +41,18 @@ require_once '../backend/preload_settings.php';
                         <input type="text" placeholder="Search...">
                         <i class="fas fa-search"></i>
                     </div>
-                    <button id="theme-toggle" class="btn btn-icon">
-                        <i class="fas fa-moon"></i>
-                    </button>
+                    <div class="theme-switch-container">
+                        <div class="theme-switch">
+                            <input type="checkbox" id="theme-toggle" class="theme-switch-input">
+                            <label for="theme-toggle" class="theme-switch-label">
+                                <span class="theme-switch-slider">
+                                    <i class="fas fa-sun sun-icon"></i>
+                                    <i class="fas fa-moon moon-icon"></i>
+                                    <span class="switch-handle"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </header>
 
@@ -52,7 +61,7 @@ require_once '../backend/preload_settings.php';
                 <!-- Settings Navigation -->
                 <div class="row">
                     <div class="col-12">
-                        <div class="top-nav">
+                        <div class="top-nav mb-5">
                             <button class="top-nav-item active" data-target="profile">
                                 <i class="fas fa-user"></i>
                                 <span>Profile</span>

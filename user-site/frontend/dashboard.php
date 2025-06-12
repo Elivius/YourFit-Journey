@@ -38,9 +38,18 @@
                         <input type="text" placeholder="Search...">
                         <i class="fas fa-search"></i>
                     </div>
-                    <button id="theme-toggle" class="btn btn-icon">
-                        <i class="fas fa-moon"></i>
-                    </button>
+                    <div class="theme-switch-container">
+                        <div class="theme-switch">
+                            <input type="checkbox" id="theme-toggle" class="theme-switch-input">
+                            <label for="theme-toggle" class="theme-switch-label">
+                                <span class="theme-switch-slider">
+                                    <i class="fas fa-sun sun-icon"></i>
+                                    <i class="fas fa-moon moon-icon"></i>
+                                    <span class="switch-handle"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
                     <!-- <div class="dropdown notification-dropdown">
                         <button class="btn btn-icon dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-bell"></i>

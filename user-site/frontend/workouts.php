@@ -39,9 +39,19 @@ require_once '../backend/preload_workouts.php';
                         <input type="text" placeholder="Search...">
                         <i class="fas fa-search"></i>
                     </div>
-                    <button id="theme-toggle" class="btn btn-icon">
-                        <i class="fas fa-moon"></i>
-                    </button>                    
+                    <div class="theme-switch-container">
+                        <div class="theme-switch">
+                            <input type="checkbox" id="theme-toggle" class="theme-switch-input">
+                            <label for="theme-toggle" class="theme-switch-label">
+                                <span class="theme-switch-slider">
+                                    <i class="fas fa-sun sun-icon"></i>
+                                    <i class="fas fa-moon moon-icon"></i>
+                                    <span class="switch-handle"></span>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                   
                 </div>
             </header>
 
@@ -50,7 +60,7 @@ require_once '../backend/preload_workouts.php';
                 <!-- Workout Navigation -->
                 <div class="row">
                     <div class="col-12">
-                        <div class="top-nav">
+                        <div class="top-nav mb-5">
                             <button class="top-nav-item active" data-target="pre-built-workouts">
                                 <i class="fas fa-layer-group"></i>
                                 <span>Pre-built Workouts</span>
@@ -722,7 +732,7 @@ require_once '../backend/preload_workouts.php';
                             <div class="card-body text-center py-5">
                                 <i class="fas fa-folder-open fa-3x mb-3"></i>
                                 <h5>No Custom Workouts Yet</h5>
-                                <p>Create your first custom workout or add pre-built workouts to get started.</p>
+                                <p style="color: var(--secondary) !important;">Create your first custom workout or add pre-built workouts to get started.</p>
                                 <a href="my-workouts.php" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> Create New Workout
                                 </a>
@@ -731,41 +741,31 @@ require_once '../backend/preload_workouts.php';
                     <?php else: ?>
                         <div class="row">
                             <?php foreach ($workouts as $workout): ?>
-                                <!-- <div class="col-md-6 col-lg-4 mb-4">
-                                    <div class="card workout-card h-100 border-0 rounded-4 shadow-sm bg-body-tertiary">
-                                        <div class="card-body">
-                                            <h5 class="card-title fw-semibold"><?= htmlspecialchars($workout['workout_name']) ?></h5>
-                                            <p class="text-muted small mb-3">
+                                <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 mb-4 px-2">
+                                    <div class="card workout-card gradient-card h-100 border-0">
+                                        <div class="card-body pb-2">
+                                            <h5 class="card-title fw-semibold text-white fs-5"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+
+                                            <p class="small mt-2 mb-1 text-white-50">
                                                 <i class="fas fa-clock me-1"></i>
                                                 <?= $workout['estimated_duration'] ?? '—' ?> mins
                                             </p>
-                                            <p class="card-text text-secondary">
+
+                                            <p class="small mb-2 text-white-50">
+                                                <i class="fas fa-dumbbell me-1"></i>
+                                                <?= $workout['exercise_count'] ?? 0 ?> <?= $workout['exercise_count'] == 1 ? 'exercise' : 'exercises' ?>
+                                            </p>
+
+                                            <p class="card-text text-white small">
                                                 <?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?>
                                             </p>
                                         </div>
-                                        <div class="card-footer bg-transparent border-0 text-end">
-                                            <a href="view-workout.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-eye me-1"></i> View
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div> -->
 
-                                <div class="col-md-6 col-lg-4 mb-4" style="padding-left: 8px; padding-right: 8px;">
-                                    <div class="card workout-card h-100">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= htmlspecialchars($workout['workout_name']) ?></h5>
-                                            <p class="text-muted small mb-2">Estimated: <?= $workout['estimated_duration'] ?? '—' ?> mins</p>
-                                            <p class="card-text"><?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?></p>
-                                        </div>
-                                        <div class="card-footer text-end">
-                                            <a href="view-workout.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-outline-primary">
-                                                <i class="fas fa-eye"></i> View
-                                            </a>
+                                        <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2">
+                                            <a href="view-workout.php?id=<?= $workout['workout_id'] ?>" class="btn btn-md btn-light px-4 py-2 fs-6">View</a>
                                         </div>
                                     </div>
                                 </div>
-
                             <?php endforeach; ?>
                         </div>
                         <div class="mb-4">
@@ -777,7 +777,7 @@ require_once '../backend/preload_workouts.php';
                 </div>
 
                 <!-- Workout Tips -->
-                <div class="card mb-4">
+                <div class="card mt-5">
                     <div class="card-header">
                         <h5 class="card-title">Tips for Success</h5>
                     </div>
