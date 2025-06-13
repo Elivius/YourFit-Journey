@@ -285,6 +285,15 @@
     background-color: #e9ecef;
 }
 
+.custom-hover-card {
+    border: 1px solid transparent; /* No visible border by default */
+    transition: border-color 0.3s ease;
+}
+
+.custom-hover-card:hover {
+    border-color: var(--primary);
+}
+
 /* Nutrition Page Styles */
 .nutrition-chart-container {
     height: 250px;

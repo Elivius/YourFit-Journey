@@ -134,10 +134,10 @@ foreach ($exercises as $exercise) {
                                             <?php endif; ?>
 
                                             <?php foreach ($exercises as $exercise): ?>
-                                                <div class="card mb-3">
+                                                <div class="card mb-3 custom-hover-card">
                                                     <div class="card-body">
                                                         <div class="d-flex justify-content-between align-items-start">
-                                                            <div>
+                                                            <div style="max-width: 800px; word-wrap: break-word;">
                                                                 <!-- Added spacing below the exercise name -->
                                                                 <h6 class="mb-3"><?= htmlspecialchars($exercise['exercise_name']); ?></h6>
                                                                 
@@ -187,7 +187,6 @@ foreach ($exercises as $exercise) {
                                             <?php endforeach; ?>
                                         <?php endforeach; ?>
                                     </div>
-
                                 </div>
                             </div>
 
