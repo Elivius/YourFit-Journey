@@ -19,7 +19,7 @@
 }
 
 .workout-category-card {
-    background-color: var(--card-bg);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     border-radius: 1rem;
     padding: 2rem;
     height: 100%;
@@ -36,15 +36,18 @@
 }
 
 .workout-category-card.active {
-    border-color: var(--primary);
-    background-color: rgba(var(--primary-rgb), 0.1);
+    background: linear-gradient(135deg, #8ED1F4, #FFBCDB);
+}
+
+.workout-category-card.active .workout-category-icon {
+    background: #A7E5F0;
 }
 
 .workout-category-icon {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background: linear-gradient(to right bottom, var(--primary), var(--gradient-end));
+    background: linear-gradient(135deg, var(--primary), var(--gradient-end));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,10 +60,11 @@
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: #ffffff !important;
 }
 
 .workout-category-card p {
-    color: var(--secondary);
+    color: #ffffff !important;
     font-size: 0.9rem;
     margin-bottom: 0;
 }
@@ -264,14 +268,13 @@
 
 .gradient-card:hover {
     transform: scale(1.05);
-    box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.2);
 }
 
 .gradient-card p,
 .gradient-card .card-text,
 .gradient-card i,
 .gradient-card small {
-    color: #ffffffde !important;
+    color: #e6e6e6de !important;
     font-size: medium;
 }
 
@@ -287,7 +290,7 @@
 
 .custom-hover-card {
     border: 1px solid transparent; /* No visible border by default */
-    transition: border-color 0.3s ease;
+    transition: border-color 0.8s ease;
 }
 
 .custom-hover-card:hover {
