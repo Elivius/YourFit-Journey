@@ -255,7 +255,7 @@
 }
 
 .gradient-card {
-    background: linear-gradient(135deg, #8ED1F4, #FFBCDB);
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     color: #fff;
     border-radius: 1rem;
     transition: transform 0.2s ease-in;
