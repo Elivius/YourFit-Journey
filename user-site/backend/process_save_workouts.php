@@ -17,7 +17,7 @@ $user_id = $_SESSION['user_id'] ?? null;
 
 if (!$user_id || empty($workout_name)) {
     $_SESSION['error'] = "Workout info is incomplete.";
-    header("Location: ../frontend/my-workouts.php");
+    header("Location: ../frontend/workouts-create.php");
     exit;
 }
 

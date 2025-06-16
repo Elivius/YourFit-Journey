@@ -735,7 +735,7 @@ require_once '../backend/preload_workouts.php';
                                 <i class="fas fa-folder-open fa-3x mb-3"></i>
                                 <h5>No Custom Workouts Yet</h5>
                                 <p style="color: var(--secondary) !important;">Create your first custom workout or add pre-built workouts to get started.</p>
-                                <a href="my-workouts.php" class="btn btn-primary">
+                                <a href="workouts-create.php" class="btn btn-primary">
                                     <i class="fas fa-plus"></i> Create New Workout
                                 </a>
                             </div>
@@ -771,7 +771,7 @@ require_once '../backend/preload_workouts.php';
                             <?php endforeach; ?>
                         </div>
                         <div class="mb-4">
-                            <a href="my-workouts.php" class="btn btn-primary w-100 py-3 fs-6 rounded-3">
+                            <a href="workouts-create.php" class="btn btn-primary w-100 py-3 fs-6 rounded-3">
                                 <i class="fas fa-plus me-2"></i> Create New Workout
                             </a>
                         </div>
