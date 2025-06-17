@@ -1,7 +1,6 @@
 <?php
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
-require_once '../../utils/message.php';
 require_once '../backend/preload_settings.php';
 ?>
 
@@ -25,6 +24,7 @@ require_once '../backend/preload_settings.php';
     <div class="dashboard-container">
 
         <?php include 'side_bar.php'; ?>
+        <?php require_once '../../utils/message.php'; ?>
 
         <!-- Main Content -->
         <main class="main-content">

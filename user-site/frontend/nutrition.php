@@ -57,78 +57,80 @@
             <!-- Nutrition Content -->
             <div class="dashboard-content">
                 <!-- Nutrition Summary -->
-                <div class="row g-4 mb-4">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">Today's Nutrition Summary</h5>
+                <div class="row g-4 mb-4 align-items-stretch">
+                    <div class="col-lg-8 d-flex">
+                        <div class="card flex-fill d-flex flex-column">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0">Today's Nutrition Summary</h5>
                                 <div class="card-actions">
-                                    <div class="date-selector">
+                                    <div class="date-selector d-flex align-items-center gap-2">
                                         <button class="btn btn-sm btn-icon"><i class="fas fa-chevron-left"></i></button>
                                         <span>May 24, 2023</span>
                                         <button class="btn btn-sm btn-icon"><i class="fas fa-chevron-right"></i></button>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="nutrition-chart-container">
-                                            <canvas id="macronutrientChart" height="250"></canvas>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="nutrition-summary">
-                                            <div class="nutrition-goal">
-                                                <div class="goal-header">
-                                                    <h6>Calories</h6>
-                                                    <span>1,450 / 2,000 cal</span>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 72.5%" aria-valuenow="72.5" aria-valuemin="0" aria-valuemax="100"></div>
-                                                </div>
-                                                <p class="goal-text">550 calories remaining</p>
+                            <div class="card-body flex-grow-1 d-flex align-items-center">
+                                <div class="w-100">
+                                    <div class="row row align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="nutrition-chart-container">
+                                                <canvas id="macronutrientChart" height="250"></canvas>
                                             </div>
-                                            <div class="macros-breakdown">
-                                                <div class="macro-item">
-                                                    <div class="macro-icon protein">
-                                                        <i class="fas fa-drumstick-bite"></i>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="nutrition-summary">
+                                                <div class="nutrition-goal">
+                                                    <div class="goal-header">
+                                                        <h6>Calories</h6>
+                                                        <span>1,450 / 2,000 cal</span>
                                                     </div>
-                                                    <div class="macro-content">
-                                                        <div class="macro-header">
-                                                            <h6>Protein</h6>
-                                                            <span>85g / 150g</span>
-                                                        </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-primary" role="progressbar" style="width: 56.7%" aria-valuenow="56.7" aria-valuemin="0" aria-valuemax="100"></div>
-                                                        </div>
+                                                    <div class="progress">
+                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72.5%" aria-valuenow="72.5" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
+                                                    <p class="goal-text">550 calories remaining</p>
                                                 </div>
-                                                <div class="macro-item">
-                                                    <div class="macro-icon carbs">
-                                                        <i class="fas fa-bread-slice"></i>
-                                                    </div>
-                                                    <div class="macro-content">
-                                                        <div class="macro-header">
-                                                            <h6>Carbs</h6>
-                                                            <span>120g / 200g</span>
+                                                <div class="macros-breakdown">
+                                                    <div class="macro-item">
+                                                        <div class="macro-icon protein">
+                                                            <i class="fas fa-drumstick-bite"></i>
                                                         </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="macro-content">
+                                                            <div class="macro-header">
+                                                                <h6>Protein</h6>
+                                                                <span>85g / 150g</span>
+                                                            </div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 56.7%" aria-valuenow="56.7" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="macro-item">
-                                                    <div class="macro-icon fats">
-                                                        <i class="fas fa-cheese"></i>
-                                                    </div>
-                                                    <div class="macro-content">
-                                                        <div class="macro-header">
-                                                            <h6>Fats</h6>
-                                                            <span>45g / 65g</span>
+                                                    <div class="macro-item">
+                                                        <div class="macro-icon carbs">
+                                                            <i class="fas fa-bread-slice"></i>
                                                         </div>
-                                                        <div class="progress">
-                                                            <div class="progress-bar bg-warning" role="progressbar" style="width: 69.2%" aria-valuenow="69.2" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="macro-content">
+                                                            <div class="macro-header">
+                                                                <h6>Carbs</h6>
+                                                                <span>120g / 200g</span>
+                                                            </div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="macro-item">
+                                                        <div class="macro-icon fats">
+                                                            <i class="fas fa-cheese"></i>
+                                                        </div>
+                                                        <div class="macro-content">
+                                                            <div class="macro-header">
+                                                                <h6>Fats</h6>
+                                                                <span>45g / 65g</span>
+                                                            </div>
+                                                            <div class="progress">
+                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 69.2%" aria-valuenow="69.2" aria-valuemin="0" aria-valuemax="100"></div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -139,12 +141,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card">
+                    <div class="col-lg-4 d-flex">
+                        <div class="card flex-fill d-flex flex-column">
                             <div class="card-header">
-                                <h5 class="card-title">Water Intake</h5>
+                                <h5 class="card-title mb-0">Water Intake</h5>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
                                 <div class="water-tracker">
                                     <div class="water-visual">
                                         <div class="water-container">
@@ -592,7 +594,7 @@
                 </div>
 
                 <!-- Nutrition Tips -->
-                <div class="card mb-4">
+                <div class="card mt-5">
                     <div class="card-header">
                         <h5 class="card-title">Nutrition Tips</h5>
                     </div>
@@ -604,7 +606,7 @@
                                 </div>
                                 <div class="tip-content">
                                     <h6>Meal Prep for Success</h6>
-                                    <p>Dedicate a few hours each weekend to prepare meals for the week. This saves time and helps you stick to your nutrition plan.</p>
+                                    <p class="muted-p">Dedicate a few hours each weekend to prepare meals for the week. This saves time and helps you stick to your nutrition plan.</p>
                                 </div>
                             </div>
                             <div class="tip-item">
@@ -613,7 +615,7 @@
                                 </div>
                                 <div class="tip-content">
                                     <h6>Stay Hydrated</h6>
-                                    <p>Aim for at least 8 glasses of water daily. Sometimes hunger is actually thirst in disguise.</p>
+                                    <p class="muted-p">Aim for at least 8 glasses of water daily. Sometimes hunger is actually thirst in disguise.</p>
                                 </div>
                             </div>
                             <div class="tip-item">
@@ -622,7 +624,7 @@
                                 </div>
                                 <div class="tip-content">
                                     <h6>Balanced Macros</h6>
-                                    <p>Include protein, carbs, and healthy fats in each meal for sustained energy and better nutrient absorption.</p>
+                                    <p class="muted-p">Include protein, carbs, and healthy fats in each meal for sustained energy and better nutrient absorption.</p>
                                 </div>
                             </div>
                             <div class="tip-item">
@@ -631,7 +633,7 @@
                                 </div>
                                 <div class="tip-content">
                                     <h6>Mindful Eating</h6>
-                                    <p>Eat slowly and without distractions to better recognize hunger and fullness cues.</p>
+                                    <p class="muted-p">Eat slowly and without distractions to better recognize hunger and fullness cues.</p>
                                 </div>
                             </div>
                         </div>
@@ -639,168 +641,6 @@
                 </div>
             </div>
         </main>
-    </div>
-
-    <!-- Add Food Modal -->
-    <div class="modal fade" id="addFoodModal" tabindex="-1" aria-labelledby="addFoodModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addFoodModalLabel">Add Food</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="food-search mb-4">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for a food...">
-                            <button class="btn btn-primary">Search</button>
-                        </div>
-                    </div>
-                    <div class="food-tabs">
-                        <ul class="nav nav-tabs" id="foodTabs" role="tablist">
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link active" id="recent-tab" data-bs-toggle="tab" data-bs-target="#recent" type="button" role="tab" aria-controls="recent" aria-selected="true">Recent</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="my-foods-tab" data-bs-toggle="tab" data-bs-target="#my-foods" type="button" role="tab" aria-controls="my-foods" aria-selected="false">My Foods</button>
-                            </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="database-tab" data-bs-toggle="tab" data-bs-target="#database" type="button" role="tab" aria-controls="database" aria-selected="false">Database</button>
-                            </li>
-                        </ul>
-                        <div class="tab-content" id="foodTabsContent">
-                            <div class="tab-pane fade show active" id="recent" role="tabpanel" aria-labelledby="recent-tab">
-                                <div class="food-list">
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Greek Yogurt</h6>
-                                            <p>1 cup (245g)</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>150 cal</span>
-                                            <span>20g P</span>
-                                            <span>8g C</span>
-                                            <span>4g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Chicken Breast</h6>
-                                            <p>4 oz (113g), cooked</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>165 cal</span>
-                                            <span>31g P</span>
-                                            <span>0g C</span>
-                                            <span>3.6g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Quinoa</h6>
-                                            <p>1 cup (185g), cooked</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>222 cal</span>
-                                            <span>8g P</span>
-                                            <span>39g C</span>
-                                            <span>3.6g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="my-foods" role="tabpanel" aria-labelledby="my-foods-tab">
-                                <div class="food-list">
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Homemade Protein Smoothie</h6>
-                                            <p>1 serving (16 oz)</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>320 cal</span>
-                                            <span>30g P</span>
-                                            <span>40g C</span>
-                                            <span>6g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Meal Prep Chicken & Rice</h6>
-                                            <p>1 container (350g)</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>450 cal</span>
-                                            <span>40g P</span>
-                                            <span>45g C</span>
-                                            <span>10g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="database" role="tabpanel" aria-labelledby="database-tab">
-                                <div class="food-categories mb-3">
-                                    <button class="btn btn-sm btn-outline-primary active">All</button>
-                                    <button class="btn btn-sm btn-outline-primary">Proteins</button>
-                                    <button class="btn btn-sm btn-outline-primary">Carbs</button>
-                                    <button class="btn btn-sm btn-outline-primary">Fruits & Vegetables</button>
-                                    <button class="btn btn-sm btn-outline-primary">Dairy</button>
-                                </div>
-                                <div class="food-list">
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Egg</h6>
-                                            <p>1 large (50g)</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>70 cal</span>
-                                            <span>6g P</span>
-                                            <span>0g C</span>
-                                            <span>5g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Banana</h6>
-                                            <p>1 medium (118g)</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>105 cal</span>
-                                            <span>1.3g P</span>
-                                            <span>27g C</span>
-                                            <span>0.4g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                    <div class="food-item">
-                                        <div class="food-info">
-                                            <h6>Salmon</h6>
-                                            <p>3 oz (85g), cooked</p>
-                                        </div>
-                                        <div class="food-macros">
-                                            <span>175 cal</span>
-                                            <span>19g P</span>
-                                            <span>0g C</span>
-                                            <span>11g F</span>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary">Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary">Create Custom Food</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <?php include 'scroll_to_top.php'; ?>

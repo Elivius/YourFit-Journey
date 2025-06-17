@@ -1,7 +1,6 @@
 <?php
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
-require_once '../../utils/message.php';
 require_once '../backend/preload_exercises.php';
 ?>
 
@@ -36,6 +35,7 @@ foreach ($exercises as $exercise) {
     <div class="dashboard-container">
 
         <?php include 'side_bar.php'; ?>
+        <?php require_once '../../utils/message.php'; ?>
 
         <!-- Main Content -->
         <main class="main-content">
