@@ -1,6 +1,6 @@
 <?php
 require_once '../../utils/auth.php';
-require_once '../backend/preload_workouts.php';
+require_once '../backend/preload_all_workouts.php';
 ?>
 
 <!DOCTYPE html>
@@ -176,8 +176,14 @@ require_once '../backend/preload_workouts.php';
                                                     <div class="exercise-header">
                                                         <span class="exercise-number">1</span>
                                                         <div class="exercise-title">
-                                                            <h6>Barbell Bench Press</h6>
-                                                            <span class="exercise-target">Target: Chest, Shoulders, Triceps</span>
+                                                            <h6 class="mb-2">Barbell Bench Press</h6>
+                                                            <p class="mb-2 muted-p small">Target muscles:</p>
+
+                                                            <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                <span class="alternative-badge">Chest</span>
+                                                                <span class="alternative-badge">Shoulders</span>
+                                                                <span class="alternative-badge">Triceps</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <i class="fa-solid fa-chevron-down accordion-icon"></i>
@@ -194,29 +200,29 @@ require_once '../backend/preload_workouts.php';
                                                         <div class="col-md-8">
                                                             <div class="exercise-details">
                                                                 <div class="exercise-instructions">
-                                                                    <h6>Instructions:</h6>
-                                                                    <ol>
-                                                                        <li>Lie on a flat bench with feet firmly on the ground.</li>
-                                                                        <li>Grip the barbell slightly wider than shoulder-width.</li>
-                                                                        <li>Lower the bar to your chest with control.</li>
-                                                                        <li>Press the bar back up to starting position.</li>
+                                                                    <h6 class="muted-p">Instructions:</h6>
+                                                                    <ol class="small">
+                                                                        <li class="mb-2">Lie on a flat bench with feet firmly on the ground.</li>
+                                                                        <li class="mb-2">Grip the barbell slightly wider than shoulder-width.</li>
+                                                                        <li class="mb-2">Lower the bar to your chest with control.</li>
+                                                                        <li class="mb-2">Press the bar back up to starting position.</li>
                                                                     </ol>
                                                                 </div>
                                                                 <div class="exercise-parameters">
                                                                     <div class="parameter">
-                                                                        <span class="parameter-label">Sets:</span>
+                                                                        <span class="parameter-label muted-p">Sets:</span>
                                                                         <span class="parameter-value">4</span>
                                                                     </div>
                                                                     <div class="parameter">
-                                                                        <span class="parameter-label">Reps:</span>
+                                                                        <span class="parameter-label muted-p">Reps:</span>
                                                                         <span class="parameter-value">8-10</span>
                                                                     </div>
                                                                     <div class="parameter">
-                                                                        <span class="parameter-label">Rest:</span>
+                                                                        <span class="parameter-label muted-p">Rest:</span>
                                                                         <span class="parameter-value">2-3 min</span>
                                                                     </div>
                                                                     <div class="parameter">
-                                                                        <span class="parameter-label">Weight:</span>
+                                                                        <span class="parameter-label muted-p">Weight:</span>
                                                                         <span class="parameter-value">Moderate to heavy</span>
                                                                     </div>
                                                                 </div>
@@ -242,8 +248,13 @@ require_once '../backend/preload_workouts.php';
                                                     <div class="exercise-header">
                                                         <span class="exercise-number">2</span>
                                                         <div class="exercise-title">
-                                                            <h6>Incline Dumbbell Press</h6>
-                                                            <span class="exercise-target">Target: Upper Chest, Shoulders</span>
+                                                            <h6 class="mb-2">Incline Dumbbell Press</h6>
+                                                            <p class="mb-2 muted-p small">Target muscles:</p>
+
+                                                            <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                <span class="alternative-badge">Upper Chest</span>
+                                                                <span class="alternative-badge">Shoulders</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <i class="fa-solid fa-chevron-down accordion-icon"></i>
@@ -764,7 +775,7 @@ require_once '../backend/preload_workouts.php';
                                         </div>
 
                                         <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2">
-                                            <a href="view-workout.php?id=<?= $workout['workout_id'] ?>" class="btn btn-md btn-light px-4 py-2 fs-6">View</a>
+                                            <a href="workouts-view.php?id=<?= $workout['workout_id'] ?>" class="btn btn-md btn-light px-4 py-2 fs-6">View</a>
                                         </div>
                                     </div>
                                 </div>

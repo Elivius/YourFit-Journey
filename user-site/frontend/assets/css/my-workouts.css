@@ -6,15 +6,9 @@
   margin-bottom: 30px;
 }
 
-@media (max-width: 911px) {
+@media (max-width: 1271px) {
   .btn-back {
-    margin-left: 5px !important;
-  }
-}
-
-@media (min-width: 912px) {
-  .btn-back {
-    margin-left: 0 !important;
+    margin-left: 4px !important;
   }
 }
 
