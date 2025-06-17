@@ -65,16 +65,17 @@ require_once '../backend/preload_workouts.php';
                     <div>
                         <div class="card mb-4">
                             <div class="card-header d-flex justify-content-between align-items-start flex-wrap">
-                                <div>
-                                    <h5 class="card-title mb-1"><?= htmlspecialchars($workout_name) ?></h5>
+                                <div class="flex-grow-1">
+                                    <h5 class="card-title mb-3"><?= htmlspecialchars($workout_name) ?></h5>
+                                    <p class="mb-3 muted-p"><?= htmlspecialchars($workout_description) ?></p>
 
-                                    <div class="text-muted small d-flex align-items-center gap-3 flex-wrap">
+                                    <div class="d-flex align-items-center gap-3 flex-wrap">
                                         <span>
-                                            <i class="fas fa-clock me-1"></i>
+                                            <i class="fas fa-clock me-1" style="color: var(--primary);"></i>
                                             <?= htmlspecialchars($estimated_duration) ?> mins
                                         </span>
                                         <span>
-                                            <i class="fas fa-dumbbell me-1"></i>
+                                            <i class="fas fa-dumbbell me-1" style="color: var(--primary);"></i>
                                             <?= count($exercises) ?> exercises
                                         </span>
                                     </div>

@@ -123,40 +123,6 @@ require_once '../backend/preload_all_workouts.php';
                     <div class="workout-category-sections">
                         <!-- Chest Workouts -->
                         <div id="pre-built-chest-workouts" class="workout-category-section active">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Chest Workout Plan</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Add to My Workouts
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="workout-plan-info">
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-clock"></i>
-                                            <span>45-60 minutes</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>3 days/week</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-fire"></i>
-                                            <span>300-400 calories</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-signal"></i>
-                                            <span>Beginner</span>
-                                        </div>
-                                    </div>
-                                    <div class="workout-plan-description">
-                                        <p>Build a powerful chest with this comprehensive workout targeting pectoral muscles, shoulders, and triceps. Perfect for developing upper body strength and definition.</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Chest Exercises -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -318,40 +284,6 @@ require_once '../backend/preload_all_workouts.php';
 
                         <!-- Back Workouts -->
                         <div id="pre-built-back-workouts" class="workout-category-section">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Back Workout Plan</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Add to My Workouts
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="workout-plan-info">
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-clock"></i>
-                                            <span>50-65 minutes</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>2-3 days/week</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-fire"></i>
-                                            <span>350-450 calories</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-signal"></i>
-                                            <span>Intermediate</span>
-                                        </div>
-                                    </div>
-                                    <div class="workout-plan-description">
-                                        <p>Strengthen your back muscles and improve posture with this comprehensive back workout. Targets lats, rhomboids, traps, and rear delts for a well-rounded posterior chain development.</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Back Exercises -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -502,40 +434,6 @@ require_once '../backend/preload_all_workouts.php';
 
                         <!-- Legs Workouts -->
                         <div id="pre-built-legs-workouts" class="workout-category-section">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Legs Workout Plan</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Add to My Workouts
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="workout-plan-info">
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-clock"></i>
-                                            <span>60-75 minutes</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>2 days/week</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-fire"></i>
-                                            <span>400-500 calories</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-signal"></i>
-                                            <span>Intermediate</span>
-                                        </div>
-                                    </div>
-                                    <div class="workout-plan-description">
-                                        <p>Build powerful legs with this comprehensive lower body workout. Targets quadriceps, hamstrings, glutes, and calves for complete leg development and functional strength.</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Legs Exercises -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -620,40 +518,6 @@ require_once '../backend/preload_all_workouts.php';
 
                         <!-- Arms Workouts -->
                         <div id="pre-built-arms-workouts" class="workout-category-section">
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Arms Workout Plan</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Add to My Workouts
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="workout-plan-info">
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-clock"></i>
-                                            <span>40-50 minutes</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-calendar-alt"></i>
-                                            <span>2-3 days/week</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-fire"></i>
-                                            <span>250-350 calories</span>
-                                        </div>
-                                        <div class="workout-plan-detail">
-                                            <i class="fas fa-signal"></i>
-                                            <span>Beginner</span>
-                                        </div>
-                                    </div>
-                                    <div class="workout-plan-description">
-                                        <p>Sculpt defined arms with this focused upper body workout. Targets biceps, triceps, and shoulders for balanced arm development and improved functional strength.</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <!-- Arms Exercises -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -757,21 +621,22 @@ require_once '../backend/preload_all_workouts.php';
                                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 mb-4 px-2">
                                     <div class="card workout-card gradient-card h-100 border-0">
                                         <div class="card-body pb-2">
-                                            <h5 class="card-title fw-semibold text-white fs-5"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                            <h5 class="card-title fw-semibold text-white fs-5 mb-2"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                            
+                                            <p class="muted-p mb-2">
+                                                <?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?>
+                                            </p>
 
-                                            <p class="small mt-2 mb-1 text-white-50">
+                                            <p class="mb-1 text-white">
                                                 <i class="fas fa-clock me-1"></i>
                                                 <?= $workout['estimated_duration'] ?? '—' ?> mins
                                             </p>
 
-                                            <p class="small mb-2 text-white-50">
+                                            <p class="mb-0 text-white">
                                                 <i class="fas fa-dumbbell me-1"></i>
                                                 <?= $workout['exercise_count'] ?? 0 ?> <?= $workout['exercise_count'] == 1 ? 'exercise' : 'exercises' ?>
                                             </p>
 
-                                            <p class="card-text text-white small">
-                                                <?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?>
-                                            </p>
                                         </div>
 
                                         <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2">
@@ -802,7 +667,7 @@ require_once '../backend/preload_all_workouts.php';
                                 </div>
                                 <div class="tip-content">
                                     <h6>Focus on Form</h6>
-                                    <p>Always prioritize proper form over lifting heavier weights. This reduces injury risk and ensures you're targeting the right muscles.</p>
+                                    <p class="muted-p">Always prioritize proper form over lifting heavier weights. This reduces injury risk and ensures you're targeting the right muscles.</p>
                                 </div>
                             </div>
                             <div class="tip-item">
@@ -811,7 +676,7 @@ require_once '../backend/preload_all_workouts.php';
                                 </div>
                                 <div class="tip-content">
                                     <h6>Progressive Overload</h6>
-                                    <p>Gradually increase weight, reps, or sets as you get stronger. This is key to continued progress.</p>
+                                    <p class="muted-p">Gradually increase weight, reps, or sets as you get stronger. This is key to continued progress.</p>
                                 </div>
                             </div>
                             <div class="tip-item">
@@ -820,7 +685,7 @@ require_once '../backend/preload_all_workouts.php';
                                 </div>
                                 <div class="tip-content">
                                     <h6>Rest and Recovery</h6>
-                                    <p>Allow 48 hours of rest for muscle groups between workouts. Sleep and nutrition are crucial for recovery.</p>
+                                    <p class="muted-p">Allow 48 hours of rest for muscle groups between workouts. Sleep and nutrition are crucial for recovery.</p>
                                 </div>
                             </div>
                             <div class="tip-item">
@@ -829,7 +694,7 @@ require_once '../backend/preload_all_workouts.php';
                                 </div>
                                 <div class="tip-content">
                                     <h6>Warm Up Properly</h6>
-                                    <p>Always start with 5-10 minutes of light cardio and dynamic stretching to prepare your body for exercise.</p>
+                                    <p class="muted-p">Always start with 5-10 minutes of light cardio and dynamic stretching to prepare your body for exercise.</p>
                                 </div>
                             </div>
                         </div>

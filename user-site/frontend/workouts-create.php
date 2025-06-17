@@ -87,7 +87,7 @@ foreach ($exercises as $exercise) {
                                             <label for="estimated_duration" class="form-label">Estimated Duration (minutes)</label>
                                             <input type="number" class="form-control" id="estimated_duration" name="estimated_duration" min="10" max="180" placeholder="Optional">
                                         </div>
-                                        <div class="col-12 mb-3">
+                                        <div class="col-md-12 mb-3">
                                             <label for="workout_description" class="form-label">Description</label>
                                             <textarea class="form-control" id="workout_description" name="workout_description" rows="3" placeholder="Describe your workout... (Optional)"></textarea>
                                         </div>
@@ -230,7 +230,7 @@ foreach ($exercises as $exercise) {
                                         </div>
                                         <div class="tip-content">
                                             <h6>Balance Your Workout</h6>
-                                            <p>Include exercises that target different muscle groups for a well-rounded workout.</p>
+                                            <p class="muted-p">Include exercises that target different muscle groups for a well-rounded workout.</p>
                                         </div>
                                     </div>
                                     <div class="tip-item">
@@ -239,7 +239,7 @@ foreach ($exercises as $exercise) {
                                         </div>
                                         <div class="tip-content">
                                             <h6>Rest Periods</h6>
-                                            <p>Adjust rest periods based on your goals - shorter for endurance, longer for strength.</p>
+                                            <p class="muted-p">Adjust rest periods based on your goals - shorter for endurance, longer for strength.</p>
                                         </div>
                                     </div>
                                 </div>
