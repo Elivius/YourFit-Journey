@@ -1,5 +1,6 @@
-<?php require_once '../../utils/auth.php'; ?>
-
+<?php
+require_once '../../utils/auth.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -495,100 +496,14 @@
                     <div class="card-header">
                         <h5 class="card-title">Personalized Meal Recommendations</h5>
                         <div class="card-actions">
-                            <button class="btn btn-sm btn-outline-primary">
+                            <button class="btn btn-sm btn-outline-primary btn-refresh">
                                 <i class="fas fa-sync-alt"></i> Refresh
                             </button>
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="row g-4">
-                            <div class="col-md-4">
-                                <div class="recipe-card">
-                                    <div class="recipe-image">
-                                        <img src="https://source.unsplash.com/random/300x200/?healthy-breakfast" alt="Breakfast Recipe" class="img-fluid rounded">
-                                        <div class="recipe-time">
-                                            <i class="fas fa-clock"></i> 15 min
-                                        </div>
-                                    </div>
-                                    <div class="recipe-content">
-                                        <h6>Protein-Packed Breakfast Bowl</h6>
-                                        <p>A quick and nutritious breakfast with eggs, avocado, and quinoa.</p>
-                                        <div class="recipe-macros">
-                                            <div class="macro-pill">
-                                                <span>350 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>25g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>30g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>15g F</span>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary mt-3 w-100">View Recipe</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="recipe-card">
-                                    <div class="recipe-image">
-                                        <img src="https://source.unsplash.com/random/300x200/?healthy-lunch" alt="Lunch Recipe" class="img-fluid rounded">
-                                        <div class="recipe-time">
-                                            <i class="fas fa-clock"></i> 20 min
-                                        </div>
-                                    </div>
-                                    <div class="recipe-content">
-                                        <h6>Mediterranean Chicken Wrap</h6>
-                                        <p>Grilled chicken with hummus, veggies, and whole grain wrap.</p>
-                                        <div class="recipe-macros">
-                                            <div class="macro-pill">
-                                                <span>450 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>35g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>40g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>18g F</span>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary mt-3 w-100">View Recipe</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="recipe-card">
-                                    <div class="recipe-image">
-                                        <img src="https://source.unsplash.com/random/300x200/?healthy-dinner" alt="Dinner Recipe" class="img-fluid rounded">
-                                        <div class="recipe-time">
-                                            <i class="fas fa-clock"></i> 25 min
-                                        </div>
-                                    </div>
-                                    <div class="recipe-content">
-                                        <h6>One-Pan Salmon & Vegetables</h6>
-                                        <p>Baked salmon with roasted vegetables and herbs.</p>
-                                        <div class="recipe-macros">
-                                            <div class="macro-pill">
-                                                <span>380 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>30g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>20g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>22g F</span>
-                                            </div>
-                                        </div>
-                                        <button class="btn btn-sm btn-primary mt-3 w-100">View Recipe</button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row g-4" id="meal-recommendations-container">
+                            <!-- Meals inject by AJAX -->
                         </div>
                     </div>
                 </div>
@@ -653,6 +568,7 @@
     <script src="assets/js/script.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/nutrition.js"></script>
+    <script src="assets/js/customize-meals.js"></script>
     <script src="assets/js/sidebar.js"></script>
 </body>
 </html>
