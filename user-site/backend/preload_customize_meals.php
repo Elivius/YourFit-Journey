@@ -46,7 +46,12 @@ if ($stmt = mysqli_prepare($connection, $sql_retrieve)) {
 
 function getMealIngredients($connection, $meal_id) {
     $sql = "
-        SELECT i.*, mi.default_ratio
+        SELECT 
+            i.ingredient_id,
+            i.name,
+            ROUND(i.protein_per_100g / 100, 4) AS protein_per_1g,
+            ROUND(i.carbs_per_100g / 100, 4) AS carbs_per_1g,
+            ROUND(i.fats_per_100g / 100, 4) AS fats_per_1g
         FROM meal_ingredients_t mi
         JOIN ingredients_t i ON mi.ingredient_id = i.ingredient_id
         WHERE mi.meal_id = ?
@@ -58,55 +63,125 @@ function getMealIngredients($connection, $meal_id) {
     return mysqli_fetch_all($res, MYSQLI_ASSOC);
 }
 
-function getMealMacros($ingredients) {
-    $totals = ['protein' => 0, 'carbs' => 0, 'fat' => 0, 'calories' => 0];
-    foreach ($ingredients as $ing) {
-        $g = $ing['default_ratio'] * 100;
-        $totals['protein'] += $ing['protein_per_100g'] * $g / 100;
-        $totals['carbs']   += $ing['carbs_per_100g'] * $g / 100;
-        $totals['fat']     += $ing['fats_per_100g'] * $g / 100;
-        $totals['calories'] += $ing['calories_per_100g'] * $g / 100;
-    }
-    return $totals;
-}
+function scaleIngredients($ingredients, $targetMacrosCal, $tolerance) {
+    $ingredientGrams = array_fill(0, count($ingredients), 0); // Initialize grams to 0
+    $step = 5; // How much to increase per attempt
+    $maxAttempts = 500;
 
-function scaleIngredients($ingredients, $scalingFactor) {
-    $result = [];
-    foreach ($ingredients as $ing) {
-        $grams = $ing['default_ratio'] * 100 * $scalingFactor;
-        $result[] = [
-            'name' => $ing['name'],
-            'grams' => round($grams, 1),
-            'protein' => round($ing['protein_per_100g'] * $grams / 100, 1),
-            'carbs' => round($ing['carbs_per_100g'] * $grams / 100, 1),
-            'fat' => round($ing['fats_per_100g'] * $grams / 100, 1),
-            'calories' => round($ing['calories_per_100g'] * $grams / 100, 1)
-        ];
+    for ($attempt = 0; $attempt < $maxAttempts; $attempt++) {
+        $total = ['protein' => 0, 'carbs' => 0, 'fats' => 0, 'calories' => 0];
+        
+        // Recalculate macros for current grams
+        foreach ($ingredients as $index => $ingredient) {
+            $grams = $ingredientGrams[$index];
+            $total['protein']  += $ingredient['protein_per_1g'] * $grams;
+            $total['carbs']    += $ingredient['carbs_per_1g'] * $grams;
+            $total['fats']      += $ingredient['fats_per_1g'] * $grams;
+            $total['calories'] += (
+                ($ingredient['protein_per_1g'] * 4) +
+                ($ingredient['carbs_per_1g'] * 4) +
+                ($ingredient['fats_per_1g'] * 9)
+            ) * $grams;
+        }
+
+        // Check if within tolerance
+        $withinTolerance = true;
+        foreach ($targetMacrosCal as $key => $value) {
+            if (abs($total[$key] - $value) > $tolerance[$key]) {
+                $withinTolerance = false;
+                break;
+            }
+        }
+
+        if ($withinTolerance) {
+            // Done, macros matched
+            break;
+        }
+
+        // Try to improve by adjusting grams
+        foreach ($ingredients as $index => $ingredient) {
+            // Temporarily increase this ingredient
+            $tempGrams = $ingredientGrams[$index] + $step;
+
+            // Simulate updated totals
+            $testTotal = $total;
+            $testTotal['protein']  += $ingredient['protein_per_1g'] * $step;
+            $testTotal['carbs']    += $ingredient['carbs_per_1g'] * $step;
+            $testTotal['fats']      += $ingredient['fats_per_1g'] * $step;
+            $testTotal['calories'] += (
+                ($ingredient['protein_per_1g'] * 4) +
+                ($ingredient['carbs_per_1g'] * 4) +
+                ($ingredient['fats_per_1g'] * 9)
+            ) * $step;
+
+            // Only apply if it helps and stays within target
+            if (
+                $testTotal['calories'] <= $targetMacrosCal['calories'] + $tolerance['calories'] &&
+                $testTotal['protein'] <= $targetMacrosCal['protein'] + $tolerance['protein'] &&
+                $testTotal['carbs'] <= $targetMacrosCal['carbs'] + $tolerance['carbs'] &&
+                $testTotal['fats'] <= $targetMacrosCal['fats'] + $tolerance['fats']
+            ) {
+                $ingredientGrams[$index] = $tempGrams;
+            }
+        }
     }
-    return $result;
+
+    $scaledIngredients = [];
+    $totalGramsUsed = 0;
+
+    foreach ($ingredients as $index => $ingredient) {
+        $grams = $ingredientGrams[$index];
+        $totalGramsUsed += $grams;
+
+        $scaledIngredients[] = array_merge($ingredient, [
+            'grams' => $ingredientGrams[$index]
+        ]);
+    }
+
+    // Return both scaled ingredients and final macros
+    return [
+        'ingredients' => $scaledIngredients,
+        'total_macrosCal' => $total,
+        'total_grams' => $totalGramsUsed
+    ];
 }
 
 $meals = [];
 
 foreach ($dailyMeals as $meal) {
     $ingredients = getMealIngredients($connection, $meal['meal_id']);
-    $mealMacros = getMealMacros($ingredients);
-    $scaling = ($mealMacros['calories'] > 0) ? ($daily_macros['calories'] / 3) / $mealMacros['calories'] : 1;
-    $scaledIngredients = scaleIngredients($ingredients, $scaling);
+
+    // Target for 1 meal
+    $targetMacrosCal = [
+        'protein' => $daily_macrosCal['protein_g'] / 3,
+        'carbs'   => $daily_macrosCal['carbs_g'] / 3,
+        'fats'    => $daily_macrosCal['fats_g'] / 3,
+        'calories'=> $daily_macrosCal['calories'] / 3
+    ];
+
+    // Acceptable ranges (±10g protein, ±15g carbs, ±5g fats)
+    $tolerance = [
+        'protein' => 10,
+        'carbs'   => 15,
+        'fats'    => 5,
+        'calories'=> 50
+    ];
+
+    $scaledIngredients = scaleIngredients($ingredients, $targetMacrosCal, $tolerance);
 
     $meals[] = [
         'meal_name' => $meal['meal_name'],
         'estimated_preparation_min' => $meal['estimated_preparation_min'],
-        'image_url' => $meal['image_url'],
+        // 'image_url' => $meal['image_url'],
         'category' => $meal['category'],
-        'ingredients' => $scaledIngredients,
-        'meal_macros' => array_map(fn($val) => round($val, 1), $mealMacros)
+        'ingredients' => $scaledIngredients['ingredients'],
+        'meal_macros' => array_map(fn($val) => round($val, 1), $scaledIngredients['total_macrosCal'])
     ];
 }
 
 // === Final Output ===
 echo json_encode([
-    'user_macros' => $daily_macros,
+    'user_macros' => $daily_macrosCal,
     'personalized_meals' => $meals
 ], JSON_PRETTY_PRINT);
 ?>

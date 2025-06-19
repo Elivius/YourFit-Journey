@@ -1,0 +1,11 @@
+=============================== PLANS ===================================
+
+- Need pop up display confirmation modal
+- UI colour refinement
+- Delete, Edit and Add workout
+
+============================== URGENT ===================================
+
+- Check scaleIngredients() function make sure it is wintih tolerance
+- Check default user if the user already setup their personal data (height, activity level, goals)
+- Add description with ingredient and grams of ingredients needed
