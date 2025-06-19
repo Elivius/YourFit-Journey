@@ -3,7 +3,7 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
     container.innerHTML = '<p>Loading...</p>';
 
     try {
-        const res = await fetch('../backend/preload_customize_meals.php');
+        const res = await fetch('../backend/preload_customize_meals.php?ts=' + new Date().getTime());
         const data = await res.json();
 
         const meals = data.personalized_meals;

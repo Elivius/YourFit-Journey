@@ -60,19 +60,42 @@ function adjustCaloriesForGoal($tdee, $goal) {
 }
 
 function calculateMacros($calories, $goal) {
-    // Macronutrient ratio presets
+    global $user;
+
+    if ($goal === 'bulking') {
+        $weight = $user['weight'];
+
+        // Fixed macros by body weight
+        $protein_g = round($weight * 2.2);  // ~2.2g protein per kg
+        $fats_g = round($weight * 0.9);     // ~0.9g fats per kg
+
+        // Calories used by protein & fats
+        $protein_kcal = $protein_g * 4;
+        $fats_kcal = $fats_g * 9;
+
+        // Remaining calories go to carbs
+        $remaining_kcal = $calories - ($protein_kcal + $fats_kcal);
+        $carbs_g = round($remaining_kcal / 4);
+
+        return [
+            'protein_g' => $protein_g,
+            'fats_g' => $fats_g,
+            'carbs_g' => $carbs_g
+        ];
+    }
+
+    // For cutting and maintenance, use ratio
     $ratios = [
-        'cutting' => ['protein' => 0.40, 'fats' => 0.30, 'carbs' => 0.30], // 40% protein, 30% fats, 30% carbs
-        'maintain' => ['protein' => 0.30, 'fats' => 0.30, 'carbs' => 0.40], // 30% protein, 30% fats, 40% carbs
-        'bulking' => ['protein' => 0.30, 'fats' => 0.25, 'carbs' => 0.45] // 30% protein, 25% fats, 45% carbs
+        'cutting' => ['protein' => 0.40, 'fats' => 0.30, 'carbs' => 0.30],
+        'maintain' => ['protein' => 0.30, 'fats' => 0.30, 'carbs' => 0.40]
     ];
 
-    $r = $ratios[$goal];
+    $r = $ratios[$goal] ?? $ratios['maintain'];
 
     return [
-        'protein_g' => round(($calories * $r['protein']) / 4), // 4 calories per gram of protein
-        'fats_g'     => round(($calories * $r['fats']) / 9),   // 9 calories per gram of fats
-        'carbs_g'   => round(($calories * $r['carbs']) / 4),  // 4 calories per gram of carbs
+        'protein_g' => round(($calories * $r['protein']) / 4),
+        'fats_g'    => round(($calories * $r['fats']) / 9),
+        'carbs_g'   => round(($calories * $r['carbs']) / 4)
     ];
 }
 
