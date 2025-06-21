@@ -98,7 +98,7 @@
     color: var(--body-color);
     border-radius: 0.5rem; /* ✅ this applies to all corners */
     overflow: hidden;   /* ✅ ensures inner content respects rounded corners */
-    transition: border-color 0.8s ease;
+    transition: border-color 0.3s ease;
 }
 
 .workout-exercises .accordion-item:hover {
