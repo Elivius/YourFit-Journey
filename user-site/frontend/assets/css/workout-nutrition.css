@@ -560,18 +560,19 @@
 }
 
 .macro-pill.protein {
-    background-color: rgba(var(--primary-rgb), 0.1);
     color: var(--primary);
 }
 
 .macro-pill.carbs {
-    background-color: rgba(59, 130, 246, 0.1);
     color: var(--success);
 }
 
 .macro-pill.fats {
-    background-color: rgba(245, 158, 11, 0.1);
     color: var(--warning);
+}
+
+.macro-pill.calories {
+    color: var(--danger);
 }
 
 .meal-item-actions {
@@ -595,6 +596,10 @@
     opacity: 0.5;
 }
 
+.alert h6 {
+    color: #0f172a !important; /* Bootstrap info blue, or choose your own */
+}
+
 .recipe-card {
     background-color: var(--card-bg);
     border-radius: 1rem;
@@ -607,7 +612,7 @@
 
 .recipe-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
 }
 
 .recipe-image {
@@ -618,6 +623,22 @@
     width: 100%;
     height: 180px;
     object-fit: cover;
+    border-bottom-left-radius: 0rem;
+    border-bottom-right-radius: 0rem;
+}
+
+@media (min-width: 768px) {
+    .recipe-image,
+    .recipe-image img {
+        height: 220px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .recipe-image,
+    .recipe-image img {
+        height: 450px;
+    }
 }
 
 .recipe-time {

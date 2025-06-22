@@ -104,6 +104,4 @@ $tdee = $bmr * getActivityMultiplier($user['activity_level']);
 $calories = adjustCaloriesForGoal($tdee, $user['goal']);
 $daily_macrosCal = calculateMacros($calories, $user['goal']);
 $daily_macrosCal['calories'] = round($calories);
-
-echo json_encode($daily_macrosCal);
 ?>
