@@ -15,6 +15,16 @@ if ($stmt = mysqli_prepare($connection, $sql_user)) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         $user = mysqli_fetch_assoc($result);
+
+        if (
+            empty($user['age']) || $user['age'] == 0 ||
+            empty($user['height']) || $user['height'] == 0 ||
+            empty($user['weight']) || $user['weight'] == 0
+        ) {
+            echo json_encode(['error' => 'Please complete your profile (age, height, weight)']);
+            exit;
+        }
+
     } else {
         $_SESSION['error'] = "Please fill out your profile in settings";
         header("Location: ../frontend/login.php");

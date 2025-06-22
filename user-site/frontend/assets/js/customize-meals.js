@@ -6,6 +6,12 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
         const res = await fetch('../backend/preload_customize_meals.php?ts=' + new Date().getTime());
         const data = await res.json();
 
+        // ✅ If backend returns error message
+        if (data.error) {
+            container.innerHTML = `<p class="text-danger mx-1">${data.error}</p>`;
+            return;
+        }
+
         const meals = data.personalized_meals;
         const userMacros = data.user_macros;
         const mealMacros = data.total_macros;
@@ -100,7 +106,7 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
         });
 
     } catch (err) {
-        container.innerHTML = '<p class="text-danger">Failed to load meals. Please try again.</p>';
+        container.innerHTML = '<p class="text-danger">Failed to load meals. Please try again</p>';
         console.error('Meal fetch error:', err);
     }
 });
