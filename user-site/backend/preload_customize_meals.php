@@ -67,7 +67,10 @@ function getMealIngredients($connection, $meal_id) {
     mysqli_stmt_bind_param($stmt, "i", $meal_id);
     mysqli_stmt_execute($stmt);
     $res = mysqli_stmt_get_result($stmt);
-    return mysqli_fetch_all($res, MYSQLI_ASSOC);
+    
+    $ingredients = mysqli_fetch_all($res, MYSQLI_ASSOC);
+    mysqli_stmt_close($stmt);
+    return $ingredients;
 }
 
 // === TRY DIFFERENT MEAL SETS UNTIL MACRO MATCH ===

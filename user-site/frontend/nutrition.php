@@ -1,6 +1,6 @@
 <?php
 require_once '../../utils/auth.php';
-// require_once '../backend/preload_customize_meals.php';
+require_once '../backend/preload_meal_logs.php';
 ?>
 
 <!DOCTYPE html>
@@ -189,305 +189,59 @@ require_once '../../utils/auth.php';
                     </div>
                     <div class="card-body">
                         <div class="meal-list">
-                            <!-- Breakfast -->
+                        <?php foreach ($mealsByCategory as $category => $meals): ?>
                             <div class="meal-section">
                                 <div class="meal-header">
-                                    <div class="meal-title">
-                                        <i class="fas fa-sun"></i>
-                                        <h6>Breakfast</h6>
+                                    <div class="meal-title mx-1">
+                                        <?php
+                                            $icons = [
+                                                'breakfast' => 'fas fa-sun',
+                                                'lunch' => 'fas fa-cloud-sun',
+                                                'dinner' => 'fas fa-moon'
+                                            ];
+                                        ?>
+                                        <i class="<?= $icons[$category] ?>"></i>
+                                        <h6><?= ucfirst($category) ?></h6>
                                     </div>
                                     <div class="meal-summary">
-                                        <span>450 cal</span>
+                                        <span>
+                                            <?= array_sum(array_column($meals, 'calories')) ?> cal
+                                        </span>
                                         <button class="btn btn-sm btn-primary">
                                             <i class="fas fa-plus"></i> Add Food
                                         </button>
                                     </div>
                                 </div>
+
                                 <div class="meal-items">
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Greek Yogurt with Berries</h6>
-                                            <p>1 cup yogurt, 1/2 cup mixed berries, 1 tbsp honey</p>
+                                    <?php if (count($meals) === 0): ?>
+                                        <div class="empty-state">
+                                            <i class="fas fa-utensils"></i>
+                                            <p>No <?= $category ?> logged yet. Click "Add Food" to log your <?= $category ?></p>
                                         </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>250 cal</span>
+                                    <?php else: ?>
+                                        <?php foreach ($meals as $meal): ?>
+                                            <div class="meal-item">
+                                                <div class="meal-item-info">
+                                                    <h6><?= htmlspecialchars($meal['meal_name']) ?></h6>
+                                                    <p>Logged meal</p>
+                                                </div>
+                                                <div class="meal-item-macros">
+                                                    <div class="macro-pill protein"><span><?= $meal['protein'] ?>g P</span></div>
+                                                    <div class="macro-pill carbs"><span><?= $meal['carbs'] ?>g C</span></div>
+                                                    <div class="macro-pill fats"><span><?= $meal['fats'] ?>g F</span></div>
+                                                    <div class="macro-pill calories"><span><?= $meal['calories'] ?> cal</span></div>
+                                                </div>
+                                                <div class="meal-item-actions">
+                                                    <button class="btn btn-sm btn-icon"><i class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-sm btn-icon"><i class="fas fa-trash"></i></button>
+                                                </div>
                                             </div>
-                                            <div class="macro-pill protein">
-                                                <span>20g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>30g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>5g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Whole Grain Toast</h6>
-                                            <p>2 slices with 1 tbsp almond butter</p>
-                                        </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>200 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>8g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>25g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>8g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
-                            
-                            <!-- Lunch -->
-                            <div class="meal-section">
-                                <div class="meal-header">
-                                    <div class="meal-title">
-                                        <i class="fas fa-cloud-sun"></i>
-                                        <h6>Lunch</h6>
-                                    </div>
-                                    <div class="meal-summary">
-                                        <span>650 cal</span>
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Add Food
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="meal-items">
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Grilled Chicken Salad</h6>
-                                            <p>4oz chicken breast, mixed greens, cherry tomatoes, cucumber, 2 tbsp balsamic vinaigrette</p>
-                                        </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>350 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>35g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>15g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>18g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Quinoa</h6>
-                                            <p>1 cup cooked</p>
-                                        </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>220 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>8g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>40g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>4g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Apple</h6>
-                                            <p>1 medium</p>
-                                        </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>80 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>0g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>20g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>0g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Dinner -->
-                            <div class="meal-section">
-                                <div class="meal-header">
-                                    <div class="meal-title">
-                                        <i class="fas fa-moon"></i>
-                                        <h6>Dinner</h6>
-                                    </div>
-                                    <div class="meal-summary">
-                                        <span>350 cal</span>
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Add Food
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="meal-items">
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Baked Salmon</h6>
-                                            <p>5oz fillet with lemon and herbs</p>
-                                        </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>250 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>30g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>0g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>15g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Steamed Broccoli</h6>
-                                            <p>1 cup</p>
-                                        </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>50 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>3g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>10g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>0g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="meal-item">
-                                        <div class="meal-item-info">
-                                            <h6>Sweet Potato</h6>
-                                            <p>1/2 medium, baked</p>
-                                        </div>
-                                        <div class="meal-item-macros">
-                                            <div class="macro-pill">
-                                                <span>50 cal</span>
-                                            </div>
-                                            <div class="macro-pill protein">
-                                                <span>1g P</span>
-                                            </div>
-                                            <div class="macro-pill carbs">
-                                                <span>12g C</span>
-                                            </div>
-                                            <div class="macro-pill fats">
-                                                <span>0g F</span>
-                                            </div>
-                                        </div>
-                                        <div class="meal-item-actions">
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-pen"></i>
-                                            </button>
-                                            <button class="btn btn-sm btn-icon">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Snacks -->
-                            <div class="meal-section">
-                                <div class="meal-header">
-                                    <div class="meal-title">
-                                        <i class="fas fa-cookie"></i>
-                                        <h6>Snacks</h6>
-                                    </div>
-                                    <div class="meal-summary">
-                                        <span>0 cal</span>
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i> Add Food
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="meal-items">
-                                    <div class="empty-state">
-                                        <i class="fas fa-utensils"></i>
-                                        <p>No snacks logged yet. Click "Add Food" to log your snacks.</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php endforeach; ?>
                         </div>
                     </div>
                 </div>

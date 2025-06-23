@@ -1,7 +1,6 @@
 <?php
 require_once '../../utils/connection.php';
 
-// Prepare SQL to fetch all exercises
 $sql_extract = "SELECT * FROM exercises_t";
 
 if ($stmt = mysqli_prepare($connection, $sql_extract)) {

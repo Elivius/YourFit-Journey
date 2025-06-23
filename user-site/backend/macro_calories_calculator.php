@@ -21,6 +21,7 @@ if ($stmt = mysqli_prepare($connection, $sql_user)) {
             empty($user['height']) || $user['height'] == 0 ||
             empty($user['weight']) || $user['weight'] == 0
         ) {
+            mysqli_stmt_close($stmt);
             echo json_encode(['error' => 'Please complete your profile (age, height, weight)']);
             exit;
         }
@@ -34,7 +35,7 @@ if ($stmt = mysqli_prepare($connection, $sql_user)) {
     mysqli_stmt_close($stmt);
 } else {
     error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error.";
+    $_SESSION['error'] = "Server error";
     header("Location: ../frontend/login.php");
     exit;
 }
