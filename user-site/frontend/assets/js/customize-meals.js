@@ -15,6 +15,7 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
         const meals = data.personalized_meals;
         const userMacros = data.user_macros;
         const mealMacros = data.total_macros;
+        const personalized_meals = data.personalized_meals;
 
         container.innerHTML = ''; // clear loading
 
@@ -91,22 +92,37 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
                         </div>
                     </div>
                     <div class="recipe-content">
-                        <h6>${meal.meal_name}</h6>
-                        <div class="recipe-macros">
+                        <h6 class="mx-1">${meal.meal_name}</h6>
+
+                        <div class="recipe-macros mb-2">
                             <div class="macro-pill protein"><strong>${meal.meal_macros.protein.toFixed(1)}g</strong> Protein</div>
                             <div class="macro-pill carbs"><strong>${meal.meal_macros.carbs.toFixed(1)}g</strong> Carbs</div>
                             <div class="macro-pill fats"><strong>${meal.meal_macros.fat.toFixed(1)}g</strong> Fats</div>
                             <div class="macro-pill calories"><strong>${meal.meal_macros.calories.toFixed(1)}</strong> kcal</div>
                         </div>
-                        <button class="btn btn-sm btn-primary mt-3 w-100">View Recipe</button>
+
+                        <hr class="muted-p">
+
+                        <div class="ingredients mx-1">
+                            <p class="ingredients-heading d-block mb-1">Ingredients:</p>
+                            <ul class="list-unstyled small mb-0">
+                                ${meal.ingredients.map(ing => `
+                                    <li>
+                                        <span class="ingredient-name">${ing.name}</span> -
+                                        <strong class="ingredient-grams">${ing.grams}g</strong>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             `;
+
             container.appendChild(card);
         });
 
     } catch (err) {
-        container.innerHTML = '<p class="text-danger">Failed to load meals. Please try again</p>';
+        container.innerHTML = '<p class="text-danger mx-1">Failed to load meals. Please try again</p>';
         console.error('Meal fetch error:', err);
     }
 });
