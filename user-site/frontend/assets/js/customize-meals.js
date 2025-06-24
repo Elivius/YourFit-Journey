@@ -15,7 +15,6 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
         const meals = data.personalized_meals;
         const userMacros = data.user_macros;
         const mealMacros = data.total_macros;
-        const personalized_meals = data.personalized_meals;
 
         container.innerHTML = ''; // clear loading
 

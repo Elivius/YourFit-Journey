@@ -1,5 +1,6 @@
 <?php
 require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
 require_once '../backend/preload_meal_logs.php';
 ?>
 
@@ -225,13 +226,13 @@ require_once '../backend/preload_meal_logs.php';
                                             <div class="meal-item">
                                                 <div class="meal-item-info">
                                                     <h6><?= htmlspecialchars($meal['meal_name']) ?></h6>
-                                                    <p>Logged meal</p>
+                                                    <p>Logged at <?= $meal['time'] ?></p>
                                                 </div>
                                                 <div class="meal-item-macros">
-                                                    <div class="macro-pill protein"><span><?= $meal['protein'] ?>g P</span></div>
-                                                    <div class="macro-pill carbs"><span><?= $meal['carbs'] ?>g C</span></div>
-                                                    <div class="macro-pill fats"><span><?= $meal['fats'] ?>g F</span></div>
-                                                    <div class="macro-pill calories"><span><?= $meal['calories'] ?> cal</span></div>
+                                                    <div class="macro-pill protein"><strong><?= $meal['protein'] ?>g </strong> Protein</div>
+                                                    <div class="macro-pill carbs"><strong><?= $meal['carbs'] ?>g </strong> Carbs</div>
+                                                    <div class="macro-pill fats"><strong><?= $meal['fats'] ?>g </strong> Fats</div>
+                                                    <div class="macro-pill calories"><strong><?= $meal['calories'] ?></strong> kcal</div>
                                                 </div>
                                                 <div class="meal-item-actions">
                                                     <button class="btn btn-sm btn-icon"><i class="fas fa-pen"></i></button>
@@ -326,42 +327,49 @@ require_once '../backend/preload_meal_logs.php';
 
             <div class="modal-body">
                 <form id="mealLogForm" action="../backend/process_save_meal_logs.php" method="POST">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                    <input type="hidden" name="category" id="mealCategoryInput">
                     <div class="form">
                         <label for="mealName" class="form-label">Meal Name</label>
-                        <input type="text" id="mealName" class="form-control" placeholder="Enter meal name" required>
+                        <input type="text" id="mealName" class="form-control" name="meal_name" placeholder="Enter meal name" required>
                     </div>
 
                     <div class="macros-grid">
                         <div class="form">
                             <label for="protein" class="form-label">Protein (g)</label>
-                            <input type="number" id="protein" class="form-control" placeholder="0" min="0" step="0.1" required>
+                            <input type="number" id="protein" class="form-control" name="protein" placeholder="0" min="0" step="0.1" required>
                         </div>
                         
                         <div class="form">
                             <label for="carbs" class="form-label">Carbs (g)</label>
-                            <input type="number" id="carbs" class="form-control" placeholder="0" min="0" step="0.1" required>
+                            <input type="number" id="carbs" class="form-control" name="carbs" placeholder="0" min="0" step="0.1" required>
                         </div>
                         
                         <div class="form">
                             <label for="fats" class="form-label">Fats (g)</label>
-                            <input type="number" id="fats" class="form-control" placeholder="0" min="0" step="0.1" required>
+                            <input type="number" id="fats" class="form-control" name="fats" placeholder="0" min="0" step="0.1" required>
                         </div>
                         
                         <div class="form">
                             <label for="calories" class="form-label">Calories</label>
-                            <input type="number" id="calories" class="form-control" placeholder="0" min="0" required>
+                            <input type="number" id="calories" class="form-control" name="calories" placeholder="0" min="0" required>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sm btn-danger" onclick="closeMealModal()">Cancel</button>
+                        <button type="submit" class="btn btn-sm btn-primary" id="saveMealBtn">
+                            <i class="fas fa-save"></i> Save Meal
+                        </button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-danger" onclick="closeMealModal()">Cancel</button>
-                <button type="submit" class="btn btn-sm btn-primary" onclick="saveMeal()" id="saveMealBtn">
-                    <i class="fas fa-save"></i> Save Meal
-                </button>
-            </div>
         </div>
     </div>
+
+    <?php if (isset($_SESSION['success'])): ?>
+        <div class="alert alert-success"><?= htmlspecialchars($_SESSION['success']) ?></div>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
 
     <!-- Modal Backdrop -->
     <div id="modalBackdrop" class="modal-backdrop"></div>

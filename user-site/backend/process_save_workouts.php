@@ -17,7 +17,7 @@ $estimated_duration = sanitizeInt($_POST['estimated_duration'] ?? null);
 $workout_description = cleanInput($_POST['workout_description'] ?? '');
 $user_id = $_SESSION['user_id'] ?? null;
 
-if (!$user_id || empty($workout_name)) {
+if (empty($workout_name)) {
     $_SESSION['error'] = "Workout info is incomplete.";
     header("Location: ../frontend/workouts-create.php");
     exit;
@@ -32,7 +32,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert_workout)) {
     mysqli_stmt_close($stmt);
 } else {
     error_log("Workout insert prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Failed to save workout.";
+    $_SESSION['error'] = "Failed to save workout";
     header("Location: ../frontend/workouts.php?section=my-workouts");
     exit;
 }

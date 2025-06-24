@@ -8,10 +8,11 @@ $sql_extract = "
         ROUND(protein_g, 2) AS protein,
         ROUND(carbs_g, 2) AS carbs,
         ROUND(fats_g, 2) AS fats,
-        ROUND(calories, 2) AS calories
+        ROUND(calories, 2) AS calories,
+        TIME(created_at) AS time
     FROM user_meal_logs_t
     WHERE user_id = ?
-        AND created_at = CURDATE()
+        AND DATE(created_at) = CURDATE()
     ORDER BY created_at DESC;";
 
 $mealsByCategory = [

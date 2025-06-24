@@ -4,8 +4,6 @@ require_once '../../utils/connection.php';
 require_once '../../utils/csrf.php';
 require_once '../../utils/sanitize.php';
 
-$_SESSION['target_form'] = 'loginForm';
-
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     session_unset(); // Unset all session to prevent user back to previous webpage
@@ -20,6 +18,7 @@ $email = sanitizeEmail($_POST['email'] ?? '');
 $password = sanitizePassword($_POST['password'] ?? '');
 
 if (!$email || empty($password)) {
+    $_SESSION['target_form'] = 'loginForm';
     $_SESSION['error'] = "Email and password are required";
     header("Location: ../frontend/login.php");
     exit;
@@ -56,6 +55,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
             } else if ($user['role'] === 'user') {                
                 header('Location: ../frontend/dashboard.php');
             } else {
+                $_SESSION['target_form'] = 'loginForm';
                 $_SESSION['error'] = "Unauthorized access";
                 header("Location: ../frontend/login.php");
             }
@@ -64,12 +64,14 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
     }
 
     // If no user or password mismatch
+    $_SESSION['target_form'] = 'loginForm';
     $_SESSION['error'] = "Incorrect email or password";
     mysqli_stmt_close($stmt);
     header("Location: ../frontend/login.php");
     exit;
 } else {
     error_log('Statement preparation failed: ' . mysqli_error($connection));
+    $_SESSION['target_form'] = 'loginForm';
     $_SESSION['error'] = "Server error. Please try again later";
     header("Location: ../frontend/login.php");
     exit;

@@ -71,6 +71,7 @@
 
 .modal-body {
   padding: 20px;
+  padding-bottom: 0px;
 }
 
 .close-btn {

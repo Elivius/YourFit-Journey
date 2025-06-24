@@ -2,6 +2,7 @@
 session_start();
 require_once '../../utils/csrf.php';
 require_once '../../utils/message.php';
+var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>

@@ -5,8 +5,6 @@ require_once '../../utils/csrf.php';
 require_once '../../utils/sanitize.php';
 require_once '../../utils/hashing.php';
 
-$_SESSION['target_form'] = 'signupForm';
-
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     session_unset(); // Unset all session to prevent user back to previous webpage
@@ -31,16 +29,19 @@ $_SESSION['email'] = $email;
 $_SESSION['gender'] = $gender;
 
 if (!$first_name || !$last_name || !$email || !$password || !$confirm_password || !$gender) {
+    $_SESSION['target_form'] = 'signupForm';
     $_SESSION['error'] = "Please fill in all fields";
     header("Location: ../frontend/signup.php");
     exit;
 } elseif (!$terms) {
+    $_SESSION['target_form'] = 'signupForm';
     $_SESSION['error'] = "You must accept the terms and conditions";
     header("Location: ../frontend/signup.php");
     exit;
 }
 
 if ($password !== $confirm_password) {
+    $_SESSION['target_form'] = 'signupForm';
     $_SESSION['error'] = "Password confirmation does not match";
     header("Location: ../frontend/signup.php");
     exit;
@@ -53,6 +54,7 @@ if (
     !preg_match('/[0-9]/', $password) ||        // at least one digit
     !preg_match('/[\W_]/', $password)           // at least one symbol
 ) {
+    $_SESSION['target_form'] = 'signupForm';
     $_SESSION['error'] = "Password must be at least 8 characters, include uppercase and lowercase letters, a number, and a symbol.";
     header("Location: ../frontend/signup.php");
     exit;
@@ -67,6 +69,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_store_result($stmt);
     
     if (mysqli_stmt_num_rows($stmt) > 0) {
+        $_SESSION['target_form'] = 'signupForm';
         $_SESSION['error'] = "Email already registered";
         mysqli_stmt_close($stmt);
         header("Location: ../frontend/signup.php");
@@ -75,6 +78,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_close($stmt);
 } else {
     error_log("Prepare failed: " . mysqli_error($connection));
+    $_SESSION['target_form'] = 'signupForm';
     $_SESSION['error'] = "Server error";
     header("Location: ../frontend/signup.php");
     exit;
@@ -113,6 +117,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
                     if ($user['role'] === 'user') {
                         header('Location: ../frontend/dashboard.php');
                     } else {
+                        $_SESSION['target_form'] = 'loginForm';
                         $_SESSION['error'] = "Unauthorized access";
                         header("Location: ../frontend/login.php");
                     }
@@ -121,24 +126,28 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
             }
 
             // Fallback if something goes wrong
+            $_SESSION['target_form'] = 'loginForm';
             $_SESSION['error'] = "Account created but failed to log in";
             mysqli_stmt_close($stmt);
             header("Location: ../frontend/login.php");
             exit;
         } else {
             error_log('Auto-login prepare failed: ' . mysqli_error($connection));
+            $_SESSION['target_form'] = 'loginForm';
             $_SESSION['error'] = "Server error";
             header("Location: ../frontend/login.php");
             exit;
         }
     } else {
         error_log("Insert failed: " . mysqli_stmt_error($stmt));
+        $_SESSION['target_form'] = 'signupForm';
         $_SESSION['error'] = "Failed to create account";
         header("Location: ../frontend/signup.php");
         exit;
     }
 } else {
     error_log("Prepare failed: " . mysqli_error($connection));
+    $_SESSION['target_form'] = 'signupForm';
     $_SESSION['error'] = "Server error";
     header("Location: ../frontend/signup.php");
     exit;

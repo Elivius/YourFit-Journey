@@ -39,3 +39,22 @@ document.addEventListener('click', function (e) {
     }
 });
 
+// Auto calories calculation
+const proteinInput = document.getElementById('protein');
+const carbsInput = document.getElementById('carbs');
+const fatsInput = document.getElementById('fats');
+const caloriesInput = document.getElementById('calories');
+
+function updateCalories() {
+    const protein = parseFloat(proteinInput.value) || 0;
+    const carbs = parseFloat(carbsInput.value) || 0;
+    const fats = parseFloat(fatsInput.value) || 0;
+
+    const calories = (protein * 4) + (carbs * 4) + (fats * 9);
+    caloriesInput.value = Math.round(calories); // or use toFixed(1) for decimals
+}
+
+proteinInput.addEventListener('input', updateCalories);
+carbsInput.addEventListener('input', updateCalories);
+fatsInput.addEventListener('input', updateCalories);
+
