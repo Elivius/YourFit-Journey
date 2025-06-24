@@ -6,7 +6,6 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
         const res = await fetch('../backend/preload_customize_meals.php?ts=' + new Date().getTime());
         const data = await res.json();
 
-        // ✅ If backend returns error message
         if (data.error) {
             container.innerHTML = `<p class="text-danger mx-1">${data.error}</p>`;
             return;
@@ -16,7 +15,7 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
         const userMacros = data.user_macros;
         const mealMacros = data.total_macros;
 
-        container.innerHTML = ''; // clear loading
+        container.innerHTML = '';
 
         // Calculate difference status
         function getDiffStatus(actual, target, label) {

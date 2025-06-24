@@ -61,16 +61,17 @@ require_once '../backend/preload_meal_logs.php';
             <!-- Nutrition Content -->
             <div class="dashboard-content">
                 <!-- Nutrition Summary -->
-                <div class="row g-4 mb-4 align-items-stretch">
-                    <div class="col-lg-8 d-flex">
+                <div class="row g-4 align-items-stretch">
+                    <div class="col-12 d-flex">
+                    <!-- <div class="col-lg-8 d-flex"> -->
                         <div class="card flex-fill d-flex flex-column">
                             <div class="card-header d-flex justify-content-between align-items-center">
                                 <h5 class="card-title mb-0">Today's Nutrition Summary</h5>
                                 <div class="card-actions">
                                     <div class="date-selector d-flex align-items-center gap-2">
-                                        <button class="btn btn-sm btn-icon"><i class="fas fa-chevron-left"></i></button>
-                                        <span>May 24, 2023</span>
-                                        <button class="btn btn-sm btn-icon"><i class="fas fa-chevron-right"></i></button>
+                                        <button class="btn btn-sm btn-icon" id="prev-date"><i class="fas fa-chevron-left"></i></button>
+                                        <span id="current-date">--</span>
+                                        <button class="btn btn-sm btn-icon" id="next-date"><i class="fas fa-chevron-right"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -87,12 +88,12 @@ require_once '../backend/preload_meal_logs.php';
                                                 <div class="nutrition-goal">
                                                     <div class="goal-header">
                                                         <h6>Calories</h6>
-                                                        <span>1,450 / 2,000 cal</span>
+                                                        <span id="calories-summary">-- / -- kcal</span>
                                                     </div>
                                                     <div class="progress">
-                                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 72.5%" aria-valuenow="72.5" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div id="calories-bar" class="progress-bar progress-bar-calories" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
-                                                    <p class="goal-text">550 calories remaining</p>
+                                                    <p class="goal-text" id="calories-remaining">-- calories remaining</p>
                                                 </div>
                                                 <div class="macros-breakdown">
                                                     <div class="macro-item">
@@ -102,10 +103,10 @@ require_once '../backend/preload_meal_logs.php';
                                                         <div class="macro-content">
                                                             <div class="macro-header">
                                                                 <h6>Protein</h6>
-                                                                <span>85g / 150g</span>
+                                                                <span id="protein-summary">--g / --g</span>
                                                             </div>
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 56.7%" aria-valuenow="56.7" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="protein-bar" class="progress-bar progress-bar-protein" role="progressbar" style="width: 0%" aria-valuenow="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -116,10 +117,10 @@ require_once '../backend/preload_meal_logs.php';
                                                         <div class="macro-content">
                                                             <div class="macro-header">
                                                                 <h6>Carbs</h6>
-                                                                <span>120g / 200g</span>
+                                                                <span id="carbs-summary">--g / --g</span>
                                                             </div>
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="carbs-bar" class="progress-bar progress-bar-carbs" role="progressbar" style="width: 0%" aria-valuenow="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -130,10 +131,10 @@ require_once '../backend/preload_meal_logs.php';
                                                         <div class="macro-content">
                                                             <div class="macro-header">
                                                                 <h6>Fats</h6>
-                                                                <span>45g / 65g</span>
+                                                                <span id="fats-summary">--g / --g</span>
                                                             </div>
                                                             <div class="progress">
-                                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 69.2%" aria-valuenow="69.2" aria-valuemin="0" aria-valuemax="100"></div>
+                                                                <div id="fats-bar" class="progress-bar progress-bar-fats" role="progressbar" style="width: 0%" aria-valuenow="0"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -145,7 +146,7 @@ require_once '../backend/preload_meal_logs.php';
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 d-flex">
+                    <!-- <div class="col-lg-4 d-flex">
                         <div class="card flex-fill d-flex flex-column">
                             <div class="card-header">
                                 <h5 class="card-title mb-0">Water Intake</h5>
@@ -176,7 +177,7 @@ require_once '../backend/preload_meal_logs.php';
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Today's Meals -->
@@ -383,9 +384,9 @@ require_once '../backend/preload_meal_logs.php';
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/nutrition.js"></script>
     <script src="assets/js/customize-meals.js"></script>
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/log-meal-modal.js"></script>
+    <script src="assets/js/summary-meals.js"></script>
 </body>
 </html>

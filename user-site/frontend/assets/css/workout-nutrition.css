@@ -347,6 +347,22 @@
     margin-bottom: 0;
 }
 
+.progress-bar-calories {
+    background-color: var(--danger);
+}
+
+.progress-bar-protein {
+    background-color: var(--primary);
+}
+
+.progress-bar-carbs {
+    background-color: var(--success);
+}
+
+.progress-bar-fats {
+    background-color: var(--warning);
+}
+
 .macros-breakdown {
     display: flex;
     flex-direction: column;

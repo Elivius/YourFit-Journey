@@ -35,8 +35,6 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
         }
     }
 
-    // echo json_encode($mealsByCategory);
-
     mysqli_stmt_close($stmt);
 } else {
     error_log("Prepare failed: " . mysqli_error($connection));
