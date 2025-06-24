@@ -355,8 +355,8 @@ require_once '../backend/preload_meal_logs.php';
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" onclick="closeMealModal()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="saveMeal()" id="saveMealBtn">
+                <button type="button" class="btn btn-sm btn-danger" onclick="closeMealModal()">Cancel</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="saveMeal()" id="saveMealBtn">
                     <i class="fas fa-save"></i> Save Meal
                 </button>
             </div>
