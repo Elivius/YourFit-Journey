@@ -3,7 +3,9 @@
 - Need pop up display confirmation modal
 - UI colour refinement
 - Delete, Edit and Add workout
+- Responsive for Nutririon Page
 
 ============================== URGENT ===================================
 
-- 
+- Delete / Edit Meal Log
+- Log personalized meals
