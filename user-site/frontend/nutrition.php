@@ -20,6 +20,7 @@ require_once '../backend/preload_meal_logs.php';
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/log-meal-modal.css">
 </head>
 <body class="dark-theme dashboard-body">
     <div class="dashboard-container">
@@ -207,7 +208,7 @@ require_once '../backend/preload_meal_logs.php';
                                         <span>
                                             <?= array_sum(array_column($meals, 'calories')) ?> cal
                                         </span>
-                                        <button class="btn btn-sm btn-primary">
+                                        <button class="btn btn-sm btn-primary" onclick="openMealModal()">
                                             <i class="fas fa-plus"></i> Add Food
                                         </button>
                                     </div>
@@ -313,6 +314,58 @@ require_once '../backend/preload_meal_logs.php';
         </main>
     </div>
 
+    <!-- Meal Input Modal -->
+    <div id="mealModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="card-title">Add Meal</h5>
+                <button class="close-btn" onclick="closeMealModal()">
+                     <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <form id="mealForm">
+                    <div class="form">
+                        <label for="mealName" class="form-label">Meal Name</label>
+                        <input type="text" id="mealName" class="form-control" placeholder="Enter meal name" required>
+                    </div>
+
+                    <div class="macros-grid">
+                        <div class="form">
+                            <label for="protein" class="form-label">Protein (g)</label>
+                            <input type="number" id="protein" class="form-control" placeholder="0" min="0" step="0.1" required>
+                        </div>
+                        
+                        <div class="form">
+                            <label for="carbs" class="form-label">Carbs (g)</label>
+                            <input type="number" id="carbs" class="form-control" placeholder="0" min="0" step="0.1" required>
+                        </div>
+                        
+                        <div class="form">
+                            <label for="fats" class="form-label">Fats (g)</label>
+                            <input type="number" id="fats" class="form-control" placeholder="0" min="0" step="0.1" required>
+                        </div>
+                        
+                        <div class="form">
+                            <label for="calories" class="form-label">Calories</label>
+                            <input type="number" id="calories" class="form-control" placeholder="0" min="0" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" onclick="closeMealModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="saveMeal()" id="saveMealBtn">
+                    <i class="fas fa-save"></i> Save Meal
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Backdrop -->
+    <div id="modalBackdrop" class="modal-backdrop" onclick="closeMealModal()"></div>
+
     <?php include 'scroll_to_top.php'; ?>
 
     <!-- Bootstrap JS -->
@@ -325,5 +378,6 @@ require_once '../backend/preload_meal_logs.php';
     <script src="assets/js/nutrition.js"></script>
     <script src="assets/js/customize-meals.js"></script>
     <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/log-meal-modal.js"></script>
 </body>
 </html>
