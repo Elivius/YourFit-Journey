@@ -34,7 +34,7 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
         }
     }
 
-    echo json_encode($mealsByCategory);
+    // echo json_encode($mealsByCategory);
 
     mysqli_stmt_close($stmt);
 } else {

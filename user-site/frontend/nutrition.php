@@ -208,7 +208,7 @@ require_once '../backend/preload_meal_logs.php';
                                         <span>
                                             <?= array_sum(array_column($meals, 'calories')) ?> cal
                                         </span>
-                                        <button class="btn btn-sm btn-primary" onclick="openMealModal()">
+                                        <button class="btn btn-sm btn-primary" onclick="openMealModal(this)" data-category="<?= $category ?>">
                                             <i class="fas fa-plus"></i> Add Food
                                         </button>
                                     </div>
@@ -318,7 +318,7 @@ require_once '../backend/preload_meal_logs.php';
     <div id="mealModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="card-title">Add Meal</h5>
+                <h5 class="card-title">Add Meal (<span id="mealCategoryLabel"></span>)</h5>
                 <button class="close-btn" onclick="closeMealModal()">
                      <i class="fas fa-xmark"></i>
                 </button>
@@ -364,7 +364,7 @@ require_once '../backend/preload_meal_logs.php';
     </div>
 
     <!-- Modal Backdrop -->
-    <div id="modalBackdrop" class="modal-backdrop" onclick="closeMealModal()"></div>
+    <div id="modalBackdrop" class="modal-backdrop"></div>
 
     <?php include 'scroll_to_top.php'; ?>
 
