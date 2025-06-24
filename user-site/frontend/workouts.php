@@ -640,7 +640,7 @@ require_once '../backend/preload_all_workouts.php';
                                         </div>
 
                                         <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2">
-                                            <a href="workouts-view.php?id=<?= $workout['workout_id'] ?>" class="btn btn-md btn-light px-4 py-2 fs-6">View</a>
+                                            <a href="workouts-view.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-md btn-light px-4 py-2">View</a>
                                         </div>
                                     </div>
                                 </div>

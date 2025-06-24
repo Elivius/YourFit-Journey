@@ -169,7 +169,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="form-message" id="personalInfoFormMessage"></div>
                                             <div class="col-12 settings-btn-margin">
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                                             </div>
                                         </div>
                                     </form>
@@ -237,7 +237,7 @@ require_once '../backend/preload_settings.php';
                                             </div> -->
                                             <div class="form-message" id="physicalStatsFormMessage"></div>
                                             <div class="col-12 settings-btn-margin">
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                                             </div>
                                         </div>
                                     </form>
@@ -283,7 +283,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="form-message" id="passwordFormMessage"></div>
                                             <div class="col-12 settings-btn-margin">
-                                                <button type="submit" class="btn btn-primary">Update Password</button>
+                                                <button type="submit" class="btn btn-sm btn-primary">Update Password</button>
                                             </div>
                                         </div>
                                     </form>
@@ -369,7 +369,7 @@ require_once '../backend/preload_settings.php';
                                                 </div> -->
                                                 <div class="form-message" id="primaryGoalFormMessage"></div>
                                                 <div class="mt-3 settings-btn-margin">
-                                                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                                                 </div>
                                             <!-- </div> -->
                                         <!-- </div> -->
@@ -447,7 +447,7 @@ require_once '../backend/preload_settings.php';
                                         </div>
                                         <div class="form-message" id="activityLevelFormMessage"></div>
                                         <div class="mt-3 settings-btn-margin">
-                                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -518,129 +518,7 @@ require_once '../backend/preload_settings.php';
 
                 <!-- Feedback Section -->
                 <div class="tab-section" id="feedback">
-                    <div class="row g-4">
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">Workout Plan Feedback</h5>
-                                </div>
-                                <div class="card-body">
-                                    <form id="workoutFeedbackForm">
-                                        <div class="mb-3">
-                                            <label for="workoutPlan" class="form-label">Select Workout Plan</label>
-                                            <select class="form-select" id="workoutPlan">
-                                                <option selected>Beginner Full Body Workout</option>
-                                                <option>Intermediate Upper/Lower Split</option>
-                                                <option>Advanced Push/Pull/Legs</option>
-                                                <option>Custom Plan #1</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">How would you rate this workout plan?</label>
-                                            <div class="rating-stars">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="far fa-star"></i>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">What aspects did you like?</label>
-                                            <div class="feedback-aspects">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="workoutEffectiveness" checked>
-                                                    <label class="form-check-label" for="workoutEffectiveness">Effectiveness</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="workoutDifficulty" checked>
-                                                    <label class="form-check-label" for="workoutDifficulty">Appropriate difficulty</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="workoutVariety">
-                                                    <label class="form-check-label" for="workoutVariety">Exercise variety</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="workoutInstructions" checked>
-                                                    <label class="form-check-label" for="workoutInstructions">Clear instructions</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="workoutTime">
-                                                    <label class="form-check-label" for="workoutTime">Time efficiency</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="workoutComments" class="form-label">Additional Comments</label>
-                                            <textarea class="form-control" id="workoutComments" rows="4" placeholder="Share your thoughts on this workout plan...">The workout plan has been very effective for me. I've seen good progress in strength and endurance. The instructions are clear and easy to follow.</textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Submit Feedback</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h5 class="card-title">Diet Plan Feedback</h5>
-                                </div>
-                                <div class="card-body">
-                                    <form id="dietFeedbackForm">
-                                        <div class="mb-3">
-                                            <label for="dietPlan" class="form-label">Select Diet Plan</label>
-                                            <select class="form-select" id="dietPlan">
-                                                <option selected>High Protein Meal Plan</option>
-                                                <option>Low Carb Diet</option>
-                                                <option>Mediterranean Diet</option>
-                                                <option>Custom Meal Plan #1</option>
-                                            </select>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">How would you rate this diet plan?</label>
-                                            <div class="rating-stars">
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
-                                                <i class="fas fa-star-half-alt"></i>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">What aspects did you like?</label>
-                                            <div class="feedback-aspects">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="dietTaste" checked>
-                                                    <label class="form-check-label" for="dietTaste">Taste/Flavor</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="dietVariety" checked>
-                                                    <label class="form-check-label" for="dietVariety">Meal variety</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="dietPreparation" checked>
-                                                    <label class="form-check-label" for="dietPreparation">Easy preparation</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="dietSatiety">
-                                                    <label class="form-check-label" for="dietSatiety">Feeling of fullness</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="dietResults" checked>
-                                                    <label class="form-check-label" for="dietResults">Visible results</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="dietComments" class="form-label">Additional Comments</label>
-                                            <textarea class="form-control" id="dietComments" rows="4" placeholder="Share your thoughts on this diet plan...">The high protein meal plan has been great for my recovery after workouts. The recipes are delicious and easy to prepare. I would like to see more vegetarian options though.</textarea>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Submit Feedback</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        
+                    <div class="row g-4">                        
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
@@ -684,7 +562,7 @@ require_once '../backend/preload_settings.php';
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                                                <button type="submit" class="btn btn-sm btn-primary">Submit Feedback</button>
                                             </div>
                                         </div>
                                     </form>
