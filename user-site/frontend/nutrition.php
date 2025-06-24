@@ -325,7 +325,7 @@ require_once '../backend/preload_meal_logs.php';
             </div>
 
             <div class="modal-body">
-                <form id="mealForm">
+                <form id="mealLogForm" action="../backend/process_save_meal_logs.php" method="POST">
                     <div class="form">
                         <label for="mealName" class="form-label">Meal Name</label>
                         <input type="text" id="mealName" class="form-control" placeholder="Enter meal name" required>
@@ -356,7 +356,7 @@ require_once '../backend/preload_meal_logs.php';
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-danger" onclick="closeMealModal()">Cancel</button>
-                <button type="button" class="btn btn-sm btn-primary" onclick="saveMeal()" id="saveMealBtn">
+                <button type="submit" class="btn btn-sm btn-primary" onclick="saveMeal()" id="saveMealBtn">
                     <i class="fas fa-save"></i> Save Meal
                 </button>
             </div>

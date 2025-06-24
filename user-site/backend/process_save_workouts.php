@@ -5,7 +5,9 @@ require_once '../../utils/csrf.php';
 require_once '../../utils/sanitize.php';
 
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
-    $_SESSION['error'] = "Invalid CSRF token";
+    session_unset(); // Unset all session to prevent user back to previous webpage
+    $_SESSION['target_form'] = 'loginForm';
+    $_SESSION['error'] = "Invalid CSRF token";    
     header("Location: ../frontend/login.php");
     exit;
 }
