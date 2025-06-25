@@ -7,5 +7,5 @@
 
 ============================== URGENT ===================================
 
-- Log personalized meals
 - Check whole meal history
+- Dont allow keep refreshing for the personalized meal (Check this function)
