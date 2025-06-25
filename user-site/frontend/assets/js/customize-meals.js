@@ -89,9 +89,9 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
                             <i class="fas fa-clock"></i> ~${meal.estimated_preparation_min} min
                         </div>
                     </div>
+                    <span class="badge mx-2 mt-2" style="background-color: var(--primary); color: white !important;">${meal.category.charAt(0).toUpperCase() + meal.category.slice(1)}</span>
                     <div class="recipe-content">
                         <h6 class="mx-1">${meal.meal_name}</h6>
-
                         <div class="recipe-macros mb-2">
                             <div class="macro-pill protein"><strong>${meal.meal_macros.protein.toFixed(1)}g</strong> Protein</div>
                             <div class="macro-pill carbs"><strong>${meal.meal_macros.carbs.toFixed(1)}g</strong> Carbs</div>

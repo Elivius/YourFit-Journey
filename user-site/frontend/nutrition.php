@@ -261,7 +261,7 @@ require_once '../backend/preload_meal_logs.php';
                     </div>
                 </div>
 
-                <!-- Delete Meal Hidden Form -->
+                <!-- Delete Meal Hidden Form (For CSRF Checking) -->
                 <form id="deleteMealForm" action="../backend/process_delete_meal_logs.php" method="POST" style="display:none;">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                     <input type="hidden" name="meal_id" id="deleteMealIdInput">

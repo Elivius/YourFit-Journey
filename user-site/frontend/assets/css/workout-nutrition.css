@@ -542,6 +542,13 @@
     background-color: rgba(var(--primary-rgb), 0.05);
     padding: 1rem;
     border-radius: 0.5rem;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.meal-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
 }
 
 .meal-item-info {
@@ -679,6 +686,7 @@
 
 .recipe-content {
     padding: 1.5rem;
+    padding-top: 0.5rem;
 }
 
 .recipe-content h6 {
