@@ -1,0 +1,38 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+require_once '../../utils/connection.php';
+
+header('Content-Type: application/json');
+
+$response = [];
+
+$user_id = $_SESSION['user_id'];
+
+$sql_extract = "
+    SELECT meal_name, category, protein_g, carbs_g, fats_g, calories, created_at 
+    FROM user_meal_logs_t 
+    WHERE user_id = ? 
+    ORDER BY created_at DESC 
+    LIMIT 20
+";
+
+if ($stmt = mysqli_prepare($connection, $sql_extract)) {
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $response[] = $row;
+        }
+    }
+
+    mysqli_stmt_close($stmt);
+} else {
+    error_log("Prepare failed: " . mysqli_error($connection));
+}
+
+echo json_encode($response);

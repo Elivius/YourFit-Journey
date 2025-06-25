@@ -63,7 +63,6 @@ require_once '../backend/preload_meal_logs.php';
                 <!-- Nutrition Summary -->
                 <div class="row g-4 align-items-stretch">
                     <div class="col-12 d-flex">
-                    <!-- <div class="col-lg-8 d-flex"> -->
                         <div class="card flex-fill d-flex flex-column">
                             <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                                 <h5 class="card-title mb-0">Today's Nutrition Summary</h5>
@@ -146,38 +145,6 @@ require_once '../backend/preload_meal_logs.php';
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-4 d-flex">
-                        <div class="card flex-fill d-flex flex-column">
-                            <div class="card-header">
-                                <h5 class="card-title mb-0">Water Intake</h5>
-                            </div>
-                            <div class="card-body flex-grow-1 d-flex align-items-center justify-content-center">
-                                <div class="water-tracker">
-                                    <div class="water-visual">
-                                        <div class="water-container">
-                                            <div class="water-level" style="height: 60%;"></div>
-                                            <div class="water-overlay">
-                                                <span>6/10</span>
-                                                <small>glasses</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="water-controls">
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                        <button class="btn btn-sm btn-primary">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                    </div>
-                                    <div class="water-info">
-                                        <p>Daily Goal: 10 glasses (2.5L)</p>
-                                        <p>Current: 6 glasses (1.5L)</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
 
                 <!-- Today's Meals -->
@@ -185,7 +152,7 @@ require_once '../backend/preload_meal_logs.php';
                     <div class="card-header">
                         <h5 class="card-title">Today's Meals</h5>
                         <div class="card-actions">
-                            <button class="btn btn-sm btn-outline-primary">
+                            <button id="mealHistoryBtn" class="btn btn-sm btn-outline-primary">
                                 <i class="fas fa-history"></i> Meal History
                             </button>
                         </div>
@@ -227,7 +194,7 @@ require_once '../backend/preload_meal_logs.php';
                                             <div class="meal-item">
                                                 <div class="meal-item-info">
                                                     <h6><?= htmlspecialchars($meal['meal_name']) ?></h6>
-                                                    <p>Logged at <?= $meal['time'] ?></p>
+                                                    <p>Logged at <?= DateTime::createFromFormat('H:i:s', $meal['time'])->format('h:i A') ?></p>
                                                 </div>
                                                 <div class="meal-item-macros">
                                                     <div class="macro-pill protein"><strong><?= $meal['protein'] ?>g </strong> Protein</div>
@@ -386,6 +353,30 @@ require_once '../backend/preload_meal_logs.php';
         </div>
     </div>
 
+    <!-- Meal History Modal -->
+    <div id="mealHistoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="card-title">Meal History</h5>
+                <button class="close-btn" onclick="closeMealHistoryModal()">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body overflow-auto" style="max-height: 40vh;">
+                <div id="mealHistoryContent">
+                    <!-- Meal history will be loaded here -->
+                    <p>Loading...</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" onclick="closeMealHistoryModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Template for sending CSRF to JS (Logging meal directly from Personalized Meals) -->
     <template id="log-meal-form-customize-planner">
         <form action="../backend/process_save_meal_logs.php" method="POST">
@@ -424,5 +415,6 @@ require_once '../backend/preload_meal_logs.php';
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/log-meal-modal.js"></script>
     <script src="assets/js/summary-meals.js"></script>
+    <script src="assets/js/log-meal-history.js"></script>
 </body>
 </html>
