@@ -31,10 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const consumed = data.consumed;
             const goal = data.goal;
+            const calorieDiff = goal.calories - consumed.calories;
 
             // Update text
             document.getElementById("calories-summary").innerText = `${consumed.calories} / ${goal.calories} kcal`;
-            document.getElementById("calories-remaining").innerText = `${goal.calories - consumed.calories} calories remaining`;
+            document.getElementById("calories-remaining").innerText =
+                calorieDiff >= 0
+                    ? `${calorieDiff} calories remaining`
+                    : `Over ${Math.abs(calorieDiff)} kcal`;
             document.getElementById("protein-summary").innerText = `${consumed.protein}g / ${goal.protein_g}g`;
             document.getElementById("carbs-summary").innerText = `${consumed.carbs}g / ${goal.carbs_g}g`;
             document.getElementById("fats-summary").innerText = `${consumed.fats}g / ${goal.fats_g}g`;
@@ -52,17 +56,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
                 const success = getComputedStyle(document.documentElement).getPropertyValue('--success').trim();
                 const warning = getComputedStyle(document.documentElement).getPropertyValue('--warning').trim();
+                const grey = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim();
                 const cardBg = getComputedStyle(document.documentElement).getPropertyValue('--card-bg').trim();
                 const bodyColor = getComputedStyle(document.documentElement).getPropertyValue('--body-color').trim();
                 const cardBorder = getComputedStyle(document.documentElement).getPropertyValue('--card-border').trim();
 
+                let chartData, chartLabels, chartColors;
+
+                if (consumed.protein === 0 && consumed.carbs === 0 && consumed.fats === 0) {
+                    chartData = [1];
+                    chartLabels = ['No data'];
+                    chartColors = [grey];
+                } else {
+                    chartData = [consumed.protein, consumed.carbs, consumed.fats];
+                    chartLabels = ['Protein', 'Carbs', 'Fat'];
+                    chartColors = [primary, success, warning];
+                }
+
                 macroChart = new Chart(macronutrientChartCanvas, {
                     type: 'doughnut',
                     data: {
-                        labels: ['Protein', 'Carbs', 'Fat'],
+                        labels: chartLabels,
                         datasets: [{
-                            data: [consumed.protein, consumed.carbs, consumed.fats],
-                            backgroundColor: [primary, success, warning],
+                            data: chartData,
+                            backgroundColor: chartColors,
                             borderWidth: 0,
                             hoverOffset: 5
                         }]
