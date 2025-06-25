@@ -579,6 +579,8 @@
     padding: 0.25rem 0.75rem;
     border-radius: 2rem;
     font-size: 0.8rem;
+    white-space: nowrap;
+    min-width: 80px;
 }
 
 .macro-pill.protein {
@@ -684,7 +686,28 @@
     font-size: 0.8rem;
 }
 
+.recipe-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.category-badge {
+  background-color: var(--info);
+  color: white !important;
+  white-space: nowrap;           
+  text-overflow: ellipsis;       
+  overflow: hidden;              
+  max-width: auto;              
+  display: block;         
+  text-align: center;
+  font-size: 14px;
+}
+
 .recipe-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 1.5rem;
     padding-top: 0.5rem;
 }
@@ -698,6 +721,14 @@
     color: var(--secondary);
     font-size: 0.9rem;
     margin-bottom: 1rem;
+}
+
+.recipe-content .ingredients {
+    flex-grow: 1;
+}
+
+.recipe-content .btn {
+    margin-top: auto;
 }
 
 .recipe-macros {
@@ -799,6 +830,10 @@
     .food-macros, .food-item button {
         margin-top: 0.5rem;
     }
+
+    .recipe-content .btn {
+        font-size: 0.875rem;
+    }
 }
 
 @media (max-width: 767.98px) {
@@ -826,5 +861,6 @@
     
     .macro-pill {
         width: 100%;
+        text-align: center;
     }
 }

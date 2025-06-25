@@ -89,7 +89,7 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
                             <i class="fas fa-clock"></i> ~${meal.estimated_preparation_min} min
                         </div>
                     </div>
-                    <span class="badge mx-2 mt-2" style="background-color: var(--primary); color: white !important;">${meal.category.charAt(0).toUpperCase() + meal.category.slice(1)}</span>
+                    <span class="badge category-badge mx-4 mt-2 mb-2">${meal.category.charAt(0).toUpperCase() + meal.category.slice(1)}</span>
                     <div class="recipe-content">
                         <h6 class="mx-1">${meal.meal_name}</h6>
                         <div class="recipe-macros mb-2">
@@ -112,6 +112,10 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
                                 `).join('')}
                             </ul>
                         </div>
+
+                        <button class="btn btn-primary w-100 mt-3">
+                            <i class="fas fa-plus me-1"></i> Log This Meal
+                        </button>
                     </div>
                 </div>
             `;
