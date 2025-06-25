@@ -3,6 +3,7 @@ require_once '../../utils/connection.php';
 
 $sql_extract = "
     SELECT
+        user_meal_log_id,
         meal_name,
         category,
         ROUND(protein_g, 2) AS protein,
@@ -13,7 +14,7 @@ $sql_extract = "
     FROM user_meal_logs_t
     WHERE user_id = ?
         AND DATE(created_at) = CURDATE()
-    ORDER BY created_at DESC;";
+    ORDER BY created_at ASC;";
 
 $mealsByCategory = [
     'breakfast' => [],

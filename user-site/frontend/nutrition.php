@@ -236,7 +236,16 @@ require_once '../backend/preload_meal_logs.php';
                                                     <div class="macro-pill calories"><strong><?= $meal['calories'] ?></strong> kcal</div>
                                                 </div>
                                                 <div class="meal-item-actions">
-                                                    <button class="btn btn-sm btn-icon"><i class="fas fa-pen"></i></button>
+                                                    <button class="btn btn-sm btn-icon" onclick="openMealModal(this)"
+                                                        data-category="<?= $category ?>"
+                                                        data-meal-name="<?= htmlspecialchars($meal['meal_name']) ?>"
+                                                        data-protein="<?= $meal['protein'] ?>"
+                                                        data-carbs="<?= $meal['carbs'] ?>"
+                                                        data-fats="<?= $meal['fats'] ?>"
+                                                        data-calories="<?= $meal['calories'] ?>"
+                                                        data-meal-id="<?= $meal['user_meal_log_id'] ?>">
+                                                        <i class="fas fa-pen"></i>
+                                                    </button>
                                                     <button class="btn btn-sm btn-icon"><i class="fas fa-trash"></i></button>
                                                 </div>
                                             </div>
@@ -330,6 +339,7 @@ require_once '../backend/preload_meal_logs.php';
                 <form id="mealLogForm" action="../backend/process_save_meal_logs.php" method="POST">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                     <input type="hidden" name="category" id="mealCategoryInput">
+                    <input type="hidden" name="meal_id" id="mealIdInput">
                     <div class="form">
                         <label for="mealName" class="form-label">Meal Name</label>
                         <input type="text" id="mealName" class="form-control" name="meal_name" placeholder="Enter meal name" required>

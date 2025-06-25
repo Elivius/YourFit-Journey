@@ -3,25 +3,39 @@ let justOpened = false;
 function openMealModal(button) {
     const category = button?.dataset?.category || '';
 
-    const label = document.getElementById('mealCategoryLabel');
-    if (label) {
-        label.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+    // Update label and hidden input for category
+    document.getElementById('mealCategoryLabel').textContent =
+        category.charAt(0).toUpperCase() + category.slice(1);
+    document.getElementById('mealCategoryInput').value = category;
+
+    // Prefill form if it's an edit button
+    if (button?.dataset?.mealName !== undefined) {
+        document.getElementById('mealName').value = button.dataset.mealName || '';
+        document.getElementById('protein').value = button.dataset.protein || '';
+        document.getElementById('carbs').value = button.dataset.carbs || '';
+        document.getElementById('fats').value = button.dataset.fats || '';
+        document.getElementById('calories').value = button.dataset.calories || '';
+        document.getElementById('mealIdInput').value = button.dataset.mealId || '';
+    } else {
+        // Reset the form if it's an "Add Food" button
+        document.getElementById('mealName').value = '';
+        document.getElementById('protein').value = '';
+        document.getElementById('carbs').value = '';
+        document.getElementById('fats').value = '';
+        document.getElementById('calories').value = '';
     }
 
-    const hiddenInput = document.getElementById('mealCategoryInput');
-    if (hiddenInput) {
-        hiddenInput.value = category;
-    }
-
+    // Show the modal and backdrop
     document.getElementById('mealModal').classList.add('show');
     document.getElementById('modalBackdrop').classList.add('show');
 
-    // Prevent immediate close due to the same click
+    // Prevent immediate close due to same click
     justOpened = true;
     setTimeout(() => {
         justOpened = false;
     }, 100);
 }
+
 
 function closeMealModal() {
     document.getElementById('mealModal').classList.remove('show');
