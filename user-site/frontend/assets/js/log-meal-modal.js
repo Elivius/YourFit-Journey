@@ -23,6 +23,7 @@ function openMealModal(button) {
         document.getElementById('carbs').value = '';
         document.getElementById('fats').value = '';
         document.getElementById('calories').value = '';
+        document.getElementById('mealIdInput').value = '';
     }
 
     // Show the modal and backdrop
@@ -35,7 +36,6 @@ function openMealModal(button) {
         justOpened = false;
     }, 100);
 }
-
 
 function closeMealModal() {
     document.getElementById('mealModal').classList.remove('show');
@@ -72,3 +72,13 @@ proteinInput.addEventListener('input', updateCalories);
 carbsInput.addEventListener('input', updateCalories);
 fatsInput.addEventListener('input', updateCalories);
 
+function confirmDeleteMeal(button) {
+    const mealId = button.dataset.mealId;
+    if (!mealId) return alert("Meal ID missing");
+
+    if (confirm("Are you sure you want to delete this meal?")) {
+        const form = document.getElementById('deleteMealForm');
+        document.getElementById('deleteMealIdInput').value = mealId;
+        form.submit();
+    }
+}

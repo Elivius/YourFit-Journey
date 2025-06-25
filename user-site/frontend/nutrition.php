@@ -208,7 +208,7 @@ require_once '../backend/preload_meal_logs.php';
                                     </div>
                                     <div class="meal-summary">
                                         <span>
-                                            <?= array_sum(array_column($meals, 'calories')) ?> cal
+                                            <?= array_sum(array_column($meals, 'calories')) ?> kcal
                                         </span>
                                         <button class="btn btn-sm btn-primary" onclick="openMealModal(this)" data-category="<?= $category ?>">
                                             <i class="fas fa-plus"></i> Add Food
@@ -247,7 +247,7 @@ require_once '../backend/preload_meal_logs.php';
                                                         <i class="fas fa-pen"></i>
                                                     </button>
                                                     <button class="btn btn-sm btn-icon" onclick="confirmDeleteMeal(this)"
-                                                        data-meal-id="<?= $meal['id'] ?>">
+                                                        data-meal-id="<?= $meal['user_meal_log_id'] ?>">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>
@@ -260,6 +260,12 @@ require_once '../backend/preload_meal_logs.php';
                         </div>
                     </div>
                 </div>
+
+                <!-- Delete Meal Hidden Form -->
+                <form id="deleteMealForm" action="../backend/process_delete_meal_logs.php" method="POST" style="display:none;">
+                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                    <input type="hidden" name="meal_id" id="deleteMealIdInput">
+                </form>
 
                 <!-- Meal Recommendations -->
                 <div class="card mb-4">
