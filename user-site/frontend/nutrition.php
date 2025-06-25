@@ -246,7 +246,10 @@ require_once '../backend/preload_meal_logs.php';
                                                         data-meal-id="<?= $meal['user_meal_log_id'] ?>">
                                                         <i class="fas fa-pen"></i>
                                                     </button>
-                                                    <button class="btn btn-sm btn-icon"><i class="fas fa-trash"></i></button>
+                                                    <button class="btn btn-sm btn-icon" onclick="confirmDeleteMeal(this)"
+                                                        data-meal-id="<?= $meal['id'] ?>">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
                                                 </div>
                                             </div>
                                         <?php endforeach; ?>
