@@ -372,7 +372,7 @@ require_once '../backend/preload_meal_logs.php';
                         
                         <div class="form">
                             <label for="calories" class="form-label">Calories</label>
-                            <input type="number" id="calories" class="form-control" name="calories" placeholder="0" min="0" required>
+                            <input type="number" id="calories" class="form-control" name="calories" placeholder="0" min="0" step="0.1" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -385,6 +385,23 @@ require_once '../backend/preload_meal_logs.php';
             </div>
         </div>
     </div>
+
+    <!-- Template for sending CSRF to JS (Logging meal directly from Personalized Meals) -->
+    <template id="log-meal-form-customize-planner">
+        <form action="../backend/process_save_meal_logs.php" method="POST">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+            <input type="hidden" name="meal_name">
+            <input type="hidden" name="category">
+            <input type="hidden" name="protein">
+            <input type="hidden" name="carbs">
+            <input type="hidden" name="fats">
+            <input type="hidden" name="calories">
+
+            <button type="submit" class="btn btn-primary w-100 mt-3">
+                <i class="fas fa-plus me-1"></i> Log This Meal
+            </button>
+        </form>
+    </template>
 
     <?php if (isset($_SESSION['success'])): ?>
         <div class="alert alert-success"><?= htmlspecialchars($_SESSION['success']) ?></div>

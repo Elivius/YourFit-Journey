@@ -34,20 +34,21 @@ document.addEventListener("DOMContentLoaded", () => {
             const calorieDiff = goal.calories - consumed.calories;
 
             // Update text
-            document.getElementById("calories-summary").innerText = `${consumed.calories} / ${goal.calories} kcal`;
+            document.getElementById("calories-summary").innerText = `${consumed.calories.toFixed(1)} / ${goal.calories.toFixed(1)} kcal`;
             document.getElementById("calories-remaining").innerText =
                 calorieDiff >= 0
-                    ? `${calorieDiff} calories remaining`
-                    : `Over ${Math.abs(calorieDiff)} kcal`;
-            document.getElementById("protein-summary").innerText = `${consumed.protein}g / ${goal.protein_g}g`;
-            document.getElementById("carbs-summary").innerText = `${consumed.carbs}g / ${goal.carbs_g}g`;
-            document.getElementById("fats-summary").innerText = `${consumed.fats}g / ${goal.fats_g}g`;
+                    ? `${calorieDiff.toFixed(1)} calories remaining`
+                    : `Over ${Math.abs(calorieDiff).toFixed(1)} kcal`;
+            document.getElementById("protein-summary").innerText = `${consumed.protein.toFixed(1)}g / ${goal.protein_g.toFixed(1)}g`;
+            document.getElementById("carbs-summary").innerText = `${consumed.carbs.toFixed(1)}g / ${goal.carbs_g.toFixed(1)}g`;
+            document.getElementById("fats-summary").innerText = `${consumed.fats.toFixed(1)}g / ${goal.fats_g.toFixed(1)}g`;
 
             // Update progress bars
             document.getElementById("calories-bar").style.width = `${Math.min(100, (consumed.calories / goal.calories) * 100)}%`;
             document.getElementById("protein-bar").style.width = `${Math.min(100, (consumed.protein / goal.protein_g) * 100)}%`;
             document.getElementById("carbs-bar").style.width = `${Math.min(100, (consumed.carbs / goal.carbs_g) * 100)}%`;
             document.getElementById("fats-bar").style.width = `${Math.min(100, (consumed.fats / goal.fats_g) * 100)}%`;
+
 
             // Update chart
             if (macronutrientChartCanvas) {

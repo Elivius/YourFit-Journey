@@ -63,9 +63,8 @@ function updateCalories() {
     const protein = parseFloat(proteinInput.value) || 0;
     const carbs = parseFloat(carbsInput.value) || 0;
     const fats = parseFloat(fatsInput.value) || 0;
-
     const calories = (protein * 4) + (carbs * 4) + (fats * 9);
-    caloriesInput.value = Math.round(calories); // or use toFixed(1) for decimals
+    caloriesInput.value = calories.toFixed(1);
 }
 
 proteinInput.addEventListener('input', updateCalories);

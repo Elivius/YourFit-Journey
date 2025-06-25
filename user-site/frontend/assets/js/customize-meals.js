@@ -112,13 +112,26 @@ document.querySelector('.btn-refresh').addEventListener('click', async () => {
                                 `).join('')}
                             </ul>
                         </div>
-
-                        <button class="btn btn-primary w-100 mt-3">
-                            <i class="fas fa-plus me-1"></i> Log This Meal
-                        </button>
                     </div>
                 </div>
             `;
+
+            // After setting card.innerHTML (before appendChild)
+            const recipeContent = card.querySelector('.recipe-content');
+
+            // Clone and populate the form
+            const formTemplate = document.getElementById('log-meal-form-customize-planner');
+            const formClone = formTemplate.content.cloneNode(true);
+
+            formClone.querySelector('[name="meal_name"]').value = meal.meal_name;
+            formClone.querySelector('[name="category"]').value = meal.category;
+            formClone.querySelector('[name="protein"]').value = meal.meal_macros.protein;
+            formClone.querySelector('[name="carbs"]').value = meal.meal_macros.carbs;
+            formClone.querySelector('[name="fats"]').value = meal.meal_macros.fat;
+            formClone.querySelector('[name="calories"]').value = meal.meal_macros.calories;
+
+            // Append form to .recipe-content
+            recipeContent.appendChild(formClone);
 
             container.appendChild(card);
         });
