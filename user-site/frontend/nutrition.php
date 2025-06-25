@@ -65,7 +65,7 @@ require_once '../backend/preload_meal_logs.php';
                     <div class="col-12 d-flex">
                     <!-- <div class="col-lg-8 d-flex"> -->
                         <div class="card flex-fill d-flex flex-column">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                                 <h5 class="card-title mb-0">Today's Nutrition Summary</h5>
                                 <div class="card-actions">
                                     <div class="date-selector d-flex align-items-center gap-2">

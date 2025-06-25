@@ -375,8 +375,6 @@
   min-height: 2.5rem;  /* Just slightly taller */
 }
 
-
-
 .card-actions .form-select:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25);
@@ -387,6 +385,25 @@
   color: var(--body-color);
 }
 
+@media (max-width: 767px) {
+    .card-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-header .card-title {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .card-header .card-actions {
+        margin-top: 0.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
 
 /* Add overlay for mobile sidebar */
 .sidebar-overlay {
