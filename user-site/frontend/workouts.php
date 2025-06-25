@@ -82,36 +82,24 @@ require_once '../backend/preload_all_workouts.php';
                         <div class="row g-4 mb-4">
                             <div class="col-md-3">
                                 <div class="workout-category-card active" data-category="chest">
-                                    <div class="workout-category-icon">
-                                        <i class="fas fa-fist-raised"></i>
-                                    </div>
                                     <h4>Chest</h4>
                                     <p>Target pectoral muscles and shoulders</p>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="workout-category-card" data-category="back">
-                                    <div class="workout-category-icon">
-                                        <i class="fas fa-swimmer"></i>
-                                    </div>
                                     <h4>Back</h4>
                                     <p>Strengthen your back and improve posture</p>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="workout-category-card" data-category="legs">
-                                    <div class="workout-category-icon">
-                                        <i class="fas fa-running"></i>
-                                    </div>
                                     <h4>Legs</h4>
                                     <p>Focus on quadriceps, hamstrings, and calves</p>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="workout-category-card" data-category="arms">
-                                    <div class="workout-category-icon">
-                                        <i class="fas fa-child"></i>
-                                    </div>
                                     <h4>Arms</h4>
                                     <p>Target biceps, triceps, and shoulders</p>
                                 </div>
@@ -146,9 +134,9 @@ require_once '../backend/preload_all_workouts.php';
                                                             <p class="mb-2 muted-p small">Target muscles:</p>
 
                                                             <div class="d-flex flex-wrap gap-2 mb-0">
-                                                                <span class="alternative-badge">Chest</span>
-                                                                <span class="alternative-badge">Shoulders</span>
-                                                                <span class="alternative-badge">Triceps</span>
+                                                                <span class="workout-pill">Chest</span>
+                                                                <span class="workout-pill">Shoulders</span>
+                                                                <span class="workout-pill">Triceps</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -193,14 +181,6 @@ require_once '../backend/preload_all_workouts.php';
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="exercise-alternatives mt-3">
-                                                                <h6>Alternatives:</h6>
-                                                                <div class="alternatives-list">
-                                                                    <span class="alternative-badge">Dumbbell Bench Press</span>
-                                                                    <span class="alternative-badge">Push-ups</span>
-                                                                    <span class="alternative-badge">Chest Press Machine</span>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -218,9 +198,9 @@ require_once '../backend/preload_all_workouts.php';
                                                             <p class="mb-2 muted-p small">Target muscles:</p>
 
                                                             <div class="d-flex flex-wrap gap-2 mb-0">
-                                                                <span class="alternative-badge">Upper Chest</span>
-                                                                <span class="alternative-badge">Shoulders</span>
-                                                            </div>
+                                                                <span class="workout-pill">Upper Chest</span>
+                                                                <span class="workout-pill">Shoulders</span>
+                                                            </div>                            
                                                         </div>
                                                     </div>
                                                     <i class="fa-solid fa-chevron-down accordion-icon"></i>
@@ -264,14 +244,6 @@ require_once '../backend/preload_all_workouts.php';
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="exercise-alternatives mt-3">
-                                                                <h6>Alternatives:</h6>
-                                                                <div class="alternatives-list">
-                                                                    <span class="alternative-badge">Incline Barbell Press</span>
-                                                                    <span class="alternative-badge">Incline Push-ups</span>
-                                                                    <span class="alternative-badge">Cable Flyes</span>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -304,7 +276,13 @@ require_once '../backend/preload_all_workouts.php';
                                                         <span class="exercise-number">1</span>
                                                         <div class="exercise-title">
                                                             <h6>Pull-ups</h6>
-                                                            <span class="exercise-target">Target: Lats, Rhomboids, Biceps</span>
+                                                            <p class="mb-2 muted-p small">Target muscles:</p>
+                                                             
+                                                            <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                <span class="workout-pill">Lats</span>
+                                                                <span class="workout-pill">Rhomboids</span>
+                                                                <span class="workout-pill">Biceps</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <i class="fa-solid fa-chevron-down accordion-icon"></i>
@@ -346,14 +324,6 @@ require_once '../backend/preload_all_workouts.php';
                                                                         <span class="parameter-label">Weight:</span>
                                                                         <span class="parameter-value">Bodyweight</span>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="exercise-alternatives mt-3">
-                                                                <h6>Alternatives:</h6>
-                                                                <div class="alternatives-list">
-                                                                    <span class="alternative-badge">Assisted Pull-ups</span>
-                                                                    <span class="alternative-badge">Lat Pulldown</span>
-                                                                    <span class="alternative-badge">Inverted Rows</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -412,14 +382,6 @@ require_once '../backend/preload_all_workouts.php';
                                                                         <span class="parameter-label">Weight:</span>
                                                                         <span class="parameter-value">Moderate to heavy</span>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="exercise-alternatives mt-3">
-                                                                <h6>Alternatives:</h6>
-                                                                <div class="alternatives-list">
-                                                                    <span class="alternative-badge">Dumbbell Rows</span>
-                                                                    <span class="alternative-badge">T-Bar Rows</span>
-                                                                    <span class="alternative-badge">Cable Rows</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -498,14 +460,6 @@ require_once '../backend/preload_all_workouts.php';
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="exercise-alternatives mt-3">
-                                                                <h6>Alternatives:</h6>
-                                                                <div class="alternatives-list">
-                                                                    <span class="alternative-badge">Goblet Squat</span>
-                                                                    <span class="alternative-badge">Leg Press</span>
-                                                                    <span class="alternative-badge">Front Squat</span>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -582,14 +536,6 @@ require_once '../backend/preload_all_workouts.php';
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="exercise-alternatives mt-3">
-                                                                <h6>Alternatives:</h6>
-                                                                <div class="alternatives-list">
-                                                                    <span class="alternative-badge">Dumbbell Curls</span>
-                                                                    <span class="alternative-badge">Hammer Curls</span>
-                                                                    <span class="alternative-badge">Cable Curls</span>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -619,30 +565,33 @@ require_once '../backend/preload_all_workouts.php';
                         <div class="row">
                             <?php foreach ($workouts as $workout): ?>
                                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 mb-4 px-2">
-                                    <div class="card workout-card gradient-card h-100 border-0">
-                                        <div class="card-body pb-2">
-                                            <h5 class="card-title fw-semibold text-white fs-5 mb-2"><?= htmlspecialchars($workout['workout_name']) ?></h5>
-                                            
+                                    <div class="card workout-card gradient-card h-100 d-flex flex-column border-0">
+                                        <div class="card-header pb-3 pt-3">
+                                            <h5 class="card-title"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                        </div>
+
+                                        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center pt-2 pb-2">
                                             <p class="muted-p mb-2">
                                                 <?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?>
                                             </p>
 
-                                            <p class="mb-1 text-white">
-                                                <i class="fas fa-clock me-1"></i>
-                                                <?= $workout['estimated_duration'] ?? '—' ?> mins
-                                            </p>
-
-                                            <p class="mb-0 text-white">
-                                                <i class="fas fa-dumbbell me-1"></i>
-                                                <?= $workout['exercise_count'] ?? 0 ?> <?= $workout['exercise_count'] == 1 ? 'exercise' : 'exercises' ?>
-                                            </p>
-
+                                            <div class="pill-row d-flex flex-wrap justify-content-center gap-2">
+                                                <p class="workout-pill time mb-0">
+                                                    <i class="fas fa-clock me-1"></i>
+                                                    <strong><?= $workout['estimated_duration'] ?? '—' ?></strong> mins
+                                                </p>
+                                                <p class="workout-pill exercise mb-0">
+                                                    <i class="fas fa-dumbbell me-1"></i>
+                                                    <strong><?= $workout['exercise_count'] ?? 0 ?></strong> <?= $workout['exercise_count'] == 1 ? 'exercise' : 'exercises' ?>
+                                                </p>
+                                            </div>
                                         </div>
 
                                         <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2">
-                                            <a href="workouts-view.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-md btn-light px-4 py-2">View</a>
+                                            <a href="workouts-view.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-md custom-view-btn px-4 py-2">View</a>
                                         </div>
                                     </div>
+
                                 </div>
                             <?php endforeach; ?>
                         </div>

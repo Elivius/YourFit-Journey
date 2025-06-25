@@ -150,7 +150,7 @@ foreach ($exercises as $exercise) {
                                                                         $muscles = explode(',', $exercise['targeted_muscle']); 
                                                                         foreach ($muscles as $muscle): 
                                                                     ?>
-                                                                        <span class="alternative-badge"><?= htmlspecialchars(trim($muscle)); ?></span>
+                                                                        <span class="workout-pill"><?= htmlspecialchars(trim($muscle)); ?></span>
                                                                     <?php endforeach; ?>
                                                                 </div>
 

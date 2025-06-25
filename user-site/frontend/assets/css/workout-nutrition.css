@@ -19,54 +19,46 @@
 }
 
 .workout-category-card {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    border-radius: 1rem;
-    padding: 2rem;
-    height: 100%;
-    transition: all 0.3s ease;
-    border: 1px solid var(--card-border);
-    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* horizontal centering */
+    justify-content: center; /* vertical centering */
     text-align: center;
+    height: 100%;            /* optional: ensure it fills the parent */
+    padding: 2rem;
+    border-radius: 1rem;
+    background: var(--card-bg, #1e1e1e);
+    border: 1px solid var(--primary, #4facfe);
+    box-shadow: var(--shadow, 0 2px 6px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
+
 .workout-category-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 0 30px var(--primary);
 }
 
 .workout-category-card.active {
-    background: linear-gradient(135deg, #8ED1F4, #FFBCDB);
-}
-
-.workout-category-card.active .workout-category-icon {
-    background: #A7E5F0;
-}
-
-.workout-category-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary), var(--gradient-end));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.5rem;
-    color: white;
-    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    border: none;
 }
 
 .workout-category-card h4 {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
-    color: #ffffff !important;
 }
 
 .workout-category-card p {
-    color: #ffffff !important;
     font-size: 0.9rem;
     margin-bottom: 0;
+}
+
+.workout-category-card.active h4,
+.workout-category-card.active p {
+    color: #fff !important;
 }
 
 .workout-plan-info {
@@ -96,9 +88,9 @@
     background-color: var(--card-bg);
     margin-bottom: 1rem;
     color: var(--body-color);
-    border-radius: 0.5rem; /* ✅ this applies to all corners */
-    overflow: hidden;   /* ✅ ensures inner content respects rounded corners */
-    transition: border-color 0.3s ease;
+    border-radius: 0.5rem; 
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .workout-exercises .accordion-item:hover {
@@ -221,27 +213,34 @@
     margin-bottom: 0.25rem;
 }
 
-.parameter-value {
-    font-weight: normal;
-}
-
-.exercise-alternatives h6 {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-}
-
-.alternatives-list {
+.pill-row {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
 
-.alternative-badge {
+.workout-pill {
     background-color: rgba(var(--primary-rgb), 0.1);
-    color: var(--primary);
+    /* color: var(--primary) !important; */
     padding: 0.25rem 0.75rem;
     border-radius: 2rem;
     font-size: 0.8rem;
+}
+
+.workout-pill.sets {
+    color: var(--primary) !important;
+}
+
+.workout-pill.time {
+    color: var(--success) !important;
+}
+
+.workout-pill.exercise {
+    color: var(--warning) !important;
+}
+
+.workout-pill.weight {
+    color: var(--danger) !important;
 }
 
 .workout-tips {
@@ -272,46 +271,43 @@
 }
 
 #my-workouts .fa-folder-open {
-    color: var(--body-color); /* Change icon color */
+    color: var(--body-color);
 }
 
 .gradient-card {
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-    color: #fff;
+    background: var(--card-bg);
     border-radius: 1rem;
-    transition: transform 0.2s ease-in;
     box-shadow: 0 0.5rem 1.2rem rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 1px solid var(--card-border) !important;
 }
 
 .gradient-card:hover {
-    transform: scale(1.05);
-}
-
-.gradient-card p,
-.gradient-card .card-text,
-.gradient-card i,
-.gradient-card small {
-    color: #e6e6e6de !important;
-    font-size: medium;
-}
-
-.gradient-card .btn-light {
-    background-color: #fff;
-    color: #6E86DC;
-    border: none;
-}
-
-.gradient-card .btn-light:hover {
-    background-color: #e9ecef;
+    transform: translateY(-5px);
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 30px var(--primary);
 }
 
 .custom-hover-card {
     border: 1px solid transparent; /* No visible border by default */
-    transition: border-color 0.8s ease;
+    transition: all 0.3s ease;
 }
 
 .custom-hover-card:hover {
     border-color: var(--primary);
+}
+
+.custom-view-btn {
+    background-color: var(--primary);
+    color: #fff !important;
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.custom-view-btn:hover {
+    background-color: var(--primary-hover);
 }
 
 /* Nutrition Page Styles */
@@ -803,10 +799,6 @@
     
     .exercise-number {
         margin-bottom: 0.5rem;
-    }
-    
-    .alternatives-list {
-        flex-direction: column;
     }
     
     .meal-item-macros {

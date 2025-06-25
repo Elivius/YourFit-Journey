@@ -70,13 +70,13 @@ require_once '../backend/preload_workouts.php';
                                     <p class="mb-3 muted-p"><?= htmlspecialchars($workout_description) ?></p>
 
                                     <div class="d-flex align-items-center gap-3 flex-wrap">
-                                        <span>
-                                            <i class="fas fa-clock me-1" style="color: var(--primary);"></i>
-                                            <?= htmlspecialchars($estimated_duration) ?> mins
+                                        <span class="workout-pill time fs-6">
+                                            <i class="fas fa-clock me-1"></i>
+                                            <strong><?= htmlspecialchars($estimated_duration) ?></strong> mins
                                         </span>
-                                        <span>
-                                            <i class="fas fa-dumbbell me-1" style="color: var(--primary);"></i>
-                                            <?= count($exercises) ?> exercises
+                                        <span class="workout-pill exercise fs-6">
+                                            <i class="fas fa-dumbbell me-1"></i>
+                                            <strong><?= count($exercises) ?></strong> exercises
                                         </span>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@ require_once '../backend/preload_workouts.php';
                                                                     $muscles = explode(',', $ex['targeted_muscle']);
                                                                     foreach ($muscles as $muscle):                                                                        
                                                                 ?>
-                                                                    <span class="alternative-badge"><?= htmlspecialchars(trim($muscle)); ?></span>
+                                                                    <span class="workout-pill"><?= htmlspecialchars(trim($muscle)); ?></span>
                                                                 <?php endforeach; ?>
                                                             </div>
 
@@ -148,37 +148,24 @@ require_once '../backend/preload_workouts.php';
                                                                 <div class="exercise-parameters">
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Sets:</span>
-                                                                        <span class="parameter-value"><?= $ex['sets'] ?></span>
+                                                                        <span class="workout-pill sets" style="font-size: 14px;"><strong><?= $ex['sets'] ?></strong></span>
                                                                     </div>
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Reps:</span>
-                                                                        <span class="parameter-value"><?= $ex['reps'] ?></span>
+                                                                        <span class="workout-pill exercise" style="font-size: 14px;"><strong><?= $ex['reps'] ?></strong></span>
                                                                     </div>
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Rest:</span>
-                                                                        <span class="parameter-value"><?= $ex['rest'] ?> secs</span>
+                                                                        <span class="workout-pill time" style="font-size: 14px;"><strong><?= $ex['rest'] ?></strong> secs</span>
                                                                     </div>
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Weight:</span>
-                                                                        <span class="parameter-value">
-                                                                            <?= !empty($ex['weight']) ? $ex['weight'] . ' kg' : '-' ?>
+                                                                        <span class="workout-pill weight" style="font-size: 14px;">
+                                                                            <strong><?= !empty($ex['weight']) ? $ex['weight'] . ' kg' : '-' ?></strong>
                                                                         </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <?php if (!empty($ex['alternatives'])): ?>
-                                                                <?php $alternatives = array_filter(array_map('trim', explode(',', $ex['alternatives']))); ?>
-                                                                <?php if (count($alternatives) > 0): ?>
-                                                                    <div class="exercise-alternatives mt-3">
-                                                                        <h6>Alternatives:</h6>
-                                                                        <div class="alternatives-list">
-                                                                            <?php foreach ($alternatives as $alt): ?>
-                                                                                <span class="alternative-badge"><?= htmlspecialchars($alt) ?></span>
-                                                                            <?php endforeach; ?>
-                                                                        </div>
-                                                                    </div>
-                                                                <?php endif; ?>
-                                                            <?php endif; ?>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -1,11 +1,9 @@
 =============================== PLANS ===================================
 
 - Need pop up display confirmation modal
-- UI colour refinement
-- Delete, Edit and Add workout
-- Responsive for Nutririon Page
+- Responsiveness for Nutrition Page
+- Responsiveness for Workout Page
 
 ============================== URGENT ===================================
 
-- Check whole meal history
-- Workout Edit Delete- Colour Card UI Refinement
+- Workout Edit Delete
