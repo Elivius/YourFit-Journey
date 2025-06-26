@@ -41,11 +41,7 @@ require_once '../backend/preload_meal_logs.php';
                     <h1 class="page-title">Nutrition</h1>
                 </div>
                 <div class="header-right">
-                    <div class="search-box">
-                        <input type="text" placeholder="Search...">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <div class="theme-switch-container">
+                    <div class="theme-switch-container me-1">
                         <div class="theme-switch">
                             <input type="checkbox" id="theme-toggle" class="theme-switch-input">
                             <label for="theme-toggle" class="theme-switch-label">

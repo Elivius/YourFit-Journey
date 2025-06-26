@@ -78,18 +78,16 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
                     <h1 class="page-title"><?= $isEditing ? 'Edit' : 'Create New' ?> Workout</h1>
                 </div>
                 <div class="header-right">
-                    <div class="header-right">
-                        <div class="theme-switch-container">
-                            <div class="theme-switch">
-                                <input type="checkbox" id="theme-toggle" class="theme-switch-input">
-                                <label for="theme-toggle" class="theme-switch-label">
-                                    <span class="theme-switch-slider">
-                                        <span class="switch-handle sun-shape"></span>
-                                    </span>
-                                </label>
-                            </div>
+                    <div class="theme-switch-container me-1">
+                        <div class="theme-switch">
+                            <input type="checkbox" id="theme-toggle" class="theme-switch-input">
+                            <label for="theme-toggle" class="theme-switch-label">
+                                <span class="theme-switch-slider">
+                                    <span class="switch-handle sun-shape"></span>
+                                </span>
+                            </label>
                         </div>
-                    </div>                
+                    </div>             
                 </div>
             </header>
             
