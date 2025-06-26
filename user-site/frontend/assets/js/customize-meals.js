@@ -182,7 +182,7 @@ function renderMeals(data) {
 
         <div class="alert alert-success mb-3">
             <h6>Meal Plan Total Macros</h6>
-            <div class="d-flex gap-3 flex-wrap mt-2">
+            <div class="d-flex gap-2 flex-wrap mt-2">
                 <div class="macro-pill protein"><strong>${mealMacros.protein.toFixed(1)}g</strong> Protein</div>
                 <div class="macro-pill carbs"><strong>${mealMacros.carbs.toFixed(1)}g</strong> Carbs</div>
                 <div class="macro-pill fats"><strong>${mealMacros.fats.toFixed(1)}g</strong> Fats</div>

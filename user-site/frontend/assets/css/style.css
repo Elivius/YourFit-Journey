@@ -1,7 +1,7 @@
 /* Import workout and nutrition styles */
-@import url("settings.css");
 @import url("workouts.css");
 @import url("nutritions.css");
+@import url("settings.css");
 
 :root {
   /* Light Theme Variables */

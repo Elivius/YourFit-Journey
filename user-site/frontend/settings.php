@@ -329,39 +329,10 @@ require_once '../backend/preload_settings.php';
                                                 </label>
                                             </div>
                                         </div>
-                                        
-                                        <!-- <div class="goal-details mt-4"> -->
-                                            <!-- <div class="row g-3">
-                                                <div class="col-md-6">
-                                                    <label for="targetWeight" class="form-label">Target Weight</label>
-                                                    <div class="input-group">
-                                                        <input type="number" class="form-control" id="targetWeight" value="70">
-                                                        <span class="input-group-text">kg</span>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <label for="weeklyGoal" class="form-label">Weekly Goal</label>
-                                                    <select class="form-select" id="weeklyGoal">
-                                                        <option value="0.25">Lose 0.25 kg per week</option>
-                                                        <option value="0.5" selected>Lose 0.5 kg per week</option>
-                                                        <option value="0.75">Lose 0.75 kg per week</option>
-                                                        <option value="1">Lose 1 kg per week</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="goal-summary">
-                                                        <p>Current weight: <strong>75 kg</strong></p>
-                                                        <p>Target weight: <strong>70 kg</strong></p>
-                                                        <p>Weight to lose: <strong>5 kg</strong></p>
-                                                        <p>Estimated time: <strong>10 weeks</strong></p>
-                                                    </div>
-                                                </div> -->
-                                                <div class="form-message" id="primaryGoalFormMessage"></div>
-                                                <div class="mt-3 settings-btn-margin">
-                                                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                                                </div>
-                                            <!-- </div> -->
-                                        <!-- </div> -->
+                                        <div class="form-message" id="primaryGoalFormMessage"></div>
+                                        <div class="mt-3 settings-btn-margin">
+                                            <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
@@ -384,7 +355,7 @@ require_once '../backend/preload_settings.php';
                                                 <label class="form-check-label" for="sedentary">
                                                     <div class="activity-level-header">
                                                         <h6>Sedentary</h6>
-                                                        <span class="activity-level-tag">Little to no exercise</span>
+                                                        <div class="macro-pill protein">Little to no exercise</div>
                                                     </div>
                                                     <p>Desk job and little physical activity outside of daily tasks.</p>
                                                 </label>
@@ -395,7 +366,7 @@ require_once '../backend/preload_settings.php';
                                                 <label class="form-check-label" for="light">
                                                     <div class="activity-level-header">
                                                         <h6>Lightly Active</h6>
-                                                        <span class="activity-level-tag">Light exercise 1-3 days/week</span>
+                                                        <div class="macro-pill protein">Light exercise 1-3 days/week</div>
                                                     </div>
                                                     <p>Some walking, light jogging, or recreational activities a few times per week.</p>
                                                 </label>
@@ -406,7 +377,7 @@ require_once '../backend/preload_settings.php';
                                                 <label class="form-check-label" for="moderate">
                                                     <div class="activity-level-header">
                                                         <h6>Moderately Active</h6>
-                                                        <span class="activity-level-tag">Moderate exercise 3-5 days/week</span>
+                                                        <div class="macro-pill protein">Moderate exercise 3-5 days/week</div>
                                                     </div>
                                                     <p>Regular exercise including jogging, cycling, or sports several times per week.</p>
                                                 </label>
@@ -417,7 +388,7 @@ require_once '../backend/preload_settings.php';
                                                 <label class="form-check-label" for="active">
                                                     <div class="activity-level-header">
                                                         <h6>Active</h6>
-                                                        <span class="activity-level-tag">Hard exercise 6-7 days/week</span>
+                                                        <div class="macro-pill protein">Hard exercise 6-7 days/week</div>
                                                     </div>
                                                     <p>Intense exercise or sports training almost daily.</p>
                                                 </label>
@@ -428,7 +399,7 @@ require_once '../backend/preload_settings.php';
                                                 <label class="form-check-label" for="veryActive">
                                                     <div class="activity-level-header">
                                                         <h6>Very Active</h6>
-                                                        <span class="activity-level-tag">Very hard exercise & physical job</span>
+                                                        <div class="macro-pill protein">Very hard exercise & physical job</div>
                                                     </div>
                                                     <p>Very intense exercise multiple times per day or physically demanding job.</p>
                                                 </label>

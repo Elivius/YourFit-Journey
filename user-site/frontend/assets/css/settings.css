@@ -170,14 +170,6 @@ input:checked + .btn-outline-primary {
     font-weight: 600;
 }
 
-.activity-level-tag {
-    background-color: rgba(var(--primary-rgb), 0.1);
-    color: var(--primary);
-    padding: 0.25rem 0.5rem;
-    border-radius: 2rem;
-    font-size: 0.75rem;
-}
-
 .activity-level-option p {
     margin: 0;
     color: var(--secondary);

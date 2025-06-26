@@ -6,7 +6,8 @@
 
 ============================== URGENT ===================================
 
-- Category
-- Validation
+- Responsive for Fitness goal pill
+- Dev Feedback
+- Exercise Category Filter
 - Trainee Prebuilt
-- Responsiveness for Nutrition Page
+- Validation

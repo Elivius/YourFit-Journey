@@ -155,11 +155,11 @@ require_once '../backend/preload_meal_logs.php';
                             </button>
                         </div>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body p-4">
                         <div class="meal-list">
                         <?php foreach ($mealsByCategory as $category => $meals): ?>
                             <div class="meal-section">
-                                <div class="meal-header">
+                                <div class="meal-header d-flex flex-column flex-md-row justify-content-between align-items-center text-center text-md-start">
                                     <div class="meal-title mx-1">
                                         <?php
                                             $icons = [
@@ -235,7 +235,9 @@ require_once '../backend/preload_meal_logs.php';
                 <!-- Meal Recommendations -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h5 class="card-title">Personalized Meal Recommendations</h5>
+                        <div class="d-flex justify-content-center">
+                            <h5 class="card-title text-center mb-0">Personalized Meal Recommendations</h5>
+                        </div>
                         <div class="card-actions">
                             <button class="btn btn-sm btn-outline-primary btn-refresh">
                                 <i class="fas fa-sync-alt"></i> Refresh
