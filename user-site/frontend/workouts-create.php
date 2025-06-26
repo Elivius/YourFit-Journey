@@ -37,7 +37,6 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
             reps: ex.reps,
             rest: ex.rest,
             weight: ex.weight,
-            notes: ex.notes
         }))
     ));
 </script>
@@ -50,6 +49,7 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $isEditing ? 'Edit Workout' : 'Create Workout' ?> - YourFit Journey</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->

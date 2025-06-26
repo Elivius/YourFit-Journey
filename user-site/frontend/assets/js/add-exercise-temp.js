@@ -90,10 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                         </span>
                                     </div>
                                 </div>
-                                <div class="mt-3">
-                                    <label class="form-label">Notes:</label>
-                                    <textarea name="exercises[${index}][notes]" class="form-control" rows="2" placeholder="Add notes... (Optional)">${ex.notes || ''}</textarea>
-                                </div>
 
                                 <!-- Hidden inputs -->
                                 <input type="hidden" name="exercises[${index}][id]" value="${ex.id}">

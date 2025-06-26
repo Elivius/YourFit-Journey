@@ -68,7 +68,7 @@ if ($workout_id) {
 
     // Insert updated exercises again (fresh data)
     if (isset($_POST['exercises']) && is_array($_POST['exercises'])) {
-        $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight, notes) 
+        $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight) 
                    VALUES (?, ?, ?, ?, ?, ?, ?)";
         if ($stmt = mysqli_prepare($connection, $sql_insert_exercise)) {
             foreach ($_POST['exercises'] as $exercise) {
@@ -77,9 +77,8 @@ if ($workout_id) {
                 $reps = cleanInput($exercise['reps']);
                 $rest = sanitizeInt($exercise['rest']);
                 $weight = cleanInput($exercise['weight']);
-                $notes = cleanInput($exercise['notes']);
 
-                mysqli_stmt_bind_param($stmt, "iiisiss", $workout_id, $exercise_id, $sets, $reps, $rest, $weight, $notes);
+                mysqli_stmt_bind_param($stmt, "iiisiss", $workout_id, $exercise_id, $sets, $reps, $rest, $weight);
                 mysqli_stmt_execute($stmt);
             }
             mysqli_stmt_close($stmt);
@@ -117,7 +116,7 @@ if ($workout_id) {
     
     // Insert each exercise
     if (isset($_POST['exercises']) && is_array($_POST['exercises'])) {
-        $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight, notes) 
+        $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight) 
                    VALUES (?, ?, ?, ?, ?, ?, ?)";
         if ($stmt = mysqli_prepare($connection, $sql_insert_exercise)) {
             foreach ($_POST['exercises'] as $exercise) {
@@ -126,9 +125,8 @@ if ($workout_id) {
                 $reps = cleanInput($exercise['reps']); // Could be a string like "10-12"
                 $rest = sanitizeInt($exercise['rest']);
                 $weight = cleanInput($exercise['weight']); // Could be string (e.g. "bodyweight")
-                $notes = cleanInput($exercise['notes']);
     
-                mysqli_stmt_bind_param($stmt, "iiisiss", $workout_id, $exercise_id, $sets, $reps, $rest, $weight, $notes);
+                mysqli_stmt_bind_param($stmt, "iiisiss", $workout_id, $exercise_id, $sets, $reps, $rest, $weight);
                 mysqli_stmt_execute($stmt);
             }
             mysqli_stmt_close($stmt);

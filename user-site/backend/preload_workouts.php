@@ -32,7 +32,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 $exercises = [];
 
 $sql_exercises = "
-    SELECT we.sets, we.reps, we.rest, we.weight, we.notes,
+    SELECT we.sets, we.reps, we.rest, we.weight,
            e.exercise_id, e.exercise_name, e.targeted_muscle, e.instructions
     FROM workout_exercises_t we
     JOIN exercises_t e ON we.exercise_id = e.exercise_id
