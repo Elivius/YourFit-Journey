@@ -566,8 +566,17 @@ require_once '../backend/preload_all_workouts.php';
                             <?php foreach ($workouts as $workout): ?>
                                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 mb-4 px-2">
                                     <div class="card workout-card gradient-card h-100 d-flex flex-column border-0">
-                                        <div class="card-header pb-3 pt-3">
-                                            <h5 class="card-title"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                        <div class="card-header d-flex justify-content-between align-items-center pb-2 pt-2">
+                                            <h5 class="card-title mb-0"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                            
+                                            <div class="d-flex gap-2">
+                                                <a href="workouts-create.php?edit=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-icon">
+                                                    <i class="fas fa-pen"></i>
+                                                </a>
+                                                <button class="btn btn-sm btn-icon">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </div>
 
                                         <div class="card-body d-flex flex-column justify-content-center align-items-center text-center pt-2 pb-2">
@@ -587,7 +596,7 @@ require_once '../backend/preload_all_workouts.php';
                                             </div>
                                         </div>
 
-                                        <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2">
+                                        <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2 px-4">
                                             <a href="workouts-view.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-md custom-view-btn px-4 py-2">View</a>
                                         </div>
                                     </div>

@@ -1,4 +1,6 @@
-localStorage.removeItem("selectedExercises");
+if (!location.search.includes("edit=")) {
+    localStorage.removeItem("selectedExercises");
+}
 
 let selectedExercises = JSON.parse(localStorage.getItem("selectedExercises") || "[]");
 let hasRenderedOnce = false;
@@ -42,7 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const accordionItem = document.createElement("div");
             accordionItem.className = "accordion-item";
-
             accordionItem.innerHTML = `
                 <h2 class="accordion-header" id="${headingId}">
                     <button class="accordion-button ${isFirstAndFirstRender ? '' : 'collapsed'}" type="button"
@@ -67,31 +68,31 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <div class="parameter">
                                         <span class="parameter-label">Sets:</span>
                                         <span class="parameter-value">
-                                            <input name="exercises[${index}][sets]" type="number" class="form-control form-control-sm" value="3" min="1" required>
+                                            <input name="exercises[${index}][sets]" type="number" class="form-control form-control-sm" value="${ex.sets || 3}" min="1" required>
                                         </span>
                                     </div>
                                     <div class="parameter">
                                         <span class="parameter-label">Reps:</span>
                                         <span class="parameter-value">
-                                            <input name="exercises[${index}][reps]" type="text" class="form-control form-control-sm" value="10-12" required>
+                                            <input name="exercises[${index}][reps]" type="text" class="form-control form-control-sm" value="${ex.reps || '10-12'}" required>
                                         </span>
                                     </div>
                                     <div class="parameter">
                                         <span class="parameter-label">Rest (seconds):</span>
                                         <span class="parameter-value">
-                                            <input name="exercises[${index}][rest]" type="number" class="form-control form-control-sm" value="60" min="0">
+                                            <input name="exercises[${index}][rest]" type="number" class="form-control form-control-sm" value="${ex.rest || 60}" min="0">
                                         </span>
                                     </div>
                                     <div class="parameter">
                                         <span class="parameter-label">Weight (kg):</span>
                                         <span class="parameter-value">
-                                            <input name="exercises[${index}][weight]" type="text" class="form-control form-control-sm" placeholder="Optional">
+                                            <input name="exercises[${index}][weight]" type="text" class="form-control form-control-sm" value="${ex.weight || ''}" placeholder="Optional">
                                         </span>
                                     </div>
                                 </div>
                                 <div class="mt-3">
                                     <label class="form-label">Notes:</label>
-                                    <textarea name="exercises[${index}][notes]" class="form-control" rows="2" placeholder="Add notes... (Optional)"></textarea>
+                                    <textarea name="exercises[${index}][notes]" class="form-control" rows="2" placeholder="Add notes... (Optional)">${ex.notes || ''}</textarea>
                                 </div>
 
                                 <!-- Hidden inputs -->
@@ -112,14 +113,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             accordionContainer.appendChild(accordionItem);
         });
-
+        
         // Only first render should expand the first one
         hasRenderedOnce = true;
-
+        
         document.querySelectorAll(".remove-exercise-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 const idToRemove = btn.getAttribute("data-id");
-                selectedExercises = selectedExercises.filter(e => e.id !== idToRemove);
+                selectedExercises = selectedExercises.filter(e => String(e.id) !== String(idToRemove));
                 localStorage.setItem("selectedExercises", JSON.stringify(selectedExercises));
                 renderExercises();
             });

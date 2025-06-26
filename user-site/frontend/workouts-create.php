@@ -1,6 +1,7 @@
 <?php
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
+require_once '../../utils/sanitize.php';
 require_once '../backend/preload_exercises.php';
 ?>
 
@@ -11,7 +12,36 @@ foreach ($exercises as $exercise) {
     $category = $exercise['category'];
     $groupedExercises[$category][] = $exercise;
 }
+
+// Detect if user is creating or editing workouts
+$isEditing = false;
+$workout_id = null;
+
+if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
+    $workout_id = sanitizeInt($_GET['edit']);
+    $isEditing = true;
+    require_once '../backend/preload_workouts.php';
+}
 ?>
+
+<!-- Prelaod user exercise relate dot the workout_id (Edit feature) -->
+<?php if ($isEditing): ?>
+<script>
+    const preloadedExercises = <?= json_encode($exercises, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?>;
+    localStorage.setItem("selectedExercises", JSON.stringify(
+        preloadedExercises.map((ex) => ({
+            id: ex.exercise_id ?? "", 
+            name: ex.exercise_name,
+            muscles: ex.targeted_muscle,
+            sets: ex.sets,
+            reps: ex.reps,
+            rest: ex.rest,
+            weight: ex.weight,
+            notes: ex.notes
+        }))
+    ));
+</script>
+<?php endif; ?>
 
 
 <!DOCTYPE html>
@@ -19,7 +49,7 @@ foreach ($exercises as $exercise) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Workout - YourFit Journey</title>
+    <title><?= $isEditing ? 'Edit Workout' : 'Create Workout' ?> - YourFit Journey</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -45,7 +75,7 @@ foreach ($exercises as $exercise) {
                     <button class="btn-toggle-sidebar" id="toggle-sidebar">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <h1 class="page-title">Create New Workout</h1>
+                    <h1 class="page-title"><?= $isEditing ? 'Edit' : 'Create New' ?> Workout</h1>
                 </div>
                 <div class="header-right">
                     <div class="header-right">
@@ -72,6 +102,10 @@ foreach ($exercises as $exercise) {
                     <div>
                         <form id="saveWorkoutForm" action="../backend/process_save_workouts.php" method="POST">
                             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                            <!-- If user is editing, need workout_id for update purpose -->
+                            <?php if ($isEditing): ?>
+                                <input type="hidden" name="workout_id" value="<?= $workout_id ?>">
+                            <?php endif; ?>
                             <!-- Workout Basic Info -->
                             <div class="card mb-4">
                                 <div class="card-header">
@@ -81,15 +115,26 @@ foreach ($exercises as $exercise) {
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label for="workout_name" class="form-label">Workout Name *</label>
-                                            <input type="text" class="form-control" id="workout_name" name="workout_name" placeholder="Chest day" required>
+                                            <input type="text" class="form-control" id="workout_name"
+                                                name="workout_name" placeholder="Chest day" required
+                                                <?php if ($isEditing): ?>
+                                                    value="<?= htmlspecialchars($workout_name) ?>"
+                                                <?php endif; ?>
+                                            >
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="estimated_duration" class="form-label">Estimated Duration (minutes)</label>
-                                            <input type="number" class="form-control" id="estimated_duration" name="estimated_duration" min="10" max="180" placeholder="Optional">
+                                            <input type="number" class="form-control" id="estimated_duration" 
+                                                name="estimated_duration" min="0" max="180" placeholder="Optional"
+                                                <?php if ($isEditing): ?>
+                                                    value="<?= htmlspecialchars($estimated_duration) ?>"
+                                                <?php endif; ?>
+                                            >
                                         </div>
                                         <div class="col-md-12 mb-3">
                                             <label for="workout_description" class="form-label">Description</label>
-                                            <textarea class="form-control" id="workout_description" name="workout_description" rows="3" placeholder="Describe your workout... (Optional)"></textarea>
+                                            <textarea class="form-control" id="workout_description" 
+                                                name="workout_description" rows="3" placeholder="Describe your workout... (Optional)"><?= $isEditing ? htmlspecialchars($workout_description) : '' ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -102,23 +147,19 @@ foreach ($exercises as $exercise) {
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-4">
-                                        <div class="col-md-8">
-                                            <div class="search-box">
-                                                <input type="text" class="form-control" id="exercise-search" placeholder="Search exercises...">
-                                                <i class="fas fa-search"></i>
+                                        <div class="col-md-12 d-flex justify-content-end">
+                                            <div style="max-width: 250px; width: 100%;">
+                                                <select class="form-control" id="category-filter">
+                                                    <option value="">All Categories</option>
+                                                    <option value="chest">Chest</option>
+                                                    <option value="back">Back</option>
+                                                    <option value="legs">Legs</option>
+                                                    <option value="arms">Arms</option>
+                                                    <option value="shoulders">Shoulders</option>
+                                                    <option value="core">Core</option>
+                                                    <option value="cardio">Cardio</option>
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <select class="form-control" id="category-filter">
-                                                <option value="">All Categories</option>
-                                                <option value="chest">Chest</option>
-                                                <option value="back">Back</option>
-                                                <option value="legs">Legs</option>
-                                                <option value="arms">Arms</option>
-                                                <option value="shoulders">Shoulders</option>
-                                                <option value="core">Core</option>
-                                                <option value="cardio">Cardio</option>
-                                            </select>
                                         </div>
                                     </div>
                                     
@@ -202,7 +243,7 @@ foreach ($exercises as $exercise) {
                                         <!-- Place for JS to temporary display user selected exercises -->
                                         <div class="accordion workout-exercises" id="selectedExercises">
                                             <p id="no-exercises-msg" class="text-muted">No exercises added yet.</p>
-                                            <div class="accordion workout-exercises" id="selectedExercises"></div>
+                                            <!-- <div class="accordion workout-exercises" id="selectedExercises"></div> -->
                                         </div>
                                     </div>
                                     <div class="d-grid gap-3">

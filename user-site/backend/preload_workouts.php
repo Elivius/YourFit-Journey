@@ -1,8 +1,9 @@
 <?php
 require_once '../../utils/connection.php';
+require_once '../../utils/sanitize.php';
 
 $user_id = $_SESSION['user_id'] ?? null;
-$workout_id = $_GET['id'] ?? null;
+$workout_id = sanitizeInt($_GET['id'] ?? $_GET['edit'] ?? null);
 
 // Step 1: Check ownership and fetch workout details
 $sql_check = "SELECT workout_name, estimated_duration, workout_description FROM workouts_t WHERE workout_id = ? AND user_id = ?";
@@ -32,7 +33,7 @@ $exercises = [];
 
 $sql_exercises = "
     SELECT we.sets, we.reps, we.rest, we.weight, we.notes,
-           e.exercise_name, e.targeted_muscle, e.instructions
+           e.exercise_id, e.exercise_name, e.targeted_muscle, e.instructions
     FROM workout_exercises_t we
     JOIN exercises_t e ON we.exercise_id = e.exercise_id
     WHERE we.workout_id = ?
