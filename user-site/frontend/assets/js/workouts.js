@@ -19,33 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add to My Workouts Button
-    // const addToMyWorkoutsBtn = document.querySelector('.card-actions .btn-primary');
-    
-    // if (addToMyWorkoutsBtn) {
-    //     addToMyWorkoutsBtn.addEventListener('click', function() {
-    //         // Here you would typically add the workout to the user's saved workouts
-    //         // For demo purposes, we'll just show an alert
-    //         alert('Workout added to My Workouts!');
-            
-    //         // Change button text to indicate it's been added
-    //         this.innerHTML = '<i class="fas fa-check"></i> Added to My Workouts';
-    //         this.classList.add('btn-success');
-    //         this.classList.remove('btn-primary');
-            
-    //         // Disable the button to prevent multiple clicks
-    //         this.disabled = true;
-            
-    //         // After a delay, reset the button
-    //         setTimeout(() => {
-    //             this.innerHTML = '<i class="fas fa-plus"></i> Add to My Workouts';
-    //             this.classList.remove('btn-success');
-    //             this.classList.add('btn-primary');
-    //             this.disabled = false;
-    //         }, 3000);
-    //     });
-    // }
-    
     // Print Workout Button
     const printWorkoutBtn = document.querySelector('.card-actions .btn-outline-primary');
     
@@ -57,4 +30,32 @@ document.addEventListener('DOMContentLoaded', function() {
             window.print();
         });
     }
+
+    // Category chevron
+    const select = document.getElementById('category-filter');
+    const chevron = document.getElementById('select-chevron');
+
+    // Show rotate when clicked (mousedown)
+    select.addEventListener('mousedown', () => {
+        chevron.classList.add('rotate');
+    });
+
+    // Always remove rotate after a short delay (dropdown closed)
+    select.addEventListener('change', () => {
+        setTimeout(() => {
+            chevron.classList.remove('rotate');
+        }, 15); // slight delay lets dropdown close naturally
+    });
+
+    // Remove rotate on blur (user tabs or clicks away)
+    select.addEventListener('blur', () => {
+        chevron.classList.remove('rotate');
+    });
+
+    // Backup: Click anywhere outside
+    document.addEventListener('click', (e) => {
+        if (!select.contains(e.target)) {
+            chevron.classList.remove('rotate');
+        }
+    });
 });

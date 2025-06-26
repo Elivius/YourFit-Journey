@@ -52,6 +52,7 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -145,23 +146,22 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
                                 </div>
                                 <div class="card-body">
                                     <div class="row mb-4">
-                                        <div class="col-md-12 d-flex justify-content-end">
-                                            <div style="max-width: 250px; width: 100%;">
-                                                <select class="form-control" id="category-filter">
+                                        <div class="col-md-12 d-flex">
+                                            <div class="position-relative" style="max-width: 180px; width: 100%;">
+                                                <select class="form-control pe-5" id="category-filter">
                                                     <option value="">All Categories</option>
+                                                    <option value="arms">Arms</option>
                                                     <option value="chest">Chest</option>
                                                     <option value="back">Back</option>
                                                     <option value="legs">Legs</option>
-                                                    <option value="arms">Arms</option>
-                                                    <option value="shoulders">Shoulders</option>
-                                                    <option value="core">Core</option>
-                                                    <option value="cardio">Cardio</option>
                                                 </select>
+                                                <i class="bi bi-chevron-down position-absolute select-chevron" id="select-chevron"
+                                                style="top: 50%; right: 15px;"></i>
                                             </div>
                                         </div>
                                     </div>
                                     
-                                    <div id="exercise-results">
+                                    <div class="mx-2" id="exercise-results">
                                         <!-- Display exercises grouped by category -->
                                         <?php foreach ($groupedExercises as $category => $exercises): ?>
                                             <div class="sticky-category-header">
@@ -300,5 +300,6 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/confirmation-modal.js"></script>
     <script src="assets/js/add-exercise-temp.js"></script>
+    <script src="assets/js/workouts.js"></script>
 </body>
 </html>

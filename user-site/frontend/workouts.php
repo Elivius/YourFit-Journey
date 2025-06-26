@@ -563,7 +563,11 @@ require_once '../backend/preload_all_workouts.php';
                                 <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 col-xxl-2 mb-4 px-2">
                                     <div class="card workout-card gradient-card h-100 d-flex flex-column border-0">
                                         <div class="card-header d-flex justify-content-between align-items-center pb-2 pt-2">
-                                            <h5 class="card-title mb-0"><?= htmlspecialchars($workout['workout_name']) ?></h5>
+                                            <div class="flex-grow-1" style="min-width: 0;">
+                                                <h5 class="card-title mb-0 text-truncate" title="<?= htmlspecialchars($workout['workout_name']) ?>">
+                                                    <?= htmlspecialchars($workout['workout_name']) ?>
+                                                </h5>
+                                            </div>
                                             
                                             <div class="d-flex gap-2">
                                                 <a href="workouts-create.php?edit=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-icon">
