@@ -6,8 +6,7 @@
 
 ============================== URGENT ===================================
 
-- UI Create-workout + Category
+- Category
 - Validation
 - Trainee Prebuilt
 - Responsiveness for Nutrition Page
-- Responsiveness for Workout Page

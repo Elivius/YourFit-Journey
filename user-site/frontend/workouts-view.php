@@ -58,10 +58,10 @@ require_once '../backend/preload_workouts.php';
                 <div class="row">
                     <div>
                         <div class="card mb-4">
-                            <div class="card-header d-flex justify-content-between align-items-start flex-wrap">
+                            <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
                                 <div class="flex-grow-1">
                                     <h5 class="card-title mb-3"><?= htmlspecialchars($workout_name) ?></h5>
-                                    <p class="mb-3 muted-p"><?= htmlspecialchars($workout_description) ?></p>
+                                    <p class="mb-3 muted-p text-center text-md-start"><?= htmlspecialchars($workout_description) ?></p>
 
                                     <div class="d-flex align-items-center gap-3 flex-wrap">
                                         <span class="workout-pill time fs-6">
