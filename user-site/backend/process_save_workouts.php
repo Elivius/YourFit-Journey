@@ -69,7 +69,7 @@ if ($workout_id) {
     // Insert updated exercises again (fresh data)
     if (isset($_POST['exercises']) && is_array($_POST['exercises'])) {
         $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?)";
+                   VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt = mysqli_prepare($connection, $sql_insert_exercise)) {
             foreach ($_POST['exercises'] as $exercise) {
                 $exercise_id = sanitizeInt($exercise['id']);
@@ -78,7 +78,7 @@ if ($workout_id) {
                 $rest = sanitizeInt($exercise['rest']);
                 $weight = cleanInput($exercise['weight']);
 
-                mysqli_stmt_bind_param($stmt, "iiisiss", $workout_id, $exercise_id, $sets, $reps, $rest, $weight);
+                mysqli_stmt_bind_param($stmt, "iiisis", $workout_id, $exercise_id, $sets, $reps, $rest, $weight);
                 mysqli_stmt_execute($stmt);
             }
             mysqli_stmt_close($stmt);
@@ -117,7 +117,7 @@ if ($workout_id) {
     // Insert each exercise
     if (isset($_POST['exercises']) && is_array($_POST['exercises'])) {
         $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight) 
-                   VALUES (?, ?, ?, ?, ?, ?, ?)";
+                   VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt = mysqli_prepare($connection, $sql_insert_exercise)) {
             foreach ($_POST['exercises'] as $exercise) {
                 $exercise_id = sanitizeInt($exercise['id']);
@@ -126,7 +126,7 @@ if ($workout_id) {
                 $rest = sanitizeInt($exercise['rest']);
                 $weight = cleanInput($exercise['weight']); // Could be string (e.g. "bodyweight")
     
-                mysqli_stmt_bind_param($stmt, "iiisiss", $workout_id, $exercise_id, $sets, $reps, $rest, $weight);
+                mysqli_stmt_bind_param($stmt, "iiisis", $workout_id, $exercise_id, $sets, $reps, $rest, $weight);
                 mysqli_stmt_execute($stmt);
             }
             mysqli_stmt_close($stmt);
