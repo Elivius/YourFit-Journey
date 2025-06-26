@@ -1,9 +1,12 @@
 =============================== PLANS ===================================
 
 - Need pop up display confirmation modal
-- Responsiveness for Nutrition Page
-- Responsiveness for Workout Page
+- Feedback
+- Dashboard
 
 ============================== URGENT ===================================
 
 - Validation
+- Responsiveness for Nutrition Page
+- Responsiveness for Workout Page
+- Tainee Prebuilt
