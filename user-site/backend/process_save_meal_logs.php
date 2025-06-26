@@ -46,7 +46,7 @@ if ($meal_id) {
         mysqli_stmt_bind_param($stmt, 'issdddd', $user_id, $meal_name, $category, $protein, $carbs, $fats, $calories);
         mysqli_stmt_execute($stmt);
         if (mysqli_stmt_affected_rows($stmt) === 1) {
-            $_SESSION['success'] = "Meal successfully logged";
+            $_SESSION['success'] = "Meal logged successfully";
         } else {
             $_SESSION['error'] = "Meal not logged. Please try again";
             error_log("Insert executed but affected 0 rows for user_id=$user_id");

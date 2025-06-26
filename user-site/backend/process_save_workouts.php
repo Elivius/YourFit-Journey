@@ -94,7 +94,7 @@ if ($workout_id) {
             exit;
         }
     } else {
-        $_SESSION['error'] = "No exercises found";
+        $_SESSION['error'] = "No exercises in the workout";
         header("Location: ../frontend/workouts.php?section=my-workouts");
         exit;
     }
@@ -143,7 +143,7 @@ if ($workout_id) {
             exit;
         }
     } else {
-        $_SESSION['error'] = "No exercises found";
+        $_SESSION['error'] = "No exercises in the workout";
         header("Location: ../frontend/workouts.php?section=my-workouts");
         exit;
     }
