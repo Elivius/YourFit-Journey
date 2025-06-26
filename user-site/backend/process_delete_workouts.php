@@ -74,7 +74,7 @@ if ($stmt2 = mysqli_prepare($connection, $delete_sql_2)) {
     mysqli_stmt_close($stmt2);
 } else {
     mysqli_rollback($connection);
-    $_SESSION['error'] = "Error deleting workout.";
+    $_SESSION['error'] = "Error deleting workout";
 }
 
 header("Location: ../frontend/workouts.php?section=my-workouts");

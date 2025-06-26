@@ -14,22 +14,22 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
         }
 
         if (empty($exercises)) {
-            $_SESSION['error'] = "No exercises found.";
-            header("Location: ../frontend/workouts.php");
+            $_SESSION['error'] = "No exercises found";
+            header("Location: ../frontend/workouts.php?section=my-workouts");
             exit;
         }
 
     } else {
-        $_SESSION['error'] = "An error occurred while fetching data.";
-        header("Location: ../frontend/workouts.php");
+        $_SESSION['error'] = "An error occurred while fetching data";
+        header("Location: ../frontend/workouts.php?section=my-workouts");
         exit;
     }
 
     mysqli_stmt_close($stmt);
 } else {
     error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error.";
-    header("Location: ../frontend/login.php");
+    $_SESSION['error'] = "Server error";
+    header("Location: ../frontend/workouts.php?section=my-workouts");
     exit;
 }
 ?>

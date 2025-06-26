@@ -1,6 +1,7 @@
 <?php
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
+require_once '../../utils/message2.php';
 require_once '../backend/preload_meal_logs.php';
 ?>
 
@@ -393,11 +394,6 @@ require_once '../backend/preload_meal_logs.php';
             </button>
         </form>
     </template>
-
-    <?php if (isset($_SESSION['success'])): ?>
-        <div class="alert alert-success"><?= htmlspecialchars($_SESSION['success']) ?></div>
-        <?php unset($_SESSION['success']); ?>
-    <?php endif; ?>
 
     <!-- Modal Backdrop -->
     <div id="modalBackdrop" class="modal-backdrop"></div>

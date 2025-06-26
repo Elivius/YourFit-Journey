@@ -24,7 +24,7 @@ if ($stmt = mysqli_prepare($connection, $sql_select)) {
 } else {
     error_log("Prepare failed: " . mysqli_error($connection));
     $_SESSION['error'] = "Server error";
-    header("Location: ../frontend/login.php");
+    header("Location: ../frontend/workouts.php");
     exit;
 }
 ?>

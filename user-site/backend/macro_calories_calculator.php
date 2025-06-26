@@ -28,7 +28,7 @@ if ($stmt = mysqli_prepare($connection, $sql_user)) {
 
     } else {
         $_SESSION['error'] = "Please fill out your profile in settings";
-        header("Location: ../frontend/login.php");
+        header("Location: ../frontend/nutrition.php");
         exit;
     }
 
@@ -36,7 +36,7 @@ if ($stmt = mysqli_prepare($connection, $sql_user)) {
 } else {
     error_log("Prepare failed: " . mysqli_error($connection));
     $_SESSION['error'] = "Server error";
-    header("Location: ../frontend/login.php");
+    header("Location: ../frontend/nutrition.php");
     exit;
 }
 

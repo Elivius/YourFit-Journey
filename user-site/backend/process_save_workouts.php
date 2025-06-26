@@ -18,7 +18,7 @@ $workout_description = cleanInput($_POST['workout_description'] ?? '');
 $user_id = $_SESSION['user_id'] ?? null;
 
 if (empty($workout_name)) {
-    $_SESSION['error'] = "Workout info is incomplete.";
+    $_SESSION['error'] = "Workout info is incomplete";
     header("Location: ../frontend/workouts-create.php");
     exit;
 }
@@ -53,7 +53,7 @@ if ($workout_id) {
     } else {
         mysqli_stmt_close($stmt);
         error_log("Workout update failed: " . mysqli_error($connection));
-        $_SESSION['error'] = "Failed to update workout.";
+        $_SESSION['error'] = "Failed to update workout";
         header("Location: ../frontend/workouts.php?section=my-workouts");
         exit;
     }
@@ -66,7 +66,7 @@ if ($workout_id) {
         mysqli_stmt_close($stmt);
     }
 
-    // ✅ Insert updated exercises again (fresh data)
+    // Insert updated exercises again (fresh data)
     if (isset($_POST['exercises']) && is_array($_POST['exercises'])) {
         $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight, notes) 
                    VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -89,12 +89,12 @@ if ($workout_id) {
         } else {
             mysqli_stmt_close($stmt);
             error_log("Exercise update insert failed: " . mysqli_error($connection));
-            $_SESSION['error'] = "Failed to update exercises.";
+            $_SESSION['error'] = "Failed to update exercises";
             header("Location: ../frontend/workouts.php?section=my-workouts");
             exit;
         }
     } else {
-        $_SESSION['error'] = "No exercises found.";
+        $_SESSION['error'] = "No exercises found";
         header("Location: ../frontend/workouts.php?section=my-workouts");
         exit;
     }
@@ -132,18 +132,18 @@ if ($workout_id) {
                 mysqli_stmt_execute($stmt);
             }
             mysqli_stmt_close($stmt);
-            $_SESSION['success'] = "Workout saved successfully.";
+            $_SESSION['success'] = "Workout saved successfully";
             header("Location: ../frontend/workouts.php?section=my-workouts");
             exit;
         } else {
             mysqli_stmt_close($stmt);
             error_log("Exercise insert prepare failed: " . mysqli_error($connection));
-            $_SESSION['error'] = "Failed to save exercises.";
+            $_SESSION['error'] = "Failed to save exercises";
             header("Location: ../frontend/workouts.php?section=my-workouts");
             exit;
         }
     } else {
-        $_SESSION['error'] = "No exercises found.";
+        $_SESSION['error'] = "No exercises found";
         header("Location: ../frontend/workouts.php?section=my-workouts");
         exit;
     }

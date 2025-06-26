@@ -1,6 +1,7 @@
 <?php
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
+require_once '../../utils/message2.php';
 require_once '../backend/preload_all_workouts.php';
 ?>
 
