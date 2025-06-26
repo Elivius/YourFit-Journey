@@ -1,5 +1,6 @@
 <?php
 require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
 require_once '../backend/preload_all_workouts.php';
 ?>
 
@@ -573,9 +574,13 @@ require_once '../backend/preload_all_workouts.php';
                                                 <a href="workouts-create.php?edit=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-icon">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
-                                                <button class="btn btn-sm btn-icon">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
+                                                <form action="../backend/process_delete_workouts.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this workout?');" class="d-inline">
+                                                    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                                                    <input type="hidden" name="workout_id" value="<?= $workout['workout_id'] ?>">
+                                                    <button type="submit" class="btn btn-sm btn-icon">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
 
