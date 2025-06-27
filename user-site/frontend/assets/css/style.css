@@ -605,3 +605,14 @@ p, h2, h3, h4, h5, h6, span, img, label {
 .theme-switch-input:checked:active + .theme-switch-label .switch-handle {
     transform: translateX(43px) scale(0.95);
 }
+
+.select-chevron {
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+    color: var(--secondary);
+}
+
+.select-chevron.rotate {
+    transform: translateY(-50%) rotate(180deg);
+}

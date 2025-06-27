@@ -329,17 +329,6 @@
     background-color: var(--primary-hover);
 }
 
-.select-chevron {
-    transform: translateY(-50%) rotate(0deg);
-    transition: transform 0.3s ease;
-    pointer-events: none;
-    color: var(--secondary);
-}
-
-.select-chevron.rotate {
-    transform: translateY(-50%) rotate(180deg);
-}
-
 .btn-back {
   display: inline-flex;
   align-items: center;

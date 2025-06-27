@@ -13,6 +13,7 @@ require_once '../backend/preload_settings.php';
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -487,39 +488,27 @@ require_once '../backend/preload_settings.php';
                                 <div class="card-body">
                                     <form id="appFeedbackForm">
                                         <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label for="feedbackCategory" class="form-label">Feedback Category</label>
-                                                <select class="form-select" id="feedbackCategory">
-                                                    <option>General Feedback</option>
-                                                    <option>Bug Report</option>
-                                                    <option selected>Feature Request</option>
-                                                    <option>User Experience</option>
-                                                    <option>Other</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="feedbackPriority" class="form-label">Priority</label>
-                                                <select class="form-select" id="feedbackPriority">
-                                                    <option>Low</option>
-                                                    <option selected>Medium</option>
-                                                    <option>High</option>
-                                                </select>
+                                            <div class="col-12">
+                                                <div class="position-relative">
+                                                    <label for="feedbackCategory" class="form-label">Feedback Category</label>
+                                                    <select class="form-control pe-5" id="category-filter">
+                                                        <option>General Feedback</option>
+                                                        <option>Bug Report</option>
+                                                        <option selected>Feature Request</option>
+                                                        <option>User Experience</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                    <i class="bi bi-chevron-down position-absolute select-chevron" id="select-chevron"
+                                                    style="top: 70%; right: 15px;"></i>
+                                                </div>
                                             </div>
                                             <div class="col-12">
                                                 <label for="feedbackSubject" class="form-label">Subject</label>
-                                                <input type="text" class="form-control" id="feedbackSubject" value="Request for social sharing features">
+                                                <input type="text" class="form-control" id="feedbackSubject" placeholder="Request for social sharing features">
                                             </div>
                                             <div class="col-12">
                                                 <label for="feedbackMessage" class="form-label">Message</label>
-                                                <textarea class="form-control" id="feedbackMessage" rows="5">I would love to see social sharing features added to the app. It would be great to be able to share my workout achievements and progress with friends on social media platforms. This would help with motivation and accountability.</textarea>
-                                            </div>
-                                            <div class="col-12">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="contactMe" checked>
-                                                    <label class="form-check-label" for="contactMe">
-                                                        Contact me about this feedback
-                                                    </label>
-                                                </div>
+                                                <textarea class="form-control" id="feedbackMessage" rows="5" placeholder="I would love to see social sharing features added to the app. It would be great to be able to share my workout achievements and progress with friends on social media platforms. This would help with motivation and accountability."></textarea>
                                             </div>
                                             <div class="col-12">
                                                 <button type="submit" class="btn btn-sm btn-primary">Submit Feedback</button>

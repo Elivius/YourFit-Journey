@@ -30,32 +30,4 @@ document.addEventListener('DOMContentLoaded', function() {
             window.print();
         });
     }
-
-    // Category chevron
-    const select = document.getElementById('category-filter');
-    const chevron = document.getElementById('select-chevron');
-
-    // Show rotate when clicked (mousedown)
-    select.addEventListener('mousedown', () => {
-        chevron.classList.add('rotate');
-    });
-
-    // Always remove rotate after a short delay (dropdown closed)
-    select.addEventListener('change', () => {
-        setTimeout(() => {
-            chevron.classList.remove('rotate');
-        }, 15); // slight delay lets dropdown close naturally
-    });
-
-    // Remove rotate on blur (user tabs or clicks away)
-    select.addEventListener('blur', () => {
-        chevron.classList.remove('rotate');
-    });
-
-    // Backup: Click anywhere outside
-    document.addEventListener('click', (e) => {
-        if (!select.contains(e.target)) {
-            chevron.classList.remove('rotate');
-        }
-    });
 });
