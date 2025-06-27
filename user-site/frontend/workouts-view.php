@@ -106,7 +106,6 @@ require_once '../backend/preload_workouts.php';
                                                                     <span class="workout-pill"><?= htmlspecialchars(trim($muscle)); ?></span>
                                                                 <?php endforeach; ?>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                     <i class="fa-solid fa-chevron-down accordion-icon"></i>
@@ -117,7 +116,7 @@ require_once '../backend/preload_workouts.php';
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="exercise-image">
-                                                                <img src="<?= htmlspecialchars($ex['image_url']); ?>" alt="<?= htmlspecialchars($ex['exercise_name']) ?>" class="img-fluid rounded" style="width: 300px; height: 267px; object-fit: cover;">
+                                                                <img src="<?= htmlspecialchars($ex['image_url']); ?>" alt="<?= htmlspecialchars($ex['exercise_name']) ?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">
