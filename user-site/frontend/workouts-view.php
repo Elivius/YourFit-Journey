@@ -117,7 +117,7 @@ require_once '../backend/preload_workouts.php';
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="exercise-image">
-                                                                <img src="https://source.unsplash.com/random/400x300/?fitness,exercise,<?= urlencode($ex['exercise_name']) ?>" alt="<?= htmlspecialchars($ex['exercise_name']) ?>" class="img-fluid rounded">
+                                                                <img src="<?= htmlspecialchars($ex['image_url']); ?>" alt="<?= htmlspecialchars($ex['exercise_name']) ?>" class="img-fluid rounded" style="width: 300px; height: 267px; object-fit: cover;">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">

@@ -180,6 +180,13 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
                                                                 <!-- Added spacing below the exercise name -->
                                                                 <h6 class="mb-3"><?= htmlspecialchars($exercise['exercise_name']); ?></h6>
                                                                 
+                                                                <?php if (!empty($exercise['image_url'])): ?>
+                                                                    <img src="<?= htmlspecialchars($exercise['image_url']); ?>" 
+                                                                        alt="<?= htmlspecialchars($exercise['exercise_name']); ?>" 
+                                                                        class="img-fluid rounded mb-3"
+                                                                        style="max-width: 200px; max-height: 150px; object-fit: cover;">
+                                                                <?php endif; ?>
+
                                                                 <!-- More spacing below the label -->
                                                                 <p class="mb-2 muted-p small">Target muscles:</p>
                                                                 

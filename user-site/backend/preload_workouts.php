@@ -33,7 +33,7 @@ $exercises = [];
 
 $sql_exercises = "
     SELECT we.sets, we.reps, we.rest, we.weight,
-           e.exercise_id, e.exercise_name, e.targeted_muscle, e.instructions
+           e.exercise_id, e.exercise_name, e.image_url, e.targeted_muscle, e.instructions
     FROM workout_exercises_t we
     JOIN exercises_t e ON we.exercise_id = e.exercise_id
     WHERE we.workout_id = ?
