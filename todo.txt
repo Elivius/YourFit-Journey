@@ -6,7 +6,6 @@
 
 ============================== URGENT ===================================
 
-- Responsive for Fitness goal pill
 - Dev Feedback
 - Exercise Category Filter
 - Trainee Prebuilt

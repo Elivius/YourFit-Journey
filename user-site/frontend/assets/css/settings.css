@@ -444,3 +444,41 @@ input:checked + .btn-outline-primary {
         flex-direction: column;
     }
 }
+
+.activity-level-option input[type="radio"] {
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.activity-level-option .form-check-label {
+  flex: 1;
+}
+
+.activity-level-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .activity-level-option {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .activity-level-option input[type="radio"] {
+    margin-top: 0;
+  }
+
+  .activity-level-header {
+    flex-direction: column;
+    align-items: center; /* ⬅️ This centers both h6 and pill */
+    text-align: center;  /* ⬅️ This centers text inside h6 */
+  }
+
+  .activity-level-header h6 {
+    width: 100%;
+  }
+}
