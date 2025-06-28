@@ -2,7 +2,6 @@
 
 - Need pop up display confirmation modal
 - Dashboard
+- Forogt password (Real)
 
 ============================== URGENT ===================================
-
-- Forogt password

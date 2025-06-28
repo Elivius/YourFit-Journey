@@ -1,3 +1,8 @@
+<?php
+session_start();
+require_once '../../utils/csrf.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,14 +41,18 @@
             </div>
 
             <div class="auth-body">
-                <form id="forgot-password-form">
+                <form id="forgotPasswordForm" action="../backend/send_reset_password.php" method="POST" novalidate>
+                    <input type="hidden" name="csrf_token" 
+                        value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                     <div class="mb-4">
                         <label for="email" class="form-label">Email address</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
                         </div>
                     </div>
+
+                    <div class="form-message" id="forgotPasswordFormMessage"></div>
 
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary btn-lg">Send Reset Link</button>
@@ -57,6 +66,8 @@
         </div>
     </div>
 
+    <?php require_once '../../utils/message.php'; ?>
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
