@@ -616,3 +616,10 @@ p, h2, h3, h4, h5, h6, span, img, label {
 .select-chevron.rotate {
     transform: translateY(-50%) rotate(180deg);
 }
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

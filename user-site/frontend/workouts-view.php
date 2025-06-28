@@ -184,6 +184,7 @@ require_once '../backend/preload_workouts.php';
     </div>
 
     <?php include 'scroll_to_top.php'; ?>
+    <?php include 'footer.php'; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->

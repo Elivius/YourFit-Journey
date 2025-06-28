@@ -314,12 +314,12 @@
                 <!-- About Section -->
                 <div class="col-lg-6 col-md-12">
                     <div class="footer-about">
-                        <a class="footer-logo" href="index.html">
-                            <div class="logo-container">
+                        <div class="footer-logo">
+                            <div class="logo-container mb-2">
                                 <i class="fas fa-bolt logo-icon"></i>
-                                <span>YourFit<span class="text-gradient">Journey</span></span>
+                                YourFit<span class="text-gradient">Journey
                             </div>
-                        </a>
+                        </div>
                         <p style="text-align: justify;">
                             YourFit Journey is a comprehensive fitness platform built to support your health goals with customizable workouts and personalized meal plans.
                         </p>

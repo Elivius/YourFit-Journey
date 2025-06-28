@@ -8,7 +8,7 @@
     <style>
         #scrollToTopBtn {
             position: fixed;
-            bottom: 15px;
+            bottom: 100px;
             right: 15px;
             z-index: 999;
             background-color: var(--primary);

@@ -382,6 +382,12 @@
   width: 100%;
 }
 
+.footer-logo {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
 .footer-about {
   margin-bottom: 2rem;
 }
@@ -409,13 +415,32 @@
   margin-bottom: 0.75rem;
 }
 
-.footer-links a {
-  color: var(--body-color);
-  transition: all 0.3s ease;
+.footer a {
+  color: var(--secondary);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
-  color: var(--primary);
+.footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* adjust distance from text */
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--primary-hover);
+}
+
+.footer a:hover::after {
+  width: 100%;
 }
 
 .footer-newsletter h5 {

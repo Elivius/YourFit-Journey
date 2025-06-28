@@ -1,0 +1,84 @@
+.footer {
+  background-color: var(--footer-bg);
+  color: var(--body-color);
+  padding: 3rem 0;
+  font-size: 1rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.footer a {
+  color: var(--secondary);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.footer a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; /* adjust distance from text */
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--primary-hover);
+}
+
+.footer a:hover::after {
+  width: 100%;
+}
+
+.logo-icon {
+    color: var(--primary);
+}
+
+.footer-links h5,
+.footer-newsletter h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.footer-links ul {
+  padding: 0;
+  list-style: none;
+}
+
+.footer-links ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-links ul li a {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.footer-about p,
+.footer-newsletter p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.footer hr {
+  border-color: var(--card-border);
+  opacity: 0.5;
+  margin-top: 2rem;
+}
+
+.footer-bottom {
+  font-size: 0.85rem;
+}
+
+.footer-bottom a {
+  color: var(--footer-color);
+}
+
+.footer-bottom a:hover {
+  color: var(--primary-hover);
+}

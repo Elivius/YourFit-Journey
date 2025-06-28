@@ -63,7 +63,7 @@
                 
                 <div class="row g-4 align-items-stretch">
                     <!-- Nutrition Breakdown -->
-                    <div class="col-lg-4 d-flex">
+                    <div class="col-lg-4 d-flex p-2">
                         <div class="card flex-grow-1 d-flex flex-column">
                             <div class="card-header">
                                 <h5 class="card-title">Daily Nutrition Summary</h5>
@@ -75,7 +75,7 @@
                     </div>
 
                     <!-- Calendar -->
-                    <div class="col-lg-8 d-flex">
+                    <div class="col-lg-8 d-flex p-2">
                         <div class="card flex-grow-1 d-flex flex-column">
                             <div class="card-header d-flex justify-content-between align-items-center pt-3 pb-3">
                                 <h5 class="card-title">Calendar</h5>
@@ -111,6 +111,7 @@
     </div>
 
     <?php include 'scroll_to_top.php'; ?>
+    <?php include 'footer.php'; ?>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
