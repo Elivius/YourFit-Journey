@@ -6,6 +6,4 @@
 
 ============================== URGENT ===================================
 
-- Exercise Category Filter
-- Trainee Prebuilt
 - Validation

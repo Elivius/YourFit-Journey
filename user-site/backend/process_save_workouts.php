@@ -82,7 +82,7 @@ if ($workout_id) {
                 mysqli_stmt_execute($stmt);
             }
             mysqli_stmt_close($stmt);
-            $_SESSION['success'] = "Workout updated successfully.";
+            $_SESSION['success'] = "Workout updated successfully";
             header("Location: ../frontend/workouts.php?section=my-workouts");
             exit;
         } else {

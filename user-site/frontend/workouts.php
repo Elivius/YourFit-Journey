@@ -2,6 +2,7 @@
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
 require_once '../../utils/message2.php';
+require_once '../backend/preload_prebuilt_workouts.php';
 require_once '../backend/preload_all_workouts.php';
 ?>
 
@@ -106,441 +107,103 @@ require_once '../backend/preload_all_workouts.php';
                     <!-- Workout Category Sections -->
                     <div class="workout-category-sections">
                         <!-- Chest Workouts -->
-                        <div id="pre-built-chest-workouts" class="workout-category-section active">
-                            <!-- Chest Exercises -->
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Exercises</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-print"></i> Print
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="accordion workout-exercises" id="chestWorkoutExercises">
-                                        <!-- Exercise 1 -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="chestExercise1Heading">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#chestExercise1Collapse" aria-expanded="true" aria-controls="chestExercise1Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">1</span>
-                                                        <div class="exercise-title">
-                                                            <h6 class="mb-2">Barbell Bench Press</h6>
-                                                            <p class="mb-2 muted-p small">Target muscles:</p>
-
-                                                            <div class="d-flex flex-wrap gap-2 mb-0">
-                                                                <span class="workout-pill">Chest</span>
-                                                                <span class="workout-pill">Shoulders</span>
-                                                                <span class="workout-pill">Triceps</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="chestExercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="chestExercise1Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="exercise-image">
-                                                                <img src="https://source.unsplash.com/random/400x300/?bench-press" alt="Barbell Bench Press" class="img-fluid rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="exercise-details">
-                                                                <div class="exercise-instructions">
-                                                                    <h6 class="muted-p">Instructions:</h6>
-                                                                    <ol class="small">
-                                                                        <li class="mb-2">Lie on a flat bench with feet firmly on the ground.</li>
-                                                                        <li class="mb-2">Grip the barbell slightly wider than shoulder-width.</li>
-                                                                        <li class="mb-2">Lower the bar to your chest with control.</li>
-                                                                        <li class="mb-2">Press the bar back up to starting position.</li>
-                                                                    </ol>
-                                                                </div>
-                                                                <div class="exercise-parameters">
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label muted-p">Sets:</span>
-                                                                        <span class="parameter-value">4</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label muted-p">Reps:</span>
-                                                                        <span class="parameter-value">8-10</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label muted-p">Rest:</span>
-                                                                        <span class="parameter-value">2-3 min</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label muted-p">Weight:</span>
-                                                                        <span class="parameter-value">Moderate to heavy</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                        <?php foreach (['chest', 'back', 'arms', 'legs'] as $category): ?>
+                            <?php 
+                                $data = $prebuiltWorkouts[$category] ?? null;
+                                $isActive = ($category === 'chest');
+                                if ($data && !empty($data['exercises'])):
+                                    $exercises = $data['exercises'];
+                            ?>
+                            <div id="pre-built-<?= $category ?>-workouts" class="workout-category-section <?= $isActive ? 'active' : '' ?>">
+                                <div class="card mb-4">
+                                    <div class="card-header d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h5 class="card-title mb-2"><?= htmlspecialchars($data['name']) ?></h5>
+                                            <p class="muted-p mb-0"><?= htmlspecialchars($data['description']) ?></p>
                                         </div>
-                                        
-                                        <!-- Exercise 2 -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="chestExercise2Heading">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chestExercise2Collapse" aria-expanded="false" aria-controls="chestExercise2Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">2</span>
-                                                        <div class="exercise-title">
-                                                            <h6 class="mb-2">Incline Dumbbell Press</h6>
-                                                            <p class="mb-2 muted-p small">Target muscles:</p>
-
-                                                            <div class="d-flex flex-wrap gap-2 mb-0">
-                                                                <span class="workout-pill">Upper Chest</span>
-                                                                <span class="workout-pill">Shoulders</span>
-                                                            </div>                            
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="chestExercise2Collapse" class="accordion-collapse collapse" aria-labelledby="chestExercise2Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="exercise-image">
-                                                                <img src="https://source.unsplash.com/random/400x300/?incline-press" alt="Incline Dumbbell Press" class="img-fluid rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="exercise-details">
-                                                                <div class="exercise-instructions">
-                                                                    <h6>Instructions:</h6>
-                                                                    <ol>
-                                                                        <li>Set bench to 30-45 degree incline.</li>
-                                                                        <li>Hold dumbbells at chest level with palms facing forward.</li>
-                                                                        <li>Press dumbbells up and slightly inward.</li>
-                                                                        <li>Lower with control back to starting position.</li>
-                                                                    </ol>
+                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-print"></i> Print</button>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="accordion workout-exercises" id="accordion-<?= $category ?>">
+                                            <?php foreach ($exercises as $index => $ex): ?>
+                                                <!-- Your existing accordion code for exercises -->
+                                                <?php 
+                                                    $collapseId = "exerciseCollapse{$category}{$index}";
+                                                    $headingId = "exerciseHeading{$category}{$index}";
+                                                ?>
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header" id="<?= $headingId ?>">
+                                                        <button class="accordion-button <?= $index !== 0 ? 'collapsed' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapseId ?>" aria-expanded="<?= $index === 0 ? 'true' : 'false' ?>" aria-controls="<?= $collapseId ?>">
+                                                            <div class="exercise-header">
+                                                                <span class="exercise-number"><?= $index + 1 ?></span>
+                                                                <div class="exercise-title">
+                                                                    <h6 class="mb-2"><?= htmlspecialchars($ex['exercise_name']) ?></h6>
+                                                                    <p class="mb-2 muted-p small">Target muscles:</p>
+                                                                    <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                        <?php foreach (explode(',', $ex['targeted_muscle']) as $muscle): ?>
+                                                                            <span class="workout-pill"><?= htmlspecialchars(trim($muscle)) ?></span>
+                                                                        <?php endforeach; ?>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="exercise-parameters">
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Sets:</span>
-                                                                        <span class="parameter-value">3</span>
+                                                            </div>
+                                                            <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="<?= $collapseId ?>" class="accordion-collapse collapse <?= $index === 0 ? 'show' : '' ?>" aria-labelledby="<?= $headingId ?>">
+                                                        <div class="accordion-body">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <div class="exercise-image">
+                                                                        <img src="<?= htmlspecialchars($ex['image_url']) ?>" alt="<?= htmlspecialchars($ex['exercise_name']) ?>" class="img-fluid rounded">
                                                                     </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Reps:</span>
-                                                                        <span class="parameter-value">10-12</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Rest:</span>
-                                                                        <span class="parameter-value">90 sec</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Weight:</span>
-                                                                        <span class="parameter-value">Moderate</span>
+                                                                </div>
+                                                                <div class="col-md-8">
+                                                                    <div class="exercise-details">
+                                                                        <h6 class="muted-p">Instructions:</h6>
+                                                                        <?php
+                                                                            $steps = preg_split('/(?=\d+\.\s)/', $ex['instructions'] ?? '');
+                                                                        ?>
+                                                                        <?php if (!empty($steps)): ?>
+                                                                            <?php foreach ($steps as $step): ?>
+                                                                                <?php if (trim($step)): ?>
+                                                                                    <p class="small mb-2"><?= htmlspecialchars(trim($step)) ?></p>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php else: ?>
+                                                                            <p class="text-muted small fst-italic">No instructions provided.</p>
+                                                                        <?php endif; ?>
+
+                                                                        <div class="exercise-parameters mt-3">
+                                                                            <div class="parameter">
+                                                                                <span class="parameter-label muted-p">Sets:</span>
+                                                                                <span class="workout-pill sets"><strong><?= $ex['sets'] ?></strong></span>
+                                                                            </div>
+                                                                            <div class="parameter">
+                                                                                <span class="parameter-label muted-p">Reps:</span>
+                                                                                <span class="workout-pill exercise"><strong><?= $ex['reps'] ?></strong></span>
+                                                                            </div>
+                                                                            <div class="parameter">
+                                                                                <span class="parameter-label muted-p">Rest:</span>
+                                                                                <span class="workout-pill time"><strong><?= $ex['rest'] ?></strong> secs</span>
+                                                                            </div>
+                                                                            <div class="parameter">
+                                                                                <span class="parameter-label muted-p">Weight:</span>
+                                                                                <span class="workout-pill weight"><strong><?= !empty($ex['weight']) ? $ex['weight'] : '-' ?></strong></span>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Back Workouts -->
-                        <div id="pre-built-back-workouts" class="workout-category-section">
-                            <!-- Back Exercises -->
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Exercises</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-print"></i> Print
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="accordion workout-exercises" id="backWorkoutExercises">
-                                        <!-- Exercise 1 -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="backExercise1Heading">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#backExercise1Collapse" aria-expanded="true" aria-controls="backExercise1Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">1</span>
-                                                        <div class="exercise-title">
-                                                            <h6>Pull-ups</h6>
-                                                            <p class="mb-2 muted-p small">Target muscles:</p>
-                                                             
-                                                            <div class="d-flex flex-wrap gap-2 mb-0">
-                                                                <span class="workout-pill">Lats</span>
-                                                                <span class="workout-pill">Rhomboids</span>
-                                                                <span class="workout-pill">Biceps</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="backExercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="backExercise1Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="exercise-image">
-                                                                <img src="https://source.unsplash.com/random/400x300/?pullup" alt="Pull-ups" class="img-fluid rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="exercise-details">
-                                                                <div class="exercise-instructions">
-                                                                    <h6>Instructions:</h6>
-                                                                    <ol>
-                                                                        <li>Hang from pull-up bar with hands slightly wider than shoulders.</li>
-                                                                        <li>Pull your body up until chin clears the bar.</li>
-                                                                        <li>Lower yourself with control to starting position.</li>
-                                                                        <li>Keep core engaged throughout the movement.</li>
-                                                                    </ol>
-                                                                </div>
-                                                                <div class="exercise-parameters">
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Sets:</span>
-                                                                        <span class="parameter-value">4</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Reps:</span>
-                                                                        <span class="parameter-value">6-10</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Rest:</span>
-                                                                        <span class="parameter-value">2-3 min</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Weight:</span>
-                                                                        <span class="parameter-value">Bodyweight</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                        <!-- Exercise 2 -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="backExercise2Heading">
-                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#backExercise2Collapse" aria-expanded="false" aria-controls="backExercise2Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">2</span>
-                                                        <div class="exercise-title">
-                                                            <h6>Barbell Rows</h6>
-                                                            <span class="exercise-target">Target: Mid Traps, Rhomboids, Lats</span>
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="backExercise2Collapse" class="accordion-collapse collapse" aria-labelledby="backExercise2Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="exercise-image">
-                                                                <img src="https://source.unsplash.com/random/400x300/?barbell-row" alt="Barbell Rows" class="img-fluid rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="exercise-details">
-                                                                <div class="exercise-instructions">
-                                                                    <h6>Instructions:</h6>
-                                                                    <ol>
-                                                                        <li>Stand with feet hip-width apart, holding barbell with overhand grip.</li>
-                                                                        <li>Hinge at hips, keeping back straight and chest up.</li>
-                                                                        <li>Pull barbell to lower chest/upper abdomen.</li>
-                                                                        <li>Lower with control back to starting position.</li>
-                                                                    </ol>
-                                                                </div>
-                                                                <div class="exercise-parameters">
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Sets:</span>
-                                                                        <span class="parameter-value">4</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Reps:</span>
-                                                                        <span class="parameter-value">8-10</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Rest:</span>
-                                                                        <span class="parameter-value">2 min</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Weight:</span>
-                                                                        <span class="parameter-value">Moderate to heavy</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Legs Workouts -->
-                        <div id="pre-built-legs-workouts" class="workout-category-section">
-                            <!-- Legs Exercises -->
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Exercises</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-print"></i> Print
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="accordion workout-exercises" id="legsWorkoutExercises">
-                                        <!-- Exercise 1 -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="legsExercise1Heading">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#legsExercise1Collapse" aria-expanded="true" aria-controls="legsExercise1Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">1</span>
-                                                        <div class="exercise-title">
-                                                            <h6>Barbell Squat</h6>
-                                                            <span class="exercise-target">Target: Quadriceps, Glutes, Hamstrings</span>
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="legsExercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="legsExercise1Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="exercise-image">
-                                                                <img src="https://source.unsplash.com/random/400x300/?squat" alt="Barbell Squat" class="img-fluid rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="exercise-details">
-                                                                <div class="exercise-instructions">
-                                                                    <h6>Instructions:</h6>
-                                                                    <ol>
-                                                                        <li>Stand with feet shoulder-width apart, barbell on upper back.</li>
-                                                                        <li>Initiate movement by pushing hips back and bending knees.</li>
-                                                                        <li>Lower until thighs are parallel to ground.</li>
-                                                                        <li>Drive through heels to return to starting position.</li>
-                                                                    </ol>
-                                                                </div>
-                                                                <div class="exercise-parameters">
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Sets:</span>
-                                                                        <span class="parameter-value">4</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Reps:</span>
-                                                                        <span class="parameter-value">8-12</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Rest:</span>
-                                                                        <span class="parameter-value">3 min</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Weight:</span>
-                                                                        <span class="parameter-value">Heavy</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Arms Workouts -->
-                        <div id="pre-built-arms-workouts" class="workout-category-section">
-                            <!-- Arms Exercises -->
-                            <div class="card mb-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Exercises</h5>
-                                    <div class="card-actions">
-                                        <button class="btn btn-sm btn-outline-primary">
-                                            <i class="fas fa-print"></i> Print
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="accordion workout-exercises" id="armsWorkoutExercises">
-                                        <!-- Exercise 1 -->
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="armsExercise1Heading">
-                                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#armsExercise1Collapse" aria-expanded="true" aria-controls="armsExercise1Collapse">
-                                                    <div class="exercise-header">
-                                                        <span class="exercise-number">1</span>
-                                                        <div class="exercise-title">
-                                                            <h6>Barbell Bicep Curls</h6>
-                                                            <span class="exercise-target">Target: Biceps, Forearms</span>
-                                                        </div>
-                                                    </div>
-                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                </button>
-                                            </h2>
-                                            <div id="armsExercise1Collapse" class="accordion-collapse collapse show" aria-labelledby="armsExercise1Heading">
-                                                <div class="accordion-body">
-                                                    <div class="row">
-                                                        <div class="col-md-4">
-                                                            <div class="exercise-image">
-                                                                <img src="https://source.unsplash.com/random/400x300/?bicep-curl" alt="Barbell Bicep Curls" class="img-fluid rounded">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="exercise-details">
-                                                                <div class="exercise-instructions">
-                                                                    <h6>Instructions:</h6>
-                                                                    <ol>
-                                                                        <li>Stand with feet hip-width apart, holding barbell with underhand grip.</li>
-                                                                        <li>Keep elbows close to your sides throughout the movement.</li>
-                                                                        <li>Curl the barbell up towards your chest.</li>
-                                                                        <li>Lower with control back to starting position.</li>
-                                                                    </ol>
-                                                                </div>
-                                                                <div class="exercise-parameters">
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Sets:</span>
-                                                                        <span class="parameter-value">3</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Reps:</span>
-                                                                        <span class="parameter-value">10-12</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Rest:</span>
-                                                                        <span class="parameter-value">90 sec</span>
-                                                                    </div>
-                                                                    <div class="parameter">
-                                                                        <span class="parameter-label">Weight:</span>
-                                                                        <span class="parameter-value">Moderate</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
