@@ -413,66 +413,6 @@ require_once '../backend/preload_settings.php';
                                     </form>
                                 </div>
                             </div>
-                            
-                            <!-- <div class="card mt-4">
-                                <div class="card-header">
-                                    <h5 class="card-title">Workout Preferences</h5>
-                                </div>
-                                <div class="card-body">
-                                    <form id="workoutPreferencesForm">
-                                        <div class="row g-3">
-                                            <div class="col-md-6">
-                                                <label for="workoutDays" class="form-label">Workout Days per Week</label>
-                                                <select class="form-select" id="workoutDays">
-                                                    <option value="3" selected>3 days</option>
-                                                    <option value="4">4 days</option>
-                                                    <option value="5">5 days</option>
-                                                    <option value="6">6 days</option>
-                                                    <option value="7">7 days</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="workoutDuration" class="form-label">Workout Duration</label>
-                                                <select class="form-select" id="workoutDuration">
-                                                    <option value="30">30 minutes</option>
-                                                    <option value="45" selected>45 minutes</option>
-                                                    <option value="60">60 minutes</option>
-                                                    <option value="90">90 minutes</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Preferred Workout Types</label>
-                                                <div class="workout-type-options">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="weightTraining" checked>
-                                                        <label class="form-check-label"  checked>
-                                                        <label class="form-check-label" for="weightTraining">Weight Training</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="cardio" checked>
-                                                        <label class="form-check-label" for="cardio">Cardio</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="hiit">
-                                                        <label class="form-check-label" for="hiit">HIIT</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="yoga">
-                                                        <label class="form-check-label" for="yoga">Yoga</label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" id="pilates">
-                                                        <label class="form-check-label" for="pilates">Pilates</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 settings-btn-margin">
-                                                <button type="submit" class="btn btn-primary">Save Changes</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -486,17 +426,20 @@ require_once '../backend/preload_settings.php';
                                     <h5 class="card-title">App Feedback</h5>
                                 </div>
                                 <div class="card-body">
-                                    <form id="appFeedbackForm">
+                                    <form id="feedbackForm" action="../backend/process_save_feedbacks.php" method="POST">
+                                        <input type="hidden" name="form_type" value="feedbackForm">
+                                        <input type="hidden" name="csrf_token" 
+                                            value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                                         <div class="row g-3">
                                             <div class="col-12">
                                                 <div class="position-relative">
                                                     <label for="feedbackCategory" class="form-label">Feedback Category</label>
-                                                    <select class="form-control pe-5" id="category-filter">
-                                                        <option>General Feedback</option>
-                                                        <option>Bug Report</option>
-                                                        <option selected>Feature Request</option>
-                                                        <option>User Experience</option>
-                                                        <option>Other</option>
+                                                    <select class="form-control pe-5" id="feedbackCategory" name="category" required>
+                                                        <option value="general_feedback">General Feedback</option>
+                                                        <option value="bug_report">Bug Report</option>
+                                                        <option value="feature_request" selected>Feature Request</option>
+                                                        <option value="user_experience">User Experience</option>
+                                                        <option value="other">Other</option>
                                                     </select>
                                                     <i class="bi bi-chevron-down position-absolute select-chevron" id="select-chevron"
                                                     style="top: 70%; right: 15px;"></i>
@@ -504,13 +447,14 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="col-12">
                                                 <label for="feedbackSubject" class="form-label">Subject</label>
-                                                <input type="text" class="form-control" id="feedbackSubject" placeholder="Request for social sharing features">
+                                                <input type="text" class="form-control" id="feedbackSubject" name="subject" placeholder="Request for social sharing features" required>
                                             </div>
                                             <div class="col-12">
                                                 <label for="feedbackMessage" class="form-label">Message</label>
-                                                <textarea class="form-control" id="feedbackMessage" rows="5" placeholder="I would love to see social sharing features added to the app. It would be great to be able to share my workout achievements and progress with friends on social media platforms. This would help with motivation and accountability."></textarea>
+                                                <textarea class="form-control" id="feedbackMessage" rows="5" name="message" placeholder="I would love to see social sharing features added to the app. It would be great to be able to share my workout achievements and progress with friends on social media platforms. This would help with motivation and accountability." required></textarea>
                                             </div>
-                                            <div class="col-12">
+                                            <div class="form-message" id="feedbackFormMessage"></div>
+                                            <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-sm btn-primary">Submit Feedback</button>
                                             </div>
                                         </div>

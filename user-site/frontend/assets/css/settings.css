@@ -184,6 +184,10 @@ input:checked + .btn-outline-primary {
     color: var(--primary);
 }
 
+.form-check-label {
+    cursor: pointer;
+}
+
 /* Workout Preferences */
 .workout-type-options {
     display: grid;
@@ -191,214 +195,11 @@ input:checked + .btn-outline-primary {
     gap: 0.5rem;
 }
 
-/* Rating Stars */
-.rating-stars {
-    display: flex;
-    gap: 0.5rem;
-    color: #fbbf24;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    cursor: pointer;
-}
-
 /* Feedback Aspects */
 .feedback-aspects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 0.5rem;
-}
-
-/* Notification Categories */
-.notification-categories {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.notification-category {
-    background-color: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-}
-
-.notification-category-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.notification-category-header h6 {
-    margin: 0;
-    font-weight: 600;
-}
-
-.notification-options {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    gap: 1rem;
-}
-
-/* Privacy Settings */
-.privacy-settings {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.privacy-setting {
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 1.5rem;
-}
-
-.privacy-setting:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.privacy-setting-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.privacy-setting-header h6 {
-    margin: 0;
-    font-weight: 600;
-}
-
-.privacy-setting-description {
-    color: var(--secondary);
-    margin: 0;
-    font-size: 0.9rem;
-}
-
-/* Account Info */
-.account-info {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.info-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.info-label {
-    color: var(--secondary);
-}
-
-.info-value {
-    font-weight: 600;
-}
-
-.account-actions {
-    display: flex;
-    gap: 1rem;
-}
-
-/* Connected Accounts */
-.connected-accounts {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.connected-account {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.account-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.account-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.account-icon.google {
-    background-color: #DB4437;
-}
-
-.account-icon.facebook {
-    background-color: #4267B2;
-}
-
-.account-icon.apple {
-    background-color: #000000;
-}
-
-.account-details h6 {
-    margin: 0;
-    font-weight: 600;
-}
-
-.account-details p {
-    margin: 0;
-    color: var(--secondary);
-    font-size: 0.9rem;
-}
-
-/* Data Management */
-.data-management {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.data-action {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--card-border);
-}
-
-.data-action:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.data-action-info {
-    max-width: 70%;
-}
-
-.data-action-info h6 {
-    margin: 0 0 0.5rem;
-    font-weight: 600;
-}
-
-.data-action-info p {
-    margin: 0;
-    color: var(--secondary);
-    font-size: 0.9rem;
-}
-
-.danger-zone {
-    background-color: rgba(239, 68, 68, 0.1);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    border: 1px solid rgba(239, 68, 68, 0.3);
-}
-
-/* Form Switch */
-.form-check-input:checked {
-    background-color: var(--primary);
-    border-color: var(--primary);
 }
 
 /* Responsive Adjustments */
