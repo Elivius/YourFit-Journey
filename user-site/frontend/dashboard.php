@@ -81,7 +81,7 @@
                                 <h5 class="card-title">Calendar</h5>
                                 <div class="card-actions">
                                     <button class="btn btn-sm btn-outline-primary">
-                                        <i class="fas fa-plus"></i> Add Event
+                                        <i class="fas fa-history"></i> Workout History
                                     </button>
                                 </div>
                             </div>

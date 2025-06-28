@@ -280,6 +280,34 @@
   font-weight: 600;
 }
 
+/* Dimmed look for coming soon */
+.pricing-card.coming-soon {
+    opacity: 0.75;
+    pointer-events: none; /* disables all clicks inside */
+    position: relative;
+    filter: grayscale(30%);
+    transition: opacity 0.3s ease;
+}
+
+/* Badge styling */
+.coming-soon-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: var(--secondary);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Disabled button */
+.pricing-card.coming-soon .btn.disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
 .pricing-header {
   text-align: center;
   margin-bottom: 2rem;
@@ -343,81 +371,6 @@
 
 .pricing-footer {
   text-align: center;
-}
-
-/* Contact Section */
-.contact-info {
-  background-color: var(--card-bg);
-  border-radius: 1rem;
-  padding: 2rem;
-  height: 100%;
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
-}
-
-.contact-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.contact-icon {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: linear-gradient(to right bottom, var(--primary), var(--gradient-end));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.2rem;
-  flex-shrink: 0;
-}
-
-.contact-item h5 {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.contact-item p {
-  color: var(--secondary);
-  margin: 0;
-  word-break: break-word;
-}
-
-.social-links {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-}
-
-.social-link {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--body-color);
-  transition: all 0.3s ease;
-}
-
-.social-link:hover {
-  background-color: var(--primary);
-  color: white;
-  transform: translateY(-3px);
-}
-
-.contact-form-card {
-  background-color: var(--card-bg);
-  border-radius: 1rem;
-  padding: 2rem;
-  height: 100%;
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow);
 }
 
 /* Footer Styles */

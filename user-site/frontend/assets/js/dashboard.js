@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         callback: value => Number.isInteger(value) ? value : ''
                     },
                     grid: { color: "rgba(200, 200, 200, 0.2)" },
-                    beginAtZero: false
+                    beginAtZero: true
                 }
             },
             plugins: {
