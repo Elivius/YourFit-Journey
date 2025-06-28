@@ -1,38 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
     const ctx = document.getElementById("weightChart").getContext("2d");
+    const macroCanvas = document.getElementById("macronutrientChart");
+    let macroChart = null;
 
-    // Get --primary from CSS
-    const primary = getComputedStyle(document.documentElement)
-        .getPropertyValue('--primary')
-        .trim();
+    const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
 
-    // Create gradient using --primary
+    // Gradient for weight chart
     const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-    gradient.addColorStop(0, primary + '88'); // top with ~50% opacity
-    gradient.addColorStop(1, primary + '00'); // fully transparent at bottom
-
-    const weightData = {
-        labels: [],
-        datasets: [{
-            label: "Weight (kg)",
-            data: [],
-            borderColor: primary,
-            backgroundColor: gradient,
-            borderWidth: 3,
-            tension: 0.4,
-            pointRadius: 6,
-            pointBackgroundColor: primary,
-            pointBorderColor: "#fff",
-            pointHoverRadius: 8,
-            pointHoverBackgroundColor: primary,
-            pointHoverBorderColor: "#fff",
-            fill: true
-        }]
-    };
+    gradient.addColorStop(0, primary + '88');
+    gradient.addColorStop(1, primary + '00');
 
     const weightChart = new Chart(ctx, {
         type: "line",
-        data: weightData,
+        data: {
+            labels: [],
+            datasets: [{
+                label: "Weight (kg)",
+                data: [],
+                borderColor: primary,
+                backgroundColor: gradient,
+                borderWidth: 3,
+                tension: 0.4,
+                pointRadius: 6,
+                pointBackgroundColor: primary,
+                pointBorderColor: "#fff",
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: primary,
+                pointHoverBorderColor: "#fff",
+                fill: true
+            }]
+        },
         options: {
             responsive: true,
             maintainAspectRatio: false,
@@ -57,9 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         },
                         color: "#999",
                         stepSize: 1,
-                        callback: function (value) {
-                            return Number.isInteger(value) ? value : '';
-                        }
+                        callback: value => Number.isInteger(value) ? value : ''
                     },
                     grid: { color: "rgba(200, 200, 200, 0.2)" },
                     beginAtZero: false
@@ -68,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function () {
             plugins: {
                 legend: { display: false },
                 tooltip: {
-                    enabled: true,
                     backgroundColor: "rgba(30, 30, 30, 0.9)",
                     titleFont: {
                         family: "'Inter', sans-serif",
@@ -88,9 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     cornerRadius: 10,
                     displayColors: false,
                     callbacks: {
-                        label: function (context) {
-                            return ` Weight: ${parseFloat(context.raw).toFixed(1)} kg`;
-                        }
+                        label: context => ` Weight: ${parseFloat(context.raw).toFixed(1)} kg`
                     }
                 }
             },
@@ -101,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Load data from backend
+    // Load weight logs
     fetch("../backend/preload_weight_logs.php")
         .then(res => res.json())
         .then(data => {
@@ -115,4 +107,79 @@ document.addEventListener('DOMContentLoaded', function () {
             weightChart.data.datasets[0].data = [0];
             weightChart.update();
         });
+
+    // Load macronutrient chart
+    async function loadNutritionChart() {
+        const formattedDate = new Date().toISOString().split("T")[0];
+
+        try {
+            const res = await fetch(`../backend/preload_meal_summary.php?date=${formattedDate}`);
+            const data = await res.json();
+            const consumed = data.consumed;
+            const goal = data.goal;
+
+            if (!macroCanvas) return;
+
+            if (macroChart) macroChart.destroy();
+
+            const success = getComputedStyle(document.documentElement).getPropertyValue('--success').trim();
+            const warning = getComputedStyle(document.documentElement).getPropertyValue('--warning').trim();
+            const grey = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim();
+
+            let chartData, chartLabels, chartColors;
+
+            if (consumed.protein === 0 && consumed.carbs === 0 && consumed.fats === 0) {
+                chartData = [1];
+                chartLabels = ['No data'];
+                chartColors = [grey];
+            } else {
+                chartData = [consumed.protein, consumed.carbs, consumed.fats];
+                chartLabels = ['Protein', 'Carbs', 'Fat'];
+                chartColors = [primary, success, warning];
+            }
+
+            macroChart = new Chart(macroCanvas, {
+                type: 'doughnut',
+                data: {
+                    labels: chartLabels,
+                    datasets: [{
+                        data: chartData,
+                        backgroundColor: chartColors,
+                        borderWidth: 0,
+                        hoverOffset: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                usePointStyle: true,
+                                pointStyle: 'circle'
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: context => {
+                                    const label = context.label || '';
+                                    const value = context.parsed || 0;
+                                    const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${value}g (${percentage}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        } catch (err) {
+            console.error("Failed to load nutrition chart", err);
+        }
+    }
+
+    loadNutritionChart();
 });

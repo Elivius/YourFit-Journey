@@ -57,7 +57,7 @@
                     <div class="welcome-content">
                         <h2>Welcome back, <?= $_SESSION['name'] ?>!</h2>
                         <p>You're making great progress. Keep up the good work!</p>
-                        <a href="workouts.php?section=my-workouts" class="btn btn-primary">Start Workout</a>
+                        <a href="workouts.php?section=my-workouts" class="btn btn-primary">Unleash the Beast</a>
                     </div>
                 </div>
                 
@@ -131,15 +131,13 @@
                     </div>
                 </div>
 
-                <div class="row g-4 mb-4">
-                    <div class="col-lg-4">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title">Nutrition Breakdown</h5>
-                            </div>
-                            <div class="card-body">
-                                <canvas id="macronutrientChart" height="250"></canvas>
-                            </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Nutrition Breakdown</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="macronutrientChart" height="250"></canvas>
                         </div>
                     </div>
                 </div>
@@ -153,10 +151,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/summary-meals.js"></script>
 </body>
 </html>
