@@ -47,50 +47,6 @@
                             </label>
                         </div>
                     </div>
-                    <!-- <div class="dropdown notification-dropdown">
-                        <button class="btn btn-icon dropdown-toggle" type="button" id="notificationsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge">3</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
-                            <li><h6 class="dropdown-header">Notifications</h6></li>
-                            <li><a class="dropdown-item" href="#">
-                                <div class="notification-item">
-                                    <div class="notification-icon bg-primary">
-                                        <i class="fas fa-dumbbell"></i>
-                                    </div>
-                                    <div class="notification-content">
-                                        <p>New workout plan available</p>
-                                        <span>5 minutes ago</span>
-                                    </div>
-                                </div>
-                            </a></li>
-                            <li><a class="dropdown-item" href="#">
-                                <div class="notification-item">
-                                    <div class="notification-icon bg-success">
-                                        <i class="fas fa-utensils"></i>
-                                    </div>
-                                    <div class="notification-content">
-                                        <p>Reminder: Log your meals</p>
-                                        <span>2 hours ago</span>
-                                    </div>
-                                </div>
-                            </a></li>
-                            <li><a class="dropdown-item" href="#">
-                                <div class="notification-item">
-                                    <div class="notification-icon bg-info">
-                                        <i class="fas fa-trophy"></i>
-                                    </div>
-                                    <div class="notification-content">
-                                        <p>You've reached your goal!</p>
-                                        <span>1 day ago</span>
-                                    </div>
-                                </div>
-                            </a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-center" href="#">View all notifications</a></li>
-                        </ul>
-                    </div> -->
                 </div>
             </header>
 
@@ -101,10 +57,7 @@
                     <div class="welcome-content">
                         <h2>Welcome back, <?= $_SESSION['name'] ?>!</h2>
                         <p>You're making great progress. Keep up the good work!</p>
-                        <button class="btn btn-primary">Today's Workout</button>
-                    </div>
-                    <div class="welcome-image">
-                        <img src="https://source.unsplash.com/random/300x200/?fitness" alt="Fitness">
+                        <a href="workouts.php?section=my-workouts" class="btn btn-primary">Start Workout</a>
                     </div>
                 </div>
                 
