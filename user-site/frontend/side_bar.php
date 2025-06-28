@@ -7,13 +7,13 @@
             </div>
         </a>
     </div>
-    <div class="sidebar-user">
-        <img src="https://source.unsplash.com/random/100x100/?portrait" alt="User" class="user-avatar">
+    <a href="settings.php" class="sidebar-user">
+        <img src="assets/images/avatar.jpg" alt="User" class="user-avatar">
         <div>
-            <h6 class="user-name">John Doe</h6>
+            <h6 class="user-name"><?= $_SESSION['name'] ?></h6>
             <span class="user-status">Premium Member</span>
         </div>
-    </div>
+    </a>
     <nav class="sidebar-nav">
         <ul>
             <li class="sidebar-item active" style="--item-index: 0">

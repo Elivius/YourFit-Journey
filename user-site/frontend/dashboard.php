@@ -66,7 +66,7 @@
                     <div class="col-lg-4 d-flex">
                         <div class="card flex-grow-1 d-flex flex-column">
                             <div class="card-header">
-                                <h5 class="card-title">Nutrition Breakdown</h5>
+                                <h5 class="card-title">Daily Nutrition Summary</h5>
                             </div>
                             <div class="card-body d-flex align-items-center justify-content-center">
                                 <canvas id="macronutrientChart"></canvas>
@@ -100,7 +100,7 @@
                 <!-- Weight Tracker -->
                  <div class="card">
                     <div class="card-header">
-                        <h5 class="card-title">Weight Tracker</h5>
+                        <h5 class="card-title">Weight Tracking - Recent 7 Logs</h5>
                     </div>
                     <div class="card-body">
                         <canvas id="weightChart" height="450"></canvas>

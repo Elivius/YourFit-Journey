@@ -73,13 +73,25 @@
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.user-avatar-sm {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  object-fit: cover;
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  transform-origin: left;
+}
+
+.sidebar-user:hover {
+  transform: translateX(10px);
+}
+
+.sidebar-user:hover .user-avatar {
+  transform: scale(1.15);
 }
 
 .user-name {
