@@ -63,6 +63,14 @@ switch ($form_type) {
             mysqli_stmt_execute($stmt);
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $_SESSION['success'] = "Physical stats updated";
+
+                // Tnsert into weight_logs_t fro tracking
+                $sql_insert_weight_log = "INSERT INTO weight_logs_t (user_id, weight) VALUES (?, ?)";
+                if ($log_stmt = mysqli_prepare($connection, $sql_insert_weight_log)) {
+                    mysqli_stmt_bind_param($log_stmt, "id", $user_id, $weight);
+                    mysqli_stmt_execute($log_stmt);
+                    mysqli_stmt_close($log_stmt);
+                }
             } else {
                 $_SESSION['success'] = "No changes detected";
             }
