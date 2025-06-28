@@ -61,24 +61,45 @@
                     </div>
                 </div>
                 
+                <div class="row g-4">
+                    <!-- Nutrition Breakdown -->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Nutrition Breakdown</h5>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="macronutrientChart" height="265"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Workout Activity</h5>
+                                <div class="card-actions">
+                                    <select class="form-select">
+                                        <option>This Month</option>
+                                        <option>This Week</option>
+                                        <option>This Year</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <canvas id="workoutActivityChart" height="250"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Weight Tracker -->
                  <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">Weight Tracker</h5>
                     </div>
                     <div class="card-body">
-                        <canvas id="weightChart" height="300"></canvas>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title">Nutrition Breakdown</h5>
-                        </div>
-                        <div class="card-body">
-                            <canvas id="macronutrientChart" height="250"></canvas>
-                        </div>
+                        <canvas id="weightChart" height="450"></canvas>
                     </div>
                 </div>
             </div>

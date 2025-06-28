@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const primary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
 
     // Gradient for weight chart
-    const gradient = ctx.createLinearGradient(0, 0, 0, 300);
+    const gradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
     gradient.addColorStop(0, primary + '88');
     gradient.addColorStop(1, primary + '00');
 
