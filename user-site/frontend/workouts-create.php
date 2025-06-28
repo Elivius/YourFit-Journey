@@ -149,10 +149,10 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
                                             <div class="position-relative" style="max-width: 180px; width: 100%;">
                                                 <select class="form-control pe-5" id="category-filter">
                                                     <option value="">All Categories</option>
-                                                    <option value="arms">Arms</option>
-                                                    <option value="chest">Chest</option>
-                                                    <option value="back">Back</option>
-                                                    <option value="legs">Legs</option>
+                                                    <option value="Arms">Arms</option>
+                                                    <option value="Chest">Chest</option>
+                                                    <option value="Back">Back</option>
+                                                    <option value="Legs">Legs</option>
                                                 </select>
                                                 <i class="bi bi-chevron-down position-absolute select-chevron" id="select-chevron"
                                                 style="top: 50%; right: 15px;"></i>
@@ -163,86 +163,88 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
                                     <div class="mx-2" id="exercise-results">
                                         <!-- Display exercises grouped by category -->
                                         <?php foreach ($groupedExercises as $category => $exercises): ?>
-                                            <div class="sticky-category-header">
-                                                <h5 class="mb-3"><?= htmlspecialchars(ucfirst($category)); ?>  <hr></h5>
-                                            </div>
+                                            <div class="exercise-category-section" data-category="<?= htmlspecialchars($category); ?>">
+                                                <div class="sticky-category-header">
+                                                    <h5 class="mb-3"><?= htmlspecialchars(ucfirst($category)); ?>  <hr></h5>
+                                                </div>
 
-                                            <?php if (empty($exercises)): ?>
-                                                <p class="muted-p">No exercises found in this category.</p>
-                                            <?php endif; ?>
+                                                <?php if (empty($exercises)): ?>
+                                                    <p class="muted-p">No exercises found in this category.</p>
+                                                <?php endif; ?>
 
-                                            <div class="accordion workout-exercises mb-4" id="accordion<?= htmlspecialchars($category) ?>">
-                                                <?php foreach ($exercises as $index => $exercise): ?>
-                                                    <?php 
-                                                        $collapseId = 'exerciseCollapse' . $index;
-                                                        $headingId = 'exerciseHeading' . $index;
-                                                    ?>
-                                                    <div class="accordion-item">
-                                                        <h2 class="accordion-header" id="<?= $headingId ?>">
-                                                            <button class="accordion-button <?= $index !== 0 ? 'collapsed' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapseId ?>" aria-expanded="<?= $index === 0 ? 'true' : 'false' ?>" aria-controls="<?= $collapseId ?>">
-                                                                <div class="d-flex justify-content-between align-items-center w-100">
-                                                                    <div class="exercise-header me-2">
-                                                                        <span class="exercise-number"><?= $index + 1 ?></span>
-                                                                        <div class="exercise-title">
-                                                                            <h6 class="mb-2"><?= htmlspecialchars($exercise['exercise_name']) ?></h6>
-                                                                            <p class="mb-2 muted-p small">Target muscles:</p>
+                                                <div class="accordion workout-exercises mb-4" id="accordion<?= htmlspecialchars($category) ?>">
+                                                    <?php foreach ($exercises as $index => $exercise): ?>
+                                                        <?php 
+                                                            $collapseId = 'exerciseCollapse' . $index;
+                                                            $headingId = 'exerciseHeading' . $index;
+                                                        ?>
+                                                        <div class="accordion-item">
+                                                            <h2 class="accordion-header" id="<?= $headingId ?>">
+                                                                <button class="accordion-button <?= $index !== 0 ? 'collapsed' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#<?= $collapseId ?>" aria-expanded="<?= $index === 0 ? 'true' : 'false' ?>" aria-controls="<?= $collapseId ?>">
+                                                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                                                        <div class="exercise-header me-2">
+                                                                            <span class="exercise-number"><?= $index + 1 ?></span>
+                                                                            <div class="exercise-title">
+                                                                                <h6 class="mb-2"><?= htmlspecialchars($exercise['exercise_name']) ?></h6>
+                                                                                <p class="mb-2 muted-p small">Target muscles:</p>
 
-                                                                            <div class="d-flex flex-wrap gap-2 mb-0">
-                                                                                <?php
-                                                                                    $muscles = explode(',', $exercise['targeted_muscle']);
-                                                                                    foreach ($muscles as $muscle):                                                                        
-                                                                                ?>
-                                                                                    <span class="workout-pill"><?= htmlspecialchars(trim($muscle)); ?></span>
-                                                                                <?php endforeach; ?>
+                                                                                <div class="d-flex flex-wrap gap-2 mb-0">
+                                                                                    <?php
+                                                                                        $muscles = explode(',', $exercise['targeted_muscle']);
+                                                                                        foreach ($muscles as $muscle):                                                                        
+                                                                                    ?>
+                                                                                        <span class="workout-pill"><?= htmlspecialchars(trim($muscle)); ?></span>
+                                                                                    <?php endforeach; ?>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>                                                  
+                                                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                                                                    </div>
+                                                                </button>
+                                                            </h2>
+                                                            <div id="<?= $collapseId ?>" class="accordion-collapse collapse <?= $index === 0 ? 'show' : '' ?>" aria-labelledby="<?= $headingId ?>">
+                                                                <div class="accordion-body p-3">
+                                                                    <div class="row g-3 align-items-stretch">
+                                                                        <div class="col-md-4">
+                                                                            <div class="exercise-image">
+                                                                            <img src="<?= htmlspecialchars($exercise['image_url']); ?>"
+                                                                                alt="<?= htmlspecialchars($exercise['exercise_name']) ?>">
                                                                             </div>
                                                                         </div>
-                                                                    </div>                                                  
-                                                                    <i class="fa-solid fa-chevron-down accordion-icon"></i>
-                                                                </div>
-                                                            </button>
-                                                        </h2>
-                                                        <div id="<?= $collapseId ?>" class="accordion-collapse collapse <?= $index === 0 ? 'show' : '' ?>" aria-labelledby="<?= $headingId ?>">
-                                                            <div class="accordion-body p-3">
-                                                                <div class="row g-3 align-items-stretch">
-                                                                    <div class="col-md-4">
-                                                                        <div class="exercise-image">
-                                                                        <img src="<?= htmlspecialchars($exercise['image_url']); ?>"
-                                                                            alt="<?= htmlspecialchars($exercise['exercise_name']) ?>">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-8 d-flex flex-column justify-content-between">
-                                                                        <div class="exercise-details mb-0">
-                                                                        <h6 class="muted-p">Instructions:</h6>
-                                                                        <?php
-                                                                            $rawInstructions = $exercise['instructions'] ?? '';
-                                                                            $steps = preg_split('/(?=\d+\.\s)/', $rawInstructions);
-                                                                        ?>
-                                                                        <?php if (!empty($steps)): ?>
-                                                                            <?php foreach ($steps as $step): ?>
-                                                                            <?php if (trim($step)): ?>
-                                                                                <p class="small mb-2"><?= htmlspecialchars(trim($step)) ?></p>
+                                                                        <div class="col-md-8 d-flex flex-column justify-content-between">
+                                                                            <div class="exercise-details mb-0">
+                                                                            <h6 class="muted-p">Instructions:</h6>
+                                                                            <?php
+                                                                                $rawInstructions = $exercise['instructions'] ?? '';
+                                                                                $steps = preg_split('/(?=\d+\.\s)/', $rawInstructions);
+                                                                            ?>
+                                                                            <?php if (!empty($steps)): ?>
+                                                                                <?php foreach ($steps as $step): ?>
+                                                                                <?php if (trim($step)): ?>
+                                                                                    <p class="small mb-2"><?= htmlspecialchars(trim($step)) ?></p>
+                                                                                <?php endif; ?>
+                                                                                <?php endforeach; ?>
+                                                                            <?php else: ?>
+                                                                                <p class="text-muted small mb-0 fst-italic">No instructions provided.</p>
                                                                             <?php endif; ?>
-                                                                            <?php endforeach; ?>
-                                                                        <?php else: ?>
-                                                                            <p class="text-muted small mb-0 fst-italic">No instructions provided.</p>
-                                                                        <?php endif; ?>
-                                                                        </div>
+                                                                            </div>
 
-                                                                        <div class="mb-3">
-                                                                            <button type="button" class="btn btn-sm btn-primary w-100 add-exercise-btn"
-                                                                                    data-id="<?= htmlspecialchars($exercise['exercise_id']); ?>"
-                                                                                    data-name="<?= htmlspecialchars($exercise['exercise_name']); ?>"
-                                                                                    data-target-muscles="<?= htmlspecialchars($exercise['targeted_muscle']); ?>">
-                                                                                <i class="fas fa-plus me-1"></i> Add
-                                                                            </button>
+                                                                            <div class="mb-3">
+                                                                                <button type="button" class="btn btn-sm btn-primary w-100 add-exercise-btn"
+                                                                                        data-id="<?= htmlspecialchars($exercise['exercise_id']); ?>"
+                                                                                        data-name="<?= htmlspecialchars($exercise['exercise_name']); ?>"
+                                                                                        data-target-muscles="<?= htmlspecialchars($exercise['targeted_muscle']); ?>">
+                                                                                    <i class="fas fa-plus me-1"></i> Add
+                                                                                </button>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
 
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+                                                </div>
                                             </div>
                                         <?php endforeach; ?>
                                     </div>

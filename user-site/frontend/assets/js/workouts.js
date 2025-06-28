@@ -30,4 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
             window.print();
         });
     }
+
+    // Filter exercise by category
+    document.getElementById('category-filter').addEventListener('change', function () {
+        const selectedCategory = this.value;
+        const sections = document.querySelectorAll('.exercise-category-section');
+
+        sections.forEach(section => {
+            const category = section.getAttribute('data-category');
+            if (selectedCategory === '' || category === selectedCategory) {
+                section.style.display = 'block';
+            } else {
+                section.style.display = 'none';
+            }
+        });
+    });
 });

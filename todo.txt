@@ -6,7 +6,6 @@
 
 ============================== URGENT ===================================
 
-- Dev Feedback
 - Exercise Category Filter
 - Trainee Prebuilt
 - Validation
