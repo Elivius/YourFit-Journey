@@ -61,9 +61,9 @@
                     </div>
                 </div>
                 
-                <div class="row g-4 align-items-stretch">
+                <div class="row g-5 align-items-stretch">
                     <!-- Nutrition Breakdown -->
-                    <div class="col-lg-4 d-flex p-2">
+                    <div class="col-lg-5 d-flex p-2">
                         <div class="card flex-grow-1 d-flex flex-column">
                             <div class="card-header">
                                 <h5 class="card-title">Daily Nutrition Summary</h5>
@@ -75,7 +75,7 @@
                     </div>
 
                     <!-- Calendar -->
-                    <div class="col-lg-8 d-flex p-2">
+                    <div class="col-lg-7 d-flex p-2">
                         <div class="card flex-grow-1 d-flex flex-column">
                             <div class="card-header d-flex justify-content-between align-items-center pt-3 pb-3">
                                 <h5 class="card-title">Calendar</h5>
