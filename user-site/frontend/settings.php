@@ -434,7 +434,7 @@ require_once '../backend/preload_settings.php';
                                             <div class="col-12">
                                                 <div class="position-relative">
                                                     <label for="feedbackCategory" class="form-label">Feedback Category</label>
-                                                    <select class="form-control pe-5" id="feedbackCategory" name="category" required>
+                                                    <select class="form-control pe-5" id="category-filter" name="category" required>
                                                         <option value="general_feedback">General Feedback</option>
                                                         <option value="bug_report">Bug Report</option>
                                                         <option value="feature_request" selected>Feature Request</option>

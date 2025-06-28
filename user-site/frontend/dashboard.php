@@ -146,7 +146,7 @@
                                 <h5 class="card-title">Nutrition Breakdown</h5>
                             </div>
                             <div class="card-body">
-                                <canvas id="nutritionChart" height="250"></canvas>
+                                <canvas id="macronutrientChart" height="250"></canvas>
                             </div>
                         </div>
                     </div>
