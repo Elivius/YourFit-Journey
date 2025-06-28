@@ -7,7 +7,7 @@ function cleanInput($data) {
 // Sanitize and validate email
 function sanitizeEmail($email) {
     $email = filter_var(trim($email), FILTER_SANITIZE_EMAIL);
-    return filter_var($email, FILTER_VALIDATE_EMAIL) ? $email : false;
+    return filter_var($email, FILTER_VALIDATE_EMAIL) ? strtolower($email) : false;
 }
 
 // Sanitize integer

@@ -1,9 +1,8 @@
 =============================== PLANS ===================================
 
 - Need pop up display confirmation modal
-- Feedback
 - Dashboard
 
 ============================== URGENT ===================================
 
-- Validation
+- Forogt password
