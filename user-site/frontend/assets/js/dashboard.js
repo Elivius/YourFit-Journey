@@ -157,22 +157,41 @@ document.addEventListener('DOMContentLoaded', function () {
                         legend: {
                             position: 'bottom',
                             labels: {
+                                color: "#999",
                                 padding: 20,
                                 usePointStyle: true,
                                 pointStyle: 'circle'
                             }
                         },
                         tooltip: {
-                            callbacks: {
-                                label: context => {
-                                    const label = context.label || '';
-                                    const value = context.parsed || 0;
-                                    const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
-                                    const percentage = Math.round((value / total) * 100);
-                                    return `${label}: ${value}g (${percentage}%)`;
-                                }
+                        backgroundColor: "rgba(30, 30, 30, 0.9)",
+                        titleFont: {
+                            family: "'Inter', sans-serif",
+                            size: 14,
+                            weight: "normal"
+                        },
+                        titleColor: "#fff",
+                        bodyFont: {
+                            family: "'Inter', sans-serif",
+                            size: 14,
+                            weight: "normal"
+                        },
+                        bodyColor: "#ddd",
+                        padding: 12,
+                        borderColor: primary,
+                        borderWidth: 2,
+                        cornerRadius: 10,
+                        displayColors: false,
+                        callbacks: {
+                            label: context => {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                const total = context.dataset.data.reduce((acc, val) => acc + val, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${value}g (${percentage}%)`;
                             }
                         }
+                    }
                     }
                 }
             });

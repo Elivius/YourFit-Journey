@@ -61,66 +61,6 @@
                     </div>
                 </div>
                 
-                <!-- Stats Cards -->
-                <div class="row g-4 mb-4">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h6 class="stat-card-title">Workouts Completed</h6>
-                                <h2 class="stat-card-value">24</h2>
-                                <p class="stat-card-change positive">
-                                    <i class="fas fa-arrow-up"></i> 12% from last month
-                                </p>
-                            </div>
-                            <div class="stat-card-icon bg-primary">
-                                <i class="fas fa-dumbbell"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h6 class="stat-card-title">Calories Burned</h6>
-                                <h2 class="stat-card-value">12,450</h2>
-                                <p class="stat-card-change positive">
-                                    <i class="fas fa-arrow-up"></i> 8% from last month
-                                </p>
-                            </div>
-                            <div class="stat-card-icon bg-success">
-                                <i class="fas fa-fire"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h6 class="stat-card-title">Diet Adherence</h6>
-                                <h2 class="stat-card-value">85%</h2>
-                                <p class="stat-card-change positive">
-                                    <i class="fas fa-arrow-up"></i> 5% from last month
-                                </p>
-                            </div>
-                            <div class="stat-card-icon bg-warning">
-                                <i class="fas fa-utensils"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="stat-card">
-                            <div class="stat-card-content">
-                                <h6 class="stat-card-title">Goal Progress</h6>
-                                <h2 class="stat-card-value">67%</h2>
-                                <p class="stat-card-change positive">
-                                    <i class="fas fa-arrow-up"></i> 15% from last month
-                                </p>
-                            </div>
-                            <div class="stat-card-icon bg-info">
-                                <i class="fas fa-bullseye"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
                 <!-- Weight Tracker -->
                  <div class="card">
                     <div class="card-header">

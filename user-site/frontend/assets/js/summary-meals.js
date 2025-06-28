@@ -58,9 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const success = getComputedStyle(document.documentElement).getPropertyValue('--success').trim();
                 const warning = getComputedStyle(document.documentElement).getPropertyValue('--warning').trim();
                 const grey = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim();
-                const cardBg = getComputedStyle(document.documentElement).getPropertyValue('--card-bg').trim();
-                const bodyColor = getComputedStyle(document.documentElement).getPropertyValue('--body-color').trim();
-                const cardBorder = getComputedStyle(document.documentElement).getPropertyValue('--card-border').trim();
+                const mutedColor = getComputedStyle(document.querySelector('.muted-p')).color;
 
                 let chartData, chartLabels, chartColors;
 
@@ -93,18 +91,36 @@ document.addEventListener("DOMContentLoaded", () => {
                             legend: {
                                 position: 'bottom',
                                 labels: {
+                                    color: mutedColor,
                                     padding: 20,
                                     usePointStyle: true,
-                                    pointStyle: 'circle'
+                                    pointStyle: 'circle',
+                                    font: {
+                                        family: "'Inter', sans-serif",
+                                        size: 14,
+                                        weight: "normal"
+                                    },
                                 }
                             },
                             tooltip: {
-                                backgroundColor: cardBg,
-                                titleColor: bodyColor,
-                                bodyColor: bodyColor,
-                                borderColor: cardBorder,
-                                borderWidth: 1,
+                                backgroundColor: "rgba(30, 30, 30, 0.9)",
+                                titleFont: {
+                                    family: "'Inter', sans-serif",
+                                    size: 14,
+                                    weight: "normal"
+                                },
+                                titleColor: "#fff",
+                                bodyFont: {
+                                    family: "'Inter', sans-serif",
+                                    size: 14,
+                                    weight: "normal"
+                                },
+                                bodyColor: "#ddd",
                                 padding: 12,
+                                borderColor: primary,
+                                borderWidth: 2,
+                                cornerRadius: 10,
+                                displayColors: false,
                                 callbacks: {
                                     label: function (context) {
                                         const label = context.label || '';
