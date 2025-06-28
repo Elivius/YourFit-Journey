@@ -77,7 +77,7 @@
                     <!-- Calendar -->
                     <div class="col-lg-8 d-flex">
                         <div class="card flex-grow-1 d-flex flex-column">
-                            <div class="card-header d-flex justify-content-between align-items-center">
+                            <div class="card-header d-flex justify-content-between align-items-center pt-3 pb-3">
                                 <h5 class="card-title">Calendar</h5>
                                 <div class="card-actions">
                                     <button class="btn btn-sm btn-outline-primary">

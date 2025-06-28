@@ -1,5 +1,6 @@
 <?php
 require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
 require_once '../backend/preload_workouts.php';
 ?>
 
@@ -166,6 +167,14 @@ require_once '../backend/preload_workouts.php';
                                         </div>
                                     <?php endforeach; ?>
                                 </div>
+                                <form action="../backend/process_save_workout_logs.php" method="POST">
+                                    <input type="hidden" name="csrf_token" value="<?= generateCSRFToken() ?>">
+                                    <input type="hidden" name="workout_id" value="<?= htmlspecialchars($workout_id) ?>">
+
+                                    <button type="submit" class="btn btn-primary w-100 py-3 fs-6 rounded-3">
+                                        <i class="fas fa-fire"></i> Beast Logged
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

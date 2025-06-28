@@ -522,11 +522,11 @@
   color: white;
 }
 
-.calendar-table td.has-event {
+.calendar-table td.has-workout {
   position: relative;
 }
 
-.calendar-table td.has-event::after {
+.calendar-table td.has-workout::after {
   content: "";
   position: absolute;
   bottom: 5px;
