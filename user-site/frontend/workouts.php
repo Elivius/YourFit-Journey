@@ -130,7 +130,6 @@ require_once '../backend/preload_all_workouts.php';
                                     <div class="card-body">
                                         <div class="accordion workout-exercises" id="accordion-<?= $category ?>">
                                             <?php foreach ($exercises as $index => $ex): ?>
-                                                <!-- Your existing accordion code for exercises -->
                                                 <?php 
                                                     $collapseId = "exerciseCollapse{$category}{$index}";
                                                     $headingId = "exerciseHeading{$category}{$index}";

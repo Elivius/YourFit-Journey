@@ -24,7 +24,7 @@
         }
 
         #scrollToTopBtn:hover {
-            background-color: var(--primary-hover); /* hover color */
+            background-color: var(--primary-hover);
         }
     </style>
 </head>

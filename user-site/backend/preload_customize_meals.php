@@ -2,7 +2,6 @@
 require_once '../../utils/connection.php';
 require_once 'macro_calories_calculator.php';
 
-// === CONFIG ===
 $maxMealRetries = 100;
 $maxLoops = 1000;
 
@@ -20,7 +19,7 @@ $target = [
     'calories' => $daily_macrosCal['calories']
 ];
 
-// === HELPER: Get 3 random meals ===
+// Get 3 random meals
 function getRandomMeals($connection) {
     $sql = "
     (
@@ -47,7 +46,7 @@ function getRandomMeals($connection) {
     return $meals;
 }
 
-// === HELPER: Get ingredients for meal ===
+// Get ingredients for meal
 function getMealIngredients($connection, $meal_id) {
     $sql = "
         SELECT 
@@ -73,7 +72,7 @@ function getMealIngredients($connection, $meal_id) {
     return $ingredients;
 }
 
-// === TRY DIFFERENT MEAL SETS UNTIL MACRO MATCH ===
+// Try different meal sets until macro mets
 $matched = false;
 
 for ($mealAttempt = 0; $mealAttempt < $maxMealRetries; $mealAttempt++) {
@@ -100,7 +99,7 @@ for ($mealAttempt = 0; $mealAttempt < $maxMealRetries; $mealAttempt++) {
         }
     }
 
-    // === SCALE ATTEMPTS ===
+    // Scale attempts
     for ($i = 0; $i < $maxLoops; $i++) {
         $total = ['protein' => 0, 'carbs' => 0, 'fats' => 0, 'calories' => 0];
 
@@ -146,7 +145,6 @@ for ($mealAttempt = 0; $mealAttempt < $maxMealRetries; $mealAttempt++) {
     if ($matched) break;
 }
 
-// === FINAL OUTPUT ===
 if ($matched) {
     $personalizedMeals = [];
 
@@ -217,7 +215,7 @@ if ($matched) {
     http_response_code(400);
     echo json_encode([
         'status' => 'error',
-        'message' => "❌ Failed to match macros after $maxMealRetries meal sets × $maxLoops loops.",
+        'message' => "Failed to match macros after $maxMealRetries meal sets × $maxLoops loops.",
         'personalized_meals' => []
     ]);
     exit;

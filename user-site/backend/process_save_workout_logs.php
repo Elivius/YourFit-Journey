@@ -25,7 +25,7 @@ if (!$workout_id || !$workout_name || !$estimated_duration) {
     exit;
 }
 
-// Optional: Prevent duplicate entry for same user/workout on same day
+// Prevent duplicate entry for same user/workout on same day
 $sql_check = "SELECT 1 FROM workout_logs_t WHERE user_id = ? AND workout_id = ? AND DATE(created_at) = CURDATE()";
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, "ii", $user_id, $workout_id);

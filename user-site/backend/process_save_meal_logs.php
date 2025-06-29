@@ -6,14 +6,14 @@ require_once '../../utils/sanitize.php';
 
 // Validate CSRF token
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
-    session_unset(); // Unset all session to prevent user back to previous webpage
+    session_unset();
     $_SESSION['target_form'] = 'loginForm';
     $_SESSION['error'] = "Invalid CSRF token";
     header("Location: ../frontend/login.php");
     exit;
 }
 
-$meal_id = isset($_POST['meal_id']) && is_numeric($_POST['meal_id']) ? intval($_POST['meal_id']) : null; // Check if got meal_id. Got meal_id = update
+$meal_id = isset($_POST['meal_id']) && is_numeric($_POST['meal_id']) ? intval($_POST['meal_id']) : null;
 
 $meal_name = cleanInput($_POST['meal_name'] ?? '');
 $protein = sanitizeFloat($_POST['protein'] ?? '');
@@ -24,7 +24,6 @@ $category = cleanInput($_POST['category'] ?? '');
 $user_id = $_SESSION['user_id'] ?? null;
 
 if ($meal_id) {
-    // UPDATE logic
     $sql_update = "UPDATE user_meal_logs_t SET meal_name = ?, category = ?, protein_g = ?, carbs_g = ?, fats_g = ?, calories = ? WHERE user_meal_log_id = ? AND user_id = ?";
     if ($stmt = mysqli_prepare($connection, $sql_update)) {
         mysqli_stmt_bind_param($stmt, 'ssddddii', $meal_name, $category, $protein, $carbs, $fats, $calories, $meal_id, $user_id);
@@ -40,7 +39,6 @@ if ($meal_id) {
         $_SESSION['error'] = "Failed to update meal";
     }
 } else {
-    // INSERT logic (your existing code)
     $sql_insert_meal_log = "INSERT INTO user_meal_logs_t (user_id, meal_name, category, protein_g, carbs_g, fats_g, calories) VALUES (?, ?, ?, ?, ?, ?, ?)";
     if ($stmt = mysqli_prepare($connection, $sql_insert_meal_log)) {
         mysqli_stmt_bind_param($stmt, 'issdddd', $user_id, $meal_name, $category, $protein, $carbs, $fats, $calories);
@@ -58,7 +56,6 @@ if ($meal_id) {
     }
 }
 
-// Redirect after both insert/update
 header("Location: ../frontend/nutrition.php");
 exit;
 ?>

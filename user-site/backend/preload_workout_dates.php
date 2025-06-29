@@ -16,7 +16,7 @@ $result = mysqli_stmt_get_result($stmt);
 
 $logs = [];
 while ($row = mysqli_fetch_assoc($result)) {
-    $logs[] = $row['date']; // Just store date as string
+    $logs[] = $row['date'];
 }
 
 // Remove duplicates just in case

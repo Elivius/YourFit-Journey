@@ -23,7 +23,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     ];
 }
 
-// Reverse to show from earliest → latest
+// Reverse to show from earliest to latest
 $logs = array_reverse($logs);
 
 $labels = array_column($logs, 'date');

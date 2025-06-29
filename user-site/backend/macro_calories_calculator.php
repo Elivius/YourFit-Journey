@@ -77,8 +77,8 @@ function calculateMacros($calories, $goal) {
         $weight = $user['weight'];
 
         // Fixed macros by body weight
-        $protein_g = round($weight * 2.2);  // ~2.2g protein per kg
-        $fats_g = round($weight * 0.9);     // ~0.9g fats per kg
+        $protein_g = round($weight * 2.2);
+        $fats_g = round($weight * 0.9);    
 
         // Calories used by protein & fats
         $protein_kcal = $protein_g * 4;

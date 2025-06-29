@@ -2,7 +2,7 @@
 require_once '../../utils/connection.php';
 require_once '../../utils/sanitize.php';
 
-// Define workout ID → category
+// Define workout ID with related category
 $workoutIdToCategory = [
     21 => 'back',
     22 => 'chest',
@@ -13,7 +13,6 @@ $workoutIdToCategory = [
 $prebuiltWorkouts = [];
 
 foreach ($workoutIdToCategory as $workout_id => $category) {
-    // Join workouts_t to get name and description too
     $sql = "
         SELECT 
             wt.workout_name, wt.workout_description,
@@ -57,7 +56,6 @@ foreach ($workoutIdToCategory as $workout_id => $category) {
         mysqli_stmt_close($stmt);
     }
 
-    // Store everything under the category
     $prebuiltWorkouts[$category] = [
         'name' => $workoutName,
         'description' => $description,

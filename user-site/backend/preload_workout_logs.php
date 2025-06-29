@@ -28,7 +28,6 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
 
     mysqli_stmt_close($stmt);
     
-    // Return JSON
     header('Content-Type: application/json');
     echo json_encode($logs);
     exit;

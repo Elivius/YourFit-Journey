@@ -5,7 +5,7 @@ require_once '../../utils/csrf.php';
 require_once '../../utils/sanitize.php';
 
 if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
-    session_unset(); // Unset all session to prevent user back to previous webpage
+    session_unset();
     $_SESSION['target_form'] = 'loginForm';
     $_SESSION['error'] = "Invalid CSRF token";    
     header("Location: ../frontend/login.php");
@@ -99,7 +99,6 @@ if ($workout_id) {
     }
 
 } else {
-    // Insert into workouts
     $sql_insert_workout = "INSERT INTO workouts_t (user_id, workout_name, estimated_duration, workout_description) VALUES (?, ?, ?, ?)";
     if ($stmt = mysqli_prepare($connection, $sql_insert_workout)) {
         mysqli_stmt_bind_param($stmt, "isis", $user_id, $workout_name, $estimated_duration, $workout_description);
@@ -122,9 +121,9 @@ if ($workout_id) {
             foreach ($_POST['exercises'] as $exercise) {
                 $exercise_id = sanitizeInt($exercise['id']);
                 $sets = sanitizeInt($exercise['sets']);
-                $reps = cleanInput($exercise['reps']); // Could be a string like "10-12"
+                $reps = cleanInput($exercise['reps']);
                 $rest = sanitizeInt($exercise['rest']);
-                $weight = cleanInput($exercise['weight']); // Could be string (e.g. "bodyweight")
+                $weight = cleanInput($exercise['weight']);
     
                 mysqli_stmt_bind_param($stmt, "iiisis", $workout_id, $exercise_id, $sets, $reps, $rest, $weight);
                 mysqli_stmt_execute($stmt);
