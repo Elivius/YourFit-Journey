@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
 </head>
 <body>    
     <footer class="footer py-5">
@@ -39,7 +40,6 @@
                 </div>
             </div>
     
-            <!-- Divider -->
             <hr class="border-secondary mt-5">
     
             <!-- Footer Bottom -->
@@ -48,12 +48,17 @@
                     <p class="mb-0">&copy; <?= date('Y') ?> YourFit Journey. All rights reserved.</p>
                 </div>
                 <div class="col-md-6 text-md-end small">
-                    <a href="#" class="text-decoration-none me-2">Privacy Policy</a>
+                    <a href="#" onclick="openPrivacyModal(); return false;" class="text-decoration-none me-2">Privacy Policy</a>
                     |
-                    <a href="#" class="text-decoration-none ms-2">Terms of Service</a>
+                    <a href="#" onclick="openTermsModal(); return false;" class="text-decoration-none ms-2">Terms of Service</a>
                 </div>
             </div>
         </div>
     </footer>
+
+    <?php include 'privacy-terms.php'; ?>
+
+    <!-- JS to open Terms and Privacy Modal -->
+    <script src="assets/js/privacy-terms.js"></script>
 </body>
 </html>
