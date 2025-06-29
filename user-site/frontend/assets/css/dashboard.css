@@ -22,7 +22,7 @@
 
 /* Sidebar Styles - MODIFIED FOR OVERLAY */
 .sidebar {
-  width: 230px;
+  width: 280px;
   background-color: var(--sidebar-bg);
   height: 100vh;
   position: fixed;
@@ -50,7 +50,7 @@
   padding: 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-bottom: 1px solid var(--card-border);
 }
 
@@ -58,6 +58,13 @@
   display: inline-block;
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  white-space: nowrap; /* Prevent wrapping */
+  gap: 0.5rem; /* Optional spacing between icon and text */
 }
 
 .sidebar-user {
@@ -290,6 +297,10 @@
 }
 
 @media (max-width: 767px) {
+    .sidebar {
+      width: 235px !important;
+    }
+
     .card-header {
         flex-direction: column;
         align-items: center;
