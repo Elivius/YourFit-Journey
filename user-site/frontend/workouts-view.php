@@ -172,6 +172,7 @@ require_once '../backend/preload_workouts.php';
                                     <input type="hidden" name="workout_id" value="<?= htmlspecialchars($workout_id) ?>">
                                     <input type="hidden" name="workout_name" value="<?= htmlspecialchars($workout_name) ?>">
                                     <input type="hidden" name="estimated_duration" value="<?= htmlspecialchars($estimated_duration) ?>">
+                                    <input type="hidden" name="exercise_count" value="<?= count($exercises) ?>">
 
                                     <button type="submit" class="btn btn-primary w-100 py-3 fs-6 rounded-3">
                                         <i class="fas fa-fire"></i> Beast Logged

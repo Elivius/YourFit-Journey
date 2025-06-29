@@ -53,17 +53,18 @@
 /* === Modal Sections === */
 .modal-header,
 .modal-footer {
-  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .modal-header {
+    padding: 25px;
     border-bottom: 1px solid var(--card-border);
 }
 
 .modal-footer {
+    padding: 15px;
     justify-content: flex-end;
     gap: 12px;
     border-top: 1px solid var(--card-border);
@@ -123,8 +124,11 @@
   }
 
   .modal-header,
-  .modal-body,
+  .modal-body {
+    padding: 20px;
+  }
+
   .modal-footer {
-    padding: 16px;
+    padding: 10px;
   }
 }

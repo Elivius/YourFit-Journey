@@ -31,7 +31,10 @@ async function openWorkoutHistoryModal() {
                         <h6 class="mb-0">${workout.workout_name}</h6>
                         <small class="muted-p">${workout.date}</small>
                     </div>
-                    <div class="muted-p">Duration: ${workout.duration}</div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div class="workout-pill time"><strong><i class="fas fa-clock me-1"></i> ${workout.duration}</strong></div>
+                        <div class="workout-pill exercise"><strong><i class="fas fa-dumbbell me-1"></i> ${workout.exercise_count}</strong></div>
+                    </div>
                 </div>
             `;
         }).join("");

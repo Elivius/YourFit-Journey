@@ -3,7 +3,7 @@ session_start();
 require_once '../../utils/connection.php';
 
 $sql_extract = "
-    SELECT created_at, workout_name, estimated_duration
+    SELECT created_at, workout_name, estimated_duration, exercise_count
     FROM workout_logs_t
     WHERE user_id = ?
     ORDER BY created_at DESC";
@@ -21,6 +21,7 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
                 'date' => date('M d, Y, h:i A', strtotime($row['created_at'])),
                 'workout_name' => $row['workout_name'],
                 'duration' => $row['estimated_duration'] . ' min',
+                'exercise_count' => $row['exercise_count'] . ' exercise',
             ];
         }
     }
