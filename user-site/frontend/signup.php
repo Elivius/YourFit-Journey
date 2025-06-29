@@ -107,7 +107,7 @@ require_once '../../utils/csrf.php';
 
                     <div class="mb-4 form-check">
                         <input type="checkbox" class="form-check-input" name="terms" id="terms" required>
-                        <label class="form-check-label" for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                        <label class="form-check-label" for="terms">I agree to the <a href="terms.php">Terms of Service</a> and <a href="privacy.php">Privacy Policy</a></label>
                     </div>
 
                     <div class="form-message" id="signupFormMessage"></div>

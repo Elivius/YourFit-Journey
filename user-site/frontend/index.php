@@ -18,34 +18,31 @@
 <body>    
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center" href="index.php">
-        <i class="fas fa-bolt logo-icon me-2"></i>
-        <span>YourFit<span class="text-gradient">Journey</span></span>
-        </a>
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.php">
+            <i class="fas fa-bolt logo-icon me-2"></i>
+            <span>YourFit<span class="text-gradient">Journey</span></span>
+            </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto text-center">
-            <li class="nav-item"><a class="nav-link active" href="#home" data-scroll-to="home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#features" data-scroll-to="features">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="#testimonials" data-scroll-to="testimonials">Testimonials</a></li>
-            <li class="nav-item"><a class="nav-link" href="#pricing" data-scroll-to="pricing">Pricing</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact" data-scroll-to="contact">Contact</a></li>
-        </ul>
-        <div class="auth-buttons d-flex justify-content-center justify-content-lg-end gap-2 mt-3 mt-lg-0">
-            <a href="login.php" class="btn btn-outline-primary">Login</a>
-            <a href="signup.php" class="btn btn-primary">Sign Up</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto text-center">
+                <li class="nav-item"><a class="nav-link active" href="#home" data-scroll-to="home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#features" data-scroll-to="features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#testimonials" data-scroll-to="testimonials">Testimonials</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pricing" data-scroll-to="pricing">Pricing</a></li>
+            </ul>
+            <div class="auth-buttons d-flex justify-content-center justify-content-lg-end gap-2 mt-3 mt-lg-0">
+                <a href="login.php" class="btn btn-outline-primary">Login</a>
+                <a href="signup.php" class="btn btn-primary">Sign Up</a>
+            </div>
+            </div>
         </div>
-        </div>
-    </div>
     </nav>
-
-
 
     <!-- Hero Section -->
     <section id="home" class="hero-section">
@@ -345,11 +342,10 @@
                     <div class="footer-links">
                         <h5>Quick Links</h5>
                         <ul class="list-unstyled">
-                            <li><a href="#home" data-scroll-to="home">Home</a></li>
-                            <li><a href="#features" data-scroll-to="features">Features</a></li>
-                            <li><a href="#testimonials" data-scroll-to="testimonials">Testimonials</a></li>
-                            <li><a href="#pricing" data-scroll-to="pricing">Pricing</a></li>
-                            <li><a href="#contact" data-scroll-to="contact">Contact</a></li>
+                            <li><a href="index.php#home" data-scroll-to="home">Home</a></li>
+                            <li><a href="index.php#features" data-scroll-to="features">Features</a></li>
+                            <li><a href="index.php#testimonials" data-scroll-to="testimonials">Testimonials</a></li>
+                            <li><a href="index.php#pricing" data-scroll-to="pricing">Pricing</a></li>
                         </ul>
                     </div>
                 </div>
@@ -362,7 +358,7 @@
                         <p>&copy; <?= date('Y') ?> YourFit Journey. All rights reserved.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                        <p><a href="privacy.php">Privacy Policy</a> | <a href="terms.php">Terms of Service</a></p>
                     </div>
                 </div>
             </div>

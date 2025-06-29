@@ -28,16 +28,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // Smooth scroll with offset
   document.querySelectorAll('a[data-scroll-to]').forEach(link => {
     link.addEventListener('click', function (e) {
-      e.preventDefault();
-      const targetId = this.getAttribute('data-scroll-to');
-      const target = document.getElementById(targetId);
+      const href = this.getAttribute('href') || '';
+      const currentPage = window.location.pathname.split('/').pop();
+      const isSamePage = href.startsWith(`#`) || href.includes(currentPage);
 
-      if (target) {
-        const top = target.getBoundingClientRect().top + window.scrollY - navbarHeight + 10;
-        window.scrollTo({ top, behavior: 'smooth' });
+      if (isSamePage) {
+        e.preventDefault();
+        const targetId = this.getAttribute('data-scroll-to');
+        const target = document.getElementById(targetId);
+
+        if (target) {
+          const top = target.getBoundingClientRect().top + window.scrollY - navbarHeight + 10;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
       }
     });
   });
+
 
   // Attach event listeners
   window.addEventListener("scroll", updateActiveLink);

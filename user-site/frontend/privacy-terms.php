@@ -35,7 +35,7 @@
 
       <section class="mb-1">
         <h6>5. Cookies</h6>
-        <p class="muted-p">We use cookies for better experience. You may disable them in your browser settings.</p>
+        <p class="muted-p">We use cookies to remember login sessions and track feature usage to improve our service.</p>
       </section>
     </div>
     <div class="modal-footer">
