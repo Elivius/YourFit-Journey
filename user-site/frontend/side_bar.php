@@ -1,9 +1,9 @@
 <aside class="sidebar collapsed" id="sidebar">
     <div class="sidebar-header">
         <a href="dashboard.php" class="sidebar-logo">
-            <div class="logo-container">
+            <div class="logo-container fs-4">
                 <i class="fas fa-bolt logo-icon"></i>
-                <span class="text-gradient">YourFitJourney
+                <span>YourFit<span class="text-gradient">Journey</span></span>
             </div>
         </a>
     </div>
