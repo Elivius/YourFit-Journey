@@ -3,5 +3,3 @@
 - Need pop up display confirmation modal
 
 ============================== URGENT ===================================
-
-- Fix Dashboard nutria an dcalendar padding
