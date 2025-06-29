@@ -64,10 +64,11 @@ require_once '../../utils/auth.php';
                     </div>
                 </div>
                 
-                <div class="row g-5 align-items-stretch">
-                    <!-- Nutrition Breakdown -->
-                    <div class="col-lg-5 d-flex p-2">
-                        <div class="card flex-grow-1 d-flex flex-column">
+                <!-- Nutrition Breakdown -->
+                <div class="row g-4 align-items-stretch">
+                    <!-- Nutrition Card -->
+                    <div class="col-lg-5 d-flex">
+                        <div class="card w-100 d-flex flex-column">
                             <div class="card-header">
                                 <h5 class="card-title">Daily Nutrition Summary</h5>
                             </div>
@@ -77,9 +78,9 @@ require_once '../../utils/auth.php';
                         </div>
                     </div>
 
-                    <!-- Calendar -->
-                    <div class="col-lg-7 d-flex p-2">
-                        <div class="card flex-grow-1 d-flex flex-column">
+                    <!-- Calendar Card -->
+                    <div class="col-lg-7 d-flex">
+                        <div class="card w-100 d-flex flex-column">
                             <div class="card-header d-flex justify-content-between align-items-center pt-3 pb-3">
                                 <h5 class="card-title">Calendar</h5>
                                 <div class="card-actions">
@@ -88,8 +89,8 @@ require_once '../../utils/auth.php';
                                     </button>
                                 </div>
                             </div>
-                            <div class="card-body calendar-body">
-                                <div class="calendar-container h-100">
+                            <div class="card-body calendar-body d-flex flex-column">
+                                <div class="calendar-container flex-grow-1">
                                     <div class="calendar-placeholder h-100">
                                         <!-- Calendar will be rendered here by JavaScript -->
                                     </div>
@@ -97,11 +98,10 @@ require_once '../../utils/auth.php';
                             </div>
                         </div>
                     </div>
-                </div>
-
-
-                <!-- Weight Tracker -->
-                 <div class="card">
+                </div>            
+                
+                 <!-- Weight Tracker -->
+                 <div class="card mt-4">
                     <div class="card-header">
                         <h5 class="card-title">Weight Tracking - Recent 7 Logs</h5>
                     </div>
