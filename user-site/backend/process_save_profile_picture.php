@@ -72,6 +72,7 @@ if (move_uploaded_file($tmpPath, $destination)) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
         $_SESSION['success'] = "Profile picture updated";
+        $_SESSION['pfp'] = $newFileName;
     } else {
         $_SESSION['error'] = "Failed to save image to database";
     }

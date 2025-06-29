@@ -8,10 +8,7 @@
         </a>
     </div>
     <a href="settings.php" class="sidebar-user">
-        <?php
-        $profile_pic = (!empty($user['profile_pic'])) ? $user['profile_pic'] : 'default.jpg';
-        ?>
-        <img src="assets/images/profile_picture/<?= htmlspecialchars($profile_pic) ?>" 
+        <img src="assets/images/profile_picture/<?= $_SESSION['pfp'] ?>" 
             alt="Profile Picture" class="user-avatar">
         <div>
             <h6 class="user-name"><?= $_SESSION['name'] ?></h6>

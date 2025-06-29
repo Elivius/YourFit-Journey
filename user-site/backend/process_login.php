@@ -28,7 +28,7 @@ if (!$email || empty($password)) {
 $_SESSION['email'] = $email;
 
 // Fetch user from database
-$sql_check = "SELECT user_id, first_name, password, role FROM users_t WHERE email = ?";
+$sql_check = "SELECT user_id, first_name, password, role, profile_pic FROM users_t WHERE email = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, 's', $email);
@@ -44,6 +44,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
             $_SESSION['logged_in'] = true;
             $_SESSION['user_id']   = $user['user_id'];
             $_SESSION['name']   = $user['first_name'];
+            $_SESSION['pfp'] = !empty($user['profile_pic']) ? $user['profile_pic'] : 'default.jpg';
 
             unset($_SESSION['first-name'], $_SESSION['last-name'], $_SESSION['gender']);
 
