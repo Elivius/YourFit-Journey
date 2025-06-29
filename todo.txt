@@ -3,7 +3,3 @@
 - Need pop up display confirmation modal
 
 ============================== URGENT ===================================
-
-- Privacy Policy
-- T&C
-- PFP

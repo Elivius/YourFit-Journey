@@ -8,10 +8,14 @@
         </a>
     </div>
     <a href="settings.php" class="sidebar-user">
-        <img src="assets/images/avatar.jpg" alt="User" class="user-avatar">
+        <?php
+        $profile_pic = (!empty($user['profile_pic'])) ? $user['profile_pic'] : 'default.jpg';
+        ?>
+        <img src="assets/images/profile_picture/<?= htmlspecialchars($profile_pic) ?>" 
+            alt="Profile Picture" class="user-avatar">
         <div>
             <h6 class="user-name"><?= $_SESSION['name'] ?></h6>
-            <span class="user-status">Premium Member</span>
+            <span class="user-status">Standard Member</span>
         </div>
     </a>
     <nav class="sidebar-nav">

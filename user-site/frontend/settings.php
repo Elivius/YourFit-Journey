@@ -85,14 +85,32 @@ require_once '../backend/preload_settings.php';
                                     <h5 class="card-title">Profile Picture</h5>
                                 </div>
                                 <div class="card-body">
-                                    <div class="profile-picture-container">
-                                        <div class="profile-picture">
-                                            <img src="assets/images/avatar.jpg" alt="Profile Picture" class="img-fluid rounded">
+                                    <form id="pfpForm" action="../backend/process_save_profile_picture.php" method="POST" enctype="multipart/form-data">
+                                        <input type="hidden" name="form_type" value="pfpForm">
+                                        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+
+                                        <div class="profile-picture-container">
+                                            <div class="profile-picture mb-3">
+                                                <?php
+                                                $profile_pic = (!empty($user['profile_pic'])) ? $user['profile_pic'] : 'default.jpg';
+                                                ?>
+                                                <img src="assets/images/profile_picture/<?= htmlspecialchars($profile_pic) ?>" 
+                                                    alt="Profile Picture" class="img-fluid rounded" width="150" id="profilePreview">
+                                            </div>
+
+                                            <!-- Hidden file input -->
+                                            <input type="file" name="pfp" id="pfpInput" accept="image/*" style="display: none" required>
+
+                                            <div class="form-message" id="pfpFormMessage"></div>
+
+                                            <!-- Change button (clicks hidden input) -->
+                                            <div class="profile-picture-actions mt-0">
+                                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="document.getElementById('pfpInput').click()">
+                                                    Change
+                                                </button>
+                                            </div>
                                         </div>
-                                        <div class="profile-picture-actions mt-3">
-                                            <button class="btn btn-sm btn-outline-danger">Change</button>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
                             
@@ -104,7 +122,7 @@ require_once '../backend/preload_settings.php';
                                     <div class="account-status">
                                         <div class="status-item">
                                             <span class="status-label">Membership</span>
-                                            <span class="status-value premium">Premium</span>
+                                            <span class="status-value premium">Standard</span>
                                         </div>
                                         <div class="status-item">
                                             <span class="status-label">Member Since</span>
@@ -451,5 +469,6 @@ require_once '../backend/preload_settings.php';
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/settings.js"></script>
     <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/upload-pfp.js"></script>
 </body>
 </html>

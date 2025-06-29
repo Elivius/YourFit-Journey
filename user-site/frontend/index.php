@@ -254,7 +254,7 @@
                     <div class="pricing-card featured">
                         <div class="pricing-badge">Popular</div>
                         <div class="pricing-header">
-                            <h3>Pro</h3>
+                            <h3>Standard</h3>
                             <div class="pricing-price">
                                 <span class="currency">$</span>
                                 <span class="amount">19</span>
