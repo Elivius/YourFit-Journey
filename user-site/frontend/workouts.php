@@ -121,7 +121,11 @@ require_once '../backend/preload_all_workouts.php';
                                             <h5 class="card-title mb-2"><?= htmlspecialchars($data['name']) ?></h5>
                                             <p class="muted-p mb-0"><?= htmlspecialchars($data['description']) ?></p>
                                         </div>
-                                        <button class="btn btn-sm btn-outline-primary"><i class="fas fa-print"></i> Print</button>
+                                        <div class="card-actions mt-2 mt-sm-0">
+                                            <button class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-print"></i> Print
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="card-body">
                                         <div class="accordion workout-exercises" id="accordion-<?= $category ?>">

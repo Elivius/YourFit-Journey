@@ -1,7 +1,7 @@
 .footer {
   background-color: var(--footer-bg);
   color: var(--body-color);
-  padding: 3rem 0;
+  padding: 0rem 1.5rem;
   font-size: 1rem;
   transition: background-color 0.3s, color 0.3s;
 }

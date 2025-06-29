@@ -185,7 +185,7 @@
 }
 
 /* Meal entry card styles */
-.meal-history {
+.modal-history {
     background-color: #f8f9fa; /* Light card bg */
     border-radius: 10px;
     border: 1px solid #dee2e6;
@@ -194,13 +194,13 @@
     transition: all 0.3s ease;
 }
 
-.meal-history:hover {
+.modal-history:hover {
     transform: translateY(-5px);
     border-color: var(--primary);
 }
 
 /* Category badge */
-.meal-history .badge {
+.modal-history .badge {
     background-color: var(--info) !important;
     color: white !important;
 }

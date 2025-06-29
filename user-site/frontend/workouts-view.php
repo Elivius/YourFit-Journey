@@ -170,6 +170,8 @@ require_once '../backend/preload_workouts.php';
                                 <form action="../backend/process_save_workout_logs.php" method="POST">
                                     <input type="hidden" name="csrf_token" value="<?= generateCSRFToken() ?>">
                                     <input type="hidden" name="workout_id" value="<?= htmlspecialchars($workout_id) ?>">
+                                    <input type="hidden" name="workout_name" value="<?= htmlspecialchars($workout_name) ?>">
+                                    <input type="hidden" name="estimated_duration" value="<?= htmlspecialchars($estimated_duration) ?>">
 
                                     <button type="submit" class="btn btn-primary w-100 py-3 fs-6 rounded-3">
                                         <i class="fas fa-fire"></i> Beast Logged

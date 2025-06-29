@@ -1,4 +1,6 @@
-<?php require_once '../../utils/auth.php'; ?>
+<?php
+require_once '../../utils/auth.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +20,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
 </head>
 <body class="dark-theme dashboard-body">
     <div class="dashboard-container">
@@ -80,7 +83,7 @@
                             <div class="card-header d-flex justify-content-between align-items-center pt-3 pb-3">
                                 <h5 class="card-title">Calendar</h5>
                                 <div class="card-actions">
-                                    <button class="btn btn-sm btn-outline-primary">
+                                    <button id="workoutHistoryBtn" class="btn btn-sm btn-outline-primary">
                                         <i class="fas fa-history"></i> Workout History
                                     </button>
                                 </div>
@@ -110,6 +113,33 @@
         </main>
     </div>
 
+    <!-- Workout History Modal -->
+    <div id="workoutHistoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="card-title">Workout History</h5>
+                <button class="close-btn" onclick="closeWorkoutHistoryModal()">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="modal-body overflow-auto" style="max-height: 40vh;">
+                <div id="workoutHistoryContent">
+                    <!-- Workout history will be loaded here -->
+                    <p>Loading...</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" onclick="closeWorkoutHistoryModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Backdrop -->
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+
     <?php include 'scroll_to_top.php'; ?>
     <?php include 'footer.php'; ?>
 
@@ -125,5 +155,6 @@
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/summary-meals.js"></script>
     <script src="assets/js/render-calendar.js"></script>
+    <script src="assets/js/log-workout-history.js"></script>
 </body>
 </html>

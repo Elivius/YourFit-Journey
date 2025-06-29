@@ -31,7 +31,7 @@ async function openMealHistoryModal() {
         content.innerHTML = data.map(meal => {
             const date = formatDateTime(meal.created_at);
             return `
-                <div class="meal-history card p-3 mb-3">
+                <div class="modal-history card p-3 mb-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <div>
                             <h6 class="mb-1">${meal.meal_name}</h6>

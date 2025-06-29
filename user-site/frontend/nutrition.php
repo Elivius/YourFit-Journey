@@ -23,7 +23,7 @@ require_once '../backend/preload_meal_logs.php';
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    <link rel="stylesheet" href="assets/css/log-meal-modal.css">
+    <link rel="stylesheet" href="assets/css/modal.css">
 </head>
 <body class="dark-theme dashboard-body">
     <div class="dashboard-container">
