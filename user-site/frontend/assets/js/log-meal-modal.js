@@ -3,7 +3,6 @@ let justOpened = false;
 function openMealModal(button) {
     const category = button?.dataset?.category || '';
 
-    // Update label and hidden input for category
     document.getElementById('mealCategoryLabel').textContent =
         category.charAt(0).toUpperCase() + category.slice(1);
     document.getElementById('mealCategoryInput').value = category;
@@ -26,7 +25,6 @@ function openMealModal(button) {
         document.getElementById('mealIdInput').value = '';
     }
 
-    // Show the modal and backdrop
     document.getElementById('mealModal').classList.add('show');
     document.getElementById('modalBackdrop').classList.add('show');
 

@@ -14,7 +14,6 @@
   max-width: 100%;
 }
 
-/* Text Gradient */
 .text-gradient {
   background: linear-gradient(to right, var(--primary), #a855f7);
   -webkit-background-clip: text;
@@ -23,7 +22,6 @@
   display: inline-block;
 }
 
-/* Navbar Styles */
 .navbar {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -283,7 +281,7 @@
 /* Dimmed look for coming soon */
 .pricing-card.coming-soon {
     opacity: 0.75;
-    pointer-events: none; /* disables all clicks inside */
+    pointer-events: none;
     position: relative;
     filter: grayscale(30%);
     transition: opacity 0.3s ease;
@@ -427,7 +425,7 @@
 .footer a::after {
   content: '';
   position: absolute;
-  bottom: -2px; /* adjust distance from text */
+  bottom: -2px; 
   left: 0;
   width: 0;
   height: 2px;
@@ -481,7 +479,7 @@ html {
   .hero-image {
     margin-top: 20px;
     border-radius: 8px;
-    box-shadow: var(--shadow-md); /* Reduce shadow size on small screens */
+    box-shadow: var(--shadow-md); 
   }
 
   .hero-section {

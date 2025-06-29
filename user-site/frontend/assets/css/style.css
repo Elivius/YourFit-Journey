@@ -205,8 +205,8 @@ p, h2, h3, h4, h5, h6, span, img, label {
 }
 
 .form-control::placeholder {
-  color: rgba(0, 0, 0, 0.4); /* adjust the rgba for lighter or darker tones */
-  opacity: 1; /* ensure it's not overridden by browser default */
+  color: rgba(0, 0, 0, 0.4);
+  opacity: 1;
 }
 
 .form-control:focus {
@@ -238,7 +238,7 @@ p, h2, h3, h4, h5, h6, span, img, label {
 
 .toggle-password:hover {
   background-color: var(--primary);
-  color: #fff; /* white icon */
+  color: #fff;
   border-color: var(--primary);
 }
 
@@ -291,7 +291,6 @@ p, h2, h3, h4, h5, h6, span, img, label {
     display: block;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 991.98px) {
     .top-nav {
         overflow-x: auto;

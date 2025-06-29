@@ -71,12 +71,10 @@
     margin-bottom: 5px;
 }
 
-/* When active (checked), style the button */
 input:checked + .btn-outline-primary {
     color: white !important;
 }
 
-/* Password Strength */
 .password-strength {
     margin-top: 0.5rem;
 }
@@ -104,7 +102,7 @@ input:checked + .btn-outline-primary {
 }
 
 .fitness-goal-option .fitness-goal-text:active {
-  color: white; /* Or any color you want */
+  color: white;
 }
 
 .fitness-goal-option i {
@@ -201,14 +199,12 @@ input:checked + .btn-outline-primary {
     cursor: pointer;
 }
 
-/* Workout Preferences */
 .workout-type-options {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 0.5rem;
 }
 
-/* Feedback Aspects */
 .feedback-aspects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -267,8 +263,8 @@ input:checked + .btn-outline-primary {
 
   .activity-level-header {
     flex-direction: column;
-    align-items: center; /* ⬅️ This centers both h6 and pill */
-    text-align: center;  /* ⬅️ This centers text inside h6 */
+    align-items: center; 
+    text-align: center;  
   }
 
   .activity-level-header h6 {

@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (confirm("Are you sure you want to remove all selected exercises?")) {
             selectedExercises = [];
             localStorage.removeItem("selectedExercises");
-            renderExercises(); // Call your existing render function
+            renderExercises();
         }
     });
 });

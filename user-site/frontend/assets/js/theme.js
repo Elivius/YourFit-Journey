@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
 
-    // Function to update the shape of the switch handle
+    // Update the shape of the switch handle
     function updateThemeShape(isDarkTheme) {
         const handle = document.querySelector('.switch-handle');
         if (handle) {
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Determine initial theme (from localStorage or system preference)
+    // Determine initial theme
     const savedTheme = localStorage.getItem('theme');
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const useDarkTheme = savedTheme === 'dark' || (!savedTheme && prefersDarkMode);

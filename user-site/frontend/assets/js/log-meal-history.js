@@ -79,5 +79,4 @@ function formatDateTime(isoString) {
     });
 }
 
-// Trigger the modal open on button click
 document.getElementById("mealHistoryBtn").addEventListener("click", openMealHistoryModal);

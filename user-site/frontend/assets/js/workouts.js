@@ -9,11 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 cat.classList.remove('active');
             });
             
-            // Add active class to clicked category
             this.classList.add('active');
             
-            // Here you would typically load the appropriate workout plan
-            // based on the selected category
             const categoryName = this.querySelector('h4').textContent;
             console.log(`Selected category: ${categoryName}`);
         });
@@ -24,8 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (printWorkoutBtn) {
         printWorkoutBtn.addEventListener('click', function() {
-            // Here you would typically open a print dialog
-            // For demo purposes, we'll just show an alert
             alert('Printing workout plan...');
             window.print();
         });

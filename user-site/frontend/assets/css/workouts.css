@@ -20,10 +20,10 @@
 .workout-category-card {
     display: flex;
     flex-direction: column;
-    align-items: center;     /* horizontal centering */
-    justify-content: center; /* vertical centering */
+    align-items: center;     
+    justify-content: center;
     text-align: center;
-    height: 100%;            /* optional: ensure it fills the parent */
+    height: 100%;            
     padding: 2rem;
     border-radius: 1rem;
     background: var(--card-bg, #1e1e1e);
@@ -96,12 +96,10 @@
     border-color: var(--primary);
 }
 
-/* Remove specific top-corner styles — no longer needed */
 .workout-exercises .accordion-item:not(:first-of-type) {
     border-top: 1px solid var(--card-border) !important;
 }
 
-/* Optional: color on hover still works */
 .workout-exercises .accordion-item:not(:first-of-type):hover {
     border-top: 1px solid var(--primary) !important;
 }
@@ -111,7 +109,7 @@
     color: var(--body-color);
     box-shadow: none;
     padding: 1rem 1.5rem;
-    border-radius: 0; /* ensures button doesn't override border-radius visually */
+    border-radius: 0;
 }
 
 .workout-exercises .accordion-button:not(.collapsed) {
@@ -127,7 +125,6 @@
   display: none;
 }
 
-/* FontAwesome icon styling */
 .accordion-icon {
   transition: transform 0.3s ease;
   color: var(--body-color, #333);
@@ -220,7 +217,6 @@
 
 .workout-pill {
     background-color: rgba(var(--primary-rgb), 0.1);
-    /* color: var(--primary) !important; */
     padding: 0.25rem 0.75rem;
     border-radius: 2rem;
     font-size: 0.8rem;
@@ -308,7 +304,7 @@
 }
 
 .custom-hover-card {
-    border: 1px solid transparent; /* No visible border by default */
+    border: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
@@ -332,7 +328,7 @@
 .btn-back {
   display: inline-flex;
   align-items: center;
-  margin-left: 0; /* default for large screens */
+  margin-left: 0;
   margin-right: auto;
   margin-bottom: 30px;
 }
@@ -346,12 +342,12 @@
 input::placeholder,
 textarea::placeholder {
   color: #94A3B8 !important;
-  opacity: 1; /* ensures full opacity */
+  opacity: 1; 
 }
 
 #exercise-results {
-    max-height: 800px; /* Adjust height as needed */
-    overflow-y: auto;   /* Enable vertical scroll if content overflows */
+    max-height: 800px;
+    overflow-y: auto; 
 }
 
 .sticky-category-header {

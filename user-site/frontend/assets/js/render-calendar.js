@@ -83,5 +83,4 @@ function renderCalendar(date = new Date()) {
     };
 }
 
-// Load workout data and render
 loadWorkoutDates().then(() => renderCalendar(currentDate));

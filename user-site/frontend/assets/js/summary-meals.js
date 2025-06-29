@@ -153,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
         loadMealSummary();
     });
 
-    // Initial load
     updateDateDisplay();
     loadMealSummary();
 });

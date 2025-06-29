@@ -186,7 +186,7 @@
 
 /* Meal entry card styles */
 .modal-history {
-    background-color: #f8f9fa; /* Light card bg */
+    background-color: #f8f9fa;
     border-radius: 10px;
     border: 1px solid #dee2e6;
     padding: 16px;
@@ -199,7 +199,6 @@
     border-color: var(--primary);
 }
 
-/* Category badge */
 .modal-history .badge {
     background-color: var(--info) !important;
     color: white !important;
@@ -256,7 +255,7 @@
 
     .meal-item-macros {
         justify-content: center;
-        margin: 0 auto;         /* Center horizontally */
+        margin: 0 auto; 
         width: 100%; 
     }
 
@@ -302,7 +301,7 @@
 }
 
 .alert h6 {
-    color: #0f172a !important; /* Bootstrap info blue, or choose your own */
+    color: #0f172a !important;
 }
 
 .recipe-card {
@@ -473,7 +472,6 @@
     font-weight: 500;
 }
 
-/* Responsive Adjustments */
 @media (max-width: 991.98px) {
     .workout-options, .meal-header, .meal-item {
         flex-direction: column;

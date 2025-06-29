@@ -467,7 +467,6 @@ require_once '../backend/preload_settings.php';
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/settings.js"></script>
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/upload-pfp.js"></script>
 </body>

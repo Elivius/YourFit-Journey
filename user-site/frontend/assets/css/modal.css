@@ -27,7 +27,7 @@
   display: block;
 }
 
-/* === Modal Content === */
+/* Modal Content */
 .modal-content {
   background-color: var(--body-bg);
   border-radius: 12px;
@@ -50,7 +50,7 @@
   }
 }
 
-/* === Modal Sections === */
+/* Modal Sections */
 .modal-header,
 .modal-footer {
   display: flex;
@@ -100,10 +100,9 @@
 
 .close-btn:hover {
   background-color: var(--sidebar-hover);
-  color: var(--primary); /* optional: color shift on hover */
+  color: var(--primary);
 }
 
-/* === Macros Grid === */
 .macros-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -112,7 +111,6 @@
   margin-bottom: 20px;
 }
 
-/* === Responsive === */
 @media (max-width: 768px) {
   .modal-content {
     width: 95%;

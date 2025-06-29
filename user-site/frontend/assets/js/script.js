@@ -6,13 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function() {
             let passwordInput = null;
             
-            // First, check for an input in the same .input-group
             const inputGroup = this.closest('.input-group');
             if (inputGroup) {
                 passwordInput = inputGroup.querySelector('input[type="password"], input[type="text"]');
             }
 
-            // Fallback: check the previous element sibling
             if (!passwordInput) {
                 const prevInput = this.previousElementSibling;
                 if (prevInput && (prevInput.type === 'password' || prevInput.type === 'text')) {
@@ -20,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // If no password input found, do nothing
             if (!passwordInput) return;
 
             const icon = this.querySelector('i');
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Responsive Navigation
     const handleResponsiveLayout = () => {
         if (window.innerWidth < 992 && sidebar) {
             sidebar.classList.remove('show');
@@ -45,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     window.addEventListener('resize', handleResponsiveLayout);
     
-    // Initialize tooltips and popovers if Bootstrap JS is loaded
     let bootstrap;
     if (typeof bootstrap !== 'undefined') {
         const tooltips = document.querySelectorAll('[data-bs-toggle="tooltip"]');
@@ -59,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Handle dropdowns manually if needed
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
     
     dropdownToggles.forEach(toggle => {
@@ -74,7 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Close dropdowns when clicking outside
     document.addEventListener('click', function(event) {
         if (typeof bootstrap === 'undefined') {
             const dropdowns = document.querySelectorAll('.dropdown-menu.show');
@@ -87,7 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
@@ -96,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80, // Adjust for header height
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
                 }
@@ -104,9 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ==============================
-    // Tab Navigation (Section Logic)
-    // ==============================
+
     const topNavItems = document.querySelectorAll('.top-nav-item');
     const tabSections = document.querySelectorAll('.tab-section');
 
@@ -131,9 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.history.pushState({}, '', url);
     }
 
-    // ==============================
     // Workout Category Handling
-    // ==============================
     const workoutCategories = document.querySelectorAll('.workout-category-card');
     const workoutCategorySections = document.querySelectorAll('.workout-category-section');
 
@@ -151,9 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ==============================
     // Event Listeners
-    // ==============================
     topNavItems.forEach(navItem => {
         navItem.addEventListener('click', e => {
             e.preventDefault();
@@ -161,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
             activateSection(targetSection);
 
             if (targetSection === 'pre-built-workouts') {
-                activateWorkoutCategory('chest'); // Default category
+                activateWorkoutCategory('chest');
                 updateURL(targetSection, 'chest');
             } else {
                 updateURL(targetSection);
@@ -178,21 +164,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // ==============================
     // Save Scroll Position Before Submit
-    // ==============================
     document.querySelectorAll('form').forEach(form => {
         form.addEventListener('submit', () => {
             sessionStorage.setItem('scrollY', window.scrollY);
         });
     });
 
-    // ==============================
     // Initialization on Page Load
-    // ==============================
     window.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
-        const section = params.get('section') || getDefaultSection(); // fallback to 'profile'
+        const section = params.get('section') || getDefaultSection();
         const category = params.get('category') || 'chest';
 
         activateSection(section);
@@ -209,9 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ==============================
     // Utility: Fallback Section
-    // ==============================
     function getDefaultSection() {
         return document.body.classList.contains('workouts-page') ? 'pre-built-workouts' : 'profile';
     }

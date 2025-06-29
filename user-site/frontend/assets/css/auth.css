@@ -51,10 +51,9 @@
   margin-bottom: 2rem;
 }
 
-/* Make selected gender button text white */
 .btn-check:checked + .btn {
   color: #fff !important;
-  background-color: var(--primary); /* Or use Bootstrap's primary color */
+  background-color: var(--primary);
   border-color: var(--primary);
 }
 
@@ -78,7 +77,7 @@
 }
 
 .close-btn:hover {
-    background-color: #f1f5f9; /* light grey */
+    background-color: #f1f5f9;
     color: #000;
 }
 
@@ -126,14 +125,14 @@
   gap: 0.5rem;
 
   padding: 0.6rem 1rem;
-  border-radius: 50px; /* pill shape */
+  border-radius: 50px;
   transition: background-color 0.2s ease, color 0.2s ease;
   color: #333;
   background-color: transparent;
 }
 
 .social-btn:hover {
-  background-color: #f1f5f9; /* light grey */
+  background-color: #f1f5f9;
   color: #000;
   cursor: pointer;
 }
