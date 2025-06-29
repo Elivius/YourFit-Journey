@@ -197,34 +197,6 @@ require_once '../backend/preload_settings.php';
                                                     <span class="input-group-text">kg</span>
                                                 </div>
                                             </div>
-                                            <!-- <div class="col-md-4">
-                                                <label for="bodyFat" class="form-label">Body Fat</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="bodyFat" value="15">
-                                                    <span class="input-group-text">%</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="chest" class="form-label">Chest</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="chest" value="95">
-                                                    <span class="input-group-text">cm</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="waist" class="form-label">Waist</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="waist" value="82">
-                                                    <span class="input-group-text">cm</span>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="hips" class="form-label">Hips</label>
-                                                <div class="input-group">
-                                                    <input type="number" class="form-control" id="hips" value="90">
-                                                    <span class="input-group-text">cm</span>
-                                                </div>
-                                            </div> -->
                                             <div class="form-message" id="physicalStatsFormMessage"></div>
                                             <div class="col-12 settings-btn-margin">
                                                 <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
@@ -322,13 +294,14 @@ require_once '../backend/preload_settings.php';
                                                 </label>
                                             </div>
                                             <div class="fitness-goal-option">
-                                                <input type="radio" class="btn-check" name="primary_goal" id="improveEndurance" autocomplete="off"
-                                                    <?= $user['goal'] === 'improve_endurance' ? 'checked' : '' ?>>
-                                                <label class="btn btn-outline-primary w-100" for="improveEndurance">
+                                                <input type="radio" class="btn-check" name="primary_goal" id="improveEndurance" autocomplete="off" disabled>
+                                                <label class="btn btn-outline-secondary w-100 position-relative opacity-75" for="improveEndurance">
+                                                    <div class="coming-soon-badge">Coming Soon</div>
                                                     <i class="fas fa-running"></i>
                                                     <div class="fitness-goal-text">Improve Endurance</div>
                                                 </label>
                                             </div>
+
                                         </div>
                                         <div class="form-message" id="primaryGoalFormMessage"></div>
                                         <div class="mt-3 settings-btn-margin">

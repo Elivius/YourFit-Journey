@@ -133,6 +133,19 @@ input:checked + .btn-outline-primary {
     margin-bottom: 0;
 }
 
+.coming-soon-badge {
+    position: absolute;
+    top: -5px;
+    right: 10px;
+    background-color: var(--secondary);
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 500;
+    z-index: 1;
+}
+
 /* Activity Level */
 .activity-level-options {
     display: flex;
