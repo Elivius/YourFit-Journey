@@ -14,21 +14,20 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
 }
 
 $user_id = $_SESSION['user_id'] ?? null;
-$workout_id = isset($_POST['workout_id']) && is_numeric($_POST['workout_id']) ? intval($_POST['workout_id']) : null;
 $workout_name = isset($_POST['workout_name']) ? trim($_POST['workout_name']) : null;
 $estimated_duration = isset($_POST['estimated_duration']) && is_numeric($_POST['estimated_duration']) ? intval($_POST['estimated_duration']) : null;
 $exercise_count = isset($_POST['exercise_count']) && is_numeric($_POST['exercise_count']) ? intval($_POST['exercise_count']) : null;
 
-if (!$workout_id || !$workout_name || !$estimated_duration) {
+if (!$workout_name || !$estimated_duration) {
     $_SESSION['error'] = "Missing workout details";
     header("Location: ../frontend/workouts.php?section=my-workouts");
     exit;
 }
 
 // Prevent duplicate entry for same user/workout on same day
-$sql_check = "SELECT 1 FROM workout_logs_t WHERE user_id = ? AND workout_id = ? AND DATE(created_at) = CURDATE()";
+$sql_check = "SELECT 1 FROM workout_logs_t WHERE user_id = ? AND workout_name = ? AND DATE(created_at) = CURDATE()";
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
-    mysqli_stmt_bind_param($stmt, "ii", $user_id, $workout_id);
+    mysqli_stmt_bind_param($stmt, "is", $user_id, $workout_name);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
 
@@ -42,9 +41,9 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 }
 
 // Insert new workout log
-$sql_insert = "INSERT INTO workout_logs_t (user_id, workout_id, workout_name, estimated_duration, exercise_count) VALUES (?, ?, ?, ?, ?)";
+$sql_insert = "INSERT INTO workout_logs_t (user_id, workout_name, estimated_duration, exercise_count) VALUES (?, ?, ?, ?)";
 if ($stmt = mysqli_prepare($connection, $sql_insert)) {
-    mysqli_stmt_bind_param($stmt, "iisii", $user_id, $workout_id, $workout_name, $estimated_duration, $exercise_count);
+    mysqli_stmt_bind_param($stmt, "isii", $user_id, $workout_name, $estimated_duration, $exercise_count);
     mysqli_stmt_execute($stmt);
 
     if (mysqli_stmt_affected_rows($stmt) === 1) {

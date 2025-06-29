@@ -169,7 +169,6 @@ require_once '../backend/preload_workouts.php';
                                 </div>
                                 <form action="../backend/process_save_workout_logs.php" method="POST">
                                     <input type="hidden" name="csrf_token" value="<?= generateCSRFToken() ?>">
-                                    <input type="hidden" name="workout_id" value="<?= htmlspecialchars($workout_id) ?>">
                                     <input type="hidden" name="workout_name" value="<?= htmlspecialchars($workout_name) ?>">
                                     <input type="hidden" name="estimated_duration" value="<?= htmlspecialchars($estimated_duration) ?>">
                                     <input type="hidden" name="exercise_count" value="<?= count($exercises) ?>">
