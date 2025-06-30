@@ -28,7 +28,7 @@ if (empty($category) || empty($subject) || empty($message)) {
     exit;
 }
 
-$sql_insert_feedback = "INSERT INTO feedbacks_t (user_id, category, subject, message) VALUES (?, ?, ?, ?)";
+$sql_insert_feedback = "INSERT INTO feedbacks_t (usr_id, fdb_category, fdb_subject, fdb_message) VALUES (?, ?, ?, ?)";
 
 if ($stmt = mysqli_prepare($connection, $sql_insert_feedback)) {
     mysqli_stmt_bind_param($stmt, 'isss', $user_id, $category, $subject, $message);

@@ -96,12 +96,12 @@ require_once '../backend/preload_workouts.php';
                                                     <div class="exercise-header">
                                                         <span class="exercise-number"><?= $index + 1 ?></span>
                                                         <div class="exercise-title">
-                                                            <h6 class="mb-2"><?= htmlspecialchars($ex['exercise_name']) ?></h6>
+                                                            <h6 class="mb-2"><?= htmlspecialchars($ex['exe_name']) ?></h6>
                                                             <p class="mb-2 muted-p small">Target muscles:</p>
 
                                                             <div class="d-flex flex-wrap gap-2 mb-0">
                                                                 <?php
-                                                                    $muscles = explode(',', $ex['targeted_muscle']);
+                                                                    $muscles = explode(',', $ex['exe_targeted_muscle']);
                                                                     foreach ($muscles as $muscle):                                                                        
                                                                 ?>
                                                                     <span class="workout-pill"><?= htmlspecialchars(trim($muscle)); ?></span>
@@ -117,7 +117,7 @@ require_once '../backend/preload_workouts.php';
                                                     <div class="row">
                                                         <div class="col-md-4">
                                                             <div class="exercise-image">
-                                                                <img src="<?= htmlspecialchars($ex['image_url']); ?>" alt="<?= htmlspecialchars($ex['exercise_name']) ?>">
+                                                                <img src="<?= htmlspecialchars($ex['exe_image_url']); ?>" alt="<?= htmlspecialchars($ex['exe_name']) ?>">
                                                             </div>
                                                         </div>
                                                         <div class="col-md-8">
@@ -125,7 +125,7 @@ require_once '../backend/preload_workouts.php';
                                                                 <div class="exercise-instructions">
                                                                     <h6 class="muted-p">Instructions:</h6>
                                                                     <?php
-                                                                        $rawInstructions = $ex['instructions'] ?? '';
+                                                                        $rawInstructions = $ex['exe_instructions'] ?? '';
                                                                         $steps = preg_split('/(?=\d+\.\s)/', $rawInstructions); // split while keeping numbers
                                                                     ?>
 
@@ -142,20 +142,20 @@ require_once '../backend/preload_workouts.php';
                                                                 <div class="exercise-parameters">
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Sets:</span>
-                                                                        <span class="workout-pill sets" style="font-size: 14px;"><strong><?= $ex['sets'] ?></strong></span>
+                                                                        <span class="workout-pill sets" style="font-size: 14px;"><strong><?= $ex['we_sets'] ?></strong></span>
                                                                     </div>
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Reps:</span>
-                                                                        <span class="workout-pill exercise" style="font-size: 14px;"><strong><?= $ex['reps'] ?></strong></span>
+                                                                        <span class="workout-pill exercise" style="font-size: 14px;"><strong><?= $ex['we_reps'] ?></strong></span>
                                                                     </div>
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Rest:</span>
-                                                                        <span class="workout-pill time" style="font-size: 14px;"><strong><?= $ex['rest'] ?></strong> secs</span>
+                                                                        <span class="workout-pill time" style="font-size: 14px;"><strong><?= $ex['we_rest'] ?></strong> secs</span>
                                                                     </div>
                                                                     <div class="parameter">
                                                                         <span class="parameter-label muted-p">Weight:</span>
                                                                         <span class="workout-pill weight" style="font-size: 14px;">
-                                                                            <strong><?= !empty($ex['weight']) ? $ex['weight'] . ' kg' : '-' ?></strong>
+                                                                            <strong><?= !empty($ex['we_weight']) ? $ex['we_weight'] . ' kg' : '-' ?></strong>
                                                                         </span>
                                                                     </div>
                                                                 </div>

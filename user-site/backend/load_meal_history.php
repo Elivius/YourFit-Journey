@@ -12,10 +12,10 @@ $response = [];
 $user_id = $_SESSION['user_id'];
 
 $sql_extract = "
-    SELECT meal_name, category, protein_g, carbs_g, fats_g, calories, created_at 
+    SELECT uml_meal_name, uml_category, uml_protein_g, uml_carbs_g, uml_fats_g, uml_calories, uml_created_at 
     FROM user_meal_logs_t 
-    WHERE user_id = ? 
-    ORDER BY created_at DESC 
+    WHERE usr_id = ? 
+    ORDER BY uml_created_at DESC 
     LIMIT 20
 ";
 

@@ -6,7 +6,7 @@ require_once '../../utils/hashing.php';
 
 $user_id = $_SESSION['user_id'];
 
-$sql_extract = "SELECT first_name, last_name, email, profile_pic, age, gender, weight, height, activity_level , goal FROM users_t WHERE user_id = ?";
+$sql_extract = "SELECT usr_first_name, usr_last_name, usr_email, usr_profile_pic, usr_age, usr_gender, usr_weight, usr_height, usr_activity_level , usr_goal FROM users_t WHERE usr_id = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_extract)) {
     mysqli_stmt_bind_param($stmt, "i", $user_id);

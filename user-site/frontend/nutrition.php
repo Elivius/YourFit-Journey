@@ -191,7 +191,7 @@ require_once '../backend/preload_meal_logs.php';
                                         <?php foreach ($meals as $meal): ?>
                                             <div class="meal-item">
                                                 <div class="meal-item-info">
-                                                    <h6><?= htmlspecialchars($meal['meal_name']) ?></h6>
+                                                    <h6><?= htmlspecialchars($meal['uml_meal_name']) ?></h6>
                                                     <p>Logged at <?= DateTime::createFromFormat('H:i:s', $meal['time'])->format('h:i A') ?></p>
                                                 </div>
                                                 <div class="meal-item-macros">
@@ -203,16 +203,16 @@ require_once '../backend/preload_meal_logs.php';
                                                 <div class="meal-item-actions">
                                                     <button class="btn btn-sm btn-icon" onclick="openMealModal(this)"
                                                         data-category="<?= $category ?>"
-                                                        data-meal-name="<?= htmlspecialchars($meal['meal_name']) ?>"
+                                                        data-meal-name="<?= htmlspecialchars($meal['uml_meal_name']) ?>"
                                                         data-protein="<?= $meal['protein'] ?>"
                                                         data-carbs="<?= $meal['carbs'] ?>"
                                                         data-fats="<?= $meal['fats'] ?>"
                                                         data-calories="<?= $meal['calories'] ?>"
-                                                        data-meal-id="<?= $meal['user_meal_log_id'] ?>">
+                                                        data-meal-id="<?= $meal['uml_id'] ?>">
                                                         <i class="fas fa-pen"></i>
                                                     </button>
                                                     <button class="btn btn-sm btn-icon" onclick="confirmDeleteMeal(this)"
-                                                        data-meal-id="<?= $meal['user_meal_log_id'] ?>">
+                                                        data-meal-id="<?= $meal['uml_id'] ?>">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
                                                 </div>

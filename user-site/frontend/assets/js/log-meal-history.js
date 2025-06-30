@@ -29,21 +29,21 @@ async function openMealHistoryModal() {
 
         // Render history
         content.innerHTML = data.map(meal => {
-            const date = formatDateTime(meal.created_at);
+            const date = formatDateTime(meal.uml_created_at);
             return `
                 <div class="modal-history card p-3 mb-3">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <div>
-                            <h6 class="mb-1">${meal.meal_name}</h6>
-                            <span class="badge bg-primary mb-1">${meal.category.charAt(0).toUpperCase() + meal.category.slice(1)}</span>
+                            <h6 class="mb-1">${meal.uml_meal_name}</h6>
+                            <span class="badge bg-primary mb-1">${meal.uml_category.charAt(0).toUpperCase() + meal.uml_category.slice(1)}</span>
                         </div>
                         <small class="muted-p">${date}</small>
                     </div>
                     <div class="d-flex flex-wrap gap-2">
-                        <div class="macro-pill protein"><strong>${meal.protein_g.toFixed(1)}g</strong> Protein</div>
-                        <div class="macro-pill carbs"><strong>${meal.carbs_g.toFixed(1)}g</strong> Carbs</div>
-                        <div class="macro-pill fats"><strong>${meal.fats_g.toFixed(1)}g</strong> Fats</div>
-                        <div class="macro-pill calories"><strong>${meal.calories.toFixed(1)}</strong> kcal</div>
+                        <div class="macro-pill protein"><strong>${meal.uml_protein_g.toFixed(1)}g</strong> Protein</div>
+                        <div class="macro-pill carbs"><strong>${meal.uml_carbs_g.toFixed(1)}g</strong> Carbs</div>
+                        <div class="macro-pill fats"><strong>${meal.uml_fats_g.toFixed(1)}g</strong> Fats</div>
+                        <div class="macro-pill calories"><strong>${meal.uml_calories.toFixed(1)}</strong> kcal</div>
                     </div>
                 </div>
             `;

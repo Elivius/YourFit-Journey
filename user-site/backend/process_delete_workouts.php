@@ -21,7 +21,7 @@ if (!$workout_id) {
 }
 
 // Check if workout belongs to the current user
-$check_sql = "SELECT workout_id FROM workouts_t WHERE workout_id = ? AND user_id = ?";
+$check_sql = "SELECT wko_id FROM workouts_t WHERE wko_id = ? AND usr_id = ?";
 if ($stmt = mysqli_prepare($connection, $check_sql)) {
     mysqli_stmt_bind_param($stmt, "ii", $workout_id, $user_id);
     mysqli_stmt_execute($stmt);
@@ -45,7 +45,7 @@ if ($stmt = mysqli_prepare($connection, $check_sql)) {
 mysqli_begin_transaction($connection);
 
 // Delete from workout_exercise_t
-$delete_sql_1 = "DELETE FROM workout_exercises_t WHERE workout_id = ?";
+$delete_sql_1 = "DELETE FROM workout_exercises_t WHERE wko_id = ?";
 if ($stmt1 = mysqli_prepare($connection, $delete_sql_1)) {
     mysqli_stmt_bind_param($stmt1, "i", $workout_id);
     mysqli_stmt_execute($stmt1);
@@ -58,7 +58,7 @@ if ($stmt1 = mysqli_prepare($connection, $delete_sql_1)) {
 }
 
 // Delete from workouts_t
-$delete_sql_2 = "DELETE FROM workouts_t WHERE workout_id = ? AND user_id = ?";
+$delete_sql_2 = "DELETE FROM workouts_t WHERE wko_id = ? AND usr_id = ?";
 if ($stmt2 = mysqli_prepare($connection, $delete_sql_2)) {
     mysqli_stmt_bind_param($stmt2, "ii", $workout_id, $user_id);
     mysqli_stmt_execute($stmt2);

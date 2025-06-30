@@ -23,15 +23,15 @@ $target = [
 function getRandomMeals($connection) {
     $sql = "
     (
-        SELECT * FROM meals_t WHERE category = 'breakfast' ORDER BY RAND() LIMIT 1
+        SELECT * FROM meals_t WHERE mel_category = 'breakfast' ORDER BY RAND() LIMIT 1
     )
     UNION ALL
     (
-        SELECT * FROM meals_t WHERE category = 'lunch' ORDER BY RAND() LIMIT 1
+        SELECT * FROM meals_t WHERE mel_category = 'lunch' ORDER BY RAND() LIMIT 1
     )
     UNION ALL
     (
-        SELECT * FROM meals_t WHERE category = 'dinner' ORDER BY RAND() LIMIT 1
+        SELECT * FROM meals_t WHERE mel_category = 'dinner' ORDER BY RAND() LIMIT 1
     )";
 
     $meals = [];
@@ -50,16 +50,16 @@ function getRandomMeals($connection) {
 function getMealIngredients($connection, $meal_id) {
     $sql = "
         SELECT 
-            i.ingredient_id,
-            i.name,
-            ROUND(i.protein_per_100g / 100, 4) AS protein_per_1g,
-            ROUND(i.carbs_per_100g / 100, 4) AS carbs_per_1g,
-            ROUND(i.fats_per_100g / 100, 4) AS fats_per_1g,
-            ROUND(((i.protein_per_100g * 4 + i.carbs_per_100g * 4 + i.fats_per_100g * 9) / 100), 4) AS calories_per_1g,
-            mi.base_grams
+            i.ing_id,
+            i.ing_name,
+            ROUND(i.ing_protein_per_100g / 100, 4) AS protein_per_1g,
+            ROUND(i.ing_carbs_per_100g / 100, 4) AS carbs_per_1g,
+            ROUND(i.ing_fats_per_100g / 100, 4) AS fats_per_1g,
+            ROUND(((i.ing_protein_per_100g * 4 + i.ing_carbs_per_100g * 4 + i.ing_fats_per_100g * 9) / 100), 4) AS calories_per_1g,
+            mi.mi_base_grams
         FROM meal_ingredients_t mi
-        JOIN ingredients_t i ON mi.ingredient_id = i.ingredient_id
-        WHERE mi.meal_id = ?
+        JOIN ingredients_t i ON mi.ing_id = i.ing_id
+        WHERE mi.mel_id = ?
     ";
 
     $stmt = mysqli_prepare($connection, $sql);
@@ -82,9 +82,9 @@ for ($mealAttempt = 0; $mealAttempt < $maxMealRetries; $mealAttempt++) {
     $flat = [];
 
     foreach ($dailyMeals as $meal) {
-        $ingredients = getMealIngredients($connection, $meal['meal_id']);
+        $ingredients = getMealIngredients($connection, $meal['mel_id']);
         foreach ($ingredients as $ing) {
-            $key = strtolower(str_replace(' ', '_', $ing['name']));
+            $key = strtolower(str_replace(' ', '_', $ing['ing_name']));
             $nutrients[$key] = [
                 'protein'  => $ing['protein_per_1g'],
                 'carbs'    => $ing['carbs_per_1g'],
@@ -92,9 +92,9 @@ for ($mealAttempt = 0; $mealAttempt < $maxMealRetries; $mealAttempt++) {
                 'calories' => $ing['calories_per_1g']
             ];
             if (!isset($flat[$key])) {
-                $flat[$key] = $ing['base_grams'];
+                $flat[$key] = $ing['mi_base_grams'];
             } else {
-                $flat[$key] += $ing['base_grams'];
+                $flat[$key] += $ing['mi_base_grams'];
             }
         }
     }
@@ -150,11 +150,11 @@ if ($matched) {
 
     foreach ($dailyMeals as $meal) {
         $mealData = [
-            'meal_id' => $meal['meal_id'],
-            'meal_name' => $meal['meal_name'],
-            'category' => $meal['category'],
-            'image_url' => $meal['image_url'],
-            'estimated_preparation_min' => $meal['estimated_preparation_min'],
+            'meal_id' => $meal['mel_id'],
+            'meal_name' => $meal['mel_name'],
+            'category' => $meal['mel_category'],
+            'image_url' => $meal['mel_image_url'],
+            'estimated_preparation_min' => $meal['mel_estimated_preparation_min'],
             'meal_macros' => [
                 'protein' => 0,
                 'carbs' => 0,
@@ -164,10 +164,10 @@ if ($matched) {
             'ingredients' => []
         ];
 
-        $ingredients = getMealIngredients($connection, $meal['meal_id']);
+        $ingredients = getMealIngredients($connection, $meal['mel_id']);
 
         foreach ($ingredients as $ing) {
-            $key = strtolower(str_replace(' ', '_', $ing['name']));
+            $key = strtolower(str_replace(' ', '_', $ing['ing_name']));
             if (!isset($flat[$key]) || $flat[$key] <= 0) continue;
 
             $grams = $flat[$key];
@@ -177,7 +177,7 @@ if ($matched) {
             $calories = round($grams * $ing['calories_per_1g'], 2);
 
             $mealData['ingredients'][] = [
-                'name' => $ing['name'],
+                'name' => $ing['ing_name'],
                 'grams' => $grams,
                 'protein' => $protein,
                 'carbs' => $carbs,

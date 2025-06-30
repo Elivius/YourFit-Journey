@@ -20,7 +20,7 @@ if (!$meal_id) {
     exit;
 }
 
-$sql_delete = "DELETE FROM user_meal_logs_t WHERE user_meal_log_id = ? AND user_id = ?";
+$sql_delete = "DELETE FROM user_meal_logs_t WHERE uml_id = ? AND usr_id = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_delete)) {
     mysqli_stmt_bind_param($stmt, 'ii', $meal_id, $user_id);

@@ -230,18 +230,18 @@ require_once '../backend/preload_all_workouts.php';
                                     <div class="card workout-card gradient-card h-100 d-flex flex-column border-0">
                                         <div class="card-header d-flex justify-content-between align-items-center pb-2 pt-2">
                                             <div class="flex-grow-1" style="min-width: 0;">
-                                                <h5 class="card-title mb-0 text-truncate" title="<?= htmlspecialchars($workout['workout_name']) ?>">
-                                                    <?= htmlspecialchars($workout['workout_name']) ?>
+                                                <h5 class="card-title mb-0 text-truncate" title="<?= htmlspecialchars($workout['wko_name']) ?>">
+                                                    <?= htmlspecialchars($workout['wko_name']) ?>
                                                 </h5>
                                             </div>
                                             
                                             <div class="d-flex gap-2">
-                                                <a href="workouts-create.php?edit=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-icon">
+                                                <a href="workouts-create.php?edit=<?= $workout['wko_id'] ?>" class="btn btn-sm btn-icon">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
                                                 <form action="../backend/process_delete_workouts.php" method="POST" onsubmit="return confirm('Are you sure you want to delete this workout?');" class="d-inline">
                                                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
-                                                    <input type="hidden" name="workout_id" value="<?= $workout['workout_id'] ?>">
+                                                    <input type="hidden" name="workout_id" value="<?= $workout['wko_id'] ?>">
                                                     <button type="submit" class="btn btn-sm btn-icon">
                                                         <i class="fas fa-trash"></i>
                                                     </button>
@@ -251,13 +251,13 @@ require_once '../backend/preload_all_workouts.php';
 
                                         <div class="card-body d-flex flex-column justify-content-center align-items-center text-center pt-2 pb-2">
                                             <p class="muted-p mb-2">
-                                                <?= nl2br(htmlspecialchars($workout['workout_description'] ?: 'No description provided.')) ?>
+                                                <?= nl2br(htmlspecialchars($workout['wko_description'] ?: 'No description provided.')) ?>
                                             </p>
 
                                             <div class="pill-row d-flex flex-wrap justify-content-center gap-2">
                                                 <p class="workout-pill time mb-0">
                                                     <i class="fas fa-clock me-1"></i>
-                                                    <strong><?= $workout['estimated_duration'] ?? '—' ?></strong> mins
+                                                    <strong><?= $workout['wko_estimated_duration'] ?? '—' ?></strong> mins
                                                 </p>
                                                 <p class="workout-pill exercise mb-0">
                                                     <i class="fas fa-dumbbell me-1"></i>
@@ -267,7 +267,7 @@ require_once '../backend/preload_all_workouts.php';
                                         </div>
 
                                         <div class="card-footer bg-transparent text-end border-0 pt-1 mb-2 px-4">
-                                            <a href="workouts-view.php?id=<?= $workout['workout_id'] ?>" class="btn btn-sm btn-md custom-view-btn px-4 py-2">View</a>
+                                            <a href="workouts-view.php?id=<?= $workout['wko_id'] ?>" class="btn btn-sm btn-md custom-view-btn px-4 py-2">View</a>
                                         </div>
                                     </div>
 

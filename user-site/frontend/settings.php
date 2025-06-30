@@ -91,10 +91,7 @@ require_once '../backend/preload_settings.php';
 
                                         <div class="profile-picture-container">
                                             <div class="profile-picture mb-3">
-                                                <?php
-                                                $profile_pic = (!empty($user['profile_pic'])) ? $user['profile_pic'] : 'default.jpg';
-                                                ?>
-                                                <img src="assets/images/profile_picture/<?= htmlspecialchars($profile_pic) ?>" 
+                                                <img src="assets/images/profile_picture/<?= $_SESSION['pfp'] ?>"  
                                                     alt="Profile Picture" class="img-fluid rounded" width="150" id="profilePreview">
                                             </div>
 
@@ -153,25 +150,25 @@ require_once '../backend/preload_settings.php';
                                         <div class="row g-3">
                                             <div class="col-md-6">
                                                 <label for="firstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="firstName" name="first_name" value="<?= htmlspecialchars($user['first_name']) ?>">
+                                                <input type="text" class="form-control" id="firstName" name="first_name" value="<?= htmlspecialchars($user['usr_first_name']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="lastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="lastName" name="last_name" value="<?= htmlspecialchars($user['last_name']) ?>">
+                                                <input type="text" class="form-control" id="lastName" name="last_name" value="<?= htmlspecialchars($user['usr_last_name']) ?>">
                                             </div>
                                             <div class="col-md-6">
                                                 <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['email']) ?>" readonly>
+                                                <input type="email" class="form-control" id="email" name="email" value="<?= htmlspecialchars($user['usr_email']) ?>" readonly>
                                             </div>
                                             <div class="col-md-6">
                                                 <label class="form-label d-block mb-2">Gender</label>
                                                 <div class="btn-group w-100" role="group" aria-label="Gender">
                                                     <input type="radio" class="btn-check" name="gender" id="male" value="male" autocomplete="off"
-                                                        <?= $user['gender'] === 'male' ? 'checked' : '' ?> required>
+                                                        <?= $user['usr_gender'] === 'male' ? 'checked' : '' ?> required>
                                                     <label class="btn btn-outline-primary gender-label" for="male">Male</label>
 
                                                     <input type="radio" class="btn-check" name="gender" id="female" value="female" autocomplete="off"
-                                                        <?= $user['gender'] === 'female' ? 'checked' : '' ?>>
+                                                        <?= $user['usr_gender'] === 'female' ? 'checked' : '' ?>>
                                                     <label class="btn btn-outline-primary gender-label" for="female">Female</label>
                                                 </div>
                                             </div>
@@ -197,21 +194,21 @@ require_once '../backend/preload_settings.php';
                                             <div class="col-md-4">
                                                 <label for="age" class="form-label">Age</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="age" name="age" value="<?= htmlspecialchars($user['age']) ?>" min="0" max="120", step="1">
+                                                    <input type="number" class="form-control" id="age" name="age" value="<?= htmlspecialchars($user['usr_age']) ?>" min="0" max="120", step="1">
                                                     <span class="input-group-text">years</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="height" class="form-label">Height</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="height" name="height" value="<?= htmlspecialchars($user['height']) ?>" min="0" step="1">
+                                                    <input type="number" class="form-control" id="height" name="height" value="<?= htmlspecialchars($user['usr_height']) ?>" min="0" step="1">
                                                     <span class="input-group-text">cm</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <label for="weight" class="form-label">Weight</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="weight" name="weight" value="<?= htmlspecialchars($user['weight']) ?>" min="0" step="0.01">
+                                                    <input type="number" class="form-control" id="weight" name="weight" value="<?= htmlspecialchars($user['usr_weight']) ?>" min="0" step="0.01">
                                                     <span class="input-group-text">kg</span>
                                                 </div>
                                             </div>
@@ -289,7 +286,7 @@ require_once '../backend/preload_settings.php';
                                         <div class="fitness-goals-options">
                                             <div class="fitness-goal-option">
                                                 <input type="radio" class="btn-check" name="primary_goal" value="cutting" id="cutting" autocomplete="off"
-                                                    <?= $user['goal'] === 'cutting' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_goal'] === 'cutting' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="cutting">
                                                     <i class="fas fa-weight"></i>
                                                     <div class="fitness-goal-text">Cutting</div>
@@ -297,7 +294,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="fitness-goal-option">
                                                 <input type="radio" class="btn-check" name="primary_goal" value="bulking" id="bulking" autocomplete="off"
-                                                    <?= $user['goal'] === 'bulking' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_goal'] === 'bulking' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="bulking">
                                                     <i class="fas fa-dumbbell"></i>
                                                     <div class="fitness-goal-text">Bulking</div>
@@ -305,7 +302,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="fitness-goal-option">
                                                 <input type="radio" class="btn-check" name="primary_goal" value="maintain" id="maintainHealth" autocomplete="off"
-                                                    <?= $user['goal'] === 'maintain' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_goal'] === 'maintain' ? 'checked' : '' ?>>
                                                 <label class="btn btn-outline-primary w-100" for="maintainHealth">
                                                     <i class="fas fa-heartbeat"></i>
                                                     <div class="fitness-goal-text">Maintain Health</div>
@@ -343,7 +340,7 @@ require_once '../backend/preload_settings.php';
                                         <div class="activity-level-options">
                                             <div class="form-check activity-level-option">
                                                 <input class="form-check-input" type="radio" name="activity_level" value="sedentary" id="sedentary"
-                                                    <?= $user['activity_level'] === 'sedentary' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_activity_level'] === 'sedentary' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="sedentary">
                                                     <div class="activity-level-header">
                                                         <h6>Sedentary</h6>
@@ -354,7 +351,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="form-check activity-level-option">
                                                 <input class="form-check-input" type="radio" name="activity_level" value="light" id="light"
-                                                    <?= $user['activity_level'] === 'light' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_activity_level'] === 'light' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="light">
                                                     <div class="activity-level-header">
                                                         <h6>Lightly Active</h6>
@@ -365,7 +362,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="form-check activity-level-option">
                                                 <input class="form-check-input" type="radio" name="activity_level" value="moderate" id="moderate"
-                                                    <?= $user['activity_level'] === 'moderate' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_activity_level'] === 'moderate' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="moderate">
                                                     <div class="activity-level-header">
                                                         <h6>Moderately Active</h6>
@@ -376,7 +373,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="form-check activity-level-option">
                                                 <input class="form-check-input" type="radio" name="activity_level" value="active" id="active"
-                                                    <?= $user['activity_level'] === 'active' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_activity_level'] === 'active' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="active">
                                                     <div class="activity-level-header">
                                                         <h6>Active</h6>
@@ -387,7 +384,7 @@ require_once '../backend/preload_settings.php';
                                             </div>
                                             <div class="form-check activity-level-option">
                                                 <input class="form-check-input" type="radio" name="activity_level" value="very_active" id="veryActive"
-                                                    <?= $user['activity_level'] === 'very_active' ? 'checked' : '' ?>>
+                                                    <?= $user['usr_activity_level'] === 'very_active' ? 'checked' : '' ?>>
                                                 <label class="form-check-label" for="veryActive">
                                                     <div class="activity-level-header">
                                                         <h6>Very Active</h6>

@@ -3,10 +3,10 @@ session_start();
 require_once '../../utils/connection.php';
 
 $sql_extract = "
-    SELECT created_at, workout_name, estimated_duration, exercise_count
+    SELECT wol_created_at, wol_name, wol_estimated_duration, wol_exercise_count
     FROM workout_logs_t
-    WHERE user_id = ?
-    ORDER BY created_at DESC";
+    WHERE usr_id = ?
+    ORDER BY wol_created_at DESC";
 
 if ($stmt = mysqli_prepare($connection, $sql_extract)) {
     mysqli_stmt_bind_param($stmt, "i", $_SESSION['user_id']);
@@ -18,10 +18,10 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             $logs[] = [
-                'date' => date('M d, Y, h:i A', strtotime($row['created_at'])),
-                'workout_name' => $row['workout_name'],
-                'duration' => $row['estimated_duration'] . ' min',
-                'exercise_count' => $row['exercise_count'] . ' exercise',
+                'date' => date('M d, Y, h:i A', strtotime($row['wol_created_at'])),
+                'workout_name' => $row['wol_name'],
+                'duration' => $row['wol_estimated_duration'] . ' min',
+                'exercise_count' => $row['wol_exercise_count'] . ' exercise',
             ];
         }
     }

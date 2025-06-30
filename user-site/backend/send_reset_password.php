@@ -21,7 +21,7 @@ if (!$email) {
 }
 
 // Check if email exists
-$sql = "SELECT user_id FROM users_t WHERE email = ?";
+$sql = "SELECT usr_id FROM users_t WHERE usr_email = ?";
 if ($stmt = mysqli_prepare($connection, $sql)) {
     mysqli_stmt_bind_param($stmt, 's', $email);
     mysqli_stmt_execute($stmt);
@@ -32,13 +32,13 @@ if ($stmt = mysqli_prepare($connection, $sql)) {
         $token = bin2hex(random_bytes(16));
         $expiry = date('Y-m-d H:i:s', strtotime('+1 hour'));
 
-        $update_sql = "UPDATE users_t SET reset_token = ?, token_expiry = ? WHERE email = ?";
+        $update_sql = "UPDATE users_t SET usr_reset_token = ?, usr_token_expiry = ? WHERE usr_email = ?";
         $update_stmt = mysqli_prepare($connection, $update_sql);
         mysqli_stmt_bind_param($update_stmt, 'sss', $token, $expiry, $email);
         mysqli_stmt_execute($update_stmt);
 
-        // Send email (replace with real email handler in production)
-        $reset_link = "http://yourdomain.com/user-site/frontend/reset_password.php?token=$token";
+        // Send email
+        $reset_link = "http://yourfitjourney.com/user-site/frontend/reset_password.php?token=$token";
         $message = "Click to reset your password: $reset_link";
         mail($email, "Password Reset Request", $message);
 

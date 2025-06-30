@@ -6,7 +6,7 @@ $user_id = $_SESSION['user_id'] ?? null;
 $workout_id = sanitizeInt($_GET['id'] ?? $_GET['edit'] ?? null);
 
 // Step 1: Check ownership and fetch workout details
-$sql_check = "SELECT workout_id, workout_name, estimated_duration, workout_description FROM workouts_t WHERE workout_id = ? AND user_id = ?";
+$sql_check = "SELECT wko_id, wko_name, wko_estimated_duration, wko_description FROM workouts_t WHERE wko_id = ? AND usr_id = ?";
 $workout_name = "";
 $estimated_duration = "";
 $workout_description = "";
@@ -32,11 +32,11 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 $exercises = [];
 
 $sql_exercises = "
-    SELECT we.sets, we.reps, we.rest, we.weight,
-           e.exercise_id, e.exercise_name, e.image_url, e.targeted_muscle, e.instructions
+    SELECT we.we_sets, we.we_reps, we.we_rest, we.we_weight,
+           e.exe_id, e.exe_name, e.exe_image_url, e.exe_targeted_muscle, e.exe_instructions
     FROM workout_exercises_t we
-    JOIN exercises_t e ON we.exercise_id = e.exercise_id
-    WHERE we.workout_id = ?
+    JOIN exercises_t e ON we.exe_id = e.exe_id
+    WHERE we.wko_id = ?
 ";
 
 if ($stmt = mysqli_prepare($connection, $sql_exercises)) {

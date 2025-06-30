@@ -9,7 +9,7 @@ require_once '../backend/preload_exercises.php';
 // Group the exercises by category
 $groupedExercises = [];
 foreach ($exercises as $exercise) {
-    $category = $exercise['category'];
+    $category = $exercise['exe_category'];
     $groupedExercises[$category][] = $exercise;
 }
 
@@ -30,13 +30,13 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
     const preloadedExercises = <?= json_encode($exercises, JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?>;
     localStorage.setItem("selectedExercises", JSON.stringify(
         preloadedExercises.map((ex) => ({
-            id: ex.exercise_id ?? "", 
-            name: ex.exercise_name,
-            muscles: ex.targeted_muscle,
-            sets: ex.sets,
-            reps: ex.reps,
-            rest: ex.rest,
-            weight: ex.weight,
+            id: ex.exe_id ?? "", 
+            name: ex.exe_name,
+            muscles: ex.exe_targeted_muscle,
+            sets: ex.we_sets,
+            reps: ex.we_reps,
+            rest: ex.we_rest,
+            weight: ex.we_weight,
         }))
     ));
 </script>
@@ -185,12 +185,12 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
                                                                         <div class="exercise-header me-2">
                                                                             <span class="exercise-number"><?= $index + 1 ?></span>
                                                                             <div class="exercise-title">
-                                                                                <h6 class="mb-2"><?= htmlspecialchars($exercise['exercise_name']) ?></h6>
+                                                                                <h6 class="mb-2"><?= htmlspecialchars($exercise['exe_name']) ?></h6>
                                                                                 <p class="mb-2 muted-p small">Target muscles:</p>
 
                                                                                 <div class="d-flex flex-wrap gap-2 mb-0">
                                                                                     <?php
-                                                                                        $muscles = explode(',', $exercise['targeted_muscle']);
+                                                                                        $muscles = explode(',', $exercise['exe_targeted_muscle']);
                                                                                         foreach ($muscles as $muscle):                                                                        
                                                                                     ?>
                                                                                         <span class="workout-pill"><?= htmlspecialchars(trim($muscle)); ?></span>
@@ -207,15 +207,15 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
                                                                     <div class="row g-3 align-items-stretch">
                                                                         <div class="col-md-4">
                                                                             <div class="exercise-image">
-                                                                            <img src="<?= htmlspecialchars($exercise['image_url']); ?>"
-                                                                                alt="<?= htmlspecialchars($exercise['exercise_name']) ?>">
+                                                                            <img src="<?= htmlspecialchars($exercise['exe_image_url']); ?>"
+                                                                                alt="<?= htmlspecialchars($exercise['exe_name']) ?>">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-md-8 d-flex flex-column justify-content-between">
                                                                             <div class="exercise-details mb-0">
                                                                             <h6 class="muted-p">Instructions:</h6>
                                                                             <?php
-                                                                                $rawInstructions = $exercise['instructions'] ?? '';
+                                                                                $rawInstructions = $exercise['exe_instructions'] ?? '';
                                                                                 $steps = preg_split('/(?=\d+\.\s)/', $rawInstructions);
                                                                             ?>
                                                                             <?php if (!empty($steps)): ?>
@@ -231,9 +231,9 @@ if (isset($_GET['edit']) && is_numeric($_GET['edit'])) {
 
                                                                             <div class="mb-3">
                                                                                 <button type="button" class="btn btn-sm btn-primary w-100 add-exercise-btn"
-                                                                                        data-id="<?= htmlspecialchars($exercise['exercise_id']); ?>"
-                                                                                        data-name="<?= htmlspecialchars($exercise['exercise_name']); ?>"
-                                                                                        data-target-muscles="<?= htmlspecialchars($exercise['targeted_muscle']); ?>">
+                                                                                        data-id="<?= htmlspecialchars($exercise['exe_id']); ?>"
+                                                                                        data-name="<?= htmlspecialchars($exercise['exe_name']); ?>"
+                                                                                        data-target-muscles="<?= htmlspecialchars($exercise['exe_targeted_muscle']); ?>">
                                                                                     <i class="fas fa-plus me-1"></i> Add
                                                                                 </button>
                                                                             </div>

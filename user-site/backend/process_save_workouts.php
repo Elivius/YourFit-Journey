@@ -27,7 +27,7 @@ $workout_id = isset($_POST['workout_id']) && is_numeric($_POST['workout_id']) ? 
 
 if ($workout_id) {
     // Make sure this workout belongs to the current user
-    $check_sql = "SELECT workout_id FROM workouts_t WHERE workout_id = ? AND user_id = ?";
+    $check_sql = "SELECT wko_id FROM workouts_t WHERE wko_id = ? AND usr_id = ?";
     if ($stmt = mysqli_prepare($connection, $check_sql)) {
         mysqli_stmt_bind_param($stmt, "ii", $workout_id, $user_id);
         mysqli_stmt_execute($stmt);
@@ -44,8 +44,8 @@ if ($workout_id) {
 
     // UPDATE the workout details
     $sql_update_workout = "UPDATE workouts_t 
-                           SET workout_name = ?, estimated_duration = ?, workout_description = ?
-                           WHERE workout_id = ? AND user_id = ?";
+                           SET wko_name = ?, wko_estimated_duration = ?, wko_description = ?
+                           WHERE wko_id = ? AND usr_id = ?";
     if ($stmt = mysqli_prepare($connection, $sql_update_workout)) {
         mysqli_stmt_bind_param($stmt, "sisii", $workout_name, $estimated_duration, $workout_description, $workout_id, $user_id);
         mysqli_stmt_execute($stmt);
@@ -59,7 +59,7 @@ if ($workout_id) {
     }
 
     // Delete all previous exercises linked to this workout
-    $delete_sql = "DELETE FROM workout_exercises_t WHERE workout_id = ?";
+    $delete_sql = "DELETE FROM workout_exercises_t WHERE wko_id = ?";
     if ($stmt = mysqli_prepare($connection, $delete_sql)) {
         mysqli_stmt_bind_param($stmt, "i", $workout_id);
         mysqli_stmt_execute($stmt);
@@ -68,7 +68,7 @@ if ($workout_id) {
 
     // Insert updated exercises again (fresh data)
     if (isset($_POST['exercises']) && is_array($_POST['exercises'])) {
-        $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight) 
+        $sql_insert_exercise = "INSERT INTO workout_exercises_t (wko_id, exe_id, we_sets, we_reps, we_rest, we_weight) 
                    VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt = mysqli_prepare($connection, $sql_insert_exercise)) {
             foreach ($_POST['exercises'] as $exercise) {
@@ -99,7 +99,7 @@ if ($workout_id) {
     }
 
 } else {
-    $sql_insert_workout = "INSERT INTO workouts_t (user_id, workout_name, estimated_duration, workout_description) VALUES (?, ?, ?, ?)";
+    $sql_insert_workout = "INSERT INTO workouts_t (usr_id, wko_name, wko_estimated_duration, wko_description) VALUES (?, ?, ?, ?)";
     if ($stmt = mysqli_prepare($connection, $sql_insert_workout)) {
         mysqli_stmt_bind_param($stmt, "isis", $user_id, $workout_name, $estimated_duration, $workout_description);
         mysqli_stmt_execute($stmt);
@@ -115,7 +115,7 @@ if ($workout_id) {
     
     // Insert each exercise
     if (isset($_POST['exercises']) && is_array($_POST['exercises'])) {
-        $sql_insert_exercise = "INSERT INTO workout_exercises_t (workout_id, exercise_id, sets, reps, rest, weight) 
+        $sql_insert_exercise = "INSERT INTO workout_exercises_t (wko_id, exe_id, we_sets, we_reps, we_rest, we_weight) 
                    VALUES (?, ?, ?, ?, ?, ?)";
         if ($stmt = mysqli_prepare($connection, $sql_insert_exercise)) {
             foreach ($_POST['exercises'] as $exercise) {

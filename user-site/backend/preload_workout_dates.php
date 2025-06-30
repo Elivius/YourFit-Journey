@@ -4,10 +4,10 @@ require_once '../../utils/connection.php';
 
 $user_id = $_SESSION['user_id'];
 
-$sql = "SELECT DATE(created_at) AS date
+$sql = "SELECT DATE(wol_created_at) AS date
         FROM workout_logs_t
-        WHERE user_id = ?
-        ORDER BY created_at DESC";
+        WHERE usr_id = ?
+        ORDER BY wol_created_at DESC";
 
 $stmt = mysqli_prepare($connection, $sql);
 mysqli_stmt_bind_param($stmt, "i", $user_id);

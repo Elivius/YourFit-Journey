@@ -25,7 +25,7 @@ if (!$workout_name || !$estimated_duration) {
 }
 
 // Prevent duplicate entry for same user/workout on same day
-$sql_check = "SELECT 1 FROM workout_logs_t WHERE user_id = ? AND workout_name = ? AND DATE(created_at) = CURDATE()";
+$sql_check = "SELECT 1 FROM workout_logs_t WHERE usr_id = ? AND wol_name = ? AND DATE(wol_created_at) = CURDATE()";
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, "is", $user_id, $workout_name);
     mysqli_stmt_execute($stmt);
@@ -41,7 +41,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 }
 
 // Insert new workout log
-$sql_insert = "INSERT INTO workout_logs_t (user_id, workout_name, estimated_duration, exercise_count) VALUES (?, ?, ?, ?)";
+$sql_insert = "INSERT INTO workout_logs_t (usr_id, wol_name, wol_estimated_duration, wol_exercise_count) VALUES (?, ?, ?, ?)";
 if ($stmt = mysqli_prepare($connection, $sql_insert)) {
     mysqli_stmt_bind_param($stmt, "isii", $user_id, $workout_name, $estimated_duration, $exercise_count);
     mysqli_stmt_execute($stmt);

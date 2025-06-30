@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 $user_id = $_SESSION['user_id'];
 
 // Get user data
-$sql_user = "SELECT age, gender, weight, height, activity_level, goal FROM users_t WHERE user_id = ?";
+$sql_user = "SELECT usr_age, usr_gender, usr_weight, usr_height, usr_activity_level, usr_goal FROM users_t WHERE usr_id = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_user)) {
     mysqli_stmt_bind_param($stmt, "i", $user_id);
@@ -17,9 +17,9 @@ if ($stmt = mysqli_prepare($connection, $sql_user)) {
         $user = mysqli_fetch_assoc($result);
 
         if (
-            empty($user['age']) || $user['age'] == 0 ||
-            empty($user['height']) || $user['height'] == 0 ||
-            empty($user['weight']) || $user['weight'] == 0
+            empty($user['usr_age']) || $user['usr_age'] == 0 ||
+            empty($user['usr_height']) || $user['usr_height'] == 0 ||
+            empty($user['usr_weight']) || $user['usr_weight'] == 0
         ) {
             mysqli_stmt_close($stmt);
             echo json_encode(['error' => 'Please complete your profile (age, height, weight)']);
@@ -74,7 +74,7 @@ function calculateMacros($calories, $goal) {
     global $user;
 
     if ($goal === 'bulking') {
-        $weight = $user['weight'];
+        $weight = $user['usr_weight'];
 
         // Fixed macros by body weight
         $protein_g = round($weight * 2.2);
@@ -110,9 +110,9 @@ function calculateMacros($calories, $goal) {
     ];
 }
 
-$bmr = calculateBMR($user['weight'], $user['height'], $user['age'], $user['gender']);
-$tdee = $bmr * getActivityMultiplier($user['activity_level']);
-$calories = adjustCaloriesForGoal($tdee, $user['goal']);
-$daily_macrosCal = calculateMacros($calories, $user['goal']);
+$bmr = calculateBMR($user['usr_weight'], $user['usr_height'], $user['usr_age'], $user['usr_gender']);
+$tdee = $bmr * getActivityMultiplier($user['usr_activity_level']);
+$calories = adjustCaloriesForGoal($tdee, $user['usr_goal']);
+$daily_macrosCal = calculateMacros($calories, $user['usr_goal']);
 $daily_macrosCal['calories'] = round($calories);
 ?>

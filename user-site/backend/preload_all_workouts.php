@@ -4,11 +4,11 @@ require_once '../../utils/connection.php';
 $user_id = $_SESSION['user_id'] ?? null;
 $workouts = [];
 
-$sql_select = "SELECT w.workout_id, w.workout_name, w.estimated_duration, w.workout_description, w.created_at, 
-            (SELECT COUNT(*) FROM workout_exercises_t we WHERE we.workout_id = w.workout_id) AS exercise_count 
+$sql_select = "SELECT w.wko_id, w.wko_name, w.wko_estimated_duration, w.wko_description, w.wko_created_at, 
+            (SELECT COUNT(*) FROM workout_exercises_t we WHERE we.wko_id = w.wko_id) AS exercise_count 
             FROM workouts_t w 
-            WHERE w.user_id = ? 
-            ORDER BY w.created_at DESC";
+            WHERE w.usr_id = ? 
+            ORDER BY w.wko_created_at DESC";
 
 
 if ($stmt = mysqli_prepare($connection, $sql_select)) {

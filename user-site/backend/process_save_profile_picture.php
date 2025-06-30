@@ -51,7 +51,7 @@ $newFileName = "pfp_{$user_id}_" . time() . "." . $ext;
 $destination = $uploadDir . $newFileName;
 
 // Delete old PFP
-$sql_old = "SELECT profile_pic FROM users_t WHERE user_id = ?";
+$sql_old = "SELECT usr_profile_pic FROM users_t WHERE usr_id = ?";
 if ($stmt = mysqli_prepare($connection, $sql_old)) {
     mysqli_stmt_bind_param($stmt, "i", $user_id);
     mysqli_stmt_execute($stmt);
@@ -66,7 +66,7 @@ if ($stmt = mysqli_prepare($connection, $sql_old)) {
 
 // Move file and update DB
 if (move_uploaded_file($tmpPath, $destination)) {
-    $sql_update = "UPDATE users_t SET profile_pic = ? WHERE user_id = ?";
+    $sql_update = "UPDATE users_t SET usr_profile_pic = ? WHERE usr_id = ?";
     if ($stmt = mysqli_prepare($connection, $sql_update)) {
         mysqli_stmt_bind_param($stmt, "si", $newFileName, $user_id);
         mysqli_stmt_execute($stmt);

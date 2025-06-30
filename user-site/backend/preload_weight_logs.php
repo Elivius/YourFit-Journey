@@ -4,10 +4,10 @@ require_once '../../utils/connection.php';
 
 $user_id = $_SESSION['user_id'];
 
-$sql = "SELECT DATE(created_at) AS date, weight
+$sql = "SELECT DATE(wel_created_at) AS date, wel_weight
         FROM weight_logs_t 
-        WHERE user_id = ? 
-        ORDER BY created_at DESC 
+        WHERE usr_id = ? 
+        ORDER BY wel_created_at DESC 
         LIMIT 7";
 
 $stmt = mysqli_prepare($connection, $sql);
@@ -19,7 +19,7 @@ $logs = [];
 while ($row = mysqli_fetch_assoc($result)) {
     $logs[] = [
         'date' => $row['date'],
-        'weight' => floatval($row['weight'])
+        'weight' => floatval($row['wel_weight'])
     ];
 }
 

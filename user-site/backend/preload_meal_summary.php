@@ -18,13 +18,13 @@ $response = [
 ];
 
 $sql = "SELECT
-            SUM(protein_g) AS protein,
-            SUM(carbs_g) AS carbs,
-            SUM(fats_g) AS fats,
-            SUM(calories) AS calories
+            SUM(uml_protein_g) AS protein,
+            SUM(uml_carbs_g) AS carbs,
+            SUM(uml_fats_g) AS fats,
+            SUM(uml_calories) AS calories
         FROM user_meal_logs_t
-        WHERE user_id = ?
-            AND DATE(created_at) = ?";
+        WHERE usr_id = ?
+            AND DATE(uml_created_at) = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql)) {
     mysqli_stmt_bind_param($stmt, "is", $user_id, $date);

@@ -30,7 +30,7 @@ switch ($form_type) {
             break;
         }
         
-        $sql_update_personal_info = "UPDATE users_t SET first_name=?, last_name=?, gender=? WHERE user_id=?";
+        $sql_update_personal_info = "UPDATE users_t SET usr_first_name = ?, usr_last_name = ?, usr_gender = ? WHERE usr_id = ?";
         if ($stmt = mysqli_prepare($connection, $sql_update_personal_info)) {
             mysqli_stmt_bind_param($stmt, "sssi", $first_name, $last_name, $gender, $user_id);
             mysqli_stmt_execute($stmt);
@@ -57,15 +57,15 @@ switch ($form_type) {
             break;
         }
 
-        $sql_update_physical_stats = "UPDATE users_t SET age=?, weight=?, height=? WHERE user_id=?";
+        $sql_update_physical_stats = "UPDATE users_t SET usr_age = ?, usr_weight = ?, usr_height = ? WHERE usr_id = ?";
         if ($stmt = mysqli_prepare($connection, $sql_update_physical_stats)) {
             mysqli_stmt_bind_param($stmt, "idii", $age, $weight, $height, $user_id);
             mysqli_stmt_execute($stmt);
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $_SESSION['success'] = "Physical stats updated";
 
-                // Tnsert into weight_logs_t fro tracking
-                $sql_insert_weight_log = "INSERT INTO weight_logs_t (user_id, weight) VALUES (?, ?)";
+                // Insert into weight_logs_t fro tracking
+                $sql_insert_weight_log = "INSERT INTO weight_logs_t (usr_id, wel_weight) VALUES (?, ?)";
                 if ($log_stmt = mysqli_prepare($connection, $sql_insert_weight_log)) {
                     mysqli_stmt_bind_param($log_stmt, "id", $user_id, $weight);
                     mysqli_stmt_execute($log_stmt);
@@ -108,14 +108,14 @@ switch ($form_type) {
         }
 
         // Fetch current hashed password from database
-        $sql_fetch_current_password = "SELECT password FROM users_t WHERE user_id=?";
+        $sql_fetch_current_password = "SELECT usr_password FROM users_t WHERE usr_id = ?";
         if ($stmt = mysqli_prepare($connection, $sql_fetch_current_password)) {
             mysqli_stmt_bind_param($stmt, "i", $user_id);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
 
             if ($result && $row = mysqli_fetch_assoc($result)) {
-                $hashed_password = $row['password'];
+                $hashed_password = $row['usr_password'];
                 if (!password_verify($current_password, $hashed_password)) {
                     $_SESSION['error'] = "Current password is incorrect";
                     mysqli_stmt_close($stmt);
@@ -123,7 +123,7 @@ switch ($form_type) {
                 }
 
                 $new_hashed = hashPassword($new_password);
-                $sql_update_password = "UPDATE users_t SET password=? WHERE user_id=?";
+                $sql_update_password = "UPDATE users_t SET usr_password = ? WHERE usr_id = ?";
 
                 if ($update_stmt = mysqli_prepare($connection, $sql_update_password)) {
                     mysqli_stmt_bind_param($update_stmt, "si", $new_hashed, $user_id);
@@ -155,7 +155,7 @@ switch ($form_type) {
             break;
         }
 
-        $sql_update_goal = "UPDATE users_t SET goal=? WHERE user_id=?";
+        $sql_update_goal = "UPDATE users_t SET usr_goal = ? WHERE usr_id=?";
          if ($stmt = mysqli_prepare($connection, $sql_update_goal)) {
             mysqli_stmt_bind_param($stmt, "si", $primary_goal, $user_id);
             mysqli_stmt_execute($stmt);
@@ -181,7 +181,7 @@ switch ($form_type) {
             break;
         }
 
-        $sql_update_activity_level = "UPDATE users_t SET activity_level=? WHERE user_id=?";
+        $sql_update_activity_level = "UPDATE users_t SET usr_activity_level = ? WHERE usr_id = ?";
         if ($stmt = mysqli_prepare($connection, $sql_update_activity_level)) {
             mysqli_stmt_bind_param($stmt, "si", $activity_level, $user_id);
             mysqli_stmt_execute($stmt);

@@ -61,7 +61,7 @@ if (
 }
 
 // Check for existing email
-$sql_check = "SELECT user_id FROM users_t WHERE email = ?";
+$sql_check = "SELECT usr_id FROM users_t WHERE usr_email = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, "s", $email);
@@ -87,7 +87,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 // Hash password and insert user
 $hashed_password = hashPassword($password);
 
-$sql_insert = "INSERT INTO users_t (first_name, last_name, email, password, gender, role) VALUES (?, ?, ?, ?, ?, 'user')";
+$sql_insert = "INSERT INTO users_t (usr_first_name, usr_last_name, usr_email, usr_password, usr_gender, usr_role) VALUES (?, ?, ?, ?, ?, 'user')";
 
 if ($stmt = mysqli_prepare($connection, $sql_insert)) {
     mysqli_stmt_bind_param($stmt, "sssss", $first_name, $last_name, $email, $hashed_password, $gender);
@@ -95,7 +95,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);
 
-        $sql_check = "SELECT user_id, first_name, password, role FROM users_t WHERE email = ?";
+        $sql_check = "SELECT usr_id, usr_first_name, usr_password, usr_role FROM users_t WHERE usr_email = ?";
         if ($stmt = mysqli_prepare($connection, $sql_check)) {
             mysqli_stmt_bind_param($stmt, 's', $email);
             mysqli_stmt_execute($stmt);
@@ -107,15 +107,15 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
                     session_regenerate_id(true);
 
                     $_SESSION['logged_in'] = true;
-                    $_SESSION['user_id'] = $user['user_id'];
-                    $_SESSION['name'] = $user['first_name'];
-                    $_SESSION['pfp'] = !empty($user['profile_pic']) ? $user['profile_pic'] : 'default.jpg';
+                    $_SESSION['user_id'] = $user['usr_id'];
+                    $_SESSION['name'] = $user['usr_first_name'];
+                    $_SESSION['pfp'] = !empty($user['usr_profile_pic']) ? $user['usr_profile_pic'] : 'default.jpg';
 
                     unset($_SESSION['first-name'], $_SESSION['last-name'], $_SESSION['gender']);
 
                     mysqli_stmt_close($stmt);
 
-                    if ($user['role'] === 'user') {
+                    if ($user['usr_role'] === 'user') {
                         header('Location: ../frontend/dashboard.php');
                     } else {
                         $_SESSION['target_form'] = 'loginForm';

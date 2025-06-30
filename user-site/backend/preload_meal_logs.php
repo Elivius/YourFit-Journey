@@ -3,18 +3,18 @@ require_once '../../utils/connection.php';
 
 $sql_extract = "
     SELECT
-        user_meal_log_id,
-        meal_name,
-        category,
-        ROUND(protein_g, 2) AS protein,
-        ROUND(carbs_g, 2) AS carbs,
-        ROUND(fats_g, 2) AS fats,
-        ROUND(calories, 2) AS calories,
-        TIME(created_at) AS time
+        uml_id,
+        uml_meal_name,
+        uml_category,
+        ROUND(uml_protein_g, 2) AS protein,
+        ROUND(uml_carbs_g, 2) AS carbs,
+        ROUND(uml_fats_g, 2) AS fats,
+        ROUND(uml_calories, 2) AS calories,
+        TIME(uml_created_at) AS time
     FROM user_meal_logs_t
-    WHERE user_id = ?
-        AND DATE(created_at) = CURDATE()
-    ORDER BY created_at ASC;";
+    WHERE usr_id = ?
+        AND DATE(uml_created_at) = CURDATE()
+    ORDER BY uml_created_at ASC;";
 
 $mealsByCategory = [
     'breakfast' => [],
@@ -29,7 +29,7 @@ if ($stmt = mysqli_prepare($connection, $sql_extract)) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $cat = strtolower($row['category']);
+            $cat = strtolower($row['uml_category']);
             if (isset($mealsByCategory[$cat])) {
                 $mealsByCategory[$cat][] = $row;
             }

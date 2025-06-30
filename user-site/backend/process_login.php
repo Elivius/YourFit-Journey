@@ -28,7 +28,7 @@ if (!$email || empty($password)) {
 $_SESSION['email'] = $email;
 
 // Fetch user from database
-$sql_check = "SELECT user_id, first_name, password, role, profile_pic FROM users_t WHERE email = ?";
+$sql_check = "SELECT usr_id, usr_first_name, usr_password, usr_role, usr_profile_pic FROM users_t WHERE usr_email = ?";
 
 if ($stmt = mysqli_prepare($connection, $sql_check)) {
     mysqli_stmt_bind_param($stmt, 's', $email);
@@ -37,23 +37,23 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
     $result = mysqli_stmt_get_result($stmt);
 
     if ($result && $user = mysqli_fetch_assoc($result)) {
-        if (password_verify($password, $user['password'])) {
+        if (password_verify($password, $user['usr_password'])) {
             // Secure session handling
             session_regenerate_id(true);
 
             $_SESSION['logged_in'] = true;
-            $_SESSION['user_id']   = $user['user_id'];
-            $_SESSION['name']   = $user['first_name'];
-            $_SESSION['pfp'] = !empty($user['profile_pic']) ? $user['profile_pic'] : 'default.jpg';
+            $_SESSION['user_id']   = $user['usr_id'];
+            $_SESSION['name']   = $user['usr_first_name'];
+            $_SESSION['pfp'] = !empty($user['usr_profile_pic']) ? $user['usr_profile_pic'] : 'default.jpg';
 
             unset($_SESSION['first-name'], $_SESSION['last-name'], $_SESSION['gender']);
 
             mysqli_stmt_close($stmt);
 
             // Redirect based on role
-            if ($user['role'] === 'admin') {
+            if ($user['usr_role'] === 'admin') {
                 header('Location: ../admin-site/frontend/dashboard.php');
-            } else if ($user['role'] === 'user') {                
+            } else if ($user['usr_role'] === 'user') {                
                 header('Location: ../frontend/dashboard.php');
             } else {
                 $_SESSION['target_form'] = 'loginForm';

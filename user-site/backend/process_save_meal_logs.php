@@ -24,7 +24,7 @@ $category = cleanInput($_POST['category'] ?? '');
 $user_id = $_SESSION['user_id'] ?? null;
 
 if ($meal_id) {
-    $sql_update = "UPDATE user_meal_logs_t SET meal_name = ?, category = ?, protein_g = ?, carbs_g = ?, fats_g = ?, calories = ? WHERE user_meal_log_id = ? AND user_id = ?";
+    $sql_update = "UPDATE user_meal_logs_t SET uml_meal_name = ?, uml_category = ?, uml_protein_g = ?, uml_carbs_g = ?, uml_fats_g = ?, uml_calories = ? WHERE uml_id = ? AND usr_id = ?";
     if ($stmt = mysqli_prepare($connection, $sql_update)) {
         mysqli_stmt_bind_param($stmt, 'ssddddii', $meal_name, $category, $protein, $carbs, $fats, $calories, $meal_id, $user_id);
         mysqli_stmt_execute($stmt);
@@ -39,7 +39,7 @@ if ($meal_id) {
         $_SESSION['error'] = "Failed to update meal";
     }
 } else {
-    $sql_insert_meal_log = "INSERT INTO user_meal_logs_t (user_id, meal_name, category, protein_g, carbs_g, fats_g, calories) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql_insert_meal_log = "INSERT INTO user_meal_logs_t (usr_id, uml_meal_name, uml_category, uml_protein_g, uml_carbs_g, uml_fats_g, uml_calories) VALUES (?, ?, ?, ?, ?, ?, ?)";
     if ($stmt = mysqli_prepare($connection, $sql_insert_meal_log)) {
         mysqli_stmt_bind_param($stmt, 'issdddd', $user_id, $meal_name, $category, $protein, $carbs, $fats, $calories);
         mysqli_stmt_execute($stmt);
