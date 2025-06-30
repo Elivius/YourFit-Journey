@@ -1,8 +1,14 @@
+<?php
+$requireRole = 'admin';
+require_once '../../utils/auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Management</title>
+    <title>User Management - YourFit Journey</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
