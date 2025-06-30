@@ -1,7 +1,6 @@
 <?php
 session_start();
 require_once '../../utils/csrf.php';
-var_dump($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +23,10 @@ var_dump($_SESSION);
 <body class="auth-page">    
     <!-- Signup Form -->
     <div class="auth-container">
+        <div class="login-background">
+            <div class="floating-shapes" id="floatingShapes"></div>
+        </div>
+
         <div class="auth-card">
             <div class="auth-header">
                 <a href="index.php" class="close-btn" aria-label="Close">
@@ -146,6 +149,32 @@ var_dump($_SESSION);
     <!-- Custom JS -->
     <script src="assets/js/script.js"></script>
     <script src="assets/js/landing-page.js"></script>
+    <script>
+        // Bubble Float
+        const shapeContainer = document.getElementById('floatingShapes');
+        const totalShapes = 12;
 
+        for (let i = 0; i < totalShapes; i++) {
+            const shape = document.createElement('div');
+            shape.classList.add('shape');
+
+            const size = Math.floor(Math.random() * 60) + 40;
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            const delay = (Math.random() * 3).toFixed(2);
+            const duration = (6 + Math.random() * 6).toFixed(2);
+
+            shape.style.width = `${size}px`;
+            shape.style.height = `${size}px`;
+            shape.style.top = `${top}%`;
+            shape.style.left = `${left}%`;
+
+            shape.style.animationName = "float";
+            shape.style.animationDelay = `${delay}s`;
+            shape.style.animationDuration = `${duration}s`;
+
+            shapeContainer.appendChild(shape);
+        }
+    </script>
 </body>
 </html>

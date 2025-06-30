@@ -1,0 +1,300 @@
+// ===============================
+// DOM Elements
+// ===============================
+const dataTable = document.getElementById('dataTable');
+const selectAll = document.getElementById('selectAll');
+const toast = document.getElementById('toast');
+
+// Add Modal Elements
+const addBtn = document.getElementById('addBtn');
+const addModal = document.getElementById('addModal');
+const addBackdrop = document.getElementById('addBackdrop');
+
+const addExerciseName = document.getElementById('addExerciseName');
+const addImageUrl = document.getElementById('addImageUrl');
+const addCategory = document.getElementById('addCategory');
+const addTargetMuscle = document.getElementById('addTargetMuscle');
+const addInstructions = document.getElementById('addInstructions');
+const addSets = document.getElementById('addSets');
+const addReps = document.getElementById('addReps');
+const addRest = document.getElementById('addRest');
+const createdAt = document.getElementById('addCreatedAt');
+
+const addSubmit = document.getElementById('addSubmit');
+const addCancel = document.getElementById('addCancel');
+const addCloseBtn = document.getElementById('addCloseBtn');
+
+// Edit Modal Elements
+const editBtn = document.getElementById('editBtn');
+const updateModal = document.getElementById('updateModal');
+const updateBackdrop = document.getElementById('updateBackdrop');
+
+const updateExerciseName = document.getElementById('updateExerciseName');
+const updateImageUrl = document.getElementById('updateImageUrl');
+const updateCategory = document.getElementById('updateCategory');
+const updateTargetMuscle = document.getElementById('updateTargetMuscle');
+const updateInstructions = document.getElementById('updateInstructions');
+const updateSets = document.getElementById('updateSets');
+const updateReps = document.getElementById('updateReps');
+const updateRest = document.getElementById('updateRest');
+const updateCreatedAt = document.getElementById('updateCreatedAt');
+
+const updateSubmit = document.getElementById('updateSubmit');
+const updateCancel = document.getElementById('updateCancel');
+const updateCloseBtn = document.getElementById('updateCloseBtn');
+
+// Filter Elements
+const filterInput = document.getElementById('filterInput');
+const clearFilterBtn = document.getElementById('clearFilterBtn');
+
+// Delete Button
+const deleteBtn = document.getElementById('deleteBtn');
+
+// ===============================
+// Filter Logic
+// ===============================
+filterInput.addEventListener('input', () => {
+    renderTable();
+    clearFilterBtn.style.display = filterInput.value ? 'block' : 'none';
+    filterInput.style.borderColor = filterInput.value ? '#6c63ff' : '#d1d7fa';
+    filterInput.style.boxShadow = filterInput.value ? '0 0 0 2px #ececff' : 'none';
+});
+
+filterInput.addEventListener('focus', () => {
+    filterInput.style.borderColor = '#6c63ff';
+    filterInput.style.boxShadow = '0 0 0 2px #ececff';
+});
+
+filterInput.addEventListener('blur', () => {
+    filterInput.style.borderColor = filterInput.value ? '#6c63ff' : '#d1d7fa';
+    filterInput.style.boxShadow = 'none';
+});
+
+clearFilterBtn.addEventListener('click', () => {
+    filterInput.value = '';
+    filterInput.focus();
+    clearFilterBtn.style.display = 'none';
+    filterInput.style.borderColor = '#d1d7fa';
+    filterInput.style.boxShadow = 'none';
+    renderTable();
+});
+
+// ===============================
+// Table Rendering
+// ===============================
+function renderTable() {
+    dataTable.innerHTML = '';
+    const filterValue = filterInput.value.trim().toLowerCase();
+    const filteredData = filterValue
+        ? data.filter(row =>
+            row.exerciseName.toLowerCase().includes(filterValue)
+        )
+        : data;
+
+    if (filteredData.length === 0) {
+        dataTable.innerHTML = `<tr class="empty-row"><td colspan="13">No data. Add a exercise above!</td></tr>`;
+    } else {
+        filteredData.forEach((row, idx) => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><input type="checkbox" class="row-checkbox" data-index="${data.indexOf(row)}" aria-label="Select row ${idx + 1}"></td>
+                <td>${row.exerciseId || ''}</td>
+                <td>${row.exerciseName || ''}</td>
+                <td>${row.imageUrl || ''}</td>
+                <td>${row.category || ''}</td>
+                <td>${row.targetMuscle || ''}</td>
+                <td>${row.instructions || ''}</td>
+                <td>${row.sets || ''}</td>
+                <td>${row.reps || ''}</td>
+                <td>${row.rest || ''}</td>
+                <td>${row.createdAt || ''}</td>
+            `;
+            dataTable.appendChild(tr);
+        });
+    }
+    updateButtons();
+}
+
+function updateButtons() {
+    const checkboxes = document.querySelectorAll('.row-checkbox');
+    const checked = Array.from(checkboxes).filter(cb => cb.checked);
+    editBtn.disabled = checked.length !== 1;
+    deleteBtn.disabled = checked.length === 0;
+    checkboxes.forEach(cb => {
+        cb.closest('tr').classList.toggle('selected', cb.checked);
+    });
+    selectAll.checked = checkboxes.length > 0 && checked.length === checkboxes.length;
+    selectAll.indeterminate = checked.length > 0 && checked.length < checkboxes.length;
+}
+
+// ===============================
+// Selection Logic
+// ===============================
+dataTable.addEventListener('change', e => {
+    if (e.target.classList.contains('row-checkbox')) updateButtons();
+});
+
+selectAll.addEventListener('change', () => {
+    const checked = selectAll.checked;
+    document.querySelectorAll('.row-checkbox').forEach(cb => cb.checked = checked);
+    updateButtons();
+});
+
+// ===============================
+// Modal Management
+// ===============================
+function hideAllModals() {
+    addModal.classList.remove('active');
+    addBackdrop.classList.remove('active');
+    updateModal.classList.remove('active');
+    updateBackdrop.classList.remove('active');
+}
+
+addBtn.addEventListener('click', () => {
+    hideAllModals();
+    addModal.classList.add('active');
+    addBackdrop.classList.add('active');
+    addExerciseName.value = '';
+    addImageUrl.value = '';
+    addCategory.value = '';
+    addTargetMuscle.value = '';
+    addInstructions.value = '';
+    addSets.value = '';
+    addReps.value = '';
+    addRest.value = '';
+    addCreatedAt.value = '';
+    updateSubmit.dataset.idx = idx;
+    setTimeout(() => addExerciseName.focus(), 120);
+});
+
+function closeAddModal() {
+    addModal.classList.remove('active');
+    addBackdrop.classList.remove('active');
+}
+addCancel.addEventListener('click', closeAddModal);
+addCloseBtn.addEventListener('click', closeAddModal);
+addBackdrop.addEventListener('click', closeAddModal);
+
+editBtn.addEventListener('click', () => {
+    const checked = document.querySelectorAll('.row-checkbox:checked');
+    if (checked.length === 1) openUpdateModal(checked[0].dataset.index);
+});
+
+function openUpdateModal(idx) {
+    hideAllModals();
+    updateModal.classList.add('active');
+    updateBackdrop.classList.add('active');
+    const exercise = data[idx];
+    updateExerciseName.value = exercise.exerciseName || '';
+    updateImageUrl.value = exercise.imageUrl || '';
+    updateCategory.value = exercise.category || '';
+    updateTargetMuscle.value = exercise.targetMuscle || '';
+    updateInstructions.value = exercise.instructions || '';
+    updateSets.value = exercise.sets || '';
+    updateReps.value = exercise.reps || '';
+    updateRest.value = exercise.rest || '';
+    updateCreatedAt.value = exercise.createdAt || '';
+    updateSubmit.dataset.idx = idx;
+    editIndex = idx;
+    setTimeout(() => updateExerciseName.focus(), 120);
+}
+
+function closeUpdateModal() {
+    updateModal.classList.remove('active');
+    updateBackdrop.classList.remove('active');
+    editIndex = null;
+}
+updateCancel.addEventListener('click', closeUpdateModal);
+updateCloseBtn.addEventListener('click', closeUpdateModal);
+updateBackdrop.addEventListener('click', closeUpdateModal);
+
+// ===============================
+// Add, Update, Delete Events
+// ===============================
+addSubmit.addEventListener('click', e => {
+    e.preventDefault();
+    const exercise = {
+        exerciseId: (data.length > 0 ? (parseInt(data[data.length - 1].exerciseId) + 1).toString() : '1'),
+        exerciseName: addExerciseName.value.trim(),
+        imageUrl: addImageUrl.value.trim(),
+        category: addCategory.value.trim(),
+        targetMuscle: addTargetMuscle.value.trim(),
+        instructions: addInstructions.value.trim(),
+        sets: addSets.value.trim(),
+        reps: addReps.value.trim(),
+        rest: addRest.value.trim(),
+        createdAt: addCreatedAt.value.trim()
+    };
+    data.push(exercise);
+    renderTable();
+    showToast('Exercise added!');
+    closeAddModal();
+});
+
+updateSubmit.addEventListener('click', e => {
+    e.preventDefault();
+    const idx = +updateSubmit.dataset.idx;
+    const exercise = {
+        exerciseId: data[idx].exerciseId,
+        exerciseName: updateExerciseName.value.trim(),
+        imageUrl: updateImageUrl.value.trim(),
+        category: updateCategory.value.trim(),
+        targetMuscle: updateTargetMuscle.value.trim(),
+        instructions: updateInstructions.value.trim(),
+        sets: updateSets.value.trim(),
+        reps: updateReps.value.trim(),
+        rest: updateRest.value.trim(),
+        createdAt: updateCreatedAt.value.trim()
+    };
+    data[idx] = exercise;
+    renderTable();
+    showToast('Exercise updated!');
+    closeUpdateModal();
+});
+
+deleteBtn.addEventListener('click', () => {
+    const checked = Array.from(document.querySelectorAll('.row-checkbox:checked')).map(cb => Number(cb.dataset.index));
+    if (checked.length > 0) {
+        if (window.confirm(`Delete ${checked.length} exercise(s)? This action cannot be undone.`)) {
+        checked.sort((a, b) => b - a).forEach(idx => data.splice(idx, 1));
+        renderTable();
+        showToast('Deleted successfully.', 'danger');
+        }
+    }
+});
+
+// ===============================
+// Toast Notification
+// ===============================
+function showToast(msg, type = 'info') {
+    toast.textContent = msg;
+    toast.style.background =
+        type === 'danger'
+        ? 'linear-gradient(90deg,#ff6584 60%,#e84663 100%)'
+        : type === 'warn'
+        ? 'linear-gradient(90deg,#43e97b 60%,#ffa000 100%)'
+        : 'linear-gradient(90deg,#6c63ff 60%,#43e97b 100%)';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Initial Render
+window.onload = () => renderTable();
+
+
+// Sample Data
+const data = [
+  {
+    exerciseId: '1',
+    exerciseName: 'Pushups',
+    imageUrl: 'https://raw.githubusercontent.com/JoshuaYeo7/yourfit_journey/refs/heads/main/images/Pushups.jpg',
+    category: 'Arms',
+    targetMuscle: 'Chest, Shoulders, Triceps, Core',
+    instructions: '1. Place your hands slightly wider than shoulder-width apart, fingers pointing slightly outward or forward, on the floor. 2. Maintain a straight line from your head to your heels, engaging your core and glutes for stability. 3. Lower your chest towards the floor, bending your elbows and keeping them pointing out to the sides. 4. Push back up to the starting position by extending your arms.',
+    sets: '4',
+    reps: '6 - 12',
+    rest: '2 - 3',
+    createdAt: '2025-06-12 15:23:31'
+  }
+];
+let editIndex = null;
