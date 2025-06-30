@@ -1,9 +1,15 @@
+<?php
+$requireRole = 'admin';
+require_once '../../utils/auth.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - YourFit Admin</title>
+    <title>Admin Dashboard - YourFit Journey</title>
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -26,7 +32,7 @@
                     <span class="nav-section-title">Main</span>
                     <ul class="nav-menu">
                         <li class="nav-item active">
-                            <a href="dashboard.html" class="nav-link">
+                            <a href="dashboard.php" class="nav-link">
                                 <i class="fas fa-chart-line"></i>
                                 <span class="nav-text">Dashboard</span>
                                 <div class="nav-indicator"></div>
@@ -40,13 +46,13 @@
                         <span class="nav-section-title">Users</span>
                         <ul class="nav-menu">
                             <li class="nav-item">
-                                <a href="user.html" class="nav-link">
+                                <a href="user.php" class="nav-link">
                                     <i class="fas fa-users-cog"></i>
                                     <span class="nav-text">User Management</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="feedback.html" class="nav-link">
+                                <a href="feedback.php" class="nav-link">
                                     <i class="fas fa-comment-dots"></i>
                                     <span class="nav-text">Feedback Management</span>
                                 </a>
@@ -59,20 +65,20 @@
                     <span class="nav-section-title">Meals</span>
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="meal.html" class="nav-link">
+                            <a href="meal.php" class="nav-link">
                                 <i class="fas fa-utensils"></i>
                                 <span class="nav-text">Meal Management</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="ingredient.html" class="nav-link">
+                            <a href="ingredient.php" class="nav-link">
                                 <i class="fas fa-carrot"></i>
                                 <span class="nav-text">Ingredient Management</span>
                                 <span class="nav-badge new">12</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="meal_ingredient.html" class="nav-link">
+                            <a href="meal_ingredient.php" class="nav-link">
                                 <i class="fas fa-hamburger"></i>
                                 <span class="nav-text">Meal and Ingredient Management</span>
                             </a>
@@ -84,7 +90,7 @@
                     <span class="nav-section-title">Workouts</span>
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="workout.html" class="nav-link">
+                            <a href="workout.php" class="nav-link">
                                 <i class="fas fa-dumbbell"></i>
                                 <span class="nav-text">Workout Management</span>
                             </a>
@@ -96,19 +102,19 @@
                     <span class="nav-section-title">Logs</span>
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="user_meal_log.html" class="nav-link">
+                            <a href="user_meal_log.php" class="nav-link">
                                 <i class="fas fa-clipboard-list"></i>
                                 <span class="nav-text">User Meal Log</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="weight_log.html" class="nav-link">
+                            <a href="weight_log.php" class="nav-link">
                                 <i class="fas fa-clipboard-list"></i>
                                 <span class="nav-text">Weight Log</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="workout_log.html" class="nav-link">
+                            <a href="workout_log.php" class="nav-link">
                                 <i class="fas fa-clipboard-list"></i>
                                 <span class="nav-text">Workout Log</span>
                             </a>
@@ -194,7 +200,7 @@
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/user.html">View Details</a>
+                                    <a href="management/user.php">View Details</a>
                                     <!-- <a href="#" onclick="exportUsers()">Export</a> -->
                                 </div>
                             </div>
@@ -223,7 +229,7 @@
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/workout.html">View Details</a>
+                                    <a href="management/workout.php">View Details</a>
                                     <!-- <a href="#" onclick="exportWorkouts()">Export</a> -->
                                 </div>
                             </div>
@@ -252,7 +258,7 @@
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/diet.html">View Details</a>
+                                    <a href="management/diet.php">View Details</a>
                                     <!-- <a href="#" onclick="exportDiets()">Export</a> -->
                                 </div>
                             </div>
@@ -281,7 +287,7 @@
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/feedback.html">View Details</a>
+                                    <a href="management/feedback.php">View Details</a>
                                     <!-- <a href="#" onclick="exportFeedback()">Export</a> -->
                                 </div>
                             </div>
@@ -308,7 +314,7 @@
                     </div>
                     
                     <div class="quick-actions-grid">
-                        <div class="quick-action-card" onclick="window.location.href='user.html'">
+                        <div class="quick-action-card" onclick="window.location.href='user.php'">
                             <div class="action-icon users">
                                 <i class="fas fa-user-plus"></i>
                             </div>
@@ -321,7 +327,7 @@
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='workout.html'">
+                        <div class="quick-action-card" onclick="window.location.href='workout.php'">
                             <div class="action-icon workouts">
                                 <i class="fas fa-plus-circle"></i>
                             </div>
@@ -334,7 +340,7 @@
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='diet.html'">
+                        <div class="quick-action-card" onclick="window.location.href='diet.php'">
                             <div class="action-icon diets">
                                 <i class="fas fa-utensils"></i>
                             </div>
@@ -347,7 +353,7 @@
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='feedback.html'">
+                        <div class="quick-action-card" onclick="window.location.href='feedback.php'">
                             <div class="action-icon reports">
                                 <i class="fas fa-chart-line"></i>
                             </div>
@@ -555,15 +561,15 @@
             <h3>Quick Actions</h3>
         </div>
         <div class="quick-actions-list">
-            <button class="quick-action-btn" onclick="window.location.href='user.html#add-user'">
+            <button class="quick-action-btn" onclick="window.location.href='user.php#add-user'">
                 <i class="fas fa-user-plus"></i>
                 <span>Add User</span>
             </button>
-            <button class="quick-action-btn" onclick="window.location.href='workout.html#add-workout'">
+            <button class="quick-action-btn" onclick="window.location.href='workout.php#add-workout'">
                 <i class="fas fa-dumbbell"></i>
                 <span>Create Workout</span>
             </button>
-            <button class="quick-action-btn" onclick="window.location.href='diet.html#add-diet'">
+            <button class="quick-action-btn" onclick="window.location.href='diet.php#add-diet'">
                 <i class="fas fa-apple-alt"></i>
                 <span>Add Diet Plan</span>
             </button>
@@ -583,7 +589,7 @@
         e.preventDefault();
         localStorage.removeItem("adminLoggedIn");
         localStorage.removeItem("adminLoginTime");
-        window.location.replace("login.html");
+        window.location.replace("login.php");
       });
     </script>
 </body>

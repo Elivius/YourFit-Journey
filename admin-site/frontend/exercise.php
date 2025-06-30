@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Workout and Exercise Management</title>
+    <title>Exercise Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/workout_exercise.css">
+    <link rel="stylesheet" href="assets/css/exercise.css">
 </head>
 <body>
 <div class="container">
-    <a class="back-btn" href="dashboard.html" id="backToDashboardBtn">
-        <span class="material-icons" style="font-size:19px;vertical-align:-3px;">arrow_back</span>
+    <a class="back-btn" href="dashboard.php" id="backToDashboardBtn">
         Back to Dashboard
     </a>
     <h2>
-        Workout and Exercise Management
+        Exercise Management
     </h2>
     <div class="toolbar">
         <div class="toolbar-actions-left">
@@ -26,7 +25,7 @@
             <!-- Filter and Clear Function -->
             <span style="position:relative; display:inline-block; margin-left:10px;">
                 <i class="material-icons" style="position:absolute; left:10px; top:38%; transform:translateY(-50%); color:#b3b3fd; font-size:18px; pointer-events:none;">search</i>
-                <input type="text" id="filterInput" placeholder="Sets" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
+                <input type="text" id="filterInput" placeholder="Name or Category" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
                 <button id="clearFilterBtn" type="button" style="position:absolute; right:6px; top:50%; transform:translateY(-50%); background:none; border:none; color:#b3b3fd; font-size:16px; cursor:pointer; display:none;" tabindex="-1" aria-label="Clear filter">
                     <i class="material-icons">close</i>
                 </button>
@@ -48,13 +47,15 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
-                    <th>Workout and Exercise ID</th>
-                    <th>Workout ID</th>
                     <th>Exercise ID</th>
+                    <th>Exercise Name</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Targeted Muscle</th>
+                    <th style="width:1000px;">Instructions</th>
                     <th>Sets</th>
                     <th>Reps</th>
                     <th>Rest</th>
-                    <th>Weight</th>
                     <th>Created At</th>
                 </tr>
             </thead>
@@ -70,62 +71,94 @@
 <div class="modal-dialog" id="addModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
-        <div class="modal-title">Add New Workout and Exercise</div>
+        <div class="modal-title">Add New Exercise</div>
         <div class="modal-form-grid">
             <div>
+                <label for="addExerciseName">Exercise Name</label>
+                <input type="text" id="addExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addImageUrl">Image</label>
+                <input type="text" id="addImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addCategory">Category</label>
+                <input type="text" id="addCategory" maxlength="36" placeholder="Enter category" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addTargetedMuscle">Targeted Muscle</label>
+                <input type="text" id="addTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addInstructions">Instructions</label>
+                <input type="text" id="addInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off"/>
+            </div>
+            <div>
                 <label for="addSets">Sets</label>
-                <input type="text" id="addSets" maxlength="50" placeholder="Enter sets" autocomplete="off"/>
+                <input type="text" id="addSets" maxlength="2" placeholder="Enter sets" autocomplete="off"/>
             </div>
             <div>
                 <label for="addReps">Reps</label>
-                <input type="text" id="addReps" maxlength="50" placeholder="Enter reps" autocomplete="off"/>
+                <input type="text" id="addReps" maxlength="10" placeholder="Enter reps" autocomplete="off"/>
             </div>
             <div>
                 <label for="addRest">Rest</label>
-                <input type="text" id="addRest" maxlength="50" placeholder="Enter rest time" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addWeight">Weight</label>
-                <input type="text" id="addWeight" maxlength="50" placeholder="Enter weight" autocomplete="off"/>
+                <input type="text" id="addRest" maxlength="10" placeholder="Enter rest" autocomplete="off"/>
             </div>
             <div>
                 <label for="addCreatedAt">Created At</label>
-                <input type="text" id="addCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
+                <input type="text" id="addCreatedAt" maxlength="25" placeholder="Enter time created" autocomplete="off"/>
             </div>
-        </div>
+        </div>    
         <div class="modal-actions">
             <input type="submit" value="Add" id="addSubmit">
             <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
         </div>
     </div>
-</div>
+</div> 
 
 <!-- Edit Modal -->
 <div class="modal-backdrop" id="updateBackdrop"></div>
 <div class="modal-dialog" id="updateModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
-        <div class="modal-title">Edit Workout and Exercise</div>
+        <div class="modal-title">Edit Exercise</div>
         <div class="modal-form-grid">
             <div>
+                <label for="updateExerciseName">Exercise Name</label>
+                <input type="text" id="updateExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateImageUrl">Image</label>
+                <input type="text" id="updateImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateCategory">Category</label>
+                <input type="text" id="updateCategory" maxlength="36" placeholder="Enter category" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateTargetedMuscle">Targeted Muscle</label>
+                <input type="text" id="updateTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateInstructions">Instructions</label>
+                <input type="text" id="updateInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off"/>
+            </div>
+            <div>
                 <label for="updateSets">Sets</label>
-                <input type="text" id="updateSets" maxlength="50" placeholder="Enter sets" autocomplete="off"/>
+                <input type="text" id="updateSets" maxlength="2" placeholder="Enter sets" autocomplete="off"/>
             </div>
             <div>
                 <label for="updateReps">Reps</label>
-                <input type="text" id="updateReps" maxlength="50" placeholder="Enter reps" autocomplete="off"/>
+                <input type="text" id="updateReps" maxlength="10" placeholder="Enter reps" autocomplete="off"/>
             </div>
             <div>
                 <label for="updateRest">Rest</label>
-                <input type="text" id="updateRest" maxlength="50" placeholder="Enter rest time" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateWeight">Weight</label>
-                <input type="text" id="updateWeight" maxlength="50" placeholder="Enter weight" autocomplete="off"/>
+                <input type="text" id="updateRest" maxlength="10" placeholder="Enter rest" autocomplete="off"/>
             </div>
             <div>
                 <label for="updateCreatedAt">Created At</label>
-                <input type="text" id="updateCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
+                <input type="text" id="updateCreatedAt" maxlength="25" placeholder="Enter time created" autocomplete="off"/>
             </div>
         </div>
         <div class="modal-actions">
@@ -135,6 +168,6 @@
     </div>
 </div>
 <div class="toast" id="toast"></div>
-<script src="assets/js/workout_exercise.js"></script>
+<script src="assets/js/exercise.js"></script>
 </body>
 </html>

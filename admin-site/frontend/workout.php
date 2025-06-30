@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Meal and Ingredient Management</title>
+    <title>Workout Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/meal_ingredient.css">
+    <link rel="stylesheet" href="assets/css/workout.css">
 </head>
 <body>
 <div class="container">
-    <a class="back-btn" href="dashboard.html" id="backToDashboardBtn">
+    <a class="back-btn" href="dashboard.php" id="backToDashboardBtn">
         <span class="material-icons" style="font-size:19px;vertical-align:-3px;">arrow_back</span>
         Back to Dashboard
     </a>
     <h2>
-        Meal and Ingredient Management
+        Workout Management
     </h2>
     <div class="toolbar">
         <div class="toolbar-actions-left">
@@ -26,7 +26,7 @@
             <!-- Filter and Clear Function -->
             <span style="position:relative; display:inline-block; margin-left:10px;">
                 <i class="material-icons" style="position:absolute; left:10px; top:38%; transform:translateY(-50%); color:#b3b3fd; font-size:18px; pointer-events:none;">search</i>
-                <input type="text" id="filterInput" placeholder="Base Grams" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
+                <input type="text" id="filterInput" placeholder="Name" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
                 <button id="clearFilterBtn" type="button" style="position:absolute; right:6px; top:50%; transform:translateY(-50%); background:none; border:none; color:#b3b3fd; font-size:16px; cursor:pointer; display:none;" tabindex="-1" aria-label="Clear filter">
                     <i class="material-icons">close</i>
                 </button>
@@ -48,10 +48,11 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
-                    <th>Meal Ingredient ID</th>
-                    <th>Meal ID</th>
-                    <th>Ingredient ID</th>
-                    <th>Base Grams</th>
+                    <th>Workout ID</th>
+                    <th>User ID</th>
+                    <th>Workout Name</th>
+                    <th>Estimated Duaration</th>
+                    <th>Workout Description</th>
                     <th>Created At</th>
                 </tr>
             </thead>
@@ -67,11 +68,19 @@
 <div class="modal-dialog" id="addModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
-        <div class="modal-title">Add New Ingredients and Meals</div>
+        <div class="modal-title">Add New Workout</div>
         <div class="modal-form-grid">
             <div>
-                <label for="addBaseGrams">Base Grams</label>
-                <input type="text" id="addBaseGrams" maxlength="50" placeholder="Enter base grams" autocomplete="off"/>
+                <label for="addWorkoutName">Workout Name</label>
+                <input type="text" id="addWorkoutName" maxlength="50" placeholder="Enter workout name" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addEstimatedDuration">Estimated Duration</label>
+                <input type="text" id="addEstimatedDuration" maxlength="10" placeholder="Enter estimated duration" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addWorkoutDescription">Workout Description</label>
+                <input type="text" id="addWorkoutDescription" maxlength="500" placeholder="Enter workout description" autocomplete="off"/>
             </div>
             <div>
                 <label for="addCreatedAt">Created At</label>
@@ -90,11 +99,19 @@
 <div class="modal-dialog" id="updateModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
-        <div class="modal-title">Edit Ingredients and Meals</div>
+        <div class="modal-title">Edit User</div>
         <div class="modal-form-grid">
             <div>
-                <label for="updateBaseGrams">Base Grams</label>
-                <input type="text" id="updateBaseGrams" maxlength="50" placeholder="Enter Base Grams" autocomplete="off"/>
+                <label for="updateWorkoutName">Workout Name</label>
+                <input type="text" id="updateWorkoutName" maxlength="50" placeholder="Enter workout name" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateEstimatedDuration">Estimated Duration</label>
+                <input type="text" id="updateEstimatedDuration" maxlength="10" placeholder="Enter estimated duration" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateWorkoutDescription">Workout Description</label>
+                <input type="text" id="updateWorkoutDescription" maxlength="500" placeholder="Enter workout description" autocomplete="off"/>
             </div>
             <div>
                 <label for="updateCreatedAt">Created At</label>
@@ -108,6 +125,6 @@
     </div>
 </div>
 <div class="toast" id="toast"></div>
-<script src="assets/js/meal_ingredient.js"></script>
+<script src="assets/js/workout.js"></script>
 </body>
 </html>

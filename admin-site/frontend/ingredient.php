@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Workout Management</title>
+    <title>Ingredient Management</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/workout.css">
+    <link rel="stylesheet" href="assets/css/ingredient.css">
 </head>
 <body>
 <div class="container">
-    <a class="back-btn" href="dashboard.html" id="backToDashboardBtn">
+    <a class="back-btn" href="dashboard.php" id="backToDashboardBtn">
         <span class="material-icons" style="font-size:19px;vertical-align:-3px;">arrow_back</span>
         Back to Dashboard
     </a>
     <h2>
-        Workout Management
+        Ingredient Management
     </h2>
     <div class="toolbar">
         <div class="toolbar-actions-left">
@@ -48,11 +48,12 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
-                    <th>Workout ID</th>
-                    <th>User ID</th>
-                    <th>Workout Name</th>
-                    <th>Estimated Duaration</th>
-                    <th>Workout Description</th>
+                    <th>Ingredient ID</th>
+                    <th>Name</th>
+                    <th>Protein per 100g</th>
+                    <th>Carbs per 100g</th>
+                    <th>Fats per 100g</th>
+                    <th>Calories per 100g</th>
                     <th>Created At</th>
                 </tr>
             </thead>
@@ -68,19 +69,27 @@
 <div class="modal-dialog" id="addModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
-        <div class="modal-title">Add New Workout</div>
+        <div class="modal-title">Add New Ingredient</div>
         <div class="modal-form-grid">
             <div>
-                <label for="addWorkoutName">Workout Name</label>
-                <input type="text" id="addWorkoutName" maxlength="50" placeholder="Enter workout name" autocomplete="off"/>
+                <label for="addName">Name</label>
+                <input type="text" id="addName" maxlength="50" placeholder="Enter name" autocomplete="off"/>
             </div>
             <div>
-                <label for="addEstimatedDuration">Estimated Duration</label>
-                <input type="text" id="addEstimatedDuration" maxlength="10" placeholder="Enter estimated duration" autocomplete="off"/>
+                <label for="addProtein">Protein per 100g</label>
+                <input type="text" id="addProtein" maxlength="10" placeholder="Enter protein per 100g" autocomplete="off"/>
             </div>
             <div>
-                <label for="addWorkoutDescription">Workout Description</label>
-                <input type="text" id="addWorkoutDescription" maxlength="500" placeholder="Enter workout description" autocomplete="off"/>
+                <label for="addCarbs">Carbs per 100g</label>
+                <input type="text" id="addCarbs" maxlength="10" placeholder="Enter carbs per 100g" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addFats">Fats per 100g</label>
+                <input type="text" id="addFats" maxlength="10" placeholder="Enter fats per 100g" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="addCalories">Calories per 100g</label>
+                <input type="text" id="addCalories" maxlength="10" placeholder="Enter calories per 100g" autocomplete="off"/>
             </div>
             <div>
                 <label for="addCreatedAt">Created At</label>
@@ -99,19 +108,27 @@
 <div class="modal-dialog" id="updateModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
-        <div class="modal-title">Edit User</div>
+        <div class="modal-title">Edit Ingredient</div>
         <div class="modal-form-grid">
             <div>
-                <label for="updateWorkoutName">Workout Name</label>
-                <input type="text" id="updateWorkoutName" maxlength="50" placeholder="Enter workout name" autocomplete="off"/>
+                <label for="updateName">Name</label>
+                <input type="text" id="updateName" maxlength="50" placeholder="Enter name" autocomplete="off"/>
             </div>
             <div>
-                <label for="updateEstimatedDuration">Estimated Duration</label>
-                <input type="text" id="updateEstimatedDuration" maxlength="10" placeholder="Enter estimated duration" autocomplete="off"/>
+                <label for="updateProtein">Protein per 100g</label>
+                <input type="text" id="updateProtein" maxlength="10" placeholder="Enter protein per 100g" autocomplete="off"/>
             </div>
             <div>
-                <label for="updateWorkoutDescription">Workout Description</label>
-                <input type="text" id="updateWorkoutDescription" maxlength="500" placeholder="Enter workout description" autocomplete="off"/>
+                <label for="updateCarbs">Carbs per 100g</label>
+                <input type="text" id="updateCarbs" maxlength="10" placeholder="Enter carbs per 100g" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateFats">Fats per 100g</label>
+                <input type="text" id="updateFats" maxlength="10" placeholder="Enter fats per 100g" autocomplete="off"/>
+            </div>
+            <div>
+                <label for="updateCalories">Calories per 100g</label>
+                <input type="text" id="updateCalories" maxlength="10" placeholder="Enter calories per 100g" autocomplete="off"/>
             </div>
             <div>
                 <label for="updateCreatedAt">Created At</label>
@@ -125,6 +142,6 @@
     </div>
 </div>
 <div class="toast" id="toast"></div>
-<script src="assets/js/workout.js"></script>
+<script src="assets/js/ingredient.js"></script>
 </body>
 </html>
