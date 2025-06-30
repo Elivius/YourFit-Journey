@@ -18,7 +18,7 @@ $workout_name = isset($_POST['workout_name']) ? trim($_POST['workout_name']) : n
 $estimated_duration = isset($_POST['estimated_duration']) && is_numeric($_POST['estimated_duration']) ? intval($_POST['estimated_duration']) : null;
 $exercise_count = isset($_POST['exercise_count']) && is_numeric($_POST['exercise_count']) ? intval($_POST['exercise_count']) : null;
 
-if (!$workout_name || !$estimated_duration) {
+if (!$workout_name) {
     $_SESSION['error'] = "Missing workout details";
     header("Location: ../frontend/workouts.php?section=my-workouts");
     exit;
@@ -59,3 +59,4 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
 
 header("Location: ../frontend/workouts.php?section=my-workouts");
 exit;
+?>

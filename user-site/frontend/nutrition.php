@@ -411,6 +411,14 @@ require_once '../backend/preload_meal_logs.php';
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/log-meal-modal.js"></script>
     <script src="assets/js/summary-meals.js"></script>
-    <script src="assets/js/log-meal-history.js"></script>
+    <script src="assets/js/log-meal-history.js"></script>    
+    <script>   
+        // Save Scroll Position Before Submit
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', () => {
+                sessionStorage.setItem('scrollY', window.scrollY);
+            });
+        });
+    </script>
 </body>
 </html>

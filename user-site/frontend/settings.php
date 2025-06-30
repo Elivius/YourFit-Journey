@@ -466,5 +466,13 @@ require_once '../backend/preload_settings.php';
     <script src="assets/js/theme.js"></script>
     <script src="assets/js/sidebar.js"></script>
     <script src="assets/js/upload-pfp.js"></script>
+    <script>   
+        // Save Scroll Position Before Submit
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', () => {
+                sessionStorage.setItem('scrollY', window.scrollY);
+            });
+        });
+    </script>
 </body>
 </html>

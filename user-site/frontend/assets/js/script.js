@@ -164,13 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Save Scroll Position Before Submit
-    document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', () => {
-            sessionStorage.setItem('scrollY', window.scrollY);
-        });
-    });
-
     // Initialization on Page Load
     window.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);

@@ -102,7 +102,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
             $result = mysqli_stmt_get_result($stmt);
 
             if ($result && $user = mysqli_fetch_assoc($result)) {
-                if (password_verify($password, $user['password'])) {
+                if (password_verify($password, $user['usr_password'])) {
 
                     session_regenerate_id(true);
 
