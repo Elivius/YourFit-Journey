@@ -108,6 +108,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
 
                     $_SESSION['logged_in'] = true;
                     $_SESSION['user_id'] = $user['usr_id'];
+                    $_SESSION['role'] = $user['usr_role'];
                     $_SESSION['name'] = $user['usr_first_name'];
                     $_SESSION['pfp'] = !empty($user['usr_profile_pic']) ? $user['usr_profile_pic'] : 'default.jpg';
 

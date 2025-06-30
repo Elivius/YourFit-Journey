@@ -1,10 +1,3 @@
-<script>
-  // Redirect to login if not authenticated
-  if (localStorage.getItem("adminLoggedIn") !== "true") {
-    window.location.replace("login.html");
-  }
-</script>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

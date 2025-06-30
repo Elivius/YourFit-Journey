@@ -43,6 +43,7 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 
             $_SESSION['logged_in'] = true;
             $_SESSION['user_id']   = $user['usr_id'];
+            $_SESSION['role'] = $user['usr_role'];
             $_SESSION['name']   = $user['usr_first_name'];
             $_SESSION['pfp'] = !empty($user['usr_profile_pic']) ? $user['usr_profile_pic'] : 'default.jpg';
 
@@ -52,8 +53,8 @@ if ($stmt = mysqli_prepare($connection, $sql_check)) {
 
             // Redirect based on role
             if ($user['usr_role'] === 'admin') {
-                header('Location: ../admin-site/frontend/dashboard.php');
-            } else if ($user['usr_role'] === 'user') {                
+                header('Location: ../../admin-site/frontend/dashboard.php');
+            } else if ($user['usr_role'] === 'user') {
                 header('Location: ../frontend/dashboard.php');
             } else {
                 $_SESSION['target_form'] = 'loginForm';

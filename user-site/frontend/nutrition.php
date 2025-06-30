@@ -1,4 +1,5 @@
 <?php
+$requireRole = 'user';
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
 require_once '../../utils/message2.php';
