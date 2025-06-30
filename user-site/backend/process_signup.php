@@ -109,6 +109,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
                     $_SESSION['logged_in'] = true;
                     $_SESSION['user_id'] = $user['user_id'];
                     $_SESSION['name'] = $user['first_name'];
+                    $_SESSION['pfp'] = !empty($user['profile_pic']) ? $user['profile_pic'] : 'default.jpg';
 
                     unset($_SESSION['first-name'], $_SESSION['last-name'], $_SESSION['gender']);
 
