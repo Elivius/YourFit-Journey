@@ -1564,3 +1564,119 @@ body {
     padding: var(--spacing-xs) var(--spacing-sm);
   }
 }
+
+.modal-title {
+    font-size: 1.12em;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 16px;
+    text-align: center;
+    letter-spacing: 1.1px;
+}
+
+.modal-content label {
+    font-size: 15px;
+    color: #2b285d;
+    font-weight: 500;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="number"] {
+    padding: 10px;
+    font-size: 15px;
+    border: 1.2px solid #d1d7fa;
+    border-radius: 12px;
+    background: #fafaff;
+    transition: border var(--transition), box-shadow var(--transition);
+    width: 100%;
+    margin-bottom: 11px;
+    box-sizing: border-box;
+}
+
+.modal-content input[type="file"] {
+    background-color: #fafaff;
+    border: 1.2px dashed #d1d7fa;
+    padding: 10px;
+    border-radius: 12px;
+    font-size: 15px;
+    color: #2b285d;
+    cursor: pointer;
+}
+
+/* Style the button inside file input (works in WebKit browsers) */
+.modal-content input[type="file"]::-webkit-file-upload-button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    margin-right: 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s;
+}
+
+.modal-content input[type="file"]::-webkit-file-upload-button:hover {
+    background: #5548d9;
+}
+
+.modal-content input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 1px 7px rgba(108,99,255,0.09);
+}
+
+.modal-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    justify-content: flex-end;
+}
+
+.modal-actions button,
+.modal-actions input[type="submit"] {
+    font-size: 15px;
+    padding: 7px 13px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: var(--primary);
+    color: #fff;
+    transition: background var(--transition);
+}
+
+.modal-actions .cancel-popup {
+    background: #c3c7d9;
+    color: #2b285d;
+}
+.modal-actions .cancel-popup:hover {
+    background: #a5a8be;
+}
+
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 11px;
+    background: none;
+    border: none;
+    color: #b3b3fd;
+    font-size: 25px;
+    cursor: pointer;
+    transition: color 0.19s;
+}
+.modal-close:hover {
+    color: var(--primary);
+}
+
+.modal-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 36px;
+}
+.modal-form-grid > div {
+    display: flex;
+    flex-direction: column;
+}

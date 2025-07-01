@@ -122,7 +122,7 @@ if (!$results) {
     <div class="modal-content">
         <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
         <div class="modal-title">Add New User</div>
-        <form action="../backend/process_save_user_management.php" method="POST" enctype="multipart/form-data">
+        <form action="../backend/process_add_user_management.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
             <div class="modal-form-grid">
                 <div>
@@ -189,47 +189,56 @@ if (!$results) {
     <div class="modal-content">
         <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
         <div class="modal-title">Edit User</div>
-        <form action="">
+        <form action="../backend/process_update_user_management.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
             <div class="modal-form-grid">
                 <div>
                     <label for="updateFirstName">First Name</label>
-                    <input type="text" id="updateFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off" required />
+                    <input type="text" name="firstName" id="updateFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off" required />
                 </div>
                 <div>
                     <label for="updateLastName">Last Name</label>
-                    <input type="text" id="updateLastName" maxlength="50" placeholder="Enter last name" autocomplete="off" required />
+                    <input type="text" name="lastName" id="updateLastName" maxlength="50" placeholder="Enter last name" autocomplete="off" required />
                 </div>
                 <div>
                     <label for="updateEmail">Email</label>
-                    <input type="email" id="updateEmail" maxlength="100" placeholder="Enter email" autocomplete="off" required />
+                    <input type="email" name="email" id="updateEmail" maxlength="100" placeholder="Enter email" autocomplete="off" required />
                 </div>
                 <div>
                     <label for="updatePassword">Password</label>
-                    <input type="text" id="updatePassword" maxlength="100" placeholder="Enter password" autocomplete="off" required />
+                    <input type="text" name="password" id="updatePassword" maxlength="100" placeholder="Enter password" autocomplete="off" required />
                 </div>
                 <div>
                     <label for="updateProfilePicture">Profile Picture</label>
-                    <input type="url" id="updateProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off" required />
+                    <input type="file" name="pfp" id="updateProfilePicture" maxlength="2048" placeholder="Enter profile picture" autocomplete="off" />
+                </div>
+                <div>
+                    <label for="updateRole">Role (Read Only)</label>
+                    <input type="text" name="role" id="updateRole" placeholder="Enter role" value="User" readonly required />
+                </div>
+                <div>
+                    <label for="updateAge">Age</label>
+                    <input type="number" name="age" id="updateAge" placeholder="Enter age" step="1" min="0" max="999" required />
                 </div>
                 <div>
                     <label for="updateGender">Gender</label>
-                    <input type="text" id="updateGender" maxlength="10" placeholder="Enter gender" autocomplete="off" required />
+                    <input type="text" name="gender" id="updateGender" maxlength="10" placeholder="Enter gender" autocomplete="off" required />
                 </div>
                 <div>
                     <label for="updateWeight">Weight (kg)</label>
-                    <input type="number" id="updateWeight" step="0.1" min="0" max="999.9" placeholder="Enter weight" required />
+                    <input type="number" name="weight" id="updateWeight" placeholder="Enter weight" step="0.1" min="0" max="999.9" required />
                 </div>
                 <div>
                     <label for="updateHeight">Height (cm)</label>
-                    <input type="number" id="updateHeight" step="0.1" min="0" max="999.9" placeholder="Enter height" required />
+                    <input type="number" name="height" id="updateHeight" placeholder="Enter height" step="0.1" min="0" max="999.9" required />
                 </div>
                 <div>
                     <label for="updateActivityLevel">Activity Level</label>
-                    <input type="text" id="updateActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off" required />
+                    <input type="text" name="activityLevel" id="updateActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off" required />
                 </div>
                 <div>
                     <label for="updateGoal">Goal</label>
-                    <input type="text" id="updateGoal" maxlength="50" placeholder="Enter goal" autocomplete="off" required />
+                    <input type="text" name="goal" id="updateGoal" maxlength="50" placeholder="Enter goal" autocomplete="off" required />
                 </div>
             </div>
             <div class="modal-actions">
