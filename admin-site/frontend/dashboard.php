@@ -125,15 +125,15 @@ require_once '../../utils/auth.php';
             <div class="sidebar-footer">
                 <div class="user-profile">
                     <div class="user-avatar">
-                        <img src="/placeholder.svg?height=40&width=40" alt="Admin">
-                        <div class="status-indicator online"></div>
+                        <img src="../../user-site/frontend/assets/images/profile_picture/<?= $_SESSION['pfp'] ?>" 
+                            alt="Profile Picture" class="user-avatar">
                     </div>
                     <div class="user-info">
-                        <span class="user-name">Admin User</span>
-                        <span class="user-role">Super Admin</span>
+                        <span class="user-name"><?= $_SESSION['name'] ?></span>
+                        <span class="user-role">Admin</span>
                     </div>
                 </div>                
-                <a href="#" class="user-menu-item" id="signOutBtn" style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
+                <a href="../../utils/logout.php" class="user-menu-item" id="signOutBtn" style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Sign Out</span>
                 </a>
@@ -167,8 +167,8 @@ require_once '../../utils/auth.php';
                 <!-- Welcome Section -->
                 <div class="welcome-section">
                     <div class="welcome-content">
-                        <h1>Welcome back, Admin! 👋</h1>
-                        <p>Here's what's happening with your fitness platform today.</p>
+                        <h1>Welcome back, <?= $_SESSION['name'] ?>!</h1>
+                        <p>Here's a Real-Time Look at What's Happening on YourFit Journey</p>
                         <div class="welcome-actions">
                             <button class="btn btn-primary" onclick="openModal('quickStatsModal')">
                                 <i class="fas fa-chart-line"></i>
@@ -544,17 +544,9 @@ require_once '../../utils/auth.php';
         </div>
     </div>
     
+    <?php include 'scroll_to_top.php'; ?>
+    
     <div id="notification-container"></div>
     <script src="assets/js/dashboard.js"></script>
-    <script>
-
-        // Check if admin is logged in
-      document.getElementById('signOutBtn')?.addEventListener('click', function(e) {
-        e.preventDefault();
-        localStorage.removeItem("adminLoggedIn");
-        localStorage.removeItem("adminLoginTime");
-        window.location.replace("login.php");
-      });
-    </script>
 </body>
 </html>

@@ -170,6 +170,9 @@ if (!$results) {
     </div>
 </div>
 <div class="toast" id="toast"></div>
+
+<?php include 'scroll_to_top.php'; ?>
+
 <script src="assets/js/ingredient.js"></script>
 </body>
 </html>

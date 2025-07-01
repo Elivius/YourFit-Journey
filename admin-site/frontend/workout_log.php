@@ -26,47 +26,50 @@ if (!$results) {
     <link rel="stylesheet" href="assets/css/workout_log.css">
 </head>
 <body>
-<div class="container">
-    <a class="back-btn" href="dashboard.php" id="backToDashboardBtn">
-        <span class="material-icons" style="font-size:19px;vertical-align:-3px;">arrow_back</span>
-        Back to Dashboard
-    </a>
-    <h2>
-        Workout Logs
-    </h2>
-    <div class="filter-bar" style="margin-bottom: 16px;">
-        <input type="text" id="filterInput" placeholder="Filter by meal name..." style="padding:6px 10px;border:1px solid #d1d7fa;border-radius:4px;">
-        <button id="clearFilterBtn" style="display:none;margin-left:8px;padding:6px 10px;">Clear</button>
-    </div>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
-                    <th>Workout Log ID</th>
-                    <th>User ID</th>
-                    <th>Workout Name</th>
-                    <th>Estimated Duration (mins)</th>
-                    <th>Exercise Count</th>
-                    <th>Created At</th>
-                </tr>
-            </thead>
-            <tbody id="dataTable"> 
-                <?php while ($row = mysqli_fetch_assoc($results)) : ?>
+    <div class="container">
+        <a class="back-btn" href="dashboard.php" id="backToDashboardBtn">
+            <span class="material-icons" style="font-size:19px;vertical-align:-3px;">arrow_back</span>
+            Back to Dashboard
+        </a>
+        <h2>
+            Workout Logs
+        </h2>
+        <div class="filter-bar" style="margin-bottom: 16px;">
+            <input type="text" id="filterInput" placeholder="Filter by meal name..." style="padding:6px 10px;border:1px solid #d1d7fa;border-radius:4px;">
+            <button id="clearFilterBtn" style="display:none;margin-left:8px;padding:6px 10px;">Clear</button>
+        </div>
+        <div class="table-responsive">
+            <table>
+                <thead>
                     <tr>
-                        <td><input type="checkbox" class="rowCheckbox" value="<?= htmlspecialchars($row['wol_id']) ?>"></td>
-                        <td><?= htmlspecialchars($row['wol_id']) ?></td>
-                        <td><?= htmlspecialchars($row['usr_id']) ?></td>
-                        <td><?= htmlspecialchars($row['wol_name']) ?></td>
-                        <td><?= htmlspecialchars($row['wol_estimated_duration']) ?></td>
-                        <td><?= htmlspecialchars($row['wol_exercise_count']) ?></td>
-                        <td><?= htmlspecialchars($row['wol_created_at']) ?></td>
+                        <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
+                        <th>Workout Log ID</th>
+                        <th>User ID</th>
+                        <th>Workout Name</th>
+                        <th>Estimated Duration (mins)</th>
+                        <th>Exercise Count</th>
+                        <th>Created At</th>
                     </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody id="dataTable"> 
+                    <?php while ($row = mysqli_fetch_assoc($results)) : ?>
+                        <tr>
+                            <td><input type="checkbox" class="rowCheckbox" value="<?= htmlspecialchars($row['wol_id']) ?>"></td>
+                            <td><?= htmlspecialchars($row['wol_id']) ?></td>
+                            <td><?= htmlspecialchars($row['usr_id']) ?></td>
+                            <td><?= htmlspecialchars($row['wol_name']) ?></td>
+                            <td><?= htmlspecialchars($row['wol_estimated_duration']) ?></td>
+                            <td><?= htmlspecialchars($row['wol_exercise_count']) ?></td>
+                            <td><?= htmlspecialchars($row['wol_created_at']) ?></td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
-<script src="assets/js/workout_log.js"></script>
+
+    <?php include 'scroll_to_top.php'; ?>
+
+    <script src="assets/js/workout_log.js"></script>
 </body>
 </html>

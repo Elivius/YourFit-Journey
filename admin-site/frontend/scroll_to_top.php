@@ -11,7 +11,7 @@
             bottom: 100px;
             right: 15px;
             z-index: 999;
-            background-color: var(--primary);
+            background-color: var(--primary-color);
             color: white;
             border: none;
             width: 48px;
@@ -23,7 +23,7 @@
         }
 
         #scrollToTopBtn:hover {
-            background-color: var(--primary-hover);
+            background-color: var(--primary-dark);
         }
     </style>
 </head>
