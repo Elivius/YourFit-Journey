@@ -1,6 +1,8 @@
 <?php
 $requireRole = 'admin';
 require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
+require_once '../../utils/message2.php';
 ?>
 
 <?php
@@ -23,6 +25,7 @@ if (!$results) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/user.css">
 </head>
 <body>
@@ -72,6 +75,7 @@ if (!$results) {
                     <th>Password</th>
                     <th>Profile Picture</th>
                     <th>Role</th>
+                    <th>Age</th>
                     <th>Gender</th>
                     <th>Weight (kg)</th>
                     <th>Height (cm)</th>
@@ -97,6 +101,7 @@ if (!$results) {
                             <?php endif; ?>
                         </td>
                         <td><?= htmlspecialchars($row['usr_role']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_age']) ?></td>
                         <td><?= htmlspecialchars($row['usr_gender']) ?></td>
                         <td><?= htmlspecialchars($row['usr_weight']) ?></td>
                         <td><?= htmlspecialchars($row['usr_height']) ?></td>
@@ -112,129 +117,129 @@ if (!$results) {
 
 <!-- Add Modal -->
 <div class="modal-backdrop" id="addBackdrop"></div>
+
 <div class="modal-dialog" id="addModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
         <div class="modal-title">Add New User</div>
-        <div class="modal-form-grid">
-            <div>
-                <label for="addFirstName">First Name</label>
-                <input type="text" id="addFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off"/>
+        <form action="../backend/process_save_user_management.php" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+            <div class="modal-form-grid">
+                <div>
+                    <label for="addFirstName">First Name</label>
+                    <input type="text" name="firstName" id="addFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addLastName">Last Name</label>
+                    <input type="text" name="lastName" id="addLastName" maxlength="50" placeholder="Enter last name" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addEmail">Email</label>
+                    <input type="email" name="email" id="addEmail" maxlength="100" placeholder="Enter email" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addPassword">Password</label>
+                    <input type="text" name="password" id="addPassword" maxlength="100" placeholder="Enter password" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addProfilePicture">Profile Picture</label>
+                    <input type="file" name="pfp" id="addProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off" />
+                </div>
+                <div>
+                    <label for="addAge">Role (Read Only)</label>
+                    <input type="text" name="age" id="addAge" placeholder="Enter age" value="User" required readonly required />
+                </div>
+                <div>
+                    <label for="addWeight">Age</label>
+                    <input type="number" name="age" id="addAge" placeholder="Enter age" step="1" min="0" max="999" required />
+                </div>
+                <div>
+                    <label for="addGender">Gender</label>
+                    <input type="text" name="gender" id="addGender" maxlength="10" placeholder="Enter gender" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addWeight">Weight (kg)</label>
+                    <input type="number" name="weight" id="addWeight" placeholder="Enter weight" step="0.1" min="0" max="999.9" required />
+                </div>
+                <div>
+                    <label for="addHeight">Height (cm)</label>
+                    <input type="number" name="height" id="addHeight" placeholder="Enter height" step="0.1" min="0" max="999.9" required />
+                </div>
+                <div>
+                    <label for="addActivityLevel">Activity Level</label>
+                    <input type="text" name="activityLevel" id="addActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addGoal">Goal</label>
+                    <input type="text" name="goal" id="addGoal" maxlength="50" placeholder="Enter goal" autocomplete="off" required />
+                </div>
             </div>
-            <div>
-                <label for="addLastName">Last Name</label>
-                <input type="text" id="addLastName" maxlength="50" placeholder="Enter last name" autocomplete="off"/>
+            <div class="modal-actions">
+                <input type="submit" value="Add" id="addSubmit">
+                <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
             </div>
-            <div>
-                <label for="addEmail">Email</label>
-                <input type="email" id="addEmail" maxlength="100" placeholder="Enter email" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addPassword">Password</label>
-                <input type="text" id="addPassword" maxlength="100" placeholder="Enter password" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addProfilePicture">Profile Picture</label>
-                <input type="text" id="addProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addRole">Role</label>
-                <input type="text" id="addRole" maxlength="20" placeholder="Enter role" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addGender">Gender</label>
-                <input type="text" id="addGender" maxlength="10" placeholder="Enter gender" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addWeight">Weight</label>
-                <input type="text" id="addWeight" maxlength="5" placeholder="Enter weight" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addHeight">Height</label>
-                <input type="text" id="addHeight" maxlength="5" placeholder="Enter height" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addActivityLevel">Activity Level</label>
-                <input type="text" id="addActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addGoal">Goal</label>
-                <input type="text" id="addGoal" maxlength="50" placeholder="Enter goal" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addCreatedAt">Created At</label>
-                <input type="text" id="addCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
-            </div>
-        </div>
-        <div class="modal-actions">
-            <input type="submit" value="Add" id="addSubmit">
-            <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
-        </div>
+        </form>
     </div>
 </div>
 
 <!-- Edit Modal -->
 <div class="modal-backdrop" id="updateBackdrop"></div>
+
 <div class="modal-dialog" id="updateModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
         <div class="modal-title">Edit User</div>
-        <div class="modal-form-grid">
-            <div>
-                <label for="updateFirstName">First Name</label>
-                <input type="text" id="updateFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off"/>
+        <form action="">
+            <div class="modal-form-grid">
+                <div>
+                    <label for="updateFirstName">First Name</label>
+                    <input type="text" id="updateFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="updateLastName">Last Name</label>
+                    <input type="text" id="updateLastName" maxlength="50" placeholder="Enter last name" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="updateEmail">Email</label>
+                    <input type="email" id="updateEmail" maxlength="100" placeholder="Enter email" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="updatePassword">Password</label>
+                    <input type="text" id="updatePassword" maxlength="100" placeholder="Enter password" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="updateProfilePicture">Profile Picture</label>
+                    <input type="url" id="updateProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="updateGender">Gender</label>
+                    <input type="text" id="updateGender" maxlength="10" placeholder="Enter gender" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="updateWeight">Weight (kg)</label>
+                    <input type="number" id="updateWeight" step="0.1" min="0" max="999.9" placeholder="Enter weight" required />
+                </div>
+                <div>
+                    <label for="updateHeight">Height (cm)</label>
+                    <input type="number" id="updateHeight" step="0.1" min="0" max="999.9" placeholder="Enter height" required />
+                </div>
+                <div>
+                    <label for="updateActivityLevel">Activity Level</label>
+                    <input type="text" id="updateActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="updateGoal">Goal</label>
+                    <input type="text" id="updateGoal" maxlength="50" placeholder="Enter goal" autocomplete="off" required />
+                </div>
             </div>
-            <div>
-                <label for="updateLastName">Last Name</label>
-                <input type="text" id="updateLastName" maxlength="50" placeholder="Enter last name" autocomplete="off"/>
+            <div class="modal-actions">
+                <input type="submit" value="Update" id="updateSubmit">
+                <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
             </div>
-            <div>
-                <label for="updateEmail">Email</label>
-                <input type="email" id="updateEmail" maxlength="100" placeholder="Enter email" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updatePassword">Password</label>
-                <input type="text" id="updatePassword" maxlength="100" placeholder="Enter password" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateProfilePicture">Profile Picture</label>
-                <input type="text" id="updateProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateRole">Role</label>
-                <input type="text" id="updateRole" maxlength="20" placeholder="Enter role" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateGender">Gender</label>
-                <input type="text" id="updateGender" maxlength="10" placeholder="Enter gender" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateWeight">Weight</label>
-                <input type="text" id="updateWeight" maxlength="5" placeholder="Enter weight" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateHeight">Height</label>
-                <input type="text" id="updateHeight" maxlength="5" placeholder="Enter height" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateActivityLevel">Activity Level</label>
-                <input type="text" id="updateActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateGoal">Goal</label>
-                <input type="text" id="updateGoal" maxlength="50" placeholder="Enter goal" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="updateCreatedAt">Created At</label>
-                <input type="text" id="updateCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
-            </div>
-        </div>
-        <div class="modal-actions">
-            <input type="submit" value="Update" id="updateSubmit">
-            <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
-        </div>
+        </form>
     </div>
 </div>
+
 <div class="toast" id="toast"></div>
 
 <?php include 'scroll_to_top.php'; ?>

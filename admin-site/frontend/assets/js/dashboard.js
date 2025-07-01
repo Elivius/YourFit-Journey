@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
   animateCounters()
   initializeChartResizeObserver()
 
-  // Common.js initialization
-  checkAuth();
   setActiveNavigation();
   setupMenuFunctions();
   setupTopBarActionButtons();
@@ -121,14 +119,6 @@ document.addEventListener('click', function (e) {
   }
 });
 
-
-
-
-
-
-
-
-
 // Fix animation for mobile performance
 function animateCounters() {
   const counters = document.querySelectorAll(".stat-number")
@@ -187,17 +177,6 @@ function setupEventListeners() {
       refreshStatCard(statType)
     }
   })
-}
-
-function loadDashboardData() {
-  // Load data from storage or use defaults
-  dashboardData.users = loadFromStorage("users", getDefaultUsers())
-  dashboardData.workouts = loadFromStorage("workouts", getDefaultWorkouts())
-  dashboardData.dietPlans = loadFromStorage("dietPlans", getDefaultDietPlans())
-  dashboardData.activities = getRecentActivities()
-
-  updateDashboardStats()
-  updateActivityTimeline()
 }
 
 function updateDashboardStats() {
@@ -568,84 +547,6 @@ function refreshStatCard(statType) {
   }, 1500)
 }
 
-function updateActivityTimeline() {
-  const timeline = document.querySelector(".activity-timeline")
-  if (!timeline) return
-
-  const activities = getRecentActivities()
-
-  timeline.innerHTML = activities.map((activity) => `
-    <div class="activity-item activity-${activity.type}">
-      <div class="activity-icon ${activity.iconType}">
-        <i class="${activity.icon}"></i>
-      </div>
-      <div class="activity-content">
-        <div class="activity-header">
-          <h4>${activity.title}</h4>
-          <span class="activity-time">${activity.time}</span>
-        </div>
-        <p>${activity.description}</p>
-        <div class="activity-actions">
-          ${activity.actions.map((action) => `<button class="btn-link" onclick="${action.onclick}">${action.label}</button>`).join("")}
-        </div>
-      </div>
-    </div>
-  `).join("")
-}
-
-function getRecentActivities() {
-  return [
-    {
-      type: "users",
-      iconType: "success",
-      icon: "fas fa-user-plus",
-      title: "New user registered",
-      description: "Sarah Johnson joined the platform and completed profile setup",
-      time: "2 minutes ago",
-      actions: [
-        { label: "View Profile", onclick: 'viewUserProfile("sarah-johnson")' },
-        { label: "Send Welcome", onclick: 'sendWelcomeEmail("sarah-johnson")' },
-      ],
-    },
-    {
-      type: "workouts",
-      iconType: "primary",
-      icon: "fas fa-dumbbell",
-      title: "Workout completed",
-      description: 'Mike Chen finished "HIIT Cardio Blast" with 95% completion rate',
-      time: "15 minutes ago",
-      actions: [
-        { label: "View Details", onclick: 'viewWorkoutDetails("hiit-cardio-blast")' },
-        { label: "Send Congrats", onclick: 'sendCongratulations("mike-chen")' },
-      ],
-    },
-    {
-      type: "feedback",
-      iconType: "warning",
-      icon: "fas fa-star",
-      title: "New 5-star review",
-      description: 'Emma Wilson left an excellent review for "Weight Loss Pro" diet plan',
-      time: "1 hour ago",
-      actions: [
-        { label: "Read Review", onclick: 'readReview("weight-loss-pro")' },
-        { label: "Respond", onclick: 'respondToReview("emma-wilson")' },
-      ],
-    },
-    {
-      type: "diets",
-      iconType: "info",
-      icon: "fas fa-apple-alt",
-      title: "Diet plan started",
-      description: 'John Doe began following "Muscle Gain Elite" nutrition program',
-      time: "3 hours ago",
-      actions: [
-        { label: "Track Progress", onclick: 'trackProgress("john-doe")' },
-        { label: "Send Tips", onclick: 'sendNutritionTips("john-doe")' },
-      ],
-    },
-  ]
-}
-
 function startRealTimeUpdates() {
   // Update stats every 30 seconds
   updateInterval = setInterval(() => {
@@ -792,28 +693,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initializeTooltips();
   setupGlobalEventListeners();
 });
-
-// --- Auth and Navigation ---
-function checkAuth() {
-  const isLoggedIn = localStorage.getItem("adminLoggedIn")
-  const currentPage = window.location.pathname.split("/").pop()
-  if (!isLoggedIn && currentPage !== "login.html" && currentPage !== "") {
-    window.location.href = "login.html"
-    return
-  }
-}
-function setActiveNavigation() {
-  const currentPage = window.location.pathname.split("/").pop()
-  const navItems = document.querySelectorAll(".nav-item")
-  navItems.forEach((item) => {
-    const link = item.querySelector("a")
-    if (link && link.getAttribute("href") === currentPage) {
-      item.classList.add("active")
-    } else {
-      item.classList.remove("active")
-    }
-  })
-}
 
 // --- Menu, Quick Actions (+), Fullscreen, Notification ---
 function setupMenuFunctions() {
