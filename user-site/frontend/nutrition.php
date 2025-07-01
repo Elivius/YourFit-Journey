@@ -2,7 +2,6 @@
 $requireRole = 'user';
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
-require_once '../../utils/message2.php';
 require_once '../backend/preload_meal_logs.php';
 ?>
 
@@ -398,6 +397,7 @@ require_once '../backend/preload_meal_logs.php';
     <!-- Modal Backdrop -->
     <div id="modalBackdrop" class="modal-backdrop"></div>
 
+    <?php include '../../utils/message2.php'; ?>
     <?php include 'scroll_to_top.php'; ?>
     <?php include 'footer.php'; ?>
 

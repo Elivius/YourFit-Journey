@@ -2,7 +2,6 @@
 $requireRole = 'user';
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
-require_once '../../utils/message2.php';
 require_once '../backend/preload_prebuilt_workouts.php';
 require_once '../backend/preload_all_workouts.php';
 ?>
@@ -333,6 +332,7 @@ require_once '../backend/preload_all_workouts.php';
         </main>
     </div>
 
+    <?php include '../../utils/message2.php'; ?>
     <?php include 'scroll_to_top.php'; ?>
     <?php include 'footer.php'; ?>
 
