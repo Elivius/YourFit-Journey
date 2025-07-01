@@ -3,6 +3,17 @@ $requireRole = 'admin';
 require_once '../../utils/auth.php';
 ?>
 
+<?php
+require_once '../../utils/connection.php';
+
+$sql = 'SELECT * FROM users_t';
+$results = mysqli_query($connection, $sql);
+
+if (!$results) {
+    die('Database error: ' . mysqli_error($connection));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,15 +73,38 @@ require_once '../../utils/auth.php';
                     <th>Profile Picture</th>
                     <th>Role</th>
                     <th>Gender</th>
-                    <th>Weight</th>
-                    <th>Height</th>
+                    <th>Weight (kg)</th>
+                    <th>Height (cm)</th>
                     <th>Activity Level</th>
                     <th>Goal</th>
                     <th>Created At</th>
                 </tr>
             </thead>
             <tbody id="dataTable"> 
-                <!-- Data will be inserted here -->
+                <?php while ($row = mysqli_fetch_assoc($results)) : ?>
+                    <tr>
+                        <td><input type="checkbox" class="rowCheckbox" value="<?= htmlspecialchars($row['usr_id']) ?>"></td>
+                        <td><?= htmlspecialchars($row['usr_id']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_first_name']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_last_name']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_email']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_password']) ?></td>
+                        <td>
+                            <?php if (!empty($row['usr_profile_pic'])) : ?>
+                                <img src="../../user-site/frontend/assets/images/profile_picture/<?= htmlspecialchars($row['usr_profile_pic']) ?>" alt="Profile" width="70" height="70" style="border-radius: 50%; object-fit: cover;">
+                            <?php else : ?>
+                                <span>No Profile Picture</span>
+                            <?php endif; ?>
+                        </td>
+                        <td><?= htmlspecialchars($row['usr_role']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_gender']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_weight']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_height']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_activity_level']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_goal']) ?></td>
+                        <td><?= htmlspecialchars($row['usr_created_at']) ?></td>
+                    </tr>
+                <?php endwhile; ?>
             </tbody>
         </table>
     </div>
