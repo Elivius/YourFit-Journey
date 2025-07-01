@@ -1,9 +1,26 @@
+<?php
+$requireRole = 'admin';
+require_once '../../utils/auth.php';
+?>
+
+<?php
+require_once '../../utils/connection.php';
+
+$sql = 'SELECT * FROM meals_t';
+$results = mysqli_query($connection, $sql);
+
+if (!$results) {
+    die('Database error: ' . mysqli_error($connection));
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Meal Management</title>
+    <title>Meal Management - YourFit Journey</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/meal.css">
@@ -57,7 +74,24 @@
                 </tr>
             </thead>
             <tbody id="dataTable"> 
-                <!-- Data will be inserted here -->
+                <?php while ($row = mysqli_fetch_assoc($results)) : ?>
+                    <tr>
+                        <td><input type="checkbox" class="rowCheckbox" value="<?= htmlspecialchars($row['mel_id']) ?>"></td>
+                        <td><?= htmlspecialchars($row['mel_id']) ?></td>
+                        <td><?= htmlspecialchars($row['mel_name']) ?></td>
+                        <td><?= htmlspecialchars($row['mel_estimated_preparation_min']) ?></td>
+                        <td>
+                            <?php if (!empty($row['mel_image_url'])) : ?>
+                                <img src="<?= htmlspecialchars($row['mel_image_url']) ?>" alt="Meal Image" width="180" height="120" style="border-radius: 8px;">
+                            <?php else : ?>
+                                <span>No Image</span>
+                            <?php endif; ?>
+                        </td>
+
+                        <td><?= htmlspecialchars($row['mel_category']) ?></td>
+                        <td><?= htmlspecialchars($row['mel_created_at']) ?></td>
+                    </tr>
+                <?php endwhile; ?>
             </tbody>
         </table>
     </div>

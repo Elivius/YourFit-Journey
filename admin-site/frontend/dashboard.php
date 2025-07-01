@@ -46,13 +46,13 @@ require_once '../../utils/auth.php';
                         <span class="nav-section-title">Users</span>
                         <ul class="nav-menu">
                             <li class="nav-item">
-                                <a href="user.php" class="nav-link">
+                                <a href="user_management.php" class="nav-link">
                                     <i class="fas fa-users-cog"></i>
                                     <span class="nav-text">User Management</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="feedback.php" class="nav-link">
+                                <a href="feedback_management.php" class="nav-link">
                                     <i class="fas fa-comment-dots"></i>
                                     <span class="nav-text">Feedback Management</span>
                                 </a>
@@ -62,37 +62,36 @@ require_once '../../utils/auth.php';
                 </nav>
                 
                 <div class="nav-section">
-                    <span class="nav-section-title">Meals</span>
+                    <span class="nav-section-title">Diets</span>
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="meal.php" class="nav-link">
+                            <a href="meal_management.php" class="nav-link">
                                 <i class="fas fa-utensils"></i>
                                 <span class="nav-text">Meal Management</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="ingredient.php" class="nav-link">
+                            <a href="ingredient_management.php" class="nav-link">
                                 <i class="fas fa-carrot"></i>
                                 <span class="nav-text">Ingredient Management</span>
-                                <span class="nav-badge new">12</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="meal_ingredient.php" class="nav-link">
+                            <a href="meal_ingredient_management.php" class="nav-link">
                                 <i class="fas fa-hamburger"></i>
-                                <span class="nav-text">Meal and Ingredient Management</span>
+                                <span class="nav-text">Diet Management</span>
                             </a>
                         </li>
                     </ul>
                 </div>
                 
                 <div class="nav-section">
-                    <span class="nav-section-title">Workouts</span>
+                    <span class="nav-section-title">Exercises</span>
                     <ul class="nav-menu">
                         <li class="nav-item">
-                            <a href="workout.php" class="nav-link">
+                            <a href="exercise_management.php" class="nav-link">
                                 <i class="fas fa-dumbbell"></i>
-                                <span class="nav-text">Workout Management</span>
+                                <span class="nav-text">Exercise Management</span>
                             </a>
                         </li>
                     </ul>
@@ -155,12 +154,7 @@ require_once '../../utils/auth.php';
                 </div>
                 
                 <div class="top-bar-right">                   
-                    <div class="top-bar-actions">
-                        <button class="action-btn" onclick="toggleNotifications()">
-                            <i class="fas fa-bell"></i>
-                            <span class="notification-badge">3</span>
-                        </button>
-                        
+                    <div class="top-bar-actions">                        
                         <button class="action-btn" onclick="toggleQuickActions()">
                             <i class="fas fa-plus"></i>
                         </button>
@@ -200,7 +194,7 @@ require_once '../../utils/auth.php';
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/user.php">View Details</a>
+                                    <a href="user_management.php">View Details</a>
                                     <!-- <a href="#" onclick="exportUsers()">Export</a> -->
                                 </div>
                             </div>
@@ -229,7 +223,7 @@ require_once '../../utils/auth.php';
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/workout.php">View Details</a>
+                                    <a href="exercise_management.php">View Details</a>
                                     <!-- <a href="#" onclick="exportWorkouts()">Export</a> -->
                                 </div>
                             </div>
@@ -258,7 +252,7 @@ require_once '../../utils/auth.php';
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/diet.php">View Details</a>
+                                    <a href="meal_ingredient_management.php">View Details</a>
                                     <!-- <a href="#" onclick="exportDiets()">Export</a> -->
                                 </div>
                             </div>
@@ -287,7 +281,7 @@ require_once '../../utils/auth.php';
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="management/feedback.php">View Details</a>
+                                    <a href="feedback_management.php">View Details</a>
                                     <!-- <a href="#" onclick="exportFeedback()">Export</a> -->
                                 </div>
                             </div>
@@ -314,7 +308,7 @@ require_once '../../utils/auth.php';
                     </div>
                     
                     <div class="quick-actions-grid">
-                        <div class="quick-action-card" onclick="window.location.href='user.php'">
+                        <div class="quick-action-card" onclick="window.location.href='user_management.php'">
                             <div class="action-icon users">
                                 <i class="fas fa-user-plus"></i>
                             </div>
@@ -327,20 +321,20 @@ require_once '../../utils/auth.php';
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='workout.php'">
+                        <div class="quick-action-card" onclick="window.location.href='exercise_management.php'">
                             <div class="action-icon workouts">
                                 <i class="fas fa-plus-circle"></i>
                             </div>
                             <div class="action-content">
-                                <h3>Create Workout</h3>
-                                <p>Design a new workout program</p>
+                                <h3>Create Exercise</h3>
+                                <p>Create a new exercise</p>
                             </div>
                             <div class="action-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='diet.php'">
+                        <div class="quick-action-card" onclick="window.location.href='meal_ingredient_management.php'">
                             <div class="action-icon diets">
                                 <i class="fas fa-utensils"></i>
                             </div>
@@ -353,7 +347,7 @@ require_once '../../utils/auth.php';
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='feedback.php'">
+                        <div class="quick-action-card" onclick="window.location.href='feedback_management.php'">
                             <div class="action-icon reports">
                                 <i class="fas fa-chart-line"></i>
                             </div>
@@ -525,51 +519,21 @@ require_once '../../utils/auth.php';
         </main>
     </div>
     
-    <!-- Notifications Panel -->
-    <div class="notifications-panel" id="notificationsPanel">
-        <div class="notifications-header">
-            <h3>Notifications</h3>
-            <button class="btn-link" onclick="markAllAsRead()">Mark all as read</button>
-        </div>
-        <div class="notifications-list">
-            <div class="notification-item unread">
-                <div class="notification-icon">
-                    <i class="fas fa-user-plus"></i>
-                </div>
-                <div class="notification-content">
-                    <h4>New user registration</h4>
-                    <p>3 new users joined today</p>
-                    <span class="notification-time">5 min ago</span>
-                </div>
-            </div>
-            <div class="notification-item">
-                <div class="notification-icon">
-                    <i class="fas fa-exclamation-triangle"></i>
-                </div>
-                <div class="notification-content">
-                    <h4>System maintenance</h4>
-                    <p>Scheduled maintenance in 2 hours</p>
-                    <span class="notification-time">1 hour ago</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <!-- Quick Actions Panel -->
     <div class="quick-actions-panel" id="quickActionsPanel">
         <div class="quick-actions-header">
             <h3>Quick Actions</h3>
         </div>
         <div class="quick-actions-list">
-            <button class="quick-action-btn" onclick="window.location.href='user.php#add-user'">
+            <button class="quick-action-btn" onclick="window.location.href='user_management.php#add-user'">
                 <i class="fas fa-user-plus"></i>
                 <span>Add User</span>
             </button>
-            <button class="quick-action-btn" onclick="window.location.href='workout.php#add-workout'">
+            <button class="quick-action-btn" onclick="window.location.href='exercise_management.php#add-workout'">
                 <i class="fas fa-dumbbell"></i>
-                <span>Create Workout</span>
+                <span>Create Exercise</span>
             </button>
-            <button class="quick-action-btn" onclick="window.location.href='diet.php#add-diet'">
+            <button class="quick-action-btn" onclick="window.location.href='meal_ingredient_management.php#add-diet'">
                 <i class="fas fa-apple-alt"></i>
                 <span>Add Diet Plan</span>
             </button>
