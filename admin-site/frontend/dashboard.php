@@ -1,6 +1,7 @@
 <?php
 $requireRole = 'admin';
 require_once '../../utils/auth.php';
+require_once '../backend/dashboard_analytics.php';
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +55,7 @@ require_once '../../utils/auth.php';
                             <li class="nav-item">
                                 <a href="user_feedback.php" class="nav-link">
                                     <i class="fas fa-comment-dots"></i>
-                                    <span class="nav-text">User Feedback</span>
+                                    <span class="nav-text">User Feedbacks</span>
                                 </a>
                             </li>
                         </ul>
@@ -86,12 +87,18 @@ require_once '../../utils/auth.php';
                 </div>
                 
                 <div class="nav-section">
-                    <span class="nav-section-title">Exercises</span>
+                    <span class="nav-section-title">Workouts</span>
                     <ul class="nav-menu">
                         <li class="nav-item">
                             <a href="exercise_management.php" class="nav-link">
                                 <i class="fas fa-dumbbell"></i>
                                 <span class="nav-text">Exercise Management</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="user_workout.php" class="nav-link">
+                                <i class="fas fa-dumbbell"></i>
+                                <span class="nav-text">User Workouts</span>
                             </a>
                         </li>
                     </ul>
@@ -103,19 +110,19 @@ require_once '../../utils/auth.php';
                         <li class="nav-item">
                             <a href="user_meal_log.php" class="nav-link">
                                 <i class="fas fa-clipboard-list"></i>
-                                <span class="nav-text">User Meal Log</span>
+                                <span class="nav-text">User Meal Logs</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="weight_log.php" class="nav-link">
                                 <i class="fas fa-clipboard-list"></i>
-                                <span class="nav-text">Weight Log</span>
+                                <span class="nav-text">Weight Logs</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="workout_log.php" class="nav-link">
                                 <i class="fas fa-clipboard-list"></i>
-                                <span class="nav-text">Workout Log</span>
+                                <span class="nav-text">Workout Logs</span>
                             </a>
                         </li>
                     </ul>
@@ -152,14 +159,6 @@ require_once '../../utils/auth.php';
                         <span class="breadcrumb-item">Dashboard</span>
                     </div>
                 </div>
-                
-                <div class="top-bar-right">                   
-                    <div class="top-bar-actions">                        
-                        <button class="action-btn" onclick="toggleQuickActions()">
-                            <i class="fas fa-plus"></i>
-                        </button>
-                    </div>
-                </div>
             </header>
             
             <!-- Dashboard Content -->
@@ -170,20 +169,19 @@ require_once '../../utils/auth.php';
                         <h1>Welcome back, <?= $_SESSION['name'] ?>!</h1>
                         <p>Here's a Real-Time Look at What's Happening on YourFit Journey</p>
                         <div class="welcome-actions">
-                            <button class="btn btn-primary" onclick="openModal('quickStatsModal')">
-                                <i class="fas fa-chart-line"></i>
-                                View Analytics
-                            </button>
-                            <button class="btn btn-outline" onclick="exportDashboardData()">
-                                <i class="fas fa-download"></i>
-                                Export Data
-                            </button>
+                            <form action="../backend/export_data.php" method="POST">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-download"></i>
+                                    Export Data
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Stats Grid -->
                 <div class="stats-grid">
+                    <!-- User Analytics -->
                     <div class="stat-card primary">
                         <div class="stat-header">
                             <div class="stat-icon">
@@ -195,16 +193,15 @@ require_once '../../utils/auth.php';
                                 </button>
                                 <div class="stat-menu-dropdown">
                                     <a href="user_management.php">View Details</a>
-                                    <!-- <a href="#" onclick="exportUsers()">Export</a> -->
                                 </div>
                             </div>
                         </div>
                         <div class="stat-content">
-                            <h3 class="stat-number" data-target="1234">0</h3>
+                            <h3 class="stat-number" data-target="<?= $totalUsers ?>">0</h3>
                             <p class="stat-label">Total Users</p>
-                            <div class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+12.5%</span>
+                            <div class="stat-change <?= $isPositiveUsers ? 'positive' : 'negative' ?>">
+                                <i class="fas fa-arrow-<?= $isPositiveUsers ? 'up' : 'down' ?>"></i>
+                                <span><?= $isPositiveUsers ? '+' : '-' ?><?= $percentageTextUsers ?></span>
                                 <small>vs last month</small>
                             </div>
                         </div>
@@ -212,8 +209,38 @@ require_once '../../utils/auth.php';
                             <canvas id="usersChart" width="100" height="40"></canvas>
                         </div>
                     </div>
-                    
+
+                    <!-- Exercise Analytics -->
                     <div class="stat-card success">
+                        <div class="stat-header">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-menu">
+                                <button class="stat-menu-btn" onclick="toggleStatMenu(this)">
+                                    <i class="fas fa-ellipsis-h"></i>
+                                </button>
+                                <div class="stat-menu-dropdown">
+                                    <a href="exercise_management.php">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-content">
+                            <h3 class="stat-number" data-target="<?= $totalExercises ?>">0</h3>
+                            <p class="stat-label">Exercise Available</p>
+                            <div class="stat-change <?= $isPositiveExercises ? 'positive' : 'negative' ?>">
+                                <i class="fas fa-arrow-<?= $isPositiveExercises ? 'up' : 'down' ?>"></i>
+                                <span><?= $isPositiveExercises ? '+' : '-' ?><?= $percentageTextExercises ?></span>
+                                <small>vs last month</small>
+                            </div>
+                        </div>
+                        <div class="stat-chart">
+                            <canvas id="ratingChart" width="100" height="40"></canvas>
+                        </div>
+                    </div>
+                    
+                    <!-- Workout Analytics -->
+                    <div class="stat-card warning">
                         <div class="stat-header">
                             <div class="stat-icon">
                                 <i class="fas fa-dumbbell"></i>
@@ -224,16 +251,15 @@ require_once '../../utils/auth.php';
                                 </button>
                                 <div class="stat-menu-dropdown">
                                     <a href="exercise_management.php">View Details</a>
-                                    <!-- <a href="#" onclick="exportWorkouts()">Export</a> -->
                                 </div>
                             </div>
                         </div>
                         <div class="stat-content">
-                            <h3 class="stat-number" data-target="2456">0</h3>
-                            <p class="stat-label">Workouts Completed</p>
-                            <div class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+8.3%</span>
+                            <h3 class="stat-number" data-target="<?= $totalWorkouts ?>">0</h3>
+                            <p class="stat-label">Workouts Created by Users</p>
+                            <div class="stat-change <?= $isPositiveWorkouts ? 'positive' : 'negative' ?>">
+                                <i class="fas fa-arrow-<?= $isPositiveWorkouts ? 'up' : 'down' ?>"></i>
+                                <span><?= $isPositiveWorkouts ? '+' : '-' ?><?= $percentageTextWorkouts ?></span>
                                 <small>vs last week</small>
                             </div>
                         </div>
@@ -241,8 +267,9 @@ require_once '../../utils/auth.php';
                             <canvas id="workoutsChart" width="100" height="40"></canvas>
                         </div>
                     </div>
-                    
-                    <div class="stat-card warning">
+
+                    <!-- Diet Analytics -->
+                    <div class="stat-card info">
                         <div class="stat-header">
                             <div class="stat-icon">
                                 <i class="fas fa-apple-alt"></i>
@@ -253,50 +280,20 @@ require_once '../../utils/auth.php';
                                 </button>
                                 <div class="stat-menu-dropdown">
                                     <a href="diet_management.php">View Details</a>
-                                    <!-- <a href="#" onclick="exportDiets()">Export</a> -->
                                 </div>
                             </div>
                         </div>
                         <div class="stat-content">
-                            <h3 class="stat-number" data-target="89">0</h3>
+                            <h3 class="stat-number" data-target="<?= $totalActiveDiets ?>">0</h3>
                             <p class="stat-label">Active Diet Plans</p>
-                            <div class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+15.7%</span>
+                            <div class="stat-change <?= $isPositiveDiets ? 'positive' : 'negative' ?>">
+                                <i class="fas fa-arrow-<?= $isPositiveDiets ? 'up' : 'down' ?>"></i>
+                                <span><?= $isPositiveDiets ? '+' : '-' ?><?= $percentageTextDiets ?></span>
                                 <small>vs last month</small>
                             </div>
                         </div>
                         <div class="stat-chart">
                             <canvas id="dietsChart" width="100" height="40"></canvas>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card info">
-                        <div class="stat-header">
-                            <div class="stat-icon">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="stat-menu">
-                                <button class="stat-menu-btn" onclick="toggleStatMenu(this)">
-                                    <i class="fas fa-ellipsis-h"></i>
-                                </button>
-                                <div class="stat-menu-dropdown">
-                                    <a href="feedback_management.php">View Details</a>
-                                    <!-- <a href="#" onclick="exportFeedback()">Export</a> -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="stat-content">
-                            <h3 class="stat-number" data-target="4.8">0</h3>
-                            <p class="stat-label">Average Rating</p>
-                            <div class="stat-change positive">
-                                <i class="fas fa-arrow-up"></i>
-                                <span>+0.3</span>
-                                <small>vs last month</small>
-                            </div>
-                        </div>
-                        <div class="stat-chart">
-                            <canvas id="ratingChart" width="100" height="40"></canvas>
                         </div>
                     </div>
                 </div>
@@ -313,7 +310,7 @@ require_once '../../utils/auth.php';
                                 <i class="fas fa-user-plus"></i>
                             </div>
                             <div class="action-content">
-                                <h3>Add New User</h3>
+                                <h3>Create New User</h3>
                                 <p>Register a new member to the platform</p>
                             </div>
                             <div class="action-arrow">
@@ -326,29 +323,16 @@ require_once '../../utils/auth.php';
                                 <i class="fas fa-plus-circle"></i>
                             </div>
                             <div class="action-content">
-                                <h3>Create Exercise</h3>
+                                <h3>Add New Exercise</h3>
                                 <p>Create a new exercise</p>
                             </div>
                             <div class="action-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
-                        
-                        <div class="quick-action-card" onclick="window.location.href='diet_management.php'">
-                            <div class="action-icon diets">
-                                <i class="fas fa-utensils"></i>
-                            </div>
-                            <div class="action-content">
-                                <h3>Add Diet Plan</h3>
-                                <p>Create a personalized nutrition plan</p>
-                            </div>
-                            <div class="action-arrow">
-                                <i class="fas fa-arrow-right"></i>
-                            </div>
-                        </div>
-                        
+
                         <div class="quick-action-card" onclick="window.location.href='user_feedback.php'">
-                            <div class="action-icon reports">
+                            <div class="action-icon feedbacks">
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <div class="action-content">
@@ -360,20 +344,20 @@ require_once '../../utils/auth.php';
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="openModal('bulkImportModal')">
-                            <div class="action-icon import">
-                                <i class="fas fa-upload"></i>
+                        <div class="quick-action-card" onclick="window.location.href='diet_management.php'">
+                            <div class="action-icon diets">
+                                <i class="fas fa-utensils"></i>
                             </div>
                             <div class="action-content">
-                                <h3>Bulk Import</h3>
-                                <p>Import data from CSV or Excel files</p>
+                                <h3>Add New Diet Plan</h3>
+                                <p>Create a new nutrition meal</p>
                             </div>
                             <div class="action-arrow">
                                 <i class="fas fa-arrow-right"></i>
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="openModal('backupModal')">
+                        <div class="quick-action-card" onclick="window.location.href='../backend/export_data.php'">
                             <div class="action-icon backup">
                                 <i class="fas fa-shield-alt"></i>
                             </div>
@@ -387,59 +371,8 @@ require_once '../../utils/auth.php';
                         </div>
                     </div>
                 </div>
-                
-                <!-- Charts Section -->
-                <div class="charts-section">
-                    <div class="chart-container large">
-                        <div class="chart-header">
-                            <div class="chart-title">
-                                <h3>User Activity Overview</h3>
-                                <p>Track user engagement and platform usage</p>
-                            </div>
-                            <div class="chart-controls">
-                                <div class="time-selector">
-                                    <button class="time-btn active" data-period="7d">7D</button>
-                                    <button class="time-btn" data-period="30d">30D</button>
-                                    <button class="time-btn" data-period="90d">90D</button>
-                                    <button class="time-btn" data-period="1y">1Y</button>
-                                </div>
-                                <button class="chart-menu-btn" onclick="toggleChartMenu(this)">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="chart-content">
-                            <canvas id="activityChart" width="800" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
             </div>
         </main>
-    </div>
-    
-    <!-- Quick Actions Panel -->
-    <div class="quick-actions-panel" id="quickActionsPanel">
-        <div class="quick-actions-header">
-            <h3>Quick Actions</h3>
-        </div>
-        <div class="quick-actions-list">
-            <button class="quick-action-btn" onclick="window.location.href='user_management.php#add-user'">
-                <i class="fas fa-user-plus"></i>
-                <span>Add User</span>
-            </button>
-            <button class="quick-action-btn" onclick="window.location.href='exercise_management.php#add-workout'">
-                <i class="fas fa-dumbbell"></i>
-                <span>Create Exercise</span>
-            </button>
-            <button class="quick-action-btn" onclick="window.location.href='diet_management.php#add-diet'">
-                <i class="fas fa-apple-alt"></i>
-                <span>Add Diet Plan</span>
-            </button>
-            <button class="quick-action-btn" onclick="exportAllData()">
-                <i class="fas fa-download"></i>
-                <span>Export Data</span>
-            </button>
-        </div>
     </div>
     
     <?php include 'scroll_to_top.php'; ?>
