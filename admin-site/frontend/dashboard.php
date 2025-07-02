@@ -250,7 +250,7 @@ require_once '../backend/dashboard_analytics.php';
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="exercise_management.php">View Details</a>
+                                    <a href="user_workout.php">View Details</a>
                                 </div>
                             </div>
                         </div>
