@@ -151,7 +151,7 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addInstructions">Instructions</label>
-                        <textarea name="instructions" id="addInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off" required></textarea>
+                        <textarea name="instructions" id="addInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
                     </div>
                 </div>    
                 <div class="modal-actions">
