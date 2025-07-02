@@ -179,8 +179,9 @@ if (!$results) {
     <?php include 'scroll_to_top.php'; ?>
 
     <script src="assets/js/ingredient.js"></script>
-    <!-- Calculate Calories Automatically based on user input (protein, carbs, fats) -->
+
     <script>
+        // Calculate Calories Automatically based on user input (protein, carbs, fats)
         document.querySelectorAll('#addProtein, #addCarbs, #addFats').forEach(input => {
             input.addEventListener('input', calculateCalories);
         });

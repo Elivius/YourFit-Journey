@@ -582,3 +582,38 @@ table th:nth-child(11), table td:nth-child(11) { width: 80px; }    /* Height */
 table th:nth-child(12), table td:nth-child(12) { width: 130px; }   /* Activity Level */
 table th:nth-child(13), table td:nth-child(13) { width: 160px; }   /* Goal */
 table th:nth-child(14), table td:nth-child(14) { width: 160px; }   /* Created At */
+
+.ingredient-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1.5px solid #d1d7fa;
+    border-radius: 10px;
+    background-color: #f9f9ff;
+}
+
+#addIngredientRowBtn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.removeRowBtn {
+    background-color: var(--danger);
+    color: white;
+    padding: 7px 13px;
+}
+
+.removeRowBtn:hover {
+    color: white;
+    background-color: var(--danger-color);
+}
