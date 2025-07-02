@@ -1,6 +1,8 @@
 <?php
 $requireRole = 'admin';
 require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
+require_once '../../utils/message2.php';
 ?>
 
 <?php
@@ -114,61 +116,58 @@ if (!$results) {
 
     <!-- Add Modal -->
     <div class="modal-backdrop" id="addBackdrop"></div>
+
     <div class="modal-dialog" id="addModal">
         <div class="modal-content">
             <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
             <div class="modal-title">Add New Exercise</div>
-            <div class="modal-form-grid">
-                <div>
-                    <label for="addExerciseName">Exercise Name</label>
-                    <input type="text" id="addExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off"/>
+            
+            <form action="../backend/process_add_exercise_management.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                <div class="modal-form-grid">
+                    <div>
+                        <label for="addExerciseName">Exercise Name</label>
+                        <input type="text" name="exerciseName" id="addExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off" required />
+                    </div>
+                    <div>
+                        <label for="addImageUrl">Image</label>
+                        <input type="text" name="imageUrl" id="addImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off" required />
+                    </div>
+                    <div>
+                        <label for="addCategory">Category</label>
+                        <select size="1" name="category" id="addCategory" required>
+                            <option value="" disabled selected>Select a Category</option>
+                            <option value="Arms">Arms</option>
+                            <option value="Chest">Chest</option>
+                            <option value="Back">Back</option>
+                            <option value="Legs">Legs</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="addTargetedMuscle">Targeted Muscle</label>
+                        <input type="text" name="targetMuscle" id="addTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off" required />
+                    </div>
+                    <div>
+                        <label for="addInstructions">Instructions</label>
+                        <textarea name="instructions" id="addInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off" required></textarea>
+                    </div>
+                </div>    
+                <div class="modal-actions">
+                    <input type="submit" value="Add" id="addSubmit">
+                    <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
                 </div>
-                <div>
-                    <label for="addImageUrl">Image</label>
-                    <input type="text" id="addImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="addCategory">Category</label>
-                    <input type="text" id="addCategory" maxlength="36" placeholder="Enter category" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="addTargetedMuscle">Targeted Muscle</label>
-                    <input type="text" id="addTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="addInstructions">Instructions</label>
-                    <input type="text" id="addInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="addSets">Sets</label>
-                    <input type="text" id="addSets" maxlength="2" placeholder="Enter sets" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="addReps">Reps</label>
-                    <input type="text" id="addReps" maxlength="10" placeholder="Enter reps" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="addRest">Rest</label>
-                    <input type="text" id="addRest" maxlength="10" placeholder="Enter rest" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="addCreatedAt">Created At</label>
-                    <input type="text" id="addCreatedAt" maxlength="25" placeholder="Enter time created" autocomplete="off"/>
-                </div>
-            </div>    
-            <div class="modal-actions">
-                <input type="submit" value="Add" id="addSubmit">
-                <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
-            </div>
+            </form>
         </div>
     </div> 
 
     <!-- Edit Modal -->
     <div class="modal-backdrop" id="updateBackdrop"></div>
+
     <div class="modal-dialog" id="updateModal">
         <div class="modal-content">
             <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
             <div class="modal-title">Edit Exercise</div>
+
             <div class="modal-form-grid">
                 <div>
                     <label for="updateExerciseName">Exercise Name</label>
@@ -188,23 +187,7 @@ if (!$results) {
                 </div>
                 <div>
                     <label for="updateInstructions">Instructions</label>
-                    <input type="text" id="updateInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateSets">Sets</label>
-                    <input type="text" id="updateSets" maxlength="2" placeholder="Enter sets" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateReps">Reps</label>
-                    <input type="text" id="updateReps" maxlength="10" placeholder="Enter reps" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateRest">Rest</label>
-                    <input type="text" id="updateRest" maxlength="10" placeholder="Enter rest" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateCreatedAt">Created At</label>
-                    <input type="text" id="updateCreatedAt" maxlength="25" placeholder="Enter time created" autocomplete="off"/>
+                    <textarea id="updateInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off"></textarea>
                 </div>
             </div>
             <div class="modal-actions">

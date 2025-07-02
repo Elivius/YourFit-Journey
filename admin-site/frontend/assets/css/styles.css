@@ -1568,7 +1568,7 @@ body {
 .modal-title {
     font-size: 1.12em;
     font-weight: 700;
-    color: var(--primary);
+    color: var(--primary-color);
     margin-bottom: 16px;
     text-align: center;
     letter-spacing: 1.1px;
@@ -1608,7 +1608,7 @@ body {
 
 /* Style the button inside file input (works in WebKit browsers) */
 .modal-content input[type="file"]::-webkit-file-upload-button {
-    background: var(--primary);
+    background: var(--primary-color);
     color: white;
     border: none;
     padding: 7px 14px;
@@ -1624,7 +1624,7 @@ body {
 }
 
 .modal-content input:focus {
-    border-color: var(--primary);
+    border-color: var(--primary-color);
     box-shadow: 0 1px 7px rgba(108,99,255,0.09);
 }
 
@@ -1642,7 +1642,7 @@ body {
 }
 
 .modal-content select:focus {
-    border-color: var(--primary);
+    border-color: var(--primary-color);
     box-shadow: 0 1px 7px rgba(108,99,255,0.09);
     outline: none;
 }
@@ -1662,7 +1662,7 @@ body {
     border: none;
     cursor: pointer;
     font-weight: 600;
-    background: var(--primary);
+    background: var(--primary-color);
     color: #fff;
     transition: background var(--transition);
 }
@@ -1687,7 +1687,7 @@ body {
     transition: color 0.19s;
 }
 .modal-close:hover {
-    color: var(--primary);
+    color: var(--primary-color);
 }
 
 .modal-form-grid {

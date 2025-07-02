@@ -122,6 +122,7 @@ if (!$results) {
     <div class="modal-content">
         <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
         <div class="modal-title">Add New User</div>
+        
         <form action="../backend/process_add_user_management.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
             <div class="modal-form-grid">
@@ -146,8 +147,8 @@ if (!$results) {
                     <input type="file" name="pfp" id="addProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off" />
                 </div>
                 <div>
-                    <label for="addAge">Role (Read Only)</label>
-                    <input type="text" name="age" id="addAge" placeholder="Enter age" value="User" required readonly required />
+                    <label for="addRole">Role (Read Only)</label>
+                    <input type="text" name="role" id="addRole" placeholder="Enter role" value="User" required readonly />
                 </div>
                 <div>
                     <label for="addWeight">Age</label>

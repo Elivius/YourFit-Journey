@@ -15,9 +15,9 @@
                 <div class="col-lg-6 col-md-12 pe-lg-5">
                     <div class="footer-about">
                         <div class="sidebar-logo">
-                            <div class="logo-container mb-3 fs-4">
+                            <div class="logo-container fs-4">
                                 <i class="fas fa-bolt logo-icon"></i>
-                                YourFit<span class="text-gradient">Journey</span>
+                                <span>YourFit<span class="text-gradient">Journey</span></span>
                             </div>
                         </div>
                         <p class="text-justify small mb-0">
