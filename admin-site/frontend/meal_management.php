@@ -1,6 +1,8 @@
 <?php
 $requireRole = 'admin';
 require_once '../../utils/auth.php';
+require_once '../../utils/csrf.php';
+require_once '../../utils/message2.php';
 ?>
 
 <?php
@@ -101,36 +103,42 @@ if (!$results) {
 
 <!-- Add Modal -->
 <div class="modal-backdrop" id="addBackdrop"></div>
+
 <div class="modal-dialog" id="addModal">
     <div class="modal-content">
         <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
         <div class="modal-title">Add New Meal</div>
-        <div class="modal-form-grid">
-            <div>
-                <label for="addMealName">Meal Name</label>
-                <input type="text" id="addMealName" maxlength="50" placeholder="Enter meal name" autocomplete="off"/>
+
+        <form action="../backend/process_add_meal_management.php" method="POST">
+            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+            <div class="modal-form-grid">
+                <div>
+                    <label for="addMealName">Meal Name</label>
+                    <input type="text" name="mealName" id="addMealName" maxlength="50" placeholder="Enter meal name" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addEstimatedPrepMinutes">Estimated Preparation Minutes</label>
+                    <input type="number" name="estimatedPrepMinutes" id="addEstimatedPrepMinutes" min="1" max="1440" placeholder="Enter preparation minutes" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addImageUrl">Image</label>
+                    <input type="text" name="imageUrl" id="addImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off" required />
+                </div>
+                <div>
+                    <label for="addCategory">Category</label>
+                    <select size="1" name="category" id="addCategory" required>
+                        <option value="" disabled selected>Select a Category</option>
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <label for="addEstimatedPrepMinutes">Estimated Preparation Minutes</label>
-                <input type="number" id="addEstimatedPrepMinutes" min="1" max="1440" placeholder="Enter preparation minutes" autocomplete="off"/>
+            <div class="modal-actions">
+                <input type="submit" value="Add" id="addSubmit">
+                <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
             </div>
-            <div>
-                <label for="addImageUrl">Image</label>
-                <input type="text" id="addImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addCategory">Category</label>
-                <input type="text" id="addCategory" maxlength="50" placeholder="Enter category" autocomplete="off"/>
-            </div>
-            <div>
-                <label for="addCreatedAt">Created At</label>
-                <input type="text" id="addCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
-            </div>
-        </div>
-        <div class="modal-actions">
-            <input type="submit" value="Add" id="addSubmit">
-            <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
-        </div>
+        </form>
     </div>
 </div>
 
