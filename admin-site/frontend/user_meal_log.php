@@ -42,9 +42,9 @@ if (!$results) {
         <table>
             <thead>
                 <tr>
-                    <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
                     <th>User Meal Log ID</th>
                     <th>User ID</th>
+                    <th>Meal ID</th>
                     <th>Meal Name</th>
                     <th>Category</th>
                     <th>Protein per g</th>
@@ -57,9 +57,9 @@ if (!$results) {
             <tbody id="dataTable"> 
                 <?php while ($row = mysqli_fetch_assoc($results)) : ?>
                     <tr>
-                        <td><input type="checkbox" class="rowCheckbox" value="<?= htmlspecialchars($row['uml_id']) ?>"></td>
                         <td><?= htmlspecialchars($row['uml_id']) ?></td>
                         <td><?= htmlspecialchars($row['usr_id']) ?></td>
+                        <td><?= htmlspecialchars(empty($row['mel_id']) ? 'Custom Meal by User' : $row['mel_id']) ?></td>
                         <td><?= htmlspecialchars($row['uml_meal_name']) ?></td>
                         <td><?= htmlspecialchars($row['uml_category']) ?></td>
                         <td><?= htmlspecialchars($row['uml_protein_g']) ?></td>

@@ -42,7 +42,6 @@ if (!$results) {
             <table>
                 <thead>
                     <tr>
-                        <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
                         <th>Workout Log ID</th>
                         <th>User ID</th>
                         <th>Workout Name</th>
@@ -54,7 +53,6 @@ if (!$results) {
                 <tbody id="dataTable"> 
                     <?php while ($row = mysqli_fetch_assoc($results)) : ?>
                         <tr>
-                            <td><input type="checkbox" class="rowCheckbox" value="<?= htmlspecialchars($row['wol_id']) ?>"></td>
                             <td><?= htmlspecialchars($row['wol_id']) ?></td>
                             <td><?= htmlspecialchars($row['usr_id']) ?></td>
                             <td><?= htmlspecialchars($row['wol_name']) ?></td>

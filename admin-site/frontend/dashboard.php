@@ -52,9 +52,9 @@ require_once '../../utils/auth.php';
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="feedback_management.php" class="nav-link">
+                                <a href="user_feedback.php" class="nav-link">
                                     <i class="fas fa-comment-dots"></i>
-                                    <span class="nav-text">Feedback Management</span>
+                                    <span class="nav-text">User Feedback</span>
                                 </a>
                             </li>
                         </ul>
@@ -347,7 +347,7 @@ require_once '../../utils/auth.php';
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='feedback_management.php'">
+                        <div class="quick-action-card" onclick="window.location.href='user_feedback.php'">
                             <div class="action-icon reports">
                                 <i class="fas fa-chart-line"></i>
                             </div>
