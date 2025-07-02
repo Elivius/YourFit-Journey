@@ -14,7 +14,7 @@ function openMealModal(button) {
         document.getElementById('carbs').value = button.dataset.carbs || '';
         document.getElementById('fats').value = button.dataset.fats || '';
         document.getElementById('calories').value = button.dataset.calories || '';
-        document.getElementById('mealIdInput').value = button.dataset.mealId || '';
+        document.getElementById('mealLogIdInput').value = button.dataset.mealId || '';
     } else {
         // Reset the form if it's an "Add Food" button
         document.getElementById('mealName').value = '';
@@ -22,7 +22,7 @@ function openMealModal(button) {
         document.getElementById('carbs').value = '';
         document.getElementById('fats').value = '';
         document.getElementById('calories').value = '';
-        document.getElementById('mealIdInput').value = '';
+        document.getElementById('mealLogIdInput').value = '';
     }
 
     document.getElementById('mealModal').classList.add('show');
@@ -75,7 +75,7 @@ function confirmDeleteMeal(button) {
 
     if (confirm("Are you sure you want to delete this meal?")) {
         const form = document.getElementById('deleteMealForm');
-        document.getElementById('deleteMealIdInput').value = mealId;
+        document.getElementById('deleteMealLogIdInput').value = mealId;
         form.submit();
     }
 }

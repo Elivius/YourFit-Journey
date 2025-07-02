@@ -229,7 +229,7 @@ require_once '../backend/preload_meal_logs.php';
                 <!-- Delete Meal Hidden Form (For CSRF Checking) -->
                 <form id="deleteMealForm" action="../backend/process_delete_meal_logs.php" method="POST" style="display:none;">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
-                    <input type="hidden" name="meal_id" id="deleteMealIdInput">
+                    <input type="hidden" name="meal_log_id" id="deleteMealLogIdInput">
                 </form>
 
                 <!-- Meal Recommendations -->
@@ -315,7 +315,7 @@ require_once '../backend/preload_meal_logs.php';
                 <form id="mealLogForm" action="../backend/process_save_meal_logs.php" method="POST">
                     <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                     <input type="hidden" name="category" id="mealCategoryInput">
-                    <input type="hidden" name="meal_id" id="mealIdInput">
+                    <input type="hidden" name="meal_log_id" id="mealLogIdInput">
                     <div class="form">
                         <label for="mealName" class="form-label">Meal Name</label>
                         <input type="text" id="mealName" class="form-control" name="meal_name" placeholder="Enter meal name" required>
@@ -381,6 +381,7 @@ require_once '../backend/preload_meal_logs.php';
     <template id="log-meal-form-customize-planner">
         <form action="../backend/process_save_meal_logs.php" method="POST">
             <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+            <input type="hidden" name="meal_id">
             <input type="hidden" name="meal_name">
             <input type="hidden" name="category">
             <input type="hidden" name="protein">

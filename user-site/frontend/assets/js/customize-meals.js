@@ -93,6 +93,7 @@ function renderMeals(data) {
         const formTemplate = document.getElementById('log-meal-form-customize-planner');
         const formClone = formTemplate.content.cloneNode(true);
 
+        formClone.querySelector('[name="meal_id"]').value = meal.meal_id;
         formClone.querySelector('[name="meal_name"]').value = meal.meal_name;
         formClone.querySelector('[name="category"]').value = meal.category;
         formClone.querySelector('[name="protein"]').value = meal.meal_macros.protein;
