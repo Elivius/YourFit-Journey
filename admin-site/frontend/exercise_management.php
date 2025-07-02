@@ -32,6 +32,7 @@ if (!$results) {
 <body>
     <div class="container">
         <a class="back-btn" href="dashboard.php" id="backToDashboardBtn">
+            <span class="material-icons" style="font-size:19px;vertical-align:-3px;">arrow_back</span>
             Back to Dashboard
         </a>
         <h2>
