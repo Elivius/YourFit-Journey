@@ -1628,6 +1628,25 @@ body {
     box-shadow: 0 1px 7px rgba(108,99,255,0.09);
 }
 
+.modal-content select {
+    padding: 10px;
+    font-size: 15px;
+    border: 1.2px solid #d1d7fa;
+    border-radius: 12px;
+    background: #fafaff;
+    transition: border var(--transition), box-shadow var(--transition);
+    width: 100%;
+    margin-bottom: 11px;
+    box-sizing: border-box;
+    color: #2b285d;
+}
+
+.modal-content select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 1px 7px rgba(108,99,255,0.09);
+    outline: none;
+}
+
 .modal-actions {
     display: flex;
     gap: 8px;

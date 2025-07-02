@@ -108,7 +108,11 @@ if (!$results) {
             </div>
             <div>
                 <label for="addCategory">Category</label>
-                <input type="text" id="addCategory" maxlength="50" placeholder="Enter category" autocomplete="off"/>
+                <select size="1" name="addCategory" id="addCategory" required>
+                    <option value="" disabled selected>Select the Category</option>
+                    <option value="John">Bugs</option>
+                    <option value="Jane">Feature Request</option>
+                </select>
             </div>
             <div>
                 <label for="addSubject">Subject</label>
