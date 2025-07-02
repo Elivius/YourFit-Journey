@@ -35,7 +35,7 @@ function initializeDashboard() {
   setTimeout(() => {
     hideLoadingStates()
     animateDashboardElements()
-  }, 1500)
+  }, 0)
 }
 
 function showLoadingStates() {

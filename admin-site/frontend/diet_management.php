@@ -18,7 +18,7 @@ if (!$results) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Meal and Ingredient Management - YourFit Journey</title>
+    <title>Diet Management - YourFit Journey</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
@@ -34,7 +34,7 @@ if (!$results) {
         Back to Dashboard
     </a>
     <h2>
-        Meal and Ingredient Management
+        Diet Management
     </h2>
     <div class="toolbar">
         <div class="toolbar-actions-left">

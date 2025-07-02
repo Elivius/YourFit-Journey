@@ -77,7 +77,7 @@ require_once '../../utils/auth.php';
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="meal_ingredient_management.php" class="nav-link">
+                            <a href="diet_management.php" class="nav-link">
                                 <i class="fas fa-hamburger"></i>
                                 <span class="nav-text">Diet Management</span>
                             </a>
@@ -252,7 +252,7 @@ require_once '../../utils/auth.php';
                                     <i class="fas fa-ellipsis-h"></i>
                                 </button>
                                 <div class="stat-menu-dropdown">
-                                    <a href="meal_ingredient_management.php">View Details</a>
+                                    <a href="diet_management.php">View Details</a>
                                     <!-- <a href="#" onclick="exportDiets()">Export</a> -->
                                 </div>
                             </div>
@@ -334,7 +334,7 @@ require_once '../../utils/auth.php';
                             </div>
                         </div>
                         
-                        <div class="quick-action-card" onclick="window.location.href='meal_ingredient_management.php'">
+                        <div class="quick-action-card" onclick="window.location.href='diet_management.php'">
                             <div class="action-icon diets">
                                 <i class="fas fa-utensils"></i>
                             </div>
@@ -431,7 +431,7 @@ require_once '../../utils/auth.php';
                 <i class="fas fa-dumbbell"></i>
                 <span>Create Exercise</span>
             </button>
-            <button class="quick-action-btn" onclick="window.location.href='meal_ingredient_management.php#add-diet'">
+            <button class="quick-action-btn" onclick="window.location.href='diet_management.php#add-diet'">
                 <i class="fas fa-apple-alt"></i>
                 <span>Add Diet Plan</span>
             </button>
