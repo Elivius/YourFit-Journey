@@ -21,27 +21,7 @@ function renderMeals(data) {
     const userMacroCard = document.createElement('div');
     userMacroCard.className = 'col-12';
     userMacroCard.innerHTML = `
-        <div class="alert alert-info mb-3">
-            <h6>Your Daily Target Macros</h6>
-            <div class="d-flex gap-3 flex-wrap mt-2">
-                <div class="macro-pill protein"><strong>${userMacros.protein.toFixed(1)}g</strong> Protein</div>
-                <div class="macro-pill carbs"><strong>${userMacros.carbs.toFixed(1)}g</strong> Carbs</div>
-                <div class="macro-pill fats"><strong>${userMacros.fats.toFixed(1)}g</strong> Fats</div>
-                <div class="macro-pill calories"><strong>${userMacros.calories.toFixed(1)}</strong> kcal</div>
-            </div>
-        </div>
-
-        <div class="alert alert-success mb-3">
-            <h6>Meal Plan Total Macros</h6>
-            <div class="d-flex gap-2 flex-wrap mt-2">
-                <div class="macro-pill protein"><strong>${mealMacros.protein.toFixed(1)}g</strong> Protein</div>
-                <div class="macro-pill carbs"><strong>${mealMacros.carbs.toFixed(1)}g</strong> Carbs</div>
-                <div class="macro-pill fats"><strong>${mealMacros.fats.toFixed(1)}g</strong> Fats</div>
-                <div class="macro-pill calories"><strong>${mealMacros.calories.toFixed(1)}</strong> kcal</div>
-            </div>
-        </div>
-
-        <div class="alert alert-warning mb-0">
+        <div class="alert alert-info mb-0">
             <h6>Macro Matching Summary (Within Tolerance)</h6>
             <ul class="mb-0">
                 <li>${getDiffStatus(mealMacros.protein, userMacros.protein, 'Protein')}</li>

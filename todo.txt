@@ -4,4 +4,4 @@
 
 ============================== URGENT ===================================
 
-- Add, Edit, Delete Data ofr Admin
+- Add, Edit, Delete Data for Admin
