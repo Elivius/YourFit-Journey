@@ -6,7 +6,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
-  overflow: hidden;
+  overflow: auto;
   padding: 2rem 0;
   width: 100%;
 }
@@ -29,7 +29,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  overflow: hidden;
+  overflow: fixed;
   z-index: 1;
 }
 
