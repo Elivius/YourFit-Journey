@@ -227,7 +227,7 @@ require_once '../backend/dashboard_analytics.php';
                         </div>
                         <div class="stat-content">
                             <h3 class="stat-number" data-target="<?= $totalExercises ?>">0</h3>
-                            <p class="stat-label">Exercise Available</p>
+                            <p class="stat-label">Exercises Available</p>
                             <div class="stat-change <?= $isPositiveExercises ? 'positive' : 'negative' ?>">
                                 <i class="fas fa-arrow-<?= $isPositiveExercises ? 'up' : 'down' ?>"></i>
                                 <span><?= $isPositiveExercises ? '+' : '-' ?><?= $percentageTextExercises ?></span>
