@@ -11,9 +11,11 @@ require_once '../backend/dashboard_analytics.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - YourFit Journey</title>
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body class="admin-body">
     <div class="admin-layout">
@@ -170,7 +172,7 @@ require_once '../backend/dashboard_analytics.php';
                         <p>Here's a Real-Time Look at What's Happening on YourFit Journey</p>
                         <div class="welcome-actions">
                             <form action="../backend/export_data.php" method="POST">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary px-3 py-2">
                                     <i class="fas fa-download"></i>
                                     Export Data
                                 </button>

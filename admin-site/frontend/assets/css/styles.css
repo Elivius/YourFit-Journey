@@ -642,6 +642,7 @@ body {
 }
 
 .btn-primary:hover {
+  color: var(--primary-color);
   background: var(--gray-100);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
