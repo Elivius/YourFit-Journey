@@ -191,6 +191,7 @@ if (!$results) {
         <div class="modal-content">
             <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
             <div class="modal-title">Edit User</div>
+            
             <form action="../backend/process_update_user_management.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
                 <div class="modal-form-grid">
