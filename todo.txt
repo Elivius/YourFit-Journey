@@ -4,18 +4,6 @@
 
 ============================== URGENT ===================================
 
+- Select dropdown for activity level and goal
 - Edit, Delete Data for Admin
 - Need check especially Diet Management
-
-
-
-- Stick Table Header
-- More border of Table
-- Adjust Table Column Size (Dynamic if can)
-- Click outside to close the add, edit modal
-- Bigger close button for add, edit modal
-- more margin or padding for the add, edit modal
-- Filter
-- Bigger Dashboard and table title
-- Consistent font
-- Change Side-bar Logo

@@ -154,7 +154,11 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addGender">Gender</label>
-                        <input type="text" name="gender" id="addGender" maxlength="10" placeholder="Enter gender" autocomplete="off" required />
+                        <select size="1" name="gender" id="addGender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
                     </div>
                     <div>
                         <label for="addWeight">Weight (kg)</label>
@@ -166,11 +170,23 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addActivityLevel">Activity Level</label>
-                        <input type="text" name="activityLevel" id="addActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off" required />
+                        <select size="1" name="activityLevel" id="addActivityLevel" required>
+                            <option value="" disabled selected>Select Activity Level</option>
+                            <option value="sedentary">Sedentary</option>
+                            <option value="light">Light</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="active">Active</option>
+                            <option value="very_active">Very Active</option>
+                        </select>
                     </div>
                     <div>
                         <label for="addGoal">Goal</label>
-                        <input type="text" name="goal" id="addGoal" maxlength="50" placeholder="Enter goal" autocomplete="off" required />
+                        <select size="1" name="goal" id="addGoal" required>
+                            <option value="" disabled selected>Select Goal</option>
+                            <option value="cutting">Cutting</option>
+                            <option value="maintain">Maintain</option>
+                            <option value="bulking">Bulking</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-actions">
@@ -223,7 +239,11 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="updateGender">Gender</label>
-                        <input type="text" name="gender" id="updateGender" maxlength="10" placeholder="Enter gender" autocomplete="off" required />
+                        <select size="1" name="gender" id="updateGender" required>
+                            <option value="" disabled selected>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
                     </div>
                     <div>
                         <label for="updateWeight">Weight (kg)</label>
@@ -235,11 +255,23 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="updateActivityLevel">Activity Level</label>
-                        <input type="text" name="activityLevel" id="updateActivityLevel" maxlength="30" placeholder="Enter activity level" autocomplete="off" required />
+                        <select size="1" name="activityLevel" id="updateActivityLevel" required>
+                            <option value="" disabled selected>Select Activity Level</option>
+                            <option value="sedentary">Sedentary</option>
+                            <option value="light">Light</option>
+                            <option value="moderate">Moderate</option>
+                            <option value="active">Active</option>
+                            <option value="very_active">Very Active</option>
+                        </select>
                     </div>
                     <div>
-                        <label for="updateGoal">Goal</label>
-                        <input type="text" name="goal" id="updateGoal" maxlength="50" placeholder="Enter goal" autocomplete="off" required />
+                        <label for="updateGoal">Goal</label>                        
+                        <select size="1" name="goal" id="updateGoal" required>
+                            <option value="" disabled selected>Select Goal</option>
+                            <option value="cutting">Cutting</option>
+                            <option value="maintain">Maintain</option>
+                            <option value="bulking">Bulking</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-actions">
