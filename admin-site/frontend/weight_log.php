@@ -67,8 +67,6 @@ if (!$results) {
         </div>
     </div>
 
-    <?php include 'scroll_to_top.php'; ?>
-
     <script src="assets/js/weight_log.js"></script>
 </body>
 </html>

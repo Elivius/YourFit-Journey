@@ -31,6 +31,28 @@ if (!$user_id || !$first_name || !$last_name || !$email || !$age || !$gender || 
     exit;
 }
 
+// Check if email is already used by another user
+$check_email_sql = "SELECT usr_id FROM users_t WHERE usr_email = ? AND usr_id != ?";
+if ($stmt = mysqli_prepare($connection, $check_email_sql)) {
+    mysqli_stmt_bind_param($stmt, "si", $email, $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_store_result($stmt);
+
+    if (mysqli_stmt_num_rows($stmt) > 0) {
+        $_SESSION['error'] = "Email is already used by another account";
+        mysqli_stmt_close($stmt);
+        header("Location: ../frontend/user_management.php");
+        exit;
+    }
+    mysqli_stmt_close($stmt);
+} else {
+    error_log("Email check failed: " . mysqli_error($connection));
+    $_SESSION['error'] = "Server error during email validation.";
+    header("Location: ../frontend/user_management.php");
+    exit;
+}
+
+
 // Optional password validation & hashing
 $updatePassword = false;
 if ($password !== '') {

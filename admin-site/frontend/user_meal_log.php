@@ -79,8 +79,6 @@ if (!$results) {
         </div>
     </div>
 
-    <?php include 'scroll_to_top.php'; ?>
-
     <script src="assets/js/user_meal_log.js"></script>
 </body>
 </html>

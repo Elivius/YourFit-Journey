@@ -2,7 +2,6 @@
 $requireRole = 'admin';
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
-require_once '../../utils/message2.php';
 ?>
 
 <?php
@@ -192,6 +191,7 @@ if (!$results) {
             
             <form action="../backend/process_update_user_management.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                <input type="hidden" name="user_id" id="updateUserId">
                 <div class="modal-form-grid">
                     <div>
                         <label for="updateFirstName">First Name</label>
@@ -251,8 +251,8 @@ if (!$results) {
     </div>
 
     <div class="toast" id="toast"></div>
-
-    <?php include 'scroll_to_top.php'; ?>
+    
+    <?php include '../../utils/message2.php'; ?>
 
     <script src="assets/js/user_management.js"></script>
 </body>

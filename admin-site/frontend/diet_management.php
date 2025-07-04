@@ -2,7 +2,6 @@
 $requireRole = 'admin';
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
-require_once '../../utils/message2.php';
 ?>
 
 <?php
@@ -160,8 +159,8 @@ $ingredientResult = mysqli_query($connection, $ingredientQuery);
         </div>
     </div>
     <div class="toast" id="toast"></div>
-
-    <?php include 'scroll_to_top.php'; ?>
+    
+    <?php include '../../utils/message2.php'; ?>
 
     <script src="assets/js/diet_management.js"></script>
     <script>

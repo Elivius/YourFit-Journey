@@ -2,7 +2,6 @@
 $requireRole = 'admin';
 require_once '../../utils/auth.php';
 require_once '../../utils/csrf.php';
-require_once '../../utils/message2.php';
 ?>
 
 <?php
@@ -197,8 +196,8 @@ if (!$results) {
         </div>
     </div>
     <div class="toast" id="toast"></div>
-        
-    <?php include 'scroll_to_top.php'; ?>
+    
+    <?php include '../../utils/message2.php'; ?>
 
     <script src="assets/js/exercise_management.js"></script>
 </body>

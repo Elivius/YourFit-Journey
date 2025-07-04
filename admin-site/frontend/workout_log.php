@@ -71,8 +71,6 @@ if (!$results) {
         </div>
     </div>
 
-    <?php include 'scroll_to_top.php'; ?>
-
     <script src="assets/js/workout_log.js"></script>
 </body>
 </html>

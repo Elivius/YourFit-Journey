@@ -70,8 +70,6 @@ if (!$results) {
         </div>
     </div>
 
-    <?php include 'scroll_to_top.php'; ?>
-
     <div class="toast" id="toast"></div>
     <script src="assets/js/user_workout.js"></script>
 </body>

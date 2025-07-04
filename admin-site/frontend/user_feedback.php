@@ -75,8 +75,6 @@ if (!$results) {
     </div>
     <div class="toast" id="toast"></div>
 
-    <?php include 'scroll_to_top.php'; ?>
-
     <script src="assets/js/user_feedback.js"></script>
 </body>
 </html>
