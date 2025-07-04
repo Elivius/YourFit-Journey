@@ -451,8 +451,49 @@ input[type="checkbox"] {
     z-index: 1000;
     letter-spacing: 0.08em;
 }
+
 .toast.show {
     opacity: 1;
     pointer-events: all;
     transform: translateY(-10px) scale(1.03);
+}
+
+.add-btn-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.add-btn-inline:hover {
+    background-color: var(--primary-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.removeRowBtn {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background-color: var(--danger-color);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: end;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.removeRowBtn:hover {
+    color: #fff;
+    background-color: var(--danger-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }

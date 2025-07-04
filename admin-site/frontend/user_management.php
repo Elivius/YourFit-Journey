@@ -143,7 +143,7 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addProfilePicture">Profile Picture</label>
-                        <input type="file" name="pfp" id="addProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off" />
+                        <input type="file" name="pfp" id="addProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addRole">Role (Read Only)</label>
