@@ -124,11 +124,11 @@ require_once '../backend/preload_settings.php';
                                         </div>
                                         <div class="status-item">
                                             <span class="status-label">Member Since</span>
-                                            <span class="status-value">June 15, 2023</span>
+                                            <span class="status-value">June 15, 2025</span>
                                         </div>
                                         <div class="status-item">
                                             <span class="status-label">Next Billing</span>
-                                            <span class="status-value">July 15, 2023</span>
+                                            <span class="status-value">July 15, 2025</span>
                                         </div>
                                         <div class="status-actions mt-3">
                                             <button class="btn btn-sm btn-outline-primary">Manage Subscription</button>
@@ -412,7 +412,7 @@ require_once '../backend/preload_settings.php';
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h5 class="card-title">App Feedback</h5>
+                                    <h5 class="card-title">Application Feedback</h5>
                                 </div>
                                 <div class="card-body">
                                     <form id="feedbackForm" action="../backend/process_save_feedbacks.php" method="POST">
