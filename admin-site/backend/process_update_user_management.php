@@ -13,7 +13,7 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$user_id       = sanitizeInt($_POST['user_id'] ?? '');
+$user_id       = sanitizeInt($_POST['userId'] ?? '');
 $first_name    = cleanInput($_POST['firstName'] ?? '');
 $last_name     = cleanInput($_POST['lastName'] ?? '');
 $email         = sanitizeEmail($_POST['email'] ?? '');

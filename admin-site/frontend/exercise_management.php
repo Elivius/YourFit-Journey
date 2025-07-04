@@ -167,32 +167,42 @@ if (!$results) {
             <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
             <div class="modal-title">Edit Exercise</div>
 
-            <div class="modal-form-grid">
-                <div>
-                    <label for="updateExerciseName">Exercise Name</label>
-                    <input type="text" id="updateExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off"/>
+            <form action="../backend/process_update_exercise_management.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                <input type="hidden" name="exerciseId" id="updateExerciseId">
+                <div class="modal-form-grid">
+                    <div>
+                        <label for="updateExerciseName">Exercise Name</label>
+                        <input type="text" name="exerciseName" id="updateExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off" required />
+                    </div>
+                    <div>
+                        <label for="updateImageUrl">Image</label>
+                        <input type="text" name="imageUrl" id="updateImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off" required />
+                    </div>
+                    <div>
+                        <label for="updateCategory">Category</label>
+                        <select size="1" name="category" id="updateCategory" required>
+                            <option value="" disabled selected>Select a Category</option>
+                            <option value="Arms">Arms</option>
+                            <option value="Chest">Chest</option>
+                            <option value="Back">Back</option>
+                            <option value="Legs">Legs</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="updateTargetedMuscle">Targeted Muscle</label>
+                        <input type="text" name="targetMuscle" id="updateTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off" required />
+                    </div>
+                    <div>
+                        <label for="updateInstructions">Instructions</label>
+                        <textarea name="instructions" id="updateInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
+                    </div>
+                </div>    
+                <div class="modal-actions">
+                    <input type="submit" value="Update" id="updateSubmit">
+                    <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
                 </div>
-                <div>
-                    <label for="updateImageUrl">Image</label>
-                    <input type="text" id="updateImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateCategory">Category</label>
-                    <input type="text" id="updateCategory" maxlength="36" placeholder="Enter category" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateTargetedMuscle">Targeted Muscle</label>
-                    <input type="text" id="updateTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateInstructions">Instructions</label>
-                    <textarea id="updateInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off"></textarea>
-                </div>
-            </div>
-            <div class="modal-actions">
-                <input type="submit" value="Update" id="updateSubmit">
-                <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
-            </div>
+            </form>
         </div>
     </div>
     <div class="toast" id="toast"></div>

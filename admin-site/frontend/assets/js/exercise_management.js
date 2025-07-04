@@ -45,9 +45,22 @@ document.getElementById('editBtn').addEventListener('click', function () {
 
     // Fill the update form with data
     document.getElementById('updateExerciseName').value = cells[2].innerText;
-    document.getElementById('updateImage').value = cells[3].innerText;
+    
+    const img = cells[3].querySelector('img');
+    if (img) {
+        document.getElementById('updateImageUrl').value = img.getAttribute('src');
+    } else {
+        document.getElementById('updateImageUrl').value = '';
+    }
     document.getElementById('updateCategory').value = cells[4].innerText;
-    document.getElementById('updateTargetedMuscle').value = cells[5].innerText;
+
+    const muscleDivs = cells[5].querySelectorAll('div');
+    const muscles = Array.from(muscleDivs)
+        .map(div => div.innerText.replace(/^•\s*/, '').trim())
+        .filter(m => m.length > 0)
+        .join(', ');
+    document.getElementById('updateTargetedMuscle').value = muscles;
+
     document.getElementById('updateInstructions').value = cells[6].innerText;
 
     let idInput = document.getElementById('updateExerciseId');

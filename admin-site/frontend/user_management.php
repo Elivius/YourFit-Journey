@@ -207,7 +207,7 @@ if (!$results) {
             
             <form action="../backend/process_update_user_management.php" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
-                <input type="hidden" name="user_id" id="updateUserId">
+                <input type="hidden" name="userId" id="updateUserId">
                 <div class="modal-form-grid">
                     <div>
                         <label for="updateFirstName">First Name</label>
