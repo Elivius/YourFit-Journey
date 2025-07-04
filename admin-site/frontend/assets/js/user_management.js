@@ -47,7 +47,6 @@ document.getElementById('editBtn').addEventListener('click', function () {
     document.getElementById('updateFirstName').value = cells[2].innerText;
     document.getElementById('updateLastName').value = cells[3].innerText;
     document.getElementById('updateEmail').value = cells[4].innerText;
-    document.getElementById('updatePassword').value = cells[5].innerText;
     document.getElementById('updateRole').value = cells[7].innerText;
     document.getElementById('updateAge').value = cells[8].innerText;
     document.getElementById('updateGender').value = cells[9].innerText;

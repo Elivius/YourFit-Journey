@@ -223,7 +223,7 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="updatePassword">Password</label>
-                        <input type="text" name="password" id="updatePassword" maxlength="100" placeholder="Enter password" autocomplete="off" required />
+                        <input type="text" name="password" id="updatePassword" maxlength="100" placeholder="Enter password (Only if need update)" autocomplete="off" />
                     </div>
                     <div>
                         <label for="updateProfilePicture">Profile Picture</label>

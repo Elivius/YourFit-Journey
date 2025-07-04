@@ -52,7 +52,6 @@ if ($stmt = mysqli_prepare($connection, $check_email_sql)) {
     exit;
 }
 
-
 // Optional password validation & hashing
 $updatePassword = false;
 if ($password !== '') {
