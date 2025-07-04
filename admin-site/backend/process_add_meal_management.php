@@ -12,12 +12,12 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$mealName = cleanInput($_POST['mealName']);
-$imageUrl = cleanInput($_POST['imageUrl']);
+$meal_name = cleanInput($_POST['mealName']);
+$image_url = cleanInput($_POST['imageUrl']);
 $category = cleanInput($_POST['category']);
 $estimatedPrepMinutes = sanitizeInt($_POST['estimatedPrepMinutes']);
 
-if (!$mealName || !$imageUrl || !$category || $estimatedPrepMinutes === null) {
+if (!$meal_name || !$image_url || !$category || $estimatedPrepMinutes === null) {
     $_SESSION['error'] = "Please fill in all fields";
     header("Location: ../../admin-site/frontend/meal_management.php");
     exit;
@@ -25,7 +25,7 @@ if (!$mealName || !$imageUrl || !$category || $estimatedPrepMinutes === null) {
 
 $sql_insert = "INSERT INTO meals_t (mel_name, mel_estimated_preparation_min, mel_image_url, mel_category) VALUES (?, ?, ?, ?)";
 if ($stmt = mysqli_prepare($connection, $sql_insert)) {
-    mysqli_stmt_bind_param($stmt, "siss", $mealName, $estimatedPrepMinutes, $imageUrl, $category);
+    mysqli_stmt_bind_param($stmt, "siss", $meal_name, $estimatedPrepMinutes, $image_url, $category);
 
     if (mysqli_stmt_execute($stmt) && mysqli_stmt_affected_rows($stmt) > 0) {
         $_SESSION['success'] = "Meal added successfully";

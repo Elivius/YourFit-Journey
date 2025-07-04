@@ -21,10 +21,10 @@ $age              = sanitizeInt($_POST['age'] ?? '');
 $gender           = cleanInput($_POST['gender'] ?? '');
 $weight           = sanitizeFloat($_POST['weight'] ?? '');
 $height           = sanitizeFloat($_POST['height'] ?? '');
-$activityLevel    = cleanInput($_POST['activityLevel'] ?? '');
+$activity_level    = cleanInput($_POST['activityLevel'] ?? '');
 $goal             = cleanInput($_POST['goal'] ?? '');
 
-if (!$first_name || !$last_name || !$email || !$password || !$age|| !$gender || !$weight || !$height || !$activityLevel || !$goal) {
+if (!$first_name || !$last_name || !$email || !$password || !$age|| !$gender || !$weight || !$height || !$activity_level || !$goal) {
     $_SESSION['error'] = "Please fill in all fields";
     header("Location: ../frontend/user_management.php");
     exit;
@@ -120,9 +120,9 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
         $newFileName,
         $age,            
         $gender,
-        $weight,           
-        $height,           
-        $activityLevel,
+        $weight,
+        $height,
+        $activity_level,
         $goal
     );
     

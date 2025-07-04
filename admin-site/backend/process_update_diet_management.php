@@ -12,19 +12,22 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$mel_id = sanitizeInt($_POST['melId']);
+$meal_ingredient_id = sanitizeInt($_POST['mealIngredientId'] ?? '');
+$mel_id = sanitizeInt($_POST['melId'] ?? '');
 $ingredient_ids = $_POST['ingId'] ?? [];
 $base_grams = $_POST['baseGrams'] ?? [];
 
-if (!$mel_id || empty($ingredient_ids) || empty($base_grams) || count($ingredient_ids) !== count($base_grams)) {
+if (!$meal_ingredient_id || !$mel_id || empty($ingredient_ids) || empty($base_grams) || count($ingredient_ids) !== count($base_grams)) {
     $_SESSION['error'] = "Please fill in all fields";
     header("Location: ../frontend/diet_management.php");
     exit;
 }
 
-$sql_insert = "INSERT INTO meal_ingredients_t (mel_id, ing_id, mi_base_grams) VALUES (?, ?, ?)";
-if ($stmt = mysqli_prepare($connection, $sql_insert)) {
-    
+$sql_update = "UPDATE meal_ingredients_t 
+                SET mel_id = ?, ing_id = ?, mi_base_grams = ? 
+                WHERE mi_id = ?";
+if ($stmt = mysqli_prepare($connection, $sql_update)) {
+
     $successCount = 0;
 
     for ($i = 0; $i < count($ingredient_ids); $i++) {
@@ -38,7 +41,7 @@ if ($stmt = mysqli_prepare($connection, $sql_insert)) {
         if (mysqli_stmt_execute($stmt)) {
             $successCount++;
         } else {
-            $_SESSION['error'] = "Failed to add ingredient with ID: $ing_id. Error: " . mysqli_error($stmt);
+            $_SESSION['error'] = "Failed to add ingredient with ID: $ing_id. Error: " . mysqli_error($connection);
             header("Location: ../frontend/diet_management.php");
             exit;
         }

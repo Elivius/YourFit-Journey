@@ -12,13 +12,13 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$exerciseName = cleanInput($_POST['exerciseName']);
-$imageUrl = cleanInput($_POST['imageUrl']);
+$exercise_name = cleanInput($_POST['exerciseName']);
+$image_url = cleanInput($_POST['imageUrl']);
 $category = cleanInput($_POST['category']);
-$targetMuscle = cleanInput($_POST['targetMuscle']);
+$target_muscle = cleanInput($_POST['targetMuscle']);
 $instructions = cleanInput($_POST['instructions']);
 
-if (!$exerciseName || !$imageUrl || !$category || !$targetMuscle || !$instructions) {
+if (!$exercise_name || !$image_url || !$category || !$target_muscle || !$instructions) {
     $_SESSION['error'] = "Please fill in all fields";
     header("Location: ../frontend/exercise_management.php");
     exit;
@@ -26,8 +26,8 @@ if (!$exerciseName || !$imageUrl || !$category || !$targetMuscle || !$instructio
 
 $sql_insert = "INSERT INTO exercises_t (exe_name, exe_image_url, exe_category, exe_targeted_muscle, exe_instructions) VALUES (?, ?, ?, ?, ?)";
 if ($stmt = mysqli_prepare($connection, $sql_insert)) {
-    mysqli_stmt_bind_param($stmt, "sssss", $exerciseName, $imageUrl, $category, $targetMuscle, $instructions);
-    
+    mysqli_stmt_bind_param($stmt, "sssss", $exercise_name, $image_url, $category, $target_muscle, $instructions);
+
     if (mysqli_stmt_execute($stmt)) {
         $_SESSION['success'] = "Exercise added successfully";
     } else {
