@@ -200,7 +200,7 @@ if (!$results) {
                 </div>    
                 <div class="modal-actions">
                     <input type="submit" value="Update" id="updateSubmit">
-                    <button type="button" class="cancel-popup" id="addCancel">Cancel</button>
+                    <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
                 </div>
             </form>
         </div>
