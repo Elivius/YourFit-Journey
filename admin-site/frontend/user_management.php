@@ -126,15 +126,15 @@ if (!$results) {
                 <div class="modal-form-grid">
                     <div>
                         <label for="addFirstName">First Name</label>
-                        <input type="text" name="firstName" id="addFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off" required />
+                        <input type="text" name="firstName" id="addFirstName" maxlength="50" placeholder="e.g. Elivius" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addLastName">Last Name</label>
-                        <input type="text" name="lastName" id="addLastName" maxlength="50" placeholder="Enter last name" autocomplete="off" required />
+                        <input type="text" name="lastName" id="addLastName" maxlength="50" placeholder="e.g. Vert" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addEmail">Email</label>
-                        <input type="email" name="email" id="addEmail" maxlength="100" placeholder="Enter email" autocomplete="off" required />
+                        <input type="email" name="email" id="addEmail" maxlength="100" placeholder="e.g. yourfitjourney@gmail.com" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addPassword">Password</label>
@@ -142,15 +142,15 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addProfilePicture">Profile Picture</label>
-                        <input type="file" name="pfp" id="addProfilePicture" maxlength="2048" placeholder="Enter profile picture link" autocomplete="off" required />
+                        <input type="file" name="pfp" id="addProfilePicture" maxlength="2048" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addRole">Role (Read Only)</label>
-                        <input type="text" name="role" id="addRole" placeholder="Enter role" value="User" required readonly />
+                        <input type="text" name="role" id="addRole" value="User" required readonly />
                     </div>
                     <div>
                         <label for="addWeight">Age</label>
-                        <input type="number" name="age" id="addAge" placeholder="Enter age" step="1" min="0" max="999" required />
+                        <input type="number" name="age" id="addAge" placeholder="e.g. 21" step="1" min="0" max="999" required />
                     </div>
                     <div>
                         <label for="addGender">Gender</label>
@@ -162,11 +162,11 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addWeight">Weight (kg)</label>
-                        <input type="number" name="weight" id="addWeight" placeholder="Enter weight" step="0.1" min="0" max="999.9" required />
+                        <input type="number" name="weight" id="addWeight" placeholder="e.g. 60" step="0.1" min="0" max="999.9" required />
                     </div>
                     <div>
                         <label for="addHeight">Height (cm)</label>
-                        <input type="number" name="height" id="addHeight" placeholder="Enter height" step="0.1" min="0" max="999.9" required />
+                        <input type="number" name="height" id="addHeight" placeholder="e.g. 170" step="0.1" min="0" max="999.9" required />
                     </div>
                     <div>
                         <label for="addActivityLevel">Activity Level</label>
@@ -211,15 +211,15 @@ if (!$results) {
                 <div class="modal-form-grid">
                     <div>
                         <label for="updateFirstName">First Name</label>
-                        <input type="text" name="firstName" id="updateFirstName" maxlength="50" placeholder="Enter first name" autocomplete="off" required />
+                        <input type="text" name="firstName" id="updateFirstName" maxlength="50" placeholder="e.g. Elivius" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="updateLastName">Last Name</label>
-                        <input type="text" name="lastName" id="updateLastName" maxlength="50" placeholder="Enter last name" autocomplete="off" required />
+                        <input type="text" name="lastName" id="updateLastName" maxlength="50" placeholder="e.g. Vert" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="updateEmail">Email</label>
-                        <input type="email" name="email" id="updateEmail" maxlength="100" placeholder="Enter email" autocomplete="off" required />
+                        <input type="email" name="email" id="updateEmail" maxlength="100" placeholder="e.g. yourfitjourney@gmail.com" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="updatePassword">Password</label>
@@ -227,15 +227,15 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="updateProfilePicture">Profile Picture</label>
-                        <input type="file" name="pfp" id="updateProfilePicture" maxlength="2048" placeholder="Enter profile picture" autocomplete="off" />
+                        <input type="file" name="pfp" id="updateProfilePicture" maxlength="2048" autocomplete="off" />
                     </div>
                     <div>
                         <label for="updateRole">Role (Read Only)</label>
-                        <input type="text" name="role" id="updateRole" placeholder="Enter role" value="User" readonly required />
+                        <input type="text" name="role" id="updateRole" value="User" readonly required />
                     </div>
                     <div>
                         <label for="updateAge">Age</label>
-                        <input type="number" name="age" id="updateAge" placeholder="Enter age" step="1" min="0" max="999" required />
+                        <input type="number" name="age" id="updateAge" placeholder="e.g. 21" step="1" min="0" max="999" required />
                     </div>
                     <div>
                         <label for="updateGender">Gender</label>
@@ -247,11 +247,11 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="updateWeight">Weight (kg)</label>
-                        <input type="number" name="weight" id="updateWeight" placeholder="Enter weight" step="0.1" min="0" max="999.9" required />
+                        <input type="number" name="weight" id="updateWeight" placeholder="e.g. 60" step="0.1" min="0" max="999.9" required />
                     </div>
                     <div>
                         <label for="updateHeight">Height (cm)</label>
-                        <input type="number" name="height" id="updateHeight" placeholder="Enter height" step="0.1" min="0" max="999.9" required />
+                        <input type="number" name="height" id="updateHeight" placeholder="e.g. 170" step="0.1" min="0" max="999.9" required />
                     </div>
                     <div>
                         <label for="updateActivityLevel">Activity Level</label>

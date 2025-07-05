@@ -126,11 +126,11 @@ if (!$results) {
                 <div class="modal-form-grid">
                     <div>
                         <label for="addExerciseName">Exercise Name</label>
-                        <input type="text" name="exerciseName" id="addExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off" required />
+                        <input type="text" name="exerciseName" id="addExerciseName" maxlength="50" placeholder="e.g. Pushups" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addImageUrl">Image</label>
-                        <input type="text" name="imageUrl" id="addImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off" required />
+                        <input type="text" name="imageUrl" id="addImageUrl" maxlength="2048" placeholder="e.g. https://raw.githubusercontent.com/pushups.jpg" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addCategory">Category</label>
@@ -144,11 +144,11 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addTargetedMuscle">Targeted Muscle</label>
-                        <input type="text" name="targetMuscle" id="addTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off" required />
+                        <input type="text" name="targetMuscle" id="addTargetedMuscle" maxlength="60" placeholder="e.g. Chest, Biceps, Shoulder" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addInstructions">Instructions</label>
-                        <textarea name="instructions" id="addInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
+                        <textarea name="instructions" id="addInstructions" maxlength="500" placeholder="e.g. 1. Sit on the bench" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
                     </div>
                 </div>    
                 <div class="modal-actions">
@@ -173,11 +173,11 @@ if (!$results) {
                 <div class="modal-form-grid">
                     <div>
                         <label for="updateExerciseName">Exercise Name</label>
-                        <input type="text" name="exerciseName" id="updateExerciseName" maxlength="50" placeholder="Enter exercise name" autocomplete="off" required />
+                        <input type="text" name="exerciseName" id="updateExerciseName" maxlength="50" placeholder="e.g. Pushups" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="updateImageUrl">Image</label>
-                        <input type="text" name="imageUrl" id="updateImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off" required />
+                        <input type="text" name="imageUrl" id="updateImageUrl" maxlength="2048" placeholder="e.g. https://raw.githubusercontent.com/pushups.jpg" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="updateCategory">Category</label>
@@ -191,11 +191,11 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="updateTargetedMuscle">Targeted Muscle</label>
-                        <input type="text" name="targetMuscle" id="updateTargetedMuscle" maxlength="60" placeholder="Enter targeted muscle" autocomplete="off" required />
+                        <input type="text" name="targetMuscle" id="updateTargetedMuscle" maxlength="60" placeholder="e.g. Chest, Biceps, Shoulder" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="updateInstructions">Instructions</label>
-                        <textarea name="instructions" id="updateInstructions" maxlength="500" placeholder="Enter instructions" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
+                        <textarea name="instructions" id="updateInstructions" maxlength="500" placeholder="e.g. 1. Sit on the bench" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
                     </div>
                 </div>    
                 <div class="modal-actions">

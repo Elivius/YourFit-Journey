@@ -133,8 +133,8 @@ filterInput.addEventListener('input', function () {
     const rows = dataTable.getElementsByTagName('tr');
 
     Array.from(rows).forEach(row => {
-        const exerciseName = row.cells[2].textContent.toLowerCase().trim(); // Exercise Name
-        const targetedMuscle = row.cells[5].textContent.toLowerCase().trim(); // Targeted Muscle
+        const exerciseName = row.cells[2].textContent.toLowerCase().trim();
+        const targetedMuscle = row.cells[5].textContent.toLowerCase().trim();
         const combined = `${exerciseName} ${targetedMuscle}`;
         const visible = combined.includes(filterValue);
         row.style.display = visible ? '' : 'none';
