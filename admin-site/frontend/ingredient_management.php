@@ -106,23 +106,23 @@ if (!$results) {
                 <div class="modal-form-grid">
                     <div>
                         <label for="addName">Name</label>
-                        <input type="text" name="ingredientName" id="addName" maxlength="50" placeholder="Enter name" autocomplete="off" required />
+                        <input type="text" name="ingredientName" id="addName" maxlength="50" placeholder="e.g. Chicken breast" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addProtein">Protein per 100g</label>
-                        <input type="number" name="protein" id="addProtein" maxlength="10" placeholder="Enter protein per 100g" min="0" step="0.01" autocomplete="off" required />
+                        <input type="number" name="protein" id="addProtein" maxlength="10" placeholder="e.g. 31" min="0" step="0.01" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addCarbs">Carbs per 100g</label>
-                        <input type="number" name="carbs" id="addCarbs" maxlength="10" placeholder="Enter carbs per 100g" min="0" step="0.01" autocomplete="off" required />
+                        <input type="number" name="carbs" id="addCarbs" maxlength="10" placeholder="e.g. 15" min="0" step="0.01" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addFats">Fats per 100g</label>
-                        <input type="number" name="fats" id="addFats" maxlength="10" placeholder="Enter fats per 100g" min="0" step="0.01" autocomplete="off" required />
+                        <input type="number" name="fats" id="addFats" maxlength="10" placeholder="e.g. 3" min="0" step="0.01" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addCalories">Calories per 100g</label>
-                        <input type="number" name="calories" id="addCalories" maxlength="10" placeholder="Enter calories per 100g" min="0" step="0.01" autocomplete="off" required />
+                        <input type="number" name="calories" id="addCalories" maxlength="10" placeholder="e.g. 150" min="0" step="0.01" autocomplete="off" required />
                     </div>
                 </div>
                 <div class="modal-actions">
@@ -135,42 +135,45 @@ if (!$results) {
 
     <!-- Edit Modal -->
     <div class="modal-backdrop" id="updateBackdrop"></div>
+
     <div class="modal-dialog" id="updateModal">
         <div class="modal-content">
             <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
             <div class="modal-title">Edit Ingredient</div>
-            <div class="modal-form-grid">
-                <div>
-                    <label for="updateName">Name</label>
-                    <input type="text" id="updateName" maxlength="50" placeholder="Enter name" autocomplete="off"/>
+
+            <form action="../backend/process_update_ingredient_management.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                <input type="hidden" name="ingredientId" id="ingredientId">
+                <div class="modal-form-grid">
+                    <div>
+                        <label for="updateName">Name</label>
+                        <input type="text" name="ingredientName" id="updateName" maxlength="50" placeholder="e.g. Chicken breast" autocomplete="off" required/>
+                    </div>
+                    <div>
+                        <label for="updateProtein">Protein per 100g</label>
+                        <input type="number" name="protein" id="updateProtein" maxlength="10" placeholder="e.g. 31" min="0" step="0.01" autocomplete="off" required/>
+                    </div>
+                    <div>
+                        <label for="updateCarbs">Carbs per 100g</label>
+                        <input type="number" name="carbs" id="updateCarbs" maxlength="10" placeholder="e.g. 15" min="0" step="0.01" autocomplete="off" required/>
+                    </div>
+                    <div>
+                        <label for="updateFats">Fats per 100g</label>
+                        <input type="number" name="fats" id="updateFats" maxlength="10" placeholder="e.g. 3" min="0" step="0.01" autocomplete="off" required/>
+                    </div>
+                    <div>
+                        <label for="updateCalories">Calories per 100g</label>
+                        <input type="number" name="calories" id="updateCalories" maxlength="10" placeholder="e.g. 150" min="0" step="0.01" autocomplete="off" required/>
+                    </div>
                 </div>
-                <div>
-                    <label for="updateProtein">Protein per 100g</label>
-                    <input type="text" id="updateProtein" maxlength="10" placeholder="Enter protein per 100g" autocomplete="off"/>
+                <div class="modal-actions">
+                    <input type="submit" value="Update" id="updateSubmit">
+                    <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
                 </div>
-                <div>
-                    <label for="updateCarbs">Carbs per 100g</label>
-                    <input type="text" id="updateCarbs" maxlength="10" placeholder="Enter carbs per 100g" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateFats">Fats per 100g</label>
-                    <input type="text" id="updateFats" maxlength="10" placeholder="Enter fats per 100g" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateCalories">Calories per 100g</label>
-                    <input type="text" id="updateCalories" maxlength="10" placeholder="Enter calories per 100g" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateCreatedAt">Created At</label>
-                    <input type="text" id="updateCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
-                </div>
-            </div>
-            <div class="modal-actions">
-                <input type="submit" value="Update" id="updateSubmit">
-                <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
-            </div>
+            </form>
         </div>
     </div>
+
     <div class="toast" id="toast"></div>
     
     <?php include '../../utils/message2.php'; ?>
