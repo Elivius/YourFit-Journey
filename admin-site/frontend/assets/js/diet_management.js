@@ -29,11 +29,7 @@ function closeAddModal() {
     document.getElementById('addBackdrop').classList.remove('active');
 }
 
-document.getElementById('addModal').addEventListener('click', function (e) {
-    if (e.target === this) {
-        closeAddModal();
-    }
-});
+document.getElementById('addBackdrop').addEventListener('click', closeAddModal);
 
 // Edit Modal
 document.getElementById('editBtn').addEventListener('click', function () {
@@ -44,18 +40,16 @@ document.getElementById('editBtn').addEventListener('click', function () {
     const cells = row.querySelectorAll('td');
 
     // Fill the update form with data
-    document.getElementById('updateExerciseName').value = cells[2].innerText;
-    document.getElementById('updateImage').value = cells[3].innerText;
-    document.getElementById('updateCategory').value = cells[4].innerText;
-    document.getElementById('updateTargetedMuscle').value = cells[5].innerText;
-    document.getElementById('updateInstructions').value = cells[6].innerText;
+    document.getElementById('updateMealID').value = cells[2].innerText;
+    document.getElementById('updateIngredientID').value = cells[3].innerText;
+    document.getElementById('updateBaseGrams').value = cells[4].innerText;
 
-    let idInput = document.getElementById('updateExerciseId');
+    let idInput = document.getElementById('updateDietId');
     if (!idInput) {
         idInput = document.createElement('input');
         idInput.type = 'hidden';
-        idInput.name = 'exerciseId';
-        idInput.id = 'updateExerciseId';
+        idInput.name = 'mealIngredientId';
+        idInput.id = 'updateDietId';
         document.querySelector('#updateModal form').appendChild(idInput);
     }
     idInput.value = cells[1].innerText;
@@ -73,11 +67,7 @@ function closeUpdateModal() {
     document.getElementById('updateBackdrop').classList.remove('active');
 }
 
-document.getElementById('updateModal').addEventListener('click', function (e) {
-    if (e.target === this) {
-        closeUpdateModal();
-    }
-});
+document.getElementById('updateBackdrop').addEventListener('click', closeUpdateModal);
 
 // Delete User
 document.getElementById('deleteBtn').addEventListener('click', function () {

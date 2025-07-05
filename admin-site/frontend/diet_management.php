@@ -103,7 +103,7 @@ $ingredientResult = mysqli_query($connection, $ingredientQuery);
     <div class="modal-dialog" id="addModal">
         <div class="modal-content">
             <button class="modal-close" type="button" id="addCloseBtn" aria-label="Close">&times;</button>
-            <div class="modal-title">Add New Ingredients and Meals</div>
+            <div class="modal-title">Add New Diet with Meals and Ingredients</div>
 
             <form action="../backend/process_add_diet_management.php" method="POST">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
@@ -138,26 +138,38 @@ $ingredientResult = mysqli_query($connection, $ingredientQuery);
 
     <!-- Edit Modal -->
     <div class="modal-backdrop" id="updateBackdrop"></div>
+
     <div class="modal-dialog" id="updateModal">
         <div class="modal-content">
             <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
-            <div class="modal-title">Edit Ingredients and Meals</div>
-            <div class="modal-form-grid">
-                <div>
-                    <label for="updateBaseGrams">Base Grams</label>
-                    <input type="text" id="updateBaseGrams" maxlength="50" placeholder="Enter Base Grams" autocomplete="off"/>
+            <div class="modal-title">Edit Diet with Meals and Ingredients</div>
+
+            <form action="../backend/process_update_diet_management.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                <input type="hidden" name="mealIngredientId" id="updateDietId">
+
+                <div class="modal-form-grid">
+                    <div>
+                        <label for="updateMealID">Meal ID (Read only)</label>
+                        <input type="number" name="melId" id="updateMealID" maxlength="50" autocomplete="off" required readonly />
+                    </div>
+                    <div>
+                        <label for="updateIngredientID">Ingredient ID</label>
+                        <input type="number" name="ingId" id="updateIngredientID" maxlength="2048" placeholder="e.g. 1" autocomplete="off" required />
+                    </div>
+                    <div>
+                        <label for="updateBaseGrams">Base grams</label>
+                        <input type="number" name="baseGrams" id="updateBaseGrams" maxlength="60" placeholder="e.g. 100" autocomplete="off" required />
+                    </div>
+                </div>    
+                <div class="modal-actions">
+                    <input type="submit" value="Update" id="updateSubmit">
+                    <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
                 </div>
-                <div>
-                    <label for="updateCreatedAt">Created At</label>
-                    <input type="text" id="updateCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
-                </div>
-            </div>
-            <div class="modal-actions">
-                <input type="submit" value="Update" id="updateSubmit">
-                <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
-            </div>
+            </form>
         </div>
     </div>
+
     <div class="toast" id="toast"></div>
     
     <?php include '../../utils/message2.php'; ?>
@@ -176,30 +188,43 @@ $ingredientResult = mysqli_query($connection, $ingredientQuery);
         ?>`;
 
         document.getElementById("addIngredientRowBtn").addEventListener("click", () => {
-            ingredientRowIndex++;
             const row = document.createElement("div");
             row.className = "ingredient-row";
+
             row.innerHTML = `
                 <div>
-                    <label for="ingredients_${ingredientRowIndex}">Ingredient ${ingredientRowIndex}</label>
-                    <select name="ingId[]" id="ingredients_${ingredientRowIndex}" required>
+                    <label>Ingredient</label>
+                    <select name="ingId[]" required>
                         <option value="" disabled selected>Select ingredient</option>
                         ${ingredientOptions}
                     </select>
                 </div>
                 <div>
-                    <label for="grams_${ingredientRowIndex}">Base Grams</label>
-                    <input type="number" name="baseGrams[]" id="grams_${ingredientRowIndex}" min="1" step="0.01" required>
+                    <label>Base Grams</label>
+                    <input type="number" name="baseGrams[]" min="1" step="0.01" required>
                 </div>
                 <button type="button" class="btn removeRowBtn" aria-label="Remove ingredient row" style="align-self:end;">Remove</button>
             `;
 
+            // Remove row logic
             row.querySelector(".removeRowBtn").addEventListener("click", () => {
                 row.remove();
+                renumberIngredientLabels();
             });
 
             container.appendChild(row);
+            renumberIngredientLabels(); // Renumber after adding
         });
+
+        function renumberIngredientLabels() {
+            const rows = container.querySelectorAll(".ingredient-row");
+            rows.forEach((row, index) => {
+                const label = row.querySelector("label");
+                if (label) {
+                    label.textContent = `Ingredient ${index + 1}`;
+                }
+            });
+        }
     </script>
 </body>
 </html>
