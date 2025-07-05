@@ -45,8 +45,15 @@ document.getElementById('editBtn').addEventListener('click', function () {
 
     // Fill the update form with data
     document.getElementById('updateMealName').value = cells[2].innerText;
-    document.getElementById('updateEstPrepTime').value = cells[3].innerText;
-    document.getElementById('updateImage').value = cells[4].innerText;
+    document.getElementById('updateEstimatedPrepMinutes').value = cells[3].innerText;
+    
+    const img = cells[4].querySelector('img');
+    if (img) {
+        document.getElementById('updateImageUrl').value = img.getAttribute('src');
+    } else {
+        document.getElementById('updateImageUrl').value = '';
+    }
+
     document.getElementById('updateCategory').value = cells[5].innerText;
 
     let idInput = document.getElementById('updateMealId');

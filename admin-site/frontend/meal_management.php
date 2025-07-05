@@ -111,15 +111,15 @@ if (!$results) {
                 <div class="modal-form-grid">
                     <div>
                         <label for="addMealName">Meal Name</label>
-                        <input type="text" name="mealName" id="addMealName" maxlength="50" placeholder="Enter meal name" autocomplete="off" required />
+                        <input type="text" name="mealName" id="addMealName" maxlength="50" placeholder="e.g. Salmon Teriyaki Rice" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addEstimatedPrepMinutes">Estimated Preparation Minutes</label>
-                        <input type="number" name="estimatedPrepMinutes" id="addEstimatedPrepMinutes" min="1" max="1440" placeholder="Enter preparation minutes" autocomplete="off" required />
+                        <input type="number" name="estimatedPrepMinutes" id="addEstimatedPrepMinutes" min="1" max="1440" placeholder="e.g. 20" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addImageUrl">Image</label>
-                        <input type="text" name="imageUrl" id="addImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off" required />
+                        <input type="text" name="imageUrl" id="addImageUrl" maxlength="2048" placeholder="e.g. https://raw.githubusercontent.com/salmon.jpg" autocomplete="off" required />
                     </div>
                     <div>
                         <label for="addCategory">Category</label>
@@ -141,36 +141,43 @@ if (!$results) {
 
     <!-- Edit Modal -->
     <div class="modal-backdrop" id="updateBackdrop"></div>
+
     <div class="modal-dialog" id="updateModal">
         <div class="modal-content">
             <button class="modal-close" type="button" id="updateCloseBtn" aria-label="Close">&times;</button>
             <div class="modal-title">Edit Meal</div>
-            <div class="modal-form-grid">
-                <div>
-                    <label for="updateMealName">Meal Name</label>
-                    <input type="text" id="updateMealName" maxlength="50" placeholder="Enter meal name" autocomplete="off"/>
+
+            <form action="../backend/process_update_meal_management.php" method="POST">
+                <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(generateCSRFToken()); ?>">
+                <input type="hidden" name="mealId" id="updateMealId">
+                <div class="modal-form-grid">
+                    <div>
+                        <label for="updateMealName">Meal Name</label>
+                        <input type="text" name="mealName" id="updateMealName" maxlength="50" placeholder="e.g. Salmon Teriyaki Rice" autocomplete="off" required/>
+                    </div>
+                    <div>
+                        <label for="updateEstimatedPrepMinutes">Estimated Preparation Minutes</label>
+                        <input type="number" name="estimatedPrepMinutes" id="updateEstimatedPrepMinutes" min="1" max="1440" placeholder="e.g. 20" autocomplete="off" required/>
+                    </div>
+                    <div>
+                        <label for="updateImageUrl">Image</label>
+                        <input type="text" name="imageUrl" id="updateImageUrl" maxlength="2048" placeholder="e.g. https://raw.githubusercontent.com/salmon.jpg" autocomplete="off" required/>
+                    </div>
+                    <div>
+                        <label for="updateCategory">Category</label>
+                        <select size="1" name="category" id="updateCategory" required>
+                            <option value="" disabled selected>Select a Category</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                        </select>
+                    </div>
                 </div>
-                <div>
-                    <label for="updateEstimatedPrepMinutes">Estimated Preparation Minutes</label>
-                    <input type="number" id="updateEstimatedPrepMinutes" min="1" max="1440" placeholder="Enter preparation minutes" autocomplete="off"/>
+                <div class="modal-actions">
+                    <input type="submit" value="Update" id="updateSubmit">
+                    <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
                 </div>
-                <div>
-                    <label for="updateImageUrl">Image</label>
-                    <input type="text" id="updateImageUrl" maxlength="2048" placeholder="Enter image url" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateCategory">Category</label>
-                    <input type="text" id="updateCategory" maxlength="50" placeholder="Enter category" autocomplete="off"/>
-                </div>
-                <div>
-                    <label for="updateCreatedAt">Created At</label>
-                    <input type="text" id="updateCreatedAt" maxlength="25" placeholder="Enter creation date" autocomplete="off"/>
-                </div>
-            </div>
-            <div class="modal-actions">
-                <input type="submit" value="Update" id="updateSubmit">
-                <button type="button" class="cancel-popup" id="updateCancel">Cancel</button>
-            </div>
+            </form>
         </div>
     </div>
     <div class="toast" id="toast"></div>
