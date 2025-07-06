@@ -85,7 +85,7 @@ document.getElementById('updateModal').addEventListener('click', function (e) {
     }
 });
 
-// Delete User
+// Delete meal
 document.getElementById('deleteBtn').addEventListener('click', function () {
     const selected = Array.from(document.querySelectorAll('.rowCheckbox:checked')).map(cb => cb.value);
     if (selected.length === 0) return;

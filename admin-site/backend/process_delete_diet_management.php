@@ -12,27 +12,37 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$meal_ingredient_id = sanitizeInt($_POST['meal_ingredient_id'] ?? '');
+$mealIngredientIds = $_POST['mealIngredientIds'] ?? [];
 
-if (!$meal_ingredient_id) {
-    $_SESSION['error'] = "Invalid meal ingredient ID";
+if (!is_array($mealIngredientIds) || empty($mealIngredientIds)) {
+    $_SESSION['error'] = "No diet item selected";
     header("Location: ../frontend/diet_management.php");
     exit;
 }
 
-// Proceed to delete the meal ingredient
-$sql = "DELETE FROM meal_ingredients_t WHERE mi_id = ?";
-if ($stmt = mysqli_prepare($connection, $sql)) {
-    mysqli_stmt_bind_param($stmt, "i", $meal_ingredient_id);
-    if (mysqli_stmt_execute($stmt)) {
-        $_SESSION['success'] = "Meal ingredient deleted successfully";
+$deletedCount = 0;
+
+foreach ($mealIngredientIds as $id) {
+    $meal_ingredient_id = sanitizeInt($id);
+    if (!$meal_ingredient_id) continue;
+
+    $sql = "DELETE FROM meal_ingredients_t WHERE mi_id = ?";
+    $stmt = mysqli_prepare($connection, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $meal_ingredient_id);
+        if (mysqli_stmt_execute($stmt)) {
+            $deletedCount++;
+        }
+        mysqli_stmt_close($stmt);
     } else {
-        $_SESSION['error'] = "Failed to delete meal ingredient";
+        error_log("Prepare failed: " . mysqli_error($connection));
     }
-    mysqli_stmt_close($stmt);
+}
+
+if ($deletedCount > 0) {
+    $_SESSION['success'] = "$deletedCount diet item(s) deleted successfully";
 } else {
-    error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error";
+    $_SESSION['error'] = "No diet items were deleted";
 }
 
 header("Location: ../frontend/diet_management.php");

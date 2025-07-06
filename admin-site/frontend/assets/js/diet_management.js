@@ -69,12 +69,12 @@ function closeUpdateModal() {
 
 document.getElementById('updateBackdrop').addEventListener('click', closeUpdateModal);
 
-// Delete User
+// Delete diet
 document.getElementById('deleteBtn').addEventListener('click', function () {
     const selected = Array.from(document.querySelectorAll('.rowCheckbox:checked')).map(cb => cb.value);
     if (selected.length === 0) return;
 
-    if (confirm(`Are you sure you want to delete ${selected.length} exercise(s)?`)) {
+    if (confirm(`Are you sure you want to delete ${selected.length} diet item(s)?`)) {
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = '../backend/process_delete_diet_management.php';
@@ -82,7 +82,7 @@ document.getElementById('deleteBtn').addEventListener('click', function () {
         selected.forEach(id => {
             const input = document.createElement('input');
             input.type = 'hidden';
-            input.name = 'exerciseIds[]';
+            input.name = 'mealIngredientIds[]';
             input.value = id;
             form.appendChild(input);
         });

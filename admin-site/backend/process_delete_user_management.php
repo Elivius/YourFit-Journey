@@ -12,54 +12,47 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$user_id = sanitizeInt($_POST['user_id'] ?? '');
+$userIds = $_POST['userIds'] ?? [];
 
-if (!$user_id) {
-    $_SESSION['error'] = "Invalid user ID";
+if (!is_array($userIds) || empty($userIds)) {
+    $_SESSION['error'] = "No user selected";
     header("Location: ../frontend/user_management.php");
     exit;
 }
 
-// Check if the user is an admin
-$check_role_SQL = "SELECT usr_role FROM users_t WHERE usr_id = ?";
-if ($stmt = mysqli_prepare($connection, $check_role_SQL)) {
+$deletedCount = 0;
+foreach ($userIds as $id) {
+    $user_id = sanitizeInt($id);
+    if (!$user_id) continue;
+
+    // Check if user is admin
+    $check_role_SQL = "SELECT usr_role FROM users_t WHERE usr_id = ?";
+    $stmt = mysqli_prepare($connection, $check_role_SQL);
     mysqli_stmt_bind_param($stmt, "i", $user_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_bind_result($stmt, $role);
     if (mysqli_stmt_fetch($stmt)) {
-        if ($role === 'admin') {
-            $_SESSION['error'] = "Cannot delete an admin user";
-            mysqli_stmt_close($stmt);
-            header("Location: ../frontend/user_management.php");
-            exit;
-        }
-    } else {
-        $_SESSION['error'] = "User not found";
         mysqli_stmt_close($stmt);
-        header("Location: ../frontend/user_management.php");
-        exit;
+        if ($role === 'admin') continue;
+    } else {
+        mysqli_stmt_close($stmt);
+        continue;
     }
-    mysqli_stmt_close($stmt);
-} else {
-    error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error";
-    header("Location: ../frontend/user_management.php");
-    exit;
-}
 
-// Proceed to delete the user
-$sql = "DELETE FROM users_t WHERE usr_id = ?";
-if ($stmt = mysqli_prepare($connection, $sql)) {
+    // Proceed to delete
+    $delete_SQL = "DELETE FROM users_t WHERE usr_id = ?";
+    $stmt = mysqli_prepare($connection, $delete_SQL);
     mysqli_stmt_bind_param($stmt, "i", $user_id);
     if (mysqli_stmt_execute($stmt)) {
-        $_SESSION['success'] = "User deleted successfully";
-    } else {
-        $_SESSION['error'] = "Failed to delete user";
+        $deletedCount++;
     }
     mysqli_stmt_close($stmt);
+}
+
+if ($deletedCount > 0) {
+    $_SESSION['success'] = "$deletedCount user(s) deleted successfully";
 } else {
-    error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error";
+    $_SESSION['error'] = "No users deleted (admins skipped or errors occurred)";
 }
 
 header("Location: ../frontend/user_management.php");

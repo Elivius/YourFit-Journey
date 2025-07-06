@@ -12,48 +12,53 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$exercise_id = sanitizeInt($_POST['exercise_id'] ?? '');
+$exerciseIds = $_POST['exerciseIds'] ?? [];
 
-if (!$exercise_id) {
-    $_SESSION['error'] = "Invalid exercise ID";
+if (!is_array($exerciseIds) || empty($exerciseIds)) {
+    $_SESSION['error'] = "No exercises selected";
     header("Location: ../frontend/exercise_management.php");
     exit;
 }
 
-// Check if the exercise is currently used in any plans
-$check_usage_sql = "SELECT 1 FROM workout_exercises_t WHERE exe_id = ? LIMIT 1";
-if ($stmt = mysqli_prepare($connection, $check_usage_sql)) {
+$deletedCount = 0;
+$skippedCount = 0;
+
+foreach ($exerciseIds as $id) {
+    $exercise_id = sanitizeInt($id);
+    if (!$exercise_id) continue;
+
+    // Check if exercise is used in workout plans
+    $check_sql = "SELECT 1 FROM workout_exercises_t WHERE exe_id = ? LIMIT 1";
+    $stmt = mysqli_prepare($connection, $check_sql);
     mysqli_stmt_bind_param($stmt, "i", $exercise_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
-    
+
     if (mysqli_stmt_num_rows($stmt) > 0) {
-        $_SESSION['error'] = "This exercise is currently used in workout plans and cannot be deleted";
+        $skippedCount++;
         mysqli_stmt_close($stmt);
-        header("Location: ../frontend/exercise_management.php");
-        exit;
+        continue;
     }
     mysqli_stmt_close($stmt);
-} else {
-    error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error while checking exercise usage";
-    header("Location: ../frontend/exercise_management.php");
-    exit;
-}
 
-// Proceed to delete the exercise
-$sql = "DELETE FROM exercises_t WHERE exe_id = ?";
-if ($stmt = mysqli_prepare($connection, $sql)) {
+    // Delete the exercise
+    $delete_sql = "DELETE FROM exercises_t WHERE exe_id = ?";
+    $stmt = mysqli_prepare($connection, $delete_sql);
     mysqli_stmt_bind_param($stmt, "i", $exercise_id);
     if (mysqli_stmt_execute($stmt)) {
-        $_SESSION['success'] = "Exercise deleted successfully";
-    } else {
-        $_SESSION['error'] = "Failed to delete exercise";
+        $deletedCount++;
     }
     mysqli_stmt_close($stmt);
-} else {
-    error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error";
+}
+
+if ($deletedCount > 0) {
+    $_SESSION['success'] = "$deletedCount exercise(s) deleted successfully";
+}
+if ($skippedCount > 0) {
+    $_SESSION['error'] = "$skippedCount exercise(s) could not be deleted as they are in use in workout plans";
+}
+if ($deletedCount === 0 && $skippedCount === 0) {
+    $_SESSION['error'] = "No valid exercises to delete";
 }
 
 header("Location: ../frontend/exercise_management.php");

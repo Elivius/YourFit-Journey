@@ -83,7 +83,7 @@ if (!$results) {
                             <td><?= htmlspecialchars($row['exe_name']) ?></td>
                             <td>
                                 <?php if (!empty($row['exe_image_url'])) : ?>
-                                    <img src="<?= htmlspecialchars($row['exe_image_url']) ?>" alt="Meal Image" width="180" height="120" style="border-radius: 8px;">
+                                    <img src="<?= htmlspecialchars($row['exe_image_url']) ?>" alt="Exercise Image" width="180" height="120" style="border-radius: 8px;">
                                 <?php else : ?>
                                     <span>No Image</span>
                                 <?php endif; ?>

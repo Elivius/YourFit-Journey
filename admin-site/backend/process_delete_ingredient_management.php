@@ -12,48 +12,53 @@ if (!isset($_POST['csrf_token']) || !validateCSRFToken($_POST['csrf_token'])) {
     exit;
 }
 
-$ingredient_id = sanitizeInt($_POST['ingredient_id'] ?? '');
+$ingredientIds = $_POST['ingredientIds'] ?? [];
 
-if (!$ingredient_id) {
-    $_SESSION['error'] = "Invalid ingredient ID";
+if (!is_array($ingredientIds) || empty($ingredientIds)) {
+    $_SESSION['error'] = "No ingredients selected";
     header("Location: ../frontend/ingredient_management.php");
     exit;
 }
 
-// Check if the ingredient is currently used in diet management
-$check_usage_sql = "SELECT 1 FROM meal_ingredients_t WHERE ing_id = ? LIMIT 1";
-if ($stmt = mysqli_prepare($connection, $check_usage_sql)) {
+$deletedCount = 0;
+$skippedCount = 0;
+
+foreach ($ingredientIds as $id) {
+    $ingredient_id = sanitizeInt($id);
+    if (!$ingredient_id) continue;
+
+    // Check if used in meal_ingredients_t
+    $check_sql = "SELECT 1 FROM meal_ingredients_t WHERE ing_id = ? LIMIT 1";
+    $stmt = mysqli_prepare($connection, $check_sql);
     mysqli_stmt_bind_param($stmt, "i", $ingredient_id);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_store_result($stmt);
-    
+
     if (mysqli_stmt_num_rows($stmt) > 0) {
-        $_SESSION['error'] = "This ingredient is currently used in diet management and cannot be deleted";
+        $skippedCount++;
         mysqli_stmt_close($stmt);
-        header("Location: ../frontend/ingredient_management.php");
-        exit;
+        continue;
     }
     mysqli_stmt_close($stmt);
-} else {
-    error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error while checking ingredient usage";
-    header("Location: ../frontend/ingredient_management.php");
-    exit;
-}
 
-// Proceed to delete the ingredient
-$sql = "DELETE FROM ingredients_t WHERE ing_id = ?";
-if ($stmt = mysqli_prepare($connection, $sql)) {
+    // Delete ingredient
+    $delete_sql = "DELETE FROM ingredients_t WHERE ing_id = ?";
+    $stmt = mysqli_prepare($connection, $delete_sql);
     mysqli_stmt_bind_param($stmt, "i", $ingredient_id);
     if (mysqli_stmt_execute($stmt)) {
-        $_SESSION['success'] = "Ingredient deleted successfully";
-    } else {
-        $_SESSION['error'] = "Failed to delete ingredient";
+        $deletedCount++;
     }
     mysqli_stmt_close($stmt);
-} else {
-    error_log("Prepare failed: " . mysqli_error($connection));
-    $_SESSION['error'] = "Server error";
+}
+
+if ($deletedCount > 0) {
+    $_SESSION['success'] = "$deletedCount ingredient(s) deleted successfully";
+}
+if ($skippedCount > 0) {
+    $_SESSION['error'] = "$skippedCount ingredient(s) could not be deleted as they are in use in diet plans";
+}
+if ($deletedCount === 0 && $skippedCount === 0) {
+    $_SESSION['error'] = "No valid ingredients to delete";
 }
 
 header("Location: ../frontend/ingredient_management.php");
