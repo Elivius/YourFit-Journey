@@ -10,9 +10,30 @@ document.querySelectorAll('.rowCheckbox').forEach(cb => {
 });
 
 function toggleActionButtons() {
-    const selectedCount = document.querySelectorAll('.rowCheckbox:checked').length;
-    document.getElementById('editBtn').disabled = selectedCount !== 1;
-    document.getElementById('deleteBtn').disabled = selectedCount === 0;
+    const selected = document.querySelectorAll('.rowCheckbox:checked');
+    const selectedCount = selected.length;
+
+    // If selected is admin, disable edit and delete buttons
+    let hasAdmin = false;
+    selected.forEach(cb => {
+        const row = cb.closest('tr');
+        const roleCell = row.cells[7];
+        const role = roleCell.textContent.trim().toLowerCase();
+        if (role === 'admin') {
+            hasAdmin = true;
+        }
+    });
+
+    const editBtn = document.getElementById('editBtn');
+    const deleteBtn = document.getElementById('deleteBtn');
+
+    if (hasAdmin) {
+        editBtn.disabled = true;
+        deleteBtn.disabled = true;
+    } else {
+        editBtn.disabled = selectedCount !== 1;
+        deleteBtn.disabled = selectedCount === 0;
+    }
 }
 
 // Add Modal

@@ -499,7 +499,6 @@ input[type="checkbox"] {
 }
 
 /* Make it scrollable when more than 1 ingredient added to diet management */
-
 .ingredient-container {
     max-height: 300px;
     overflow-y: auto;

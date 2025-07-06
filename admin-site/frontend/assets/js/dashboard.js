@@ -13,7 +13,7 @@ function initializeDashboard() {
   // Add loading states
   showLoadingStates()
 
-  // Simulate loading delay
+  // Loading delay
   setTimeout(() => {
     hideLoadingStates()
     animateDashboardElements()

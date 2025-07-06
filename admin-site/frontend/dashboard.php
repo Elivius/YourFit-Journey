@@ -22,11 +22,13 @@ require_once '../backend/dashboard_analytics.php';
         <!-- Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <div class="logo">
+                <div class="logo fs-4">
                     <div class="logo-icon">
                         <i class="fas fa-bolt logo-icon"></i>
                     </div>
-                    <span class="logo-text">YourFit Journey</span>
+                    <span class="logo-text">
+                        YourFit<span class="text-gradient">Journey</span>
+                    </span>
                 </div>
             </div>
             
@@ -376,8 +378,6 @@ require_once '../backend/dashboard_analytics.php';
             </div>
         </main>
     </div>
-    
-    <?php include 'scroll_to_top.php'; ?>
     
     <div id="notification-container"></div>
     <script src="assets/js/dashboard.js"></script>
