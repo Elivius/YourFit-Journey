@@ -46,7 +46,7 @@ if (!$results) {
                 <!-- Filter and Clear Function -->
                 <span style="position:relative; display:inline-block; margin-left:10px;">
                     <i class="material-icons" style="position:absolute; left:10px; top:38%; transform:translateY(-50%); color:#b3b3fd; font-size:18px; pointer-events:none;">search</i>
-                    <input type="text" id="filterInput" placeholder="Name or Muscle" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
+                    <input type="text" id="filterInput" placeholder="Workout Name or Muscle" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
                     <button id="clearFilterBtn" style="display:none;margin-left:8px;padding:6px 10px;">Clear</button>
                 </span>
             </div>
@@ -148,7 +148,7 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="addInstructions">Instructions</label>
-                        <textarea name="instructions" id="addInstructions" maxlength="500" placeholder="e.g. 1. Sit on the bench" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
+                        <textarea name="instructions" id="addInstructions" maxlength="500" placeholder="" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
                     </div>
                 </div>    
                 <div class="modal-actions">
@@ -195,7 +195,7 @@ if (!$results) {
                     </div>
                     <div>
                         <label for="updateInstructions">Instructions</label>
-                        <textarea name="instructions" id="updateInstructions" maxlength="500" placeholder="e.g. 1. Sit on the bench" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
+                        <textarea name="instructions" id="updateInstructions" maxlength="500" placeholder="" autocomplete="off" required style="height: 100px; resize: vertical; max-height: 200px; overflow: auto;"></textarea>
                     </div>
                 </div>    
                 <div class="modal-actions">
@@ -210,5 +210,10 @@ if (!$results) {
     <?php include '../../utils/message2.php'; ?>
 
     <script src="assets/js/exercise_management.js"></script>
+    <!-- Placeholder Script for Instructions -->
+    <script>
+        document.getElementById("addInstructions").placeholder = "e.g. \n1. Sit on the bench\n2. Grab the bar";
+        document.getElementById("updateInstructions").placeholder = "e.g. \n1. Sit on the bench\n2. Grab the bar";
+    </script>
 </body>
 </html>

@@ -46,7 +46,7 @@ if (!$results) {
                 <!-- Filter and Clear Function -->
                 <span style="position:relative; display:inline-block; margin-left:10px;">
                     <i class="material-icons" style="position:absolute; left:10px; top:38%; transform:translateY(-50%); color:#b3b3fd; font-size:18px; pointer-events:none;">search</i>
-                    <input type="text" id="filterInput" placeholder="Name" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
+                    <input type="text" id="filterInput" placeholder="Ingredient Name" style="padding:7px 32px 7px 34px; border-radius:8px; border:1.5px solid #d1d7fa; font-size:14px; transition:border-color 0.2s, box-shadow 0.2s;">
                     <button id="clearFilterBtn" style="display:none;margin-left:8px;padding:6px 10px;">Clear</button>
                 </span>
             </div>
@@ -67,7 +67,7 @@ if (!$results) {
                     <tr>
                         <th><input type="checkbox" id="selectAll" aria-label="Select all"/></th>
                         <th>Ingredient ID</th>
-                        <th>Name</th>
+                        <th>Ingredient Name</th>
                         <th>Protein per 100g</th>
                         <th>Carbs per 100g</th>
                         <th>Fats per 100g</th>

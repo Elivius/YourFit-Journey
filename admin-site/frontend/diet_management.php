@@ -201,7 +201,7 @@ $ingredientResult = mysqli_query($connection, $ingredientQuery);
                 </div>
                 <div>
                     <label>Base Grams</label>
-                    <input type="number" name="baseGrams[]" min="1" step="0.01" required>
+                    <input type="number" name="baseGrams[]" placeholder="e.g. 100" min="1" step="0.01" required>
                 </div>
                 <button type="button" class="btn removeRowBtn" aria-label="Remove ingredient row" style="align-self:end;">Remove</button>
             `;
