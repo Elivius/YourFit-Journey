@@ -146,7 +146,7 @@ require_once '../backend/dashboard_analytics.php';
                 </div>                
                 <a href="../../utils/logout.php" class="user-menu-item" id="signOutBtn" style="display: flex; align-items: center; gap: 8px; margin-top: 10px;">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Sign Out</span>
+                    <span>Log Out</span>
                 </a>
             </div>
         </aside>
