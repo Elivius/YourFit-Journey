@@ -51,7 +51,6 @@ if ($workout_id) {
         mysqli_stmt_execute($stmt);
         mysqli_stmt_close($stmt);
     } else {
-        mysqli_stmt_close($stmt);
         error_log("Workout update failed: " . mysqli_error($connection));
         $_SESSION['error'] = "Failed to update workout";
         header("Location: ../frontend/workouts.php?section=my-workouts");
@@ -86,7 +85,6 @@ if ($workout_id) {
             header("Location: ../frontend/workouts.php?section=my-workouts");
             exit;
         } else {
-            mysqli_stmt_close($stmt);
             error_log("Exercise update insert failed: " . mysqli_error($connection));
             $_SESSION['error'] = "Failed to update exercises";
             header("Location: ../frontend/workouts.php?section=my-workouts");
@@ -106,7 +104,6 @@ if ($workout_id) {
         $workout_id = mysqli_insert_id($connection);
         mysqli_stmt_close($stmt);
     } else {
-        mysqli_stmt_close($stmt);
         error_log("Workout insert prepare failed: " . mysqli_error($connection));
         $_SESSION['error'] = "Failed to save workout";
         header("Location: ../frontend/workouts.php?section=my-workouts");
@@ -133,7 +130,6 @@ if ($workout_id) {
             header("Location: ../frontend/workouts.php?section=my-workouts");
             exit;
         } else {
-            mysqli_stmt_close($stmt);
             error_log("Exercise insert prepare failed: " . mysqli_error($connection));
             $_SESSION['error'] = "Failed to save exercises";
             header("Location: ../frontend/workouts.php?section=my-workouts");
