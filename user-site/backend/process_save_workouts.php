@@ -25,6 +25,7 @@ if (empty($workout_name)) {
 
 $workout_id = isset($_POST['workout_id']) && is_numeric($_POST['workout_id']) ? intval($_POST['workout_id']) : null;
 
+// If it is a existing workout, user wants to update it
 if ($workout_id) {
     // Make sure this workout belongs to the current user
     $check_sql = "SELECT wko_id FROM workouts_t WHERE wko_id = ? AND usr_id = ?";
@@ -96,6 +97,7 @@ if ($workout_id) {
         exit;
     }
 
+// If it is a new workout, user wants to create it
 } else {
     $sql_insert_workout = "INSERT INTO workouts_t (usr_id, wko_name, wko_estimated_duration, wko_description) VALUES (?, ?, ?, ?)";
     if ($stmt = mysqli_prepare($connection, $sql_insert_workout)) {
