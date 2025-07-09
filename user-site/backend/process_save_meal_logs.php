@@ -29,7 +29,7 @@ if ($meal_log_id) {
         mysqli_stmt_bind_param($stmt, 'ssddddii', $meal_name, $category, $protein, $carbs, $fats, $calories, $meal_log_id, $user_id);
         mysqli_stmt_execute($stmt);
         if (mysqli_stmt_affected_rows($stmt) >= 0) {
-            $_SESSION['success'] = "Meal successfully updated";
+            $_SESSION['success'] = "Meal updated successfully";
         } else {
             $_SESSION['error'] = "Meal not updated. Please try again";
         }
