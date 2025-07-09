@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const btn = e.target.closest('.btn-outline-primary');
 
         if (btn && btn.innerText.includes('Print')) {
-            alert('Printing workout plan...');
+            alert('Confirm printing the workout?');
             window.print();
         }
     });
