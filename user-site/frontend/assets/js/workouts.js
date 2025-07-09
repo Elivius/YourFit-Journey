@@ -17,14 +17,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Print Workout Button
-    const printWorkoutBtn = document.querySelector('.card-actions .btn-outline-primary');
-    
-    if (printWorkoutBtn) {
-        printWorkoutBtn.addEventListener('click', function() {
+    document.body.addEventListener('click', function (e) {
+        const btn = e.target.closest('.btn-outline-primary');
+
+        if (btn && btn.innerText.includes('Print')) {
             alert('Printing workout plan...');
             window.print();
-        });
-    }
+        }
+    });
+
 
     // Filter exercise by category
     document.getElementById('category-filter').addEventListener('change', function () {
