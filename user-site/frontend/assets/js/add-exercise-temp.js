@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const accordionContainer = document.getElementById("selectedExercises");
 
     renderExercises();
+    disableAddedExerciseButtons();
 
     buttons.forEach(button => {
         button.addEventListener("click", () => {
@@ -17,14 +18,21 @@ document.addEventListener("DOMContentLoaded", function () {
             const name = button.getAttribute("data-name");
             const muscles = button.getAttribute("data-target-muscles");
 
-            if (selectedExercises.some(e => e.id === id)) {
-                alert("Exercise already added!");
+            if (selectedExercises.some(e => String(e.id) === String(id))) {
+                alert(`"${name}" is already in your list!`);
                 return;
             }
+
+            // Instantly update button UI
+            button.disabled = true;
+            button.textContent = "Added";
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-secondary");
 
             selectedExercises.push({ id, name, muscles });
             localStorage.setItem("selectedExercises", JSON.stringify(selectedExercises));
             renderExercises();
+            disableAddedExerciseButtons();
         });
     });
 
@@ -80,7 +88,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                     <div class="parameter">
                                         <span class="parameter-label">Rest (seconds):</span>
                                         <span class="parameter-value">
-                                            <input name="exercises[${index}][rest]" type="number" class="form-control form-control-sm" value="${ex.rest || 60}" min="0">
+                                            <input name="exercises[${index}][rest]" type="number" class="form-control form-control-sm" value="${ex.rest || 60}" min="0" required>
                                         </span>
                                     </div>
                                     <div class="parameter">
@@ -119,7 +127,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectedExercises = selectedExercises.filter(e => String(e.id) !== String(idToRemove));
                 localStorage.setItem("selectedExercises", JSON.stringify(selectedExercises));
                 renderExercises();
+                disableAddedExerciseButtons();
             });
+        });
+    }
+
+    function disableAddedExerciseButtons() {
+        document.querySelectorAll(".add-exercise-btn").forEach(button => {
+            const id = button.getAttribute("data-id");
+
+            const isAdded = selectedExercises.some(e => String(e.id) === String(id));
+            if (isAdded) {
+                button.disabled = true;
+                button.textContent = "Added";
+                button.classList.add("btn-secondary");
+                button.classList.remove("btn-primary");
+            } else {
+                button.disabled = false;
+                button.textContent = "Add";
+                button.classList.add("btn-primary");
+                button.classList.remove("btn-secondary");
+            }
         });
     }
 
