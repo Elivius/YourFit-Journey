@@ -209,7 +209,7 @@ require_once '../backend/preload_settings.php';
                                             <div class="col-md-4">
                                                 <label for="weight" class="form-label">Weight</label>
                                                 <div class="input-group">
-                                                    <input type="number" class="form-control" id="weight" name="weight" value="<?= htmlspecialchars($user['usr_weight']) ?>" min="0" step="0.01">
+                                                    <input type="number" class="form-control" id="weight" name="weight" value="<?= htmlspecialchars($user['usr_weight']) ?>" min="0" step="0.1">
                                                     <span class="input-group-text">kg</span>
                                                 </div>
                                             </div>
