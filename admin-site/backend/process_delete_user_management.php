@@ -39,9 +39,52 @@ foreach ($userIds as $id) {
         continue;
     }
 
-    // Proceed to delete
-    $delete_SQL = "DELETE FROM users_t WHERE usr_id = ?";
-    $stmt = mysqli_prepare($connection, $delete_SQL);
+    // Get all workouts for the user
+    $workoutIds = [];
+    $sql_get_workouts = "SELECT wko_id FROM workouts_t WHERE usr_id = ?";
+    $stmt = mysqli_prepare($connection, $sql_get_workouts);
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    while ($row = mysqli_fetch_assoc($result)) {
+        $workoutIds[] = $row['wko_id'];
+    }
+    mysqli_stmt_close($stmt);
+
+    // Delete all workout_exercises linked to those workouts
+    foreach ($workoutIds as $wko_id) {
+        $stmt = mysqli_prepare($connection, "DELETE FROM workout_exercises_t WHERE wko_id = ?");
+        mysqli_stmt_bind_param($stmt, "i", $wko_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    }
+
+    // Delete from related tables that use usr_id
+    $deleteTables = [
+        'feedbacks_t',
+        'user_meal_logs_t',
+        'weight_logs_t',
+        'workout_logs_t'
+    ];
+
+    foreach ($deleteTables as $table) {
+        $delete_related_SQL = "DELETE FROM $table WHERE usr_id = ?";
+        $stmt = mysqli_prepare($connection, $delete_related_SQL);
+        if ($stmt) {
+            mysqli_stmt_bind_param($stmt, "i", $user_id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    // Delete workouts
+    $stmt = mysqli_prepare($connection, "DELETE FROM workouts_t WHERE usr_id = ?");
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+
+    // Finally delete the user
+    $stmt = mysqli_prepare($connection, "DELETE FROM users_t WHERE usr_id = ?");
     mysqli_stmt_bind_param($stmt, "i", $user_id);
     if (mysqli_stmt_execute($stmt)) {
         $deletedCount++;
