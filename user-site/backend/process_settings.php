@@ -36,6 +36,7 @@ switch ($form_type) {
             mysqli_stmt_execute($stmt);
             if (mysqli_stmt_affected_rows($stmt) > 0) {
                 $_SESSION['success'] = "Personal info updated";
+                $_SESSION['name'] = $first_name;
             } else {
                 $_SESSION['success'] = "No changes detected";
             }
