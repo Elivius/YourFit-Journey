@@ -1,6 +1,6 @@
-# YourFit-Journey
+# YourFit Journey
 
-**YourFit-Journey** is a web-based Fitness Management System designed to help users achieve their health and fitness goals through **personalized workout plans**, **customizable diet recommendations**, and **progress tracking tools**.  
+**YourFit Journey** is a web-based Fitness Management System designed to help users achieve their health and fitness goals through **personalized workout plans**, **customizable diet recommendations**, and **progress tracking tools**.  
 The system bridges the gap between generic fitness resources and the need for tailored health solutions.
 
 ---
@@ -9,7 +9,7 @@ The system bridges the gap between generic fitness resources and the need for ta
 
 In today’s fast-paced world, maintaining good physical and mental health is more important than ever. While the benefits of regular exercise and healthy eating are well known, many people struggle to stay consistent due to a lack of structure, guidance, and personalized support.
 
-**YourFit-Journey** addresses these challenges by providing:
+**YourFit Journey** addresses these challenges by providing:
 - **Pre-built structured workout plans** targeting specific muscle groups.
 - **Customizable workout plans** for advanced users.
 - **Personalized diet plans** tailored to user profiles, fitness goals, and macronutrient needs.
