@@ -93,7 +93,7 @@ To design and develop a **user-friendly Fitness Management System** that:
 - Mobile-responsive design for smartphones and tablets.
 - Passwords securely hashed for privacy and security.
 - Downtime under 30 minutes per month.
-- Bug-free before deployment.
+- Bug-free before deployment. 
 - Response time for key actions under 10 seconds.
 
 ---
